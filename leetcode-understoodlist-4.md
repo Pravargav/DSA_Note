@@ -51,6 +51,86 @@ public class Graph {
 
 3. Graphs - bfs traversal( done using <ins>Queue data structure not Priority Queue</ins>)
 
+4. Graphs - dfs traversal is done using recurrsion
 
+5. Absolutely! You're spot on — not all graphs are connected. Graphs can consist of multiple disconnected components, and that's where this pattern shines.
 
+Let’s break it down.
 
+6. Why vis[] and the loop over all nodes?
+In disconnected graphs, running DFS or BFS from just one node (e.g., 0) won’t reach all other nodes — because some might not be connected at all.
+
+->DFS
+
+```
+import java.util.*;
+
+public class DisconnectedGraphDFS {
+    static void dfs(List<List<Integer>> graph, int node, boolean[] vis) {
+        vis[node] = true;
+        System.out.print(node + " ");
+
+        for (int neighbor : graph.get(node)) {
+            if (!vis[neighbor]) {
+                dfs(graph, neighbor, vis);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int V = 6;
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < V; i++) graph.add(new ArrayList<>());
+
+        // Component 1: 0-1-2
+        graph.get(0).add(1);
+        graph.get(1).add(0);
+        graph.get(1).add(2);
+        graph.get(2).add(1);
+
+        // Component 2: 3-4
+        graph.get(3).add(4);
+        graph.get(4).add(3);
+
+        // Component 3: Node 5 is isolated
+
+        boolean[] vis = new boolean[V];
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]) {
+                System.out.print("Component: ");
+                dfs(graph, i, vis);
+                System.out.println();
+            }
+        }
+    }
+}
+```
+-> BFS
+
+```
+static void bfs(List<List<Integer>> graph, int start, boolean[] vis) {
+    Queue<Integer> q = new LinkedList<>();
+    q.offer(start);
+    vis[start] = true;
+
+    while (!q.isEmpty()) {
+        int node = q.poll();
+        System.out.print(node + " ");
+        for (int neighbor : graph.get(node)) {
+            if (!vis[neighbor]) {
+                vis[neighbor] = true;
+                q.offer(neighbor);
+            }
+        }
+    }
+}
+
+for (int i = 0; i < V; i++) {
+    if (!vis[i]) {
+        System.out.print("Component: ");
+        bfs(graph, i, vis);
+        System.out.println();
+    }
+}
+
+```
