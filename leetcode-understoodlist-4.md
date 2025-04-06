@@ -49,6 +49,8 @@ public class Graph {
 }
 ```
 
+3. Graphs - bfs traversal( done using <ins>Queue data structure not Priority Queue</ins>)
+
 
 
 
