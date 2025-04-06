@@ -137,8 +137,8 @@ for (int i = 0; i < V; i++) {
 
 ``797. All Paths From Source to Target``
 
-``994. Rotting Oranges``
+``994. Rotting Oranges``(implicit graph format not adjacency list)
 
-``200. Number of Islands``
+``200. Number of Islands``(implicit graph format not adjacency list)
 
 
