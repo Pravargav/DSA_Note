@@ -142,3 +142,7 @@ for (int i = 0; i < V; i++) {
 ``200. Number of Islands``(implicit graph format not adjacency list)
 
 -> To check cyclicity of directed graph we use both visited array and recursion stack array because [visit this video](https://youtu.be/9twcmtQj4DU?si=9ytHYKKb5rtX_bSX)
+
+-> For topological sort same dfs code but just add stack.push(curr) after for loop
+
+
