@@ -62,7 +62,7 @@ In disconnected graphs, running DFS or BFS from just one node (e.g., 0) won’t 
 
 ->DFS
 
-```
+```java
 import java.util.*;
 
 public class DisconnectedGraphDFS {
@@ -107,7 +107,7 @@ public class DisconnectedGraphDFS {
 ```
 -> BFS
 
-```
+```java
 static void bfs(List<List<Integer>> graph, int start, boolean[] vis) {
     Queue<Integer> q = new LinkedList<>();
     q.offer(start);
@@ -155,7 +155,7 @@ for (int i = 0; i < V; i++) {
 
 <------------------------------------------------------------------>
 
-```
+```java
 PriorityQueue<Pair> pq = new PriorityQueue<>();
 int dist[] = new int[graph.length];
 boolean vis[] = new boolean[graph.length];
