@@ -146,3 +146,35 @@ for (int i = 0; i < V; i++) {
 -> For topological sort same dfs code but just add stack.push(curr) after for loop
 
 -> To check cyclicity of undirected graph we keep track of the parent node and visited array
+
+
+```
+PriorityQueue<Pair> pq = new PriorityQueue<>();
+int dist[] = new int[graph.length];
+boolean vis[] = new boolean[graph.length];
+for(int i=0; i<dist.length; i++) {
+	if(i != src) {
+		dist[i] = Integer.MAX_VALUE;
+	}
+}
+pq.add(new Pair(src, 0));
+while(!pq.isEmpty()) {
+	Pair curr = pq.remove();
+	if(!vis[curr.n]) {
+		vis[curr.n] = true;
+		for(int i=0; i<graph[curr.n].size(); i++) {
+			Edge e = graph[curr.n].get(i);
+			int u = e.src;
+			int v = e.dest;
+			if(!vis[v] && dist[u]+e.wt < dist[v]) {
+				dist[v] = dist[u] + e.wt;
+				pq.add(new Pair(v, dist[v]));
+			}
+		}
+	}
+}
+
+```
+-> Dijkstra's algorithm is BFS usning Priority Queue in place of Normal Queue
+
+->
