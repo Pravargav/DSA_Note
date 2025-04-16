@@ -175,6 +175,6 @@ while(!pq.isEmpty()) {
 }
 
 ```
--> Dijkstra's algorithm is BFS usning Priority Queue in place of Normal Queue
+-> Dijkstra's algorithm is BFS usning Priority Queue in place of Normal Queue(Greedy and Positive Edges Only)
 
 ->
