@@ -9,7 +9,7 @@ Creates the array with V elements (one for each vertex).
 Note: This does not initialize each ArrayList inside — you need to do that in a loop.
 
 
-```
+```java
 import java.util.*;
 
 class Edge {
