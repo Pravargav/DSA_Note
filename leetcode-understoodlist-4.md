@@ -141,12 +141,19 @@ for (int i = 0; i < V; i++) {
 
 ``200. Number of Islands``(implicit graph format not adjacency list)
 
+<------------------------------------------------------------------>
+
 -> To check cyclicity of directed graph we use both visited array and recursion stack array because [visit this video](https://youtu.be/9twcmtQj4DU?si=9ytHYKKb5rtX_bSX)
 
 -> For topological sort same dfs code but just add stack.push(curr) after for loop
 
 -> To check cyclicity of undirected graph we keep track of the parent node and visited array
 
+``207. Course Schedule``
+
+``802. Find Eventual Safe States``
+
+<------------------------------------------------------------------>
 
 ```
 PriorityQueue<Pair> pq = new PriorityQueue<>();
@@ -175,6 +182,6 @@ while(!pq.isEmpty()) {
 }
 
 ```
--> Dijkstra's algorithm is BFS usning Priority Queue in place of Normal Queue(Greedy and Positive Edges Only)
+-> Dijkstra's algorithm is BFS usning Priority Queue in place of Normal Queue(Greedy and Positive Edges Only but takes less time Complexity so useful)
 
-->
+-> Bellman Ford algorithm (Dynamic Programming , Negative Edges But high time complexity so useful only for negativ edges)
