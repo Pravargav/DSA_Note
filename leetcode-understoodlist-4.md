@@ -184,4 +184,4 @@ while(!pq.isEmpty()) {
 ```
 -> Dijkstra's algorithm is BFS usning Priority Queue in place of Normal Queue(Greedy and Positive Edges Only but takes less time Complexity so useful)
 
--> Bellman Ford algorithm (Dynamic Programming , Negative Edges But high time complexity so useful only for negativ edges)
+-> Bellman Ford algorithm (Dynamic Programming , Negative Edges But high time complexity so useful only for negativ edges) [visit this video](https://youtu.be/obWXjtg0L64?si=ZZ9ssTn2BnulKt8D)
