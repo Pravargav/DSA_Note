@@ -172,6 +172,38 @@ while(!pq.isEmpty()) {
 		for(int i=0; i<graph[curr.n].size(); i++) {
 			Edge e = graph[curr.n].get(i);
 			int u = e.src;
+			int v = e.dest;
+			if(!vis[v] && dist[u]+e.wt < dist[v]) {
+				dist[v] = dist[u] + e.wt;
+				pq.add(new Pair(v, dist[v]));
+			}
+		}
+	}
+}
+```
+
+
+-> Dijkstra's algorithm is BFS usning Priority Queue in place of Normal Queue(Greedy and Positive Edges Only but takes less time Complexity so useful)
+
+-> Bellman Ford algorithm (Dynamic Programming , Negative Edges But high time complexity so useful only for negativ edges) [visit this video](https://youtu.be/obWXjtg0L64?si=ZZ9ssTn2BnulKt8D)
+
+```java
+PriorityQueue<Pair> pq = new PriorityQueue<>();
+int dist[] = new int[graph.length];
+boolean vis[] = new boolean[graph.length];
+for(int i=0; i<dist.length; i++) {
+	if(i != src) {
+		dist[i] = Integer.MAX_VALUE;
+	}
+}
+pq.add(new Pair(src, 0));
+while(!pq.isEmpty()) {
+	Pair curr = pq.remove();
+	if(!vis[curr.n]) {
+		vis[curr.n] = true;
+		for(int i=0; i<graph[curr.n].size(); i++) {
+			Edge e = graph[curr.n].get(i);
+			int u = e.src;
 int dist[] = new int[graph.length];
 for(int i=0; i<dist.length; i++) {
 	if(i != src)
@@ -211,3 +243,4 @@ for(int i=0; i<dist.length; i++) {
 }
 
 ```
+<------------------------------------------------------------------------>
