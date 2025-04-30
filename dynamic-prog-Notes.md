@@ -74,7 +74,9 @@ public class FloydWarshall {
     }
 }
 ```
+
 **2)Smallest Sum Contiguos Array(practice)**
+
 **3)Stictly Increasing Array(practice)**
 
 ----------------------------------------------------------
