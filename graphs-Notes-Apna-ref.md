@@ -312,7 +312,7 @@ public class CycleUndirected {
 
 ```
 
-** dijikstra's **
+**dijikstra's**
 
 ```java
 import java.util.*;
