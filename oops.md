@@ -4,10 +4,10 @@
 
 Feature      	       Encapsulation	                          Abstraction
 
-Purpose         	Hides internal data via access control   	Hides implementation complexity
+Purpose         	{Hides internal data via access control}   	{Hides implementation complexity}
 
-Focus	            Data protection and access control	      Interface design and implementation hiding
+Focus	           {Data protection and access control}	      {Interface design and implementation hiding}
 
-How it's achieved	Access modifiers (private, public)   	    Abstract classes, interfaces
+How it's achieved  {Access modifiers (private, public)}   	    {Abstract classes, interfaces}
 
 -> polymorphism and inheritance same  use extends
