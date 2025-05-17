@@ -387,3 +387,51 @@ This table includes **`Deque`-specific methods** not found in other collection t
 
 
 
+### Other Utility Methods of `LinkedList`
+
+1. **`clone()`**
+
+   * This method creates a **shallow copy** of the `LinkedList`.
+   * The new list contains the same elements, but it’s a separate list object (modifying one won’t affect the other).
+
+2. **`descendingIterator()`**
+
+   * This method returns an iterator that goes through the list **in reverse order** (from last element to first).
+   * It’s useful if you want to traverse the list backward without reversing the list itself.
+
+---
+
+### Example with explanation and output:
+
+```java
+import java.util.LinkedList;
+import java.util.Iterator;
+
+public class LinkedListUtilityExample {
+    public static void main(String[] args) {
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("Banana");
+        linkedList.add("Cherry");
+
+        // Clone the LinkedList (creates a shallow copy)
+        LinkedList<String> clonedList = (LinkedList<String>) linkedList.clone();
+        System.out.println("Cloned LinkedList: " + clonedList);
+        // Output: Cloned LinkedList: [Banana, Cherry]
+
+        // Use descendingIterator to iterate in reverse order
+        System.out.println("Elements in reverse order:");
+        Iterator<String> descendingIterator = linkedList.descendingIterator();
+        while (descendingIterator.hasNext()) {
+            System.out.println(descendingIterator.next());
+        }
+        // Output:
+        // Elements in reverse order:
+        // Cherry
+        // Banana
+    }
+}
+```
+
+
+
+
