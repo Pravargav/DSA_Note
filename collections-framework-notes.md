@@ -358,7 +358,11 @@ public class ListIteratorExample {
 | **Conversion to Array** | `toArray()`, `toArray(T[] a)`      | ✅ Efficient                  | ✅ Slightly less efficient       |
 
 
-📘 Methods Specific to Deque
+Here is a table summarizing **methods specific to `Deque`** in Java, categorized by their functionality:
+
+---
+
+### 📘 **Methods Specific to `Deque`**
 
 | **Category**                      | **Method**                                | **Description**                                               |
 | --------------------------------- | ----------------------------------------- | ------------------------------------------------------------- |
@@ -378,5 +382,11 @@ public class ListIteratorExample {
 |                                   | `E pop()`                                 | Pops element from front; throws if empty.                     |
 | 🔹 **Utility Methods**            | `boolean removeFirstOccurrence(Object o)` | Removes first occurrence of element; returns `true` if found. |
 |                                   | `boolean removeLastOccurrence(Object o)`  | Removes last occurrence of element; returns `true` if found.  |
+
+---
+
+This table includes **`Deque`-specific methods** not found in other collection types, making it ideal for **double-ended queue** and **stack-like** behavior.
+
+
 
 
