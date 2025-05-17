@@ -709,9 +709,7 @@ Provides logarithmic-time performance (O(log n)) for basic operations like add, 
 | **Polling**              | `E pollFirst()`                                                                    | Retrieves and removes the **first (lowest)** element, or returns `null` if empty.               |
 |                          | `E pollLast()`                                                                     | Retrieves and removes the **last (highest)** element, or returns `null` if empty.               |
 | **Reverse View**         | `NavigableSet<E> descendingSet()`                                                  | Returns a **reverse-order** view of the elements in the set.                                    |
-| **Improved Range Views** | `NavigableSet<E> subSet(E from, boolean fromInclusive, E to, boolean toInclusive)` | Returns a view of elements from `from` to `to`, with control over **inclusivity**.              |
-|                          | `NavigableSet<E> headSet(E to, boolean inclusive)`                                 | Returns a view of elements **less than (or equal to)** `to`, depending on `inclusive`.          |
-|                          | `NavigableSet<E> tailSet(E from, boolean inclusive)`                               | Returns a view of elements **greater than (or equal to)** `from`, depending on `inclusive`.     |
+
 
 
 
