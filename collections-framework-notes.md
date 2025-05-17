@@ -358,4 +358,25 @@ public class ListIteratorExample {
 | **Conversion to Array** | `toArray()`, `toArray(T[] a)`      | ✅ Efficient                  | ✅ Slightly less efficient       |
 
 
+📘 Methods Specific to Deque
+
+| **Category**                      | **Method**                                | **Description**                                               |
+| --------------------------------- | ----------------------------------------- | ------------------------------------------------------------- |
+| 🔹 **Operations at Head (Front)** | `void addFirst(E e)`                      | Inserts element at front; throws if full.                     |
+|                                   | `boolean offerFirst(E e)`                 | Inserts at front; returns `true` if added, `false` if full.   |
+|                                   | `E removeFirst()`                         | Removes and returns front; throws if empty.                   |
+|                                   | `E pollFirst()`                           | Removes and returns front; returns `null` if empty.           |
+|                                   | `E getFirst()`                            | Retrieves (no remove) front; throws if empty.                 |
+|                                   | `E peekFirst()`                           | Retrieves (no remove) front; returns `null` if empty.         |
+| 🔹 **Operations at Tail (End)**   | `void addLast(E e)`                       | Inserts element at end; throws if full.                       |
+|                                   | `boolean offerLast(E e)`                  | Inserts at end; returns `true` if added, `false` if full.     |
+|                                   | `E removeLast()`                          | Removes and returns end; throws if empty.                     |
+|                                   | `E pollLast()`                            | Removes and returns end; returns `null` if empty.             |
+|                                   | `E getLast()`                             | Retrieves (no remove) end; throws if empty.                   |
+|                                   | `E peekLast()`                            | Retrieves (no remove) end; returns `null` if empty.           |
+| 🔹 **Stack Operations**           | `void push(E e)`                          | Pushes element at front (LIFO); throws if full.               |
+|                                   | `E pop()`                                 | Pops element from front; throws if empty.                     |
+| 🔹 **Utility Methods**            | `boolean removeFirstOccurrence(Object o)` | Removes first occurrence of element; returns `true` if found. |
+|                                   | `boolean removeLastOccurrence(Object o)`  | Removes last occurrence of element; returns `true` if found.  |
+
 
