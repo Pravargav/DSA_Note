@@ -723,4 +723,15 @@ https://www.geeksforgeeks.org/override-equalsobject-hashcode-method/
 
 
 
- 
+### **Difference Between Map Interface and Map.Entry Interface**
+
+| **Feature**      | **Map Interface**                                                                                            | **Map.Entry Interface**                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| **Purpose**      | Represents a collection of key-value pairs (a map).                                                          | Represents a single key-value pair (an entry in the map).                                      |
+| **Scope**        | A top-level interface in the `java.util` package.                                                            | A nested interface inside the `Map` interface.                                                 |
+| **Methods**      | Provides methods to work with the entire map (e.g., `put`, `get`, `remove`, `keySet`, `values`, `entrySet`). | Provides methods to work with a specific entry (e.g., `getKey()`, `getValue()`, `setValue()`). |
+| **Usage**        | Used to store and manage multiple key-value pairs.                                                           | Used to access or modify a specific key-value pair within a map.                               |
+| **Example**      | `Map<String, Integer> map = new HashMap<>();`                                                                | `Map.Entry<String, Integer> entry = map.entrySet().iterator().next();`                         |
+| **Relationship** | A `Map` contains multiple `Map.Entry` objects.                                                               | A `Map.Entry` is a single element of a `Map`.                                                  |
+
+
