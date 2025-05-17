@@ -587,3 +587,31 @@ Elements cannot be accessed using an index.
 
 Example: You cannot use set.get(0).
 
+-> Methods only specific to set interface:
+
+The Set interface in Java is part of the Java Collections Framework and represents a collection of unique elements. While the Set interface inherits methods from the Collection interface, it does not introduce any new methods of its own. Instead, it enforces the contract that all elements in a Set must be unique.
+
+However, the Set interface is implemented by several classes (e.g., HashSet, LinkedHashSet, TreeSet), and these implementations may provide additional methods specific to their functionality. Below, I'll explain the methods specific to the Set interface and how they differ from other collections.
+
+
+
+### **Methods Inherited from Collection Interface (for Set)**
+
+| **Category**         | **Method**                                  | **Description**                                                          |
+| -------------------- | ------------------------------------------- | ------------------------------------------------------------------------ |
+| **Basic Operations** | `int size()`                                | Returns the number of elements in the set.                               |
+|                      | `boolean isEmpty()`                         | Returns `true` if the set contains no elements.                          |
+|                      | `boolean contains(Object o)`                | Returns `true` if the set contains the specified element.                |
+|                      | `boolean add(E e)`                          | Adds the element if it's not already in the set.                         |
+|                      | `boolean remove(Object o)`                  | Removes the element from the set if present.                             |
+|                      | `void clear()`                              | Removes all elements from the set.                                       |
+| **Bulk Operations**  | `boolean containsAll(Collection<?> c)`      | Returns `true` if the set contains all elements of the given collection. |
+|                      | `boolean addAll(Collection<? extends E> c)` | Adds all elements from the specified collection to the set.              |
+|                      | `boolean removeAll(Collection<?> c)`        | Removes all elements in the set that are in the specified collection.    |
+|                      | `boolean retainAll(Collection<?> c)`        | Keeps only the elements that are also in the specified collection.       |
+| **Array Conversion** | `Object[] toArray()`                        | Returns an array containing all elements in the set.                     |
+|                      | `<T> T[] toArray(T[] a)`                    | Returns an array with the runtime type of the specified array.           |
+| **Iteration**        | `Iterator<E> iterator()`                    | Returns an iterator to loop through the elements in the set.             |
+
+
+
