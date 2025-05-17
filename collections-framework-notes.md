@@ -950,4 +950,39 @@ public class SortByCustomObject {
 | `boolean replace(K key, V oldValue, V newValue)`                          | Replaces the value for the key only if currently mapped to `oldValue`.                     |
 | `V replace(K key, V value)`                                               | Replaces the value for the key only if it is already mapped.                               |
 
+-> A LinkedHashMap<K, V> is a subclass of HashMap<K, V> that maintains insertion order (or access order, if configured). It is part of the Java Collections Framework and implements both the Map<K, V> and Iterable<Map.Entry<K, V>> interfaces.
+
+
+### ✅ **Methods Specific to `SortedMap` Interface**
+
+| **Method**                                   | **Description**                                                                                              |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `Comparator<? super K> comparator()`         | Returns the comparator used to order the keys, or `null` if natural ordering is used.                        |
+| `K firstKey()`                               | Returns the first (lowest) key in the map.                                                                   |
+| `K lastKey()`                                | Returns the last (highest) key in the map.                                                                   |
+| `SortedMap<K, V> headMap(K toKey)`           | Returns a view of the portion of the map whose keys are less than `toKey`.                                   |
+| `SortedMap<K, V> tailMap(K fromKey)`         | Returns a view of the portion of the map whose keys are greater than or equal to `fromKey`.                  |
+| `SortedMap<K, V> subMap(K fromKey, K toKey)` | Returns a view of the portion of the map whose keys range from `fromKey` (inclusive) to `toKey` (exclusive). |
+
+
+### ✅ **Methods Specific to `NavigableMap` Interface**
+
+| **Method**            | **Description**                                      |
+| --------------------- | ---------------------------------------------------- |
+| `floorKey(K key)`     | Returns the greatest key ≤ the given key.            |
+| `ceilingKey(K key)`   | Returns the smallest key ≥ the given key.            |
+| `lowerKey(K key)`     | Returns the greatest key < the given key.            |
+| `higherKey(K key)`    | Returns the smallest key > the given key.            |
+| `floorEntry(K key)`   | Returns the entry with the greatest key ≤ given key. |
+| `ceilingEntry(K key)` | Returns the entry with the smallest key ≥ given key. |
+| `lowerEntry(K key)`   | Returns the entry with the greatest key < given key. |
+| `higherEntry(K key)`  | Returns the entry with the smallest key > given key. |
+| `pollFirstEntry()`    | Removes and returns the first (lowest) entry.        |
+| `pollLastEntry()`     | Removes and returns the last (highest) entry.        |
+| `descendingKeySet()`  | Returns a reverse-order view of the keys.            |
+| `descendingMap()`     | Returns a reverse-order view of the map.             |
+
+
+
+
 
