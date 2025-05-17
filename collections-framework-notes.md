@@ -972,8 +972,300 @@ public class SortByCustomObject {
 `pollFirstEntry()`, `pollLastEntry()`, `descendingKeySet()`, `descendingMap()`... etc
 
 
+```java
+import java.util.HashMap;
+
+import java.util.Map;
 
 
+
+public class FrequencyCounter {
+
+    public static void main(String[] args) {
+
+        String[] words = {"apple", "banana", "apple", "orange", "banana", "apple"};
+
+        Map<String, Integer> frequencyMap = new HashMap<>();
+
+
+
+        for (String word : words) {
+
+            // Using getOrDefault to handle both existing and new keys
+
+            frequencyMap.put(word, frequencyMap.getOrDefault(word, 0) + 1);
+
+        }
+
+
+
+        System.out.println("Frequency Map (using getOrDefault):");
+
+        System.out.println(frequencyMap);
+
+        // Output: {orange=1, banana=2, apple=3}
+
+    }
+
+}
+```
+
+```java
+import java.util.HashMap;
+import java.util.Map;
+
+public class FrequencyCounter {
+    public static void main(String[] args) {
+        String[] words = {"apple", "banana", "apple", "orange", "banana", "apple"};
+        Map<String, Integer> frequencyMap = new HashMap<>();
+
+        for (String word : words) {
+            // Using putIfAbsent to initialize if key doesn't exist
+            frequencyMap.putIfAbsent(word, 0);
+            frequencyMap.put(word, frequencyMap.get(word) + 1);
+        }
+
+        System.out.println("Frequency Map (using putIfAbsent):");
+        System.out.println(frequencyMap);
+        // Output: {orange=1, banana=2, apple=3}
+    }
+}
+```
+```java
+class Task {
+    String name;
+    int priority;
+    
+    Task(String name, int priority) {
+        this.name = name;
+        this.priority = priority;
+    }
+}
+
+// Custom comparator for Task objects (higher priority value comes first)
+PriorityQueue<Task> taskQueue = new PriorityQueue<>(
+    (t1, t2) -> Integer.compare(t2.priority, t1.priority) // Descending
+);
+
+taskQueue.add(new Task("Fix bug", 3));
+taskQueue.add(new Task("Write docs", 1));
+taskQueue.add(new Task("Implement feature", 5));
+
+System.out.println(taskQueue.poll().name); // "Implement feature" (priority 5)
+```
+
+```java
+class Student {
+    String name;
+    double gpa;
+    int age;
+    
+    Student(String name, double gpa, int age) {
+        this.name = name;
+        this.gpa = gpa;
+        this.age = age;
+    }
+}
+
+// Sort by GPA (descending), then age (ascending)
+PriorityQueue<Student> studentQueue = new PriorityQueue<>(
+    Comparator.comparingDouble((Student s) -> s.gpa).reversed()
+    .thenComparingInt(s -> s.age)
+);
+
+studentQueue.add(new Student("Alice", 3.8, 20));
+studentQueue.add(new Student("Bob", 3.8, 19));
+studentQueue.add(new Student("Charlie", 3.5, 21));
+
+System.out.println(studentQueue.poll().name); // Alice (same GPA as Bob but older)
+System.out.println(studentQueue.poll().name); // Bob
+```
+
+-> haspmap to list and list to hashmap inter-conversion
+
+```java
+//list to map
+ArrayList<String> list = new ArrayList<>(Arrays.asList("Apple", "Banana", "Cherry"));
+
+// Convert to HashMap with index as key
+HashMap<Integer, String> map = new HashMap<>();
+for (int i = 0; i < list.size(); i++) {
+    map.put(i, list.get(i));
+}
+// Result: {0=Apple, 1=Banana, 2=Cherry}
+
+//map to list
+HashMap<String, Integer> map = new HashMap<>();
+map.put("Apple", 10);
+map.put("Banana", 20);
+map.put("Orange", 15);
+
+// Create the List of Lists
+List<List<Object>> entryLists = new ArrayList<>();
+
+// Iterate through the map entries
+for (Map.Entry<String, Integer> entry : map.entrySet()) {
+    // Create a new list for each key-value pair
+    List<Object> pair = new ArrayList<>();
+    pair.add(entry.getKey());
+    pair.add(entry.getValue());
+    
+    // Add the pair to our main list
+    entryLists.add(pair);
+}
+
+System.out.println(entryLists);
+// Output: [[Apple, 10], [Banana, 20], [Orange, 15]]
+```
+
+-> Adding keys,values and entries to list
+```java
+
+HashMap<Integer, String> map = new HashMap<>();
+map.put(1, "Apple");
+map.put(2, "Banana");
+map.put(3, "Cherry");
+
+ArrayList<Integer> keyList = new ArrayList<>(map.keySet());
+// Result: [1, 2, 3] (order not guaranteed)
+
+ArrayList<String> valueList = new ArrayList<>(map.values());
+// Result: [Apple, Banana, Cherry] (order matches keySet)
+
+ArrayList<Map.Entry<Integer, String>> entryList = new ArrayList<>(map.entrySet());
+// Result: [1=Apple, 2=Banana, 3=Cherry] as Entry objects
+
+```
+
+-> List comparators
+
+```java
+
+// Sort strings by number of vowels
+Comparator<String> byVowels = (s1, s2) -> {
+    int vowels1 = s1.replaceAll("[^aeiouAEIOU]", "").length();
+    int vowels2 = s2.replaceAll("[^aeiouAEIOU]", "").length();
+    return Integer.compare(vowels1, vowels2);
+};
+
+ArrayList<String> words = new ArrayList<>(Arrays.asList("apple", "banana", "pear"));
+words.sort(byVowels);
+// Result: [pear, apple, banana]
+
+
+// Sort by name then age
+Comparator<Person> byNameThenAge = Comparator
+    .comparing((Person p) -> p.name)
+    .thenComparingInt(p -> p.age);
+
+people.sort(byNameThenAge);
+
+
+class Person {
+    String name;
+    int age;
+    
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+ArrayList<Person> people = new ArrayList<>();
+people.add(new Person("John", 30));
+people.add(new Person("Alice", 25));
+
+// Sort by age
+people.sort(Comparator.comparingInt(p -> p.age));
+
+
+Comparator<String> byLength = Comparator.comparingInt(String::length);
+names.sort(byLength);
+// Result (for ["John", "Alice", "Bob"]): [Bob, John, Alice]
+
+ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(5, 2, 8, 1));
+Collections.sort(numbers, Comparator.reverseOrder());
+// Result: [8, 5, 2, 1]
+
+```
+
+
+->Map comparators
+
+```java
+Comparator<String> byVowels = (s1, s2) -> {
+    long v1 = s1.toLowerCase().chars().filter(c -> "aeiou".indexOf(c) >= 0).count();
+    long v2 = s2.toLowerCase().chars().filter(c -> "aeiou".indexOf(c) >= 0).count();
+    return v1 != v2 ? Long.compare(v1, v2) : s1.compareTo(s2);
+};
+
+TreeMap<String, Integer> vowelMap = new TreeMap<>(byVowels);
+vowelMap.put("Apple", 5);
+vowelMap.put("Banana", 3);
+vowelMap.put("Grape", 2);
+vowelMap.put("Kiwi", 4);
+System.out.println(vowelMap);  // {Grape=2, Kiwi=4, Apple=5, Banana=3}
+
+
+Comparator<String> numericKeys = (s1, s2) -> {
+    try {
+        return Integer.compare(Integer.parseInt(s1), Integer.parseInt(s2));
+    } catch (NumberFormatException e) {
+        return s1.compareTo(s2);
+    }
+};
+
+TreeMap<String, Integer> numericMap = new TreeMap<>(numericKeys);
+numericMap.put("100", 1);
+numericMap.put("20", 2);
+numericMap.put("500", 3);
+numericMap.put("abc", 4);
+System.out.println(numericMap);  // {20=2, 100=1, 500=3, abc=4}
+
+
+Comparator<String> byLastChar = (s1, s2) -> {
+    char last1 = s1.charAt(s1.length() - 1);
+    char last2 = s2.charAt(s2.length() - 1);
+    return Character.compare(last1, last2);
+};
+
+TreeMap<String, Integer> lastCharMap = new TreeMap<>(byLastChar);
+lastCharMap.put("Apple", 1);
+lastCharMap.put("Banana", 2);
+lastCharMap.put("Cherry", 3);
+lastCharMap.put("Date", 4);
+System.out.println(lastCharMap);  // {Banana=2, Apple=1, Date=4, Cherry=3}
+
+```
+
+-> Set comparators
+
+```java
+TreeSet<String> caseInsensitive = new TreeSet<>(String.CASE_INSENSITIVE_ORDER);
+caseInsensitive.add("Apple");
+caseInsensitive.add("banana");
+caseInsensitive.add("apple");
+System.out.println(caseInsensitive); // [Apple, banana] (only one "apple")
+
+Comparator<String> byLength = (s1, s2) -> {
+    int lenCompare = Integer.compare(s1.length(), s2.length());
+    return lenCompare != 0 ? lenCompare : s1.compareTo(s2);
+};
+
+TreeSet<String> words = new TreeSet<>(byLength);
+words.add("apple");
+words.add("banana");
+words.add("kiwi");
+words.add("pear");
+System.out.println(words); // [kiwi, pear, apple, banana]
+
+TreeSet<Integer> numbers = new TreeSet<>(Comparator.reverseOrder());
+numbers.add(5);
+numbers.add(2);
+numbers.add(8);
+System.out.println(numbers); // [8, 5, 2] (descending order)
+
+```
 
 
 
