@@ -346,6 +346,16 @@ public class ListIteratorExample {
 }
 ```
 
+| Operation Category      | Method                             | `ArrayList` (Performance)    | `LinkedList` (Performance)      |
+| ----------------------- | ---------------------------------- | ---------------------------- | ------------------------------- |
+| **Basic Operations**    | `add`, `remove`, `size`, `isEmpty` | Fast (except remove is O(n)) | Fast for add/remove at ends     |
+| **Positional Access**   | `get(index)`, `set(index, e)`      | ✅ Fast (O(1))                | ❌ Slow (O(n))                   |
+|                         | `add(index, e)`, `remove(index)`   | ❌ Slower (shifts required)   | ✅ Faster at start/middle (O(n)) |
+| **Search Operations**   | `indexOf`, `lastIndexOf`           | ✅ Moderate (O(n))            | ✅ Moderate (O(n))               |
+| **List Iteration**      | `iterator`, `listIterator`         | ✅ Fast (sequential access)   | ✅ Fast (but node-based)         |
+| **Range-view**          | `subList(from, to)`                | ✅ Supported                  | ✅ Supported                     |
+| **Bulk Operations**     | `addAll`, `removeAll`, `retainAll` | ✅ Supported                  | ✅ Supported                     |
+| **Conversion to Array** | `toArray()`, `toArray(T[] a)`      | ✅ Efficient                  | ✅ Slightly less efficient       |
 
 
 
