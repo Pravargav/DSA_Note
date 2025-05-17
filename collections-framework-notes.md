@@ -745,3 +745,172 @@ https://www.geeksforgeeks.org/override-equalsobject-hashcode-method/
 | `boolean equals(Object o)` | Compares the specified object with this entry for equality. |
 | `int hashCode()`           | Returns the hash code of the entry (based on key and value  |
 
+```java
+import java.util.*;
+
+public class CompareByKeyExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Banana", 2);
+        map.put("Apple", 5);
+        map.put("Cherry", 3);
+
+        // Convert map to list of entries
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(map.entrySet());
+
+        // Sort by key (alphabetically)
+        entries.sort(Map.Entry.comparingByKey());
+
+        System.out.println("Sorted by Key:");
+        for (Map.Entry<String, Integer> entry : entries) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+
+        /*
+        Output:
+        Apple = 5
+        Banana = 2
+        Cherry = 3
+        */
+    }
+}
+```
+
+```java
+import java.util.*;
+
+public class CompareByValueExample {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Banana", 2);
+        map.put("Apple", 5);
+        map.put("Cherry", 3);
+
+        // Convert map to list of entries
+        List<Map.Entry<String, Integer>> entries = new ArrayList<>(map.entrySet());
+
+        // Sort by value (ascending)
+        entries.sort(Map.Entry.comparingByValue());
+
+        System.out.println("Sorted by Value:");
+        for (Map.Entry<String, Integer> entry : entries) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+
+        /*
+        Output:
+        Banana = 2
+        Cherry = 3
+        Apple = 5
+        */
+    }
+}
+```
+
+```java
+import java.util.*;
+
+public class SortByKeyCustom {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Banana", 2);
+        map.put("Apple", 5);
+        map.put("Cherry", 3);
+
+        List<Map.Entry<String, Integer>> entryList = new ArrayList<>(map.entrySet());
+
+        // Sort by key in reverse (Z to A)
+        entryList.sort(Map.Entry.comparingByKey(Comparator.reverseOrder()));
+
+        System.out.println("Sorted by Key (Reverse):");
+        for (Map.Entry<String, Integer> entry : entryList) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+
+        /*
+        Output:
+        Cherry = 3
+        Banana = 2
+        Apple = 5
+        */
+    }
+}
+```
+```java
+import java.util.*;
+
+public class SortByValueCustom {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Banana", 2);
+        map.put("Apple", 5);
+        map.put("Cherry", 3);
+
+        List<Map.Entry<String, Integer>> entryList = new ArrayList<>(map.entrySet());
+
+        // Sort by value in reverse (highest to lowest)
+        entryList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+        System.out.println("Sorted by Value (Reverse):");
+        for (Map.Entry<String, Integer> entry : entryList) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+
+        /*
+        Output:
+        Apple = 5
+        Cherry = 3
+        Banana = 2
+        */
+    }
+}
+```
+
+```java
+class Person {
+    String name;
+    int age;
+
+    Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    int compareByAge(Person other) {
+        return Integer.compare(this.age, other.age);
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + age + ")";
+    }
+}
+
+import java.util.*;
+
+public class SortByCustomObject {
+    public static void main(String[] args) {
+        Map<String, Person> map = new HashMap<>();
+        map.put("a", new Person("Alice", 30));
+        map.put("b", new Person("Bob", 25));
+        map.put("c", new Person("Charlie", 35));
+
+        List<Map.Entry<String, Person>> entryList = new ArrayList<>(map.entrySet());
+
+        // Sort by Person age using custom comparator
+        entryList.sort(Map.Entry.comparingByValue((p1, p2) -> p1.compareByAge(p2)));
+
+        System.out.println("Sorted by Person Age:");
+        for (Map.Entry<String, Person> entry : entryList) {
+            System.out.println(entry.getKey() + " = " + entry.getValue());
+        }
+
+        /*
+        Output:
+        b = Bob (25)
+        a = Alice (30)
+        c = Charlie (35)
+        */
+    }
+}
+```
