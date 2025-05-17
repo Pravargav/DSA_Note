@@ -967,20 +967,10 @@ public class SortByCustomObject {
 
 ### ✅ **Methods Specific to `NavigableMap` Interface**
 
-| **Method**            | **Description**                                      |
-| --------------------- | ---------------------------------------------------- |
-| `floorKey(K key)`     | Returns the greatest key ≤ the given key.            |
-| `ceilingKey(K key)`   | Returns the smallest key ≥ the given key.            |
-| `lowerKey(K key)`     | Returns the greatest key < the given key.            |
-| `higherKey(K key)`    | Returns the smallest key > the given key.            |
-| `floorEntry(K key)`   | Returns the entry with the greatest key ≤ given key. |
-| `ceilingEntry(K key)` | Returns the entry with the smallest key ≥ given key. |
-| `lowerEntry(K key)`   | Returns the entry with the greatest key < given key. |
-| `higherEntry(K key)`  | Returns the entry with the smallest key > given key. |
-| `pollFirstEntry()`    | Removes and returns the first (lowest) entry.        |
-| `pollLastEntry()`     | Removes and returns the last (highest) entry.        |
-| `descendingKeySet()`  | Returns a reverse-order view of the keys.            |
-| `descendingMap()`     | Returns a reverse-order view of the map.             |
+floorKey(K key), ceilingKey(K key), lowerKey(K key), higherKey(K key),
+floorEntry(K key), ceilingEntry(K key), lowerEntry(K key), higherEntry(K key),
+pollFirstEntry(), pollLastEntry(), descendingKeySet(), descendingMap()
+
 
 
 
