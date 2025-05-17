@@ -434,4 +434,107 @@ public class LinkedListUtilityExample {
 
 
 
+## ✅ 1. **LinkedList as a List**
+
+When used as a **`List`**, `LinkedList` behaves like an ordered collection that allows **index-based operations**.
+
+### 🔑 Key Features:
+
+* Maintains insertion order.
+* Allows duplicates.
+* You can use methods like `add(index, element)`, `get(index)`, and `remove(index)`.
+
+### 🔧 Example:
+
+```java
+import java.util.LinkedList;
+
+public class LinkedListAsList {
+    public static void main(String[] args) {
+        LinkedList<String> cities = new LinkedList<>();
+
+        cities.add("Delhi");
+        cities.add("Mumbai");
+        cities.add("Chennai");
+        cities.add(1, "Bangalore"); // Insert at index 1
+
+        System.out.println("Cities List: " + cities);
+        // Output: Cities List: [Delhi, Bangalore, Mumbai, Chennai]
+
+        String city = cities.get(2); // Get element at index 2
+        System.out.println("Element at index 2: " + city);
+        // Output: Element at index 2: Mumbai
+
+        cities.remove(0); // Remove element at index 0
+        System.out.println("After removing index 0: " + cities);
+        // Output: After removing index 0: [Bangalore, Mumbai, Chennai]
+    }
+}
+```
+
+
+## ✅ 2. **LinkedList as a Deque**
+
+When used as a **`Deque`**, `LinkedList` allows you to work with both ends of the list — like a **queue** or a **stack**.
+
+### 🔑 Key Features:
+
+* Can add/remove from **front or end**.
+* No direct index access.
+* Supports **stack** (`push`, `pop`) and **queue** (`offer`, `poll`) behavior.
+
+### 🔧 Example:
+
+```java
+import java.util.LinkedList;
+
+public class LinkedListAsDeque {
+    public static void main(String[] args) {
+        LinkedList<String> deque = new LinkedList<>();
+
+        // Queue behavior
+        deque.addLast("A"); // offer at end
+        deque.addLast("B");
+        deque.addFirst("C"); // offer at front
+
+        System.out.println("Deque after additions: " + deque);
+        // Output: Deque after additions: [C, A, B]
+
+        // Remove from both ends
+        String front = deque.removeFirst(); // removes "C"
+        String end = deque.removeLast();    // removes "B"
+
+        System.out.println("Removed from front: " + front);  // Output: Removed from front: C
+        System.out.println("Removed from end: " + end);      // Output: Removed from end: B
+        System.out.println("Remaining Deque: " + deque);     // Output: Remaining Deque: [A]
+
+        // Stack behavior
+        deque.push("X"); // push adds at front
+        deque.push("Y");
+        System.out.println("After stack pushes: " + deque);
+        // Output: After stack pushes: [Y, X, A]
+
+        String popped = deque.pop(); // removes from front
+        System.out.println("Popped element: " + popped);
+        // Output: Popped element: Y
+    }
+}
+```
+
+
+
+### 🧠 Summary:
+
+| Feature                 | `LinkedList` as List | `LinkedList` as Deque          |
+| ----------------------- | -------------------- | ------------------------------ |
+| Access by index         | ✅ Yes                | ❌ No                           |
+| Add/remove at both ends | ❌ Not preferred      | ✅ Yes                          |
+| Insertion order         | ✅ Maintains          | ✅ Maintains                    |
+| Duplicate elements      | ✅ Allowed            | ✅ Allowed                      |
+| Used as                 | Ordered collection   | Queue / Stack                  |
+| Key Interfaces          | `List`, `Collection` | `Deque`, `Queue`, `Collection` |
+
+
+
+
 
