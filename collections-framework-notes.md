@@ -735,3 +735,13 @@ https://www.geeksforgeeks.org/override-equalsobject-hashcode-method/
 | **Relationship** | A `Map` contains multiple `Map.Entry` objects.                                                               | A `Map.Entry` is a single element of a `Map`.                                                  |
 
 
+### **Methods of Map.Entry Interface**
+
+| **Method**                 | **Description**                                             |
+| -------------------------- | ----------------------------------------------------------- |
+| `K getKey()`               | Returns the key of the entry.                               |
+| `V getValue()`             | Returns the value of the entry.                             |
+| `V setValue(V value)`      | Updates the value of the entry and returns the old value.   |
+| `boolean equals(Object o)` | Compares the specified object with this entry for equality. |
+| `int hashCode()`           | Returns the hash code of the entry (based on key and value  |
+
