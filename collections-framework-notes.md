@@ -886,9 +886,6 @@ class Person {
     }
 }
 
-
-
-
 import java.util.*;
 
 public class SortByCustomObject {
@@ -917,3 +914,40 @@ public class SortByCustomObject {
     }
 }
 ```
+
+
+### ✅ **Basic Map Methods**
+
+| **Method**                                     | **Description**                                                              |
+| ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| `int size()`                                   | Returns the number of key-value pairs in the map.                            |
+| `boolean isEmpty()`                            | Returns `true` if the map contains no key-value pairs.                       |
+| `boolean containsKey(Object key)`              | Returns `true` if the map contains the specified key.                        |
+| `boolean containsValue(Object value)`          | Returns `true` if the map contains the specified value.                      |
+| `V get(Object key)`                            | Returns the value associated with the specified key, or `null` if not found. |
+| `V put(K key, V value)`                        | Adds or updates a key-value pair. Returns the previous value or `null`.      |
+| `V remove(Object key)`                         | Removes the key-value pair for the specified key. Returns the removed value. |
+| `void putAll(Map<? extends K, ? extends V> m)` | Copies all key-value pairs from the specified map into this map.             |
+| `void clear()`                                 | Removes all key-value pairs from the map.                                    |
+
+
+### ✅ **View Methods**
+
+| **Method**                        | **Description**                                                               |
+| --------------------------------- | ----------------------------------------------------------------------------- |
+| `Set<K> keySet()`                 | Returns a `Set` view of the keys in the map.                                  |
+| `Collection<V> values()`          | Returns a `Collection` view of the values in the map.                         |
+| `Set<Map.Entry<K, V>> entrySet()` | Returns a `Set` view of the key-value pairs (`Map.Entry` objects) in the map. |
+
+
+### ✅ **Advanced Utility Methods**
+
+| **Method**                                                                | **Description**                                                                            |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `V getOrDefault(Object key, V defaultValue)`                              | Returns the value for the specified key, or `defaultValue` if the key is not found.        |
+| `V putIfAbsent(K key, V value)`                                           | Adds the key-value pair only if the key is not already present.                            |
+| `boolean remove(Object key, Object value)`                                | Removes the key-value pair only if the key is mapped to the specified value.               |
+| `boolean replace(K key, V oldValue, V newValue)`                          | Replaces the value for the key only if currently mapped to `oldValue`.                     |
+| `V replace(K key, V value)`                                               | Replaces the value for the key only if it is already mapped.                               |
+
+
