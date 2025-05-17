@@ -711,6 +711,16 @@ Provides logarithmic-time performance (O(log n)) for basic operations like add, 
 | **Reverse View**         | `NavigableSet<E> descendingSet()`                                                  | Returns a **reverse-order** view of the elements in the set.                                    |
 
 
+-> Two types of comparators multiple comparators and Chained Comparators
+
+https://stackoverflow.com/questions/2265503/why-do-i-need-to-override-the-equals-and-hashcode-methods-in-java
+
+https://www.geeksforgeeks.org/override-equalsobject-hashcode-method/
+
+-> When working with custom classes in Java, implementing the Comparable interface is crucial when the objects of that class need to be compared with each other. This interface provides a natural ordering for objects, enabling the use of sorting methods from the Arrays and Collections classes, as well as allowing the use of the custom class as keys in sorted collections like TreeMap and TreeSet.
+
+-> When attempting to sort objects in Java without implementing either the Comparable or Comparator interface, a ClassCastException will be thrown. This error occurs because the sorting algorithm, such as Collections.sort() or Arrays.sort(), needs a way to compare the objects to determine their order. Without Comparable or Comparator, there is no defined way to compare the objects, leading to the exception
+
 
 
  
