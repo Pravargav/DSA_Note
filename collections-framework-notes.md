@@ -1,3 +1,5 @@
+----------------------------------------
+
 ->(ArrayList) Definition: A dynamic array is a resizable array that grows or shrinks in size as elements are added or removed.
 Memory Allocation: Elements are stored in a contiguous block of memory.
 
@@ -1266,6 +1268,128 @@ numbers.add(8);
 System.out.println(numbers); // [8, 5, 2] (descending order)
 
 ```
+-> Linked Hash Map iteration
+
+```java
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        // LinkedHashMap example (insertion order)
+        Map<String, Integer> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("Apple", 1);
+        linkedHashMap.put("Banana", 2);
+        linkedHashMap.put("Cherry", 3);
+        linkedHashMap.put("Date", 4);
+        
+        System.out.println("\nLinkedHashMap elements (insertion order):");
+        
+        // Method 1: Classic iterator
+        Iterator<Map.Entry<String, Integer>> it = linkedHashMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry<String, Integer> entry = it.next();
+            System.out.println(entry.getKey() + " :: " + entry.getValue());
+        }
+        
+    }
+}
+```
+
+-> TreeMap comparing by keys
+
+```java
+Example 2: Custom Key Comparator (Descending Order)
+TreeMap<String, Integer> map = new TreeMap<>(Comparator.reverseOrder());
+map.put("Orange", 2);
+map.put("Apple", 1);
+map.put("Banana", 3);
+
+System.out.println(map); // {Orange=2, Banana=3, Apple=1} (reverse alphabetical)
 
 
+Example 3: Custom Key Comparator (By String Length)
+Comparator<String> byLength = Comparator.comparingInt(String::length);
+TreeMap<String, Integer> map = new TreeMap<>(byLength);
+map.put("Kiwi", 4);
+map.put("Apple", 1);
+map.put("Banana", 3);
 
+System.out.println(map); // {Kiwi=4, Apple=1, Banana=3} (sorted by word length)
+```
+
+-> TreeMap (implements SortedMap/NavigableMap)
+Implementation: Uses Red-Black tree (self-balancing binary search tree)
+
+Ordering: Maintains elements in sorted order (natural ordering or via Comparator)
+
+-> Classes that implement Comparable (like String, Integer, etc.) define their own natural order
+Examples:
+String: alphabetical order ("Apple" < "Banana")
+Integer: numerical order (1 < 2 < 3)
+Date: chronological order
+
+-> No, a TreeMap does NOT maintain insertion order - it sorts elements either by their natural ordering (if keys implement Comparable) or by a custom Comparator you provide.
+
+-> Sorting TreeMap by Values (Tricky)
+TreeMap is designed to sort by keys, not values. To sort by values, you need to:
+
+Option : Create a List of Entries and Sort
+
+
+```java
+TreeMap<String, Integer> map = new TreeMap<>();
+map.put("Orange", 2);
+map.put("Apple", 1);
+map.put("Banana", 3);
+
+// Convert to list and sort by value
+List<Map.Entry<String, Integer>> entries = new ArrayList<>(map.entrySet());
+entries.sort(Map.Entry.comparingByValue());
+
+System.out.println(entries); // [Apple=1, Orange=2, Banana=3]
+
+Example 1: Basic Value Sorting (Ascending Order)
+java
+TreeMap<String, Integer> fruitPrices = new TreeMap<>();
+fruitPrices.put("Orange", 4);
+fruitPrices.put("Apple", 2);
+fruitPrices.put("Banana", 3);
+fruitPrices.put("Mango", 5);
+
+// Convert to list and sort by value (ascending)
+List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(fruitPrices.entrySet());
+sortedEntries.sort(Map.Entry.comparingByValue());
+
+System.out.println("Sorted by value (ascending):");
+sortedEntries.forEach(entry -> 
+    System.out.println(entry.getKey() + ": " + entry.getValue()));
+
+
+Example 2: Value Sorting (Descending Order)
+java
+// Using the same map from Example 1
+List<Map.Entry<String, Integer>> sortedEntriesDesc = new ArrayList<>(fruitPrices.entrySet());
+sortedEntriesDesc.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+
+System.out.println("\nSorted by value (descending):");
+sortedEntriesDesc.forEach(entry -> 
+    System.out.println(entry.getKey() + ": " + entry.getValue()));
+
+
+Example 3: Sorting by Value then by Key
+java
+TreeMap<String, Integer> cityPopulations = new TreeMap<>();
+cityPopulations.put("New York", 8419000);
+cityPopulations.put("Los Angeles", 3971000);
+cityPopulations.put("Chicago", 2716000);
+cityPopulations.put("Houston", 2328000);
+cityPopulations.put("Phoenix", 1680000);
+
+List<Map.Entry<String, Integer>> sortedCities = new ArrayList<>(cityPopulations.entrySet());
+sortedCities.sort(
+    Map.Entry.<String, Integer>comparingByValue().reversed()  // First by population (desc)
+    .thenComparing(Map.Entry.comparingByKey())               // Then by city name (asc)
+);
+
+```
+----------------------------------------------------------
