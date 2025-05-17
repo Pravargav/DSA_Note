@@ -614,4 +614,104 @@ However, the Set interface is implemented by several classes (e.g., HashSet, Lin
 | **Iteration**        | `Iterator<E> iterator()`                    | Returns an iterator to loop through the elements in the set.             |
 
 
+-> Relationship Between LinkedHashSet and HashSet
+LinkedHashSet Extends HashSet:
+
+LinkedHashSet is a subclass of HashSet.
+
+It inherits all the methods and behavior of HashSet but adds a linked list to maintain the insertion order of elements.
+
+HashSet:
+
+Implements the Set interface.
+
+Uses a hash table for storage.
+
+Does not maintain any order of elements.
+
+LinkedHashSet:
+
+Implements the Set interface.
+
+Uses a hash table and a linked list for storage.
+
+Maintains the insertion order of elements.
+
+-> No, LinkedHashSet is not an inherited class from the HashSet class in Java. Instead, both LinkedHashSet and HashSet are separate classes that implement the Set interface. However, LinkedHashSet extends HashSet and adds additional functionality to maintain the insertion order of elements.
+
+-> The HashSet class in Java is part of the Java Collections Framework and implements the Set interface. It is backed by a hash table (actually a HashMap instance) and provides constant-time performance for basic operations like add, remove, contains, and size, assuming the hash function disperses the elements properly.
+
+-> The LinkedHashSet class in Java is a subclass of HashSet and implements the Set interface. It maintains a linked list of the entries in the set, in the order in which they were inserted. This allows LinkedHashSet to maintain insertion order, which is not supported by HashSet.
+
+However, LinkedHashSet does not introduce any new methods that are not already present in HashSet or the Set interface. Instead, it overrides some of the internal behavior of HashSet to maintain the insertion order. Below, I'll explain the key differences and the methods that behave differently in LinkedHashSet compared to HashSet.
+
+-> Since LinkedHashSet does not introduce any new methods, it relies on the methods inherited from HashSet and Set. However, the behavior of some methods is modified to maintain insertion order. Below are the methods inherited from HashSet and Set that behave differently in LinkedHashSet:
+
+1. boolean add(E e)
+Adds the specified element to the set if it is not already present.
+
+In LinkedHashSet, the element is added to the end of the linked list to maintain insertion order.
+
+2. boolean remove(Object o)
+Removes the specified element from the set if it is present.
+
+In LinkedHashSet, the element is removed from both the hash table and the linked list.
+
+3. void clear()
+Removes all elements from the set.
+
+In LinkedHashSet, both the hash table and the linked list are cleared.
+
+4. Iterator<E> iterator()
+Returns an iterator over the elements in the set.
+
+In LinkedHashSet, the iterator follows the insertion order of elements
+
+-> Underlying Data Structure:
+
+
+HashSet:
+
+Uses a hash table (actually a HashMap instance) for storage.
+
+Provides constant-time performance (O(1)) for basic operations like add, remove, and contains.
+
+SortedSet:
+
+Typically implemented using a balanced tree (e.g., a Red-Black tree in TreeSet).
+
+Provides logarithmic-time performance (O(log n)) for basic operations like add, remove, and contains.
+
+
+
+### **Methods Specific to SortedSet**
+
+| **Category**                | **Method**                                        | **Description**                                                                       |
+| --------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| **Range Views**             | `SortedSet<E> subSet(E fromElement, E toElement)` | Returns a view of elements from `fromElement` (inclusive) to `toElement` (exclusive). |
+|                             | `SortedSet<E> headSet(E toElement)`               | Returns a view of elements strictly less than `toElement`.                            |
+|                             | `SortedSet<E> tailSet(E fromElement)`             | Returns a view of elements greater than or equal to `fromElement`.                    |
+| **First and Last Elements** | `E first()`                                       | Returns the first (lowest) element in the set.                                        |
+|                             | `E last()`                                        | Returns the last (highest) element in the set.                                        |
+| **Comparator**              | `Comparator<? super E> comparator()`              | Returns the comparator used for ordering, or `null` if using natural ordering.        |
+
+
+
+
+### **Methods Specific to NavigableSet**
+
+| **Category**             | **Method**                                                                         | **Description**                                                                                 |
+| ------------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| **Closest Match**        | `E lower(E e)`                                                                     | Returns the greatest element **strictly less than** the given element, or `null` if none.       |
+|                          | `E floor(E e)`                                                                     | Returns the greatest element **less than or equal to** the given element, or `null` if none.    |
+|                          | `E ceiling(E e)`                                                                   | Returns the smallest element **greater than or equal to** the given element, or `null` if none. |
+|                          | `E higher(E e)`                                                                    | Returns the smallest element **strictly greater than** the given element, or `null` if none.    |
+| **Polling**              | `E pollFirst()`                                                                    | Retrieves and removes the **first (lowest)** element, or returns `null` if empty.               |
+|                          | `E pollLast()`                                                                     | Retrieves and removes the **last (highest)** element, or returns `null` if empty.               |
+| **Reverse View**         | `NavigableSet<E> descendingSet()`                                                  | Returns a **reverse-order** view of the elements in the set.                                    |
+| **Improved Range Views** | `NavigableSet<E> subSet(E from, boolean fromInclusive, E to, boolean toInclusive)` | Returns a view of elements from `from` to `to`, with control over **inclusivity**.              |
+|                          | `NavigableSet<E> headSet(E to, boolean inclusive)`                                 | Returns a view of elements **less than (or equal to)** `to`, depending on `inclusive`.          |
+|                          | `NavigableSet<E> tailSet(E from, boolean inclusive)`                               | Returns a view of elements **greater than (or equal to)** `from`, depending on `inclusive`.     |
+
+
 
