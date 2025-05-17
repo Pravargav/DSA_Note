@@ -536,5 +536,54 @@ public class LinkedListAsDeque {
 
 
 
+1. Ordering
+List:
 
+Maintains the insertion order of elements.
+
+Elements are stored in the order they are added.
+
+Example: If you add [A, B, C], the list will store them as [A, B, C].
+
+Set:
+
+Does not maintain any order of elements (unless using a specific implementation like LinkedHashSet or TreeSet).
+
+Elements are stored in an unordered manner.
+
+Example: If you add [A, B, C], the set may store them as [B, A, C] or any other order.
+
+2. Duplicates
+List:
+
+Allows duplicate elements.
+
+You can add the same element multiple times.
+
+Example: [A, B, A, C] is a valid list.
+
+Set:
+
+Does not allow duplicate elements.
+
+Each element must be unique.
+
+Example: If you try to add [A, B, A, C], the set will store [A, B, C].
+
+3. Indexing
+List:
+
+Provides index-based access to elements.
+
+You can access, add, or remove elements using their index.
+
+Example: list.get(0) returns the first element.
+
+Set:
+
+Does not provide index-based access.
+
+Elements cannot be accessed using an index.
+
+Example: You cannot use set.get(0).
 
