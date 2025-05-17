@@ -399,7 +399,7 @@ This table includes **`Deque`-specific methods** not found in other collection t
    * This method returns an iterator that goes through the list **in reverse order** (from last element to first).
    * It’s useful if you want to traverse the list backward without reversing the list itself.
 
----
+
 
 ### Example with explanation and output:
 
