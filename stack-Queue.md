@@ -1,8 +1,4 @@
-# Monotonic Stack and Monotonic Queue in Java
 
-## 🔷 Monotonic Stack
-
-A **Monotonic Stack** is a stack that maintains its elements in a **monotonically increasing or decreasing order**. It's used in problems like **Next Greater Element**, **Largest Rectangle in Histogram**, etc.
 
 ### ✅ Java Code: Monotonic Increasing Stack (Next Greater Element)
 
@@ -27,6 +23,8 @@ public class MonotonicStack {
         return res;
     }
 }
+
+
 🔷 Monotonic Queue
 A Monotonic Queue is a double-ended queue (deque) where the elements are kept in monotonic order, typically used in sliding window maximum or minimum problems.
 
