@@ -1,34 +1,10 @@
 
 
-### ✅ Java Code: Monotonic Increasing Stack (Next Greater Element)
-
-```java
-import java.util.*;
-
-public class MonotonicStack {
-    public int[] nextGreaterElements(int[] nums) {
-        int n = nums.length;
-        int[] res = new int[n];
-        Stack<Integer> stack = new Stack<>();
-
-        for (int i = n - 1; i >= 0; i--) {
-            // Maintain monotonic decreasing stack
-            while (!stack.isEmpty() && stack.peek() <= nums[i]) {
-                stack.pop();
-            }
-            res[i] = stack.isEmpty() ? -1 : stack.peek();
-            stack.push(nums[i]);
-        }
-
-        return res;
-    }
-}
-
 
 🔷 Monotonic Queue
 A Monotonic Queue is a double-ended queue (deque) where the elements are kept in monotonic order, typically used in sliding window maximum or minimum problems.
 
-✅ Java Code: Monotonic Decreasing Queue (Sliding Window Maximum)
+ ### Java Code: Monotonic Decreasing Queue (Sliding Window Maximum)
 import java.util.*;
 
 public class MonotonicQueue {
