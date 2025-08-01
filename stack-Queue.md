@@ -59,3 +59,67 @@ public class MonotonicQueue {
         return res;
     }
 }
+
+### ✅ Repeated template- 3589. Count Prime-Gap Balanced Subarrays
+```java
+import java.util.*;
+
+class Solution {
+    public int primeSubarray(int[] nums, int k) {
+        int n = nums.length;
+        int left = 0, ans = 0;
+
+        // Deques to track primes and min/max in window
+        Deque<Integer> minDeque = new ArrayDeque<>();  // increasing order
+        Deque<Integer> maxDeque = new ArrayDeque<>();  // decreasing order
+        Deque<Integer> primeIndices = new ArrayDeque<>(); // prime indices in window
+
+        for (int right = 0; right < n; right++) {
+            int num = nums[right];
+
+            if (isPrime(num)) {
+                // Maintain minDeque (increasing)
+                while (!minDeque.isEmpty() && nums[minDeque.peekLast()] > num)
+                    minDeque.pollLast();
+                minDeque.addLast(right);
+
+                // Maintain maxDeque (decreasing)
+                while (!maxDeque.isEmpty() && nums[maxDeque.peekLast()] < num)
+                    maxDeque.pollLast();
+                maxDeque.addLast(right);
+
+                // Track all prime positions
+                primeIndices.addLast(right);
+            }
+
+            // Shrink window until primes are valid (max - min ≤ k)
+            while (!primeIndices.isEmpty() && nums[maxDeque.peekFirst()] - nums[minDeque.peekFirst()] > k) {
+                if (primeIndices.peekFirst() == left)
+                    primeIndices.pollFirst();
+                if (!minDeque.isEmpty() && minDeque.peekFirst() == left)
+                    minDeque.pollFirst();
+                if (!maxDeque.isEmpty() && maxDeque.peekFirst() == left)
+                    maxDeque.pollFirst();
+                left++;
+            }
+
+            // Count valid subarrays ending at `right` with at least 2 primes
+            if (primeIndices.size() >= 2) {
+                Iterator<Integer> iterator = primeIndices.descendingIterator();
+                iterator.next(); // skip last
+                int secondLastPrimeIndex = iterator.next(); // get second last
+                ans += secondLastPrimeIndex - left + 1;
+            }
+        }
+
+        return ans;
+    }
+
+    private boolean isPrime(int num) {
+        if (num <= 1) return false;
+        for (int i = 2; i * i <= num; i++)
+            if (num % i == 0)
+                return false;
+        return true;
+    }
+}
