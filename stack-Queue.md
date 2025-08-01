@@ -59,7 +59,7 @@ public class MonotonicQueue {
         return res;
     }
 }
-
+```
 ### ✅ Repeated template- 3589. Count Prime-Gap Balanced Subarrays
 ```java
 import java.util.*;
