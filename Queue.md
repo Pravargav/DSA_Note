@@ -5,6 +5,7 @@
 A Monotonic Queue is a double-ended queue (deque) where the elements are kept in monotonic order, typically used in sliding window maximum or minimum problems.
 
  ### Java Code: Monotonic Decreasing Queue (Sliding Window Maximum)
+ ```java
 import java.util.*;
 
 public class MonotonicQueue {
