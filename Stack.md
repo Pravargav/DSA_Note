@@ -36,9 +36,9 @@ public class NextGreaterElement {
 class Solution {
 
     public String clearStars(String s) {
-        Deque<Integer>[] cnt = new Deque[26];
+        Stack<Integer>[] cnt = new Stack[26];
         for (int i = 0; i < 26; i++) {
-            cnt[i] = new ArrayDeque<>();
+            cnt[i] = new Stack<>();
         }
         char[] arr = s.toCharArray();
         for (int i = 0; i < arr.length; i++) {
