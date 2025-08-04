@@ -1,4 +1,4 @@
-### Next Greater Element (NGE) — Monotonic Decreasing Stack
+### Next Greater Element (NGE)/Previous Smaller Element/Next Smaller element/ Previous Greater  — Monotonic Decreasing Stack
 
 ```java
 import java.util.*;
