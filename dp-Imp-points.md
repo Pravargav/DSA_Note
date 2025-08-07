@@ -1,4 +1,7 @@
-# -> path1 + path2 and return 1; at bae case gives count number of ways. Similarily fib(n-1) + fib(n-2) gives number of ways count to climb stairs with one and two steps.
-# -> max(path1,arr[i]+path2) return 0; at bae case gives house robberer sum who never robs adjacent houses.
-# -> longest increasing subsequences, stock based problems are 1d dynamic array type of problems which are similar to climbing stairs problem which has 0 or 1 ie pick or not pick and final answer is one permutation of the binary array like the 6 length array's final answer binary representation of longest increasing subsequence is 001111 or 110010 etc...the answer is (array a,b,c,d,e,f) c,d,e,f or  a,b,e etc ... out of 2 pow 6 permutations of binary numbers.
-# -> in dp on grids problem don't confuse dp array with the given values array like 1 or 2 steps possible restriction in climbing stairs here 3 movements possible only to the next column not 9 or anything else.
+-> path1 + path2 and return 1; at bae case gives count number of ways. Similarily fib(n-1) + fib(n-2) gives number of ways count to climb stairs with one and two steps.
+
+ -> max(path1,arr[i]+path2) return 0; at bae case gives house robberer sum who never robs adjacent houses.
+ 
+ -> longest increasing subsequences, stock based problems are 1d dynamic array type of problems which are similar to climbing stairs problem which has 0 or 1 ie pick or not pick and final answer is one permutation of the binary array like the 6 length array's final answer binary representation of longest increasing subsequence is 001111 or 110010 etc...the answer is (array a,b,c,d,e,f) c,d,e,f or  a,b,e etc ... out of 2 pow 6 permutations of binary numbers.
+ 
+-> in dp on grids problem don't confuse dp array with the given values array like 1 or 2 steps possible restriction in climbing stairs here 3 movements possible only to the next column not 9 or anything else.
