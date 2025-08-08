@@ -37,3 +37,56 @@ public class Solution {
     }
 }
 ```
+
+-> count of Connected components
+```java
+import java.util.*;
+
+public class ConnectedComponentsBFS {
+    public static void main(String[] args) {
+        // Sample adjacency list
+        List<List<Integer>> adjList = new ArrayList<>();
+        adjList.add(Arrays.asList(1));        // 0
+        adjList.add(Arrays.asList(0, 2));     // 1
+        adjList.add(Arrays.asList(1));        // 2
+        adjList.add(Arrays.asList(4));        // 3
+        adjList.add(Arrays.asList(3));        // 4
+        adjList.add(new ArrayList<>());       // 5 (isolated node)
+
+        int connectedComponents = countConnectedComponents(adjList);
+        System.out.println("Number of connected components: " + connectedComponents);
+    }
+
+    public static int countConnectedComponents(List<List<Integer>> adjList) {
+        int n = adjList.size();
+        boolean[] visited = new boolean[n];
+        int components = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (!visited[i]) {
+                bfs(i, adjList, visited);
+                components++;
+            }
+        }
+
+        return components;
+    }
+
+    private static void bfs(int start, List<List<Integer>> adjList, boolean[] visited) {
+        Queue<Integer> queue = new LinkedList<>();
+        queue.offer(start);
+        visited[start] = true;
+
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            for (int neighbor : adjList.get(node)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.offer(neighbor);
+                }
+            }
+        }
+    }
+}
+
+```
