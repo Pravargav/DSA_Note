@@ -133,3 +133,50 @@ class Solution {
     }
 }
 ```
+-> check if path exists between src and dest 
+
+```java
+import java.util.*;
+
+public class PathExistenceAdjList {
+    public static boolean validPath(List<List<Integer>> graph, int source, int destination) {
+        int n = graph.size();
+        boolean[] visited = new boolean[n];
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.add(source);
+        visited[source] = true;
+
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            if (node == destination) return true;
+
+            for (int neighbor : graph.get(node)) {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.add(neighbor);
+                }
+            }
+        }
+        return false;
+    }
+
+    public static void main(String[] args) {
+        // Example adjacency list for n = 6
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < 6; i++) graph.add(new ArrayList<>());
+
+        // Undirected edges
+        graph.get(0).add(1);
+        graph.get(1).add(0);
+
+        graph.get(1).add(2);
+        graph.get(2).add(1);
+
+
+        System.out.println(validPath(graph, 0, 1)); 
+        System.out.println(validPath(graph, 0, 2)); 
+    }
+}
+
+```
