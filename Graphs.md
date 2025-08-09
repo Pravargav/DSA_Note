@@ -175,3 +175,65 @@ public class PathExistenceAdjList {
 }
 
 ```
+-> Dijikstras algorithm
+
+```java
+
+
+public class DijkstraAdjList {
+
+    public static int[] dijkstra(List<List<int[]>> graph, int src) {
+        int n = graph.size();
+        int[] dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+
+        // Min-heap: [distance, node]
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        pq.offer(new int[]{0, src});
+
+        while (!pq.isEmpty()) {
+            int[] current = pq.poll();
+            int d = current[0];
+            int u = current[1];
+
+            if (d > dist[u]) continue; // Skip outdated entries
+
+            for (int[] edge : graph.get(u)) {
+                int v = edge[0];
+                int weight = edge[1];
+                if (dist[u] + weight < dist[v]) {
+                    dist[v] = dist[u] + weight;
+                    pq.offer(new int[]{dist[v], v});
+                }
+            }
+        }
+        return dist;
+    }
+
+    public static void main(String[] args) {
+        int n = 5;
+        List<List<int[]>> graph = new ArrayList<>();
+        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
+
+        // Undirected weighted edges
+        graph.get(0).add(new int[]{1, 2});
+        graph.get(1).add(new int[]{0, 2});
+
+        graph.get(0).add(new int[]{4, 1});
+        graph.get(4).add(new int[]{0, 1});
+
+        graph.get(1).add(new int[]{2, 3});
+        graph.get(2).add(new int[]{1, 3});
+
+
+        int src = 0;
+        int[] dist = dijkstra(graph, src);
+
+        System.out.println("Shortest distances from node " + src + ":");
+        for (int i = 0; i < n; i++) {
+            System.out.println("Node " + i + " -> " + dist[i]);
+        }
+    }
+}
+```
