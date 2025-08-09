@@ -93,38 +93,33 @@ public class ConnectedComponentsBFS {
 -> matrix/grid 4 directions left,right,top,bottom moves using dijikstras shortest path
 
 ```java
+import java.util.*;
+
 class Solution {
     public int minTimeToReach(int[][] moveTime) {
-             int n = moveTime.length;
-        int m = moveTime[0].length;
-        int[][] dist = new int[n][m];
-        for (var row : dist) {
-            Arrays.fill(row, Integer.MAX_VALUE);
-        }
+        int m = moveTime.length, n = moveTime[0].length;
+        int[][] dist = new int[m][n];
+        for (int[] row : dist) Arrays.fill(row, Integer.MAX_VALUE);
         dist[0][0] = 0;
 
-        PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-        queue.offer(new int[] {0, 0, 0});
-        int[] dirs = {-1, 0, 1, 0, -1};
-        while (!queue.isEmpty()) {
-            int[] p = queue.poll();
-            int d = p[0], i = p[1], j = p[2];
+        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+        pq.offer(new int[]{0, 0, 0}); // time, row, col
 
-            if (i == n - 1 && j == m - 1) {
-                return d;
-            }
-            if (d > dist[i][j]) {
-                continue;
-            }
+        int[] dr = {-1, 0, 1, 0}, dc = {0, 1, 0, -1};
 
-            for (int k = 0; k < 4; k++) {
-                int x = i + dirs[k];
-                int y = j + dirs[k + 1];
-                if (x >= 0 && x < n && y >= 0 && y < m) {
-                    int t = Math.max(moveTime[x][y], dist[i][j]) + 1;
-                    if (dist[x][y] > t) {
-                        dist[x][y] = t;
-                        queue.offer(new int[] {t, x, y});
+        while (!pq.isEmpty()) {
+            int[] curr = pq.poll();
+            int time = curr[0], r = curr[1], c = curr[2];
+
+            if (r == m - 1 && c == n - 1) return time;
+
+            for (int i = 0; i < 4; i++) {
+                int nr = r + dr[i], nc = c + dc[i];
+                if (nr >= 0 && nc >= 0 && nr < m && nc < n) {
+                    int newTime = Math.max(time, moveTime[nr][nc]) + 1;
+                    if (newTime < dist[nr][nc]) {
+                        dist[nr][nc] = newTime;
+                        pq.offer(new int[]{newTime, nr, nc});
                     }
                 }
             }
