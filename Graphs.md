@@ -90,7 +90,7 @@ public class ConnectedComponentsBFS {
 }
 
 ```
--> matrix 4 directions left,right,top,bottom moves using dijikstras shortest path
+-> matrix/grid 4 directions left,right,top,bottom moves using dijikstras shortest path
 
 ```java
 class Solution {
