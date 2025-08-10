@@ -237,3 +237,76 @@ public class DijkstraAdjList {
     }
 }
 ```
+-> weighted dijikstra using pair (no difference between directed and undirected code just the input adjacency list is changed)
+
+```java
+
+
+public class DijkstraDirected {
+    static class Pair {
+        int node, weight;
+        Pair(int node, int weight) {
+            this.node = node;
+            this.weight = weight;
+        }
+    }
+
+    static List<List<Pair>> graph = new ArrayList<>();
+
+    static void dijkstra(int start) {
+        int n = graph.size();
+        int[] dist = new int[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[start] = 0;
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.weight));
+        pq.add(new Pair(start, 0));
+
+        while (!pq.isEmpty()) {
+            Pair cur = pq.poll();
+            int node = cur.node;
+            int curDist = cur.weight;
+
+            if (curDist > dist[node]) continue; // Skip outdated entries
+
+            for (Pair edge : graph.get(node)) {
+                int newDist = curDist + edge.weight;
+                if (newDist < dist[edge.node]) {
+                    dist[edge.node] = newDist;
+                    pq.add(new Pair(edge.node, newDist));
+                }
+            }
+        }
+
+        // Print shortest distances
+        for (int i = 0; i < n; i++) {
+            if (dist[i] == Integer.MAX_VALUE)
+                System.out.println("Node " + i + " is unreachable");
+            else
+                System.out.println("Shortest distance to node " + i + " = " + dist[i]);
+        }
+    }
+
+    static void addEdge(int u, int v, int w) {
+        graph.get(u).add(new Pair(v, w)); // Directed edge
+    }
+
+    public static void main(String[] args) {
+        int n = 5; // Number of nodes
+        for (int i = 0; i < n; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Directed weighted edges
+        addEdge(0, 1, 2);
+        addEdge(0, 2, 4);
+        addEdge(1, 2, 1);
+        addEdge(1, 3, 7);
+        addEdge(2, 4, 3);
+        addEdge(3, 4, 1);
+
+        dijkstra(0); // Start from node 0
+    }
+}
+```
+
