@@ -654,3 +654,115 @@ public class PrimsAlgorithm {
     }
 }
 ```
+
+**indegree**
+
+```java
+public class InDegreeExample {
+    public static void main(String[] args) {
+        int vertices = 5; // Number of vertices (0 to 4)
+
+        // Example directed edges
+        int[][] edges = {
+            {0, 1},
+            {0, 2},
+            {1, 2},
+            {2, 3},
+            {3, 4}
+        };
+
+        // Adjacency list representation
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < vertices; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Build the graph
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            graph.get(u).add(v);
+        }
+
+        // Array to store indegrees
+        int[] indegree = new int[vertices];
+
+        // Calculate indegrees
+        for (int u = 0; u < vertices; u++) {
+            for (int v : graph.get(u)) {
+                indegree[v]++;
+            }
+        }
+
+        // Print indegree of each vertex
+        for (int i = 0; i < vertices; i++) {
+            System.out.println("Vertex " + i + " -> In-degree: " + indegree[i]);
+        }
+    }
+}
+```
+
+**khan's algorithm for topological sort(using bfs and indegree)**
+
+```java
+
+public class KahnsAlgorithm {
+    public static void main(String[] args) {
+        int vertices = 6; // Number of vertices (0 to 5)
+
+        // Directed edges
+        int[][] edges = {
+            {5, 2},
+            {5, 0},
+            {4, 0},
+            {4, 1},
+            {2, 3},
+            {3, 1}
+        };
+
+        // Build adjacency list
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < vertices; i++) {
+            graph.add(new ArrayList<>());
+        }
+        int[] indegree = new int[vertices];
+
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            graph.get(u).add(v);
+            indegree[v]++; // count incoming edges
+        }
+
+        // Queue for vertices with indegree 0
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < vertices; i++) {
+            if (indegree[i] == 0) {
+                queue.add(i);
+            }
+        }
+
+        // Kahn's BFS topological sort
+        List<Integer> topoOrder = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            topoOrder.add(node);
+
+            // Reduce indegree of neighbors
+            for (int neighbor : graph.get(node)) {
+                indegree[neighbor]--;
+                if (indegree[neighbor] == 0) {
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        // Check for cycle
+        if (topoOrder.size() != vertices) {
+            System.out.println("Cycle detected! Topological sort not possible.");
+        } else {
+            System.out.println("Topological Order: " + topoOrder);
+        }
+    }
+}
+```
