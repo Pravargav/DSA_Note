@@ -309,4 +309,67 @@ public class DijkstraDirected {
     }
 }
 ```
+-> khan's algorithm for topological sort(using bfs and indegree)
 
+```java
+
+public class KahnsAlgorithm {
+    public static void main(String[] args) {
+        int vertices = 6; // Number of vertices (0 to 5)
+
+        // Directed edges
+        int[][] edges = {
+            {5, 2},
+            {5, 0},
+            {4, 0},
+            {4, 1},
+            {2, 3},
+            {3, 1}
+        };
+
+        // Build adjacency list
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < vertices; i++) {
+            graph.add(new ArrayList<>());
+        }
+        int[] indegree = new int[vertices];
+
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            graph.get(u).add(v);
+            indegree[v]++; // count incoming edges
+        }
+
+        // Queue for vertices with indegree 0
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < vertices; i++) {
+            if (indegree[i] == 0) {
+                queue.add(i);
+            }
+        }
+
+        // Kahn's BFS topological sort
+        List<Integer> topoOrder = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            int node = queue.poll();
+            topoOrder.add(node);
+
+            // Reduce indegree of neighbors
+            for (int neighbor : graph.get(node)) {
+                indegree[neighbor]--;
+                if (indegree[neighbor] == 0) {
+                    queue.add(neighbor);
+                }
+            }
+        }
+
+        // Check for cycle
+        if (topoOrder.size() != vertices) {
+            System.out.println("Cycle detected! Topological sort not possible.");
+        } else {
+            System.out.println("Topological Order: " + topoOrder);
+        }
+    }
+}
+```
