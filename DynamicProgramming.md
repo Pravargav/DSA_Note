@@ -140,3 +140,116 @@ public class LongestCommonSubstringMemo {
     }
 }
 ```
+-> Longest Common Subsequence( return sequence rather than length)
+
+```java
+public class LCSubsequenceMemoArray {
+
+    private static String[][] memo;
+
+    public static String lcs(String s1, String s2) {
+        int m = s1.length();
+        int n = s2.length();
+        memo = new String[m + 1][n + 1];
+        return lcsHelper(s1, s2, m, n);
+    }
+
+    private static String lcsHelper(String s1, String s2, int m, int n) {
+        // Check if already computed
+        if (memo[m][n] != null) {
+            return memo[m][n];
+        }
+        
+        // Base case
+        if (m == 0 || n == 0) {
+            memo[m][n] = "";
+            return "";
+        }
+        
+        String result;
+        if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
+            result = lcsHelper(s1, s2, m - 1, n - 1) + s1.charAt(m - 1);
+        } else {
+            String lcs1 = lcsHelper(s1, s2, m - 1, n);
+            String lcs2 = lcsHelper(s1, s2, m, n - 1);
+            result = lcs1.length() > lcs2.length() ? lcs1 : lcs2;
+        }
+        
+        memo[m][n] = result;
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String s1 = "AGGTAB";
+        String s2 = "GXTXAYB";
+        
+        String result = lcs(s1, s2);
+        System.out.println("LCS is: " + result);
+        System.out.println("Length of LCS is: " + result.length());
+        // Output:
+        // LCS is: GTAB
+        // Length of LCS is: 4
+    }
+}
+
+-> Longest Common Substring (return substring rather than the length)
+
+```java
+public class LCSubstringMemoString {
+
+    private static String[][] memo;
+    private static String maxSubstring = "";
+
+    public static String lcSubstring(String s1, String s2) {
+        int m = s1.length();
+        int n = s2.length();
+        memo = new String[m + 1][n + 1];
+        maxSubstring = "";
+        
+        lcSubstringHelper(s1, s2, m, n);
+        
+        return maxSubstring;
+    }
+
+    private static String lcSubstringHelper(String s1, String s2, int m, int n) {
+        if (m == 0 || n == 0) {
+            return "";
+        }
+        
+        // Check if already computed
+        if (memo[m][n] != null) {
+            return memo[m][n];
+        }
+        
+        String result;
+        if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
+            String prev = lcSubstringHelper(s1, s2, m - 1, n - 1);
+            result = prev + s1.charAt(m - 1);
+            
+            // Update max substring if current is longer
+            if (result.length() > maxSubstring.length()) {
+                maxSubstring = result;
+            }
+        } else {
+            result = "";
+            lcSubstringHelper(s1, s2, m - 1, n);
+            lcSubstringHelper(s1, s2, m, n - 1);
+        }
+        
+        memo[m][n] = result;
+        return result;
+    }
+
+    public static void main(String[] args) {
+        String s1 = "ABABC";
+        String s2 = "BABCA";
+        
+        String result = lcSubstring(s1, s2);
+        System.out.println("LCSubstring is: " + result);
+        System.out.println("Length of LCSubstring is: " + result.length());
+        // Output:
+        // LCSubstring is: BABC
+        // Length of LCSubstring is: 4
+    }
+}
+```
