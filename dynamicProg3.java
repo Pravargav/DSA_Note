@@ -1,0 +1,125 @@
+import java.util.*; 
+
+public class Solution {
+
+        public static int ninjaTraining(int n, int points[][]) { 
+
+       int[][] dp = new int[n][3];  
+
+      for (int[] i: dp) {  
+
+          Arrays.fill(i,-1); 
+
+       }    
+
+    for (int i=0;i<3;i++) {   
+
+         dp[0][i] = points[0][i]; 
+
+       }  
+
+      for (int i=1;i<n;i++) {  
+
+          for (int j=0;j<3;j++) {   
+
+             int maxi=0;   
+
+             for (int k=0;k<3;k++) {   
+
+                 if (j==k)    
+
+                    continue;     
+
+               maxi = Math.max(maxi,dp[i-1][k]);  
+
+              }         
+
+       dp[i][j] = points[i][j] + maxi;    
+
+        }  
+
+      }    
+
+    int maxi = 0;  
+
+      for (int i=0;i<3;i++) {   
+
+         maxi = Math.max(maxi,dp[n-1][i]); 
+
+       }  
+
+      return maxi; 
+
+   }
+
+ }
+
+-----------------------------------------------------------------------------------------------------
+
+import java.util.*; 
+
+public class Solution {
+
+        public static int ninjaTraining(int n, int points[][]) { 
+
+       int[][] dp = new int[n][4];  
+
+      for (int[] i: dp) {  
+
+          Arrays.fill(i,-1); 
+
+       }    
+
+       return calMaxPointMemoization(n-1, 3, points, dp);
+
+   }
+
+   public static int calMaxPointMemoization(int day, int lastTask, int[][] points, int[][] dp){
+
+        //if day is 0 we need to take the task with maximum points which was not performed in day 1
+
+        if(day==0){
+
+            int maximumPoint = 0;
+
+            for(int task = 0; task<3; task++){
+
+                if(task!=lastTask){
+
+                    maximumPoint = Math.max(maximumPoint, points[0][task]);
+
+                }
+
+            }
+
+            return maximumPoint;
+
+        }
+
+ 
+
+        if(dp[day][lastTask]!=-1) return dp[day][lastTask];
+
+ 
+
+        int maximumPoint = 0;
+
+        for(int task=0; task<3; task++){
+
+            if(task!=lastTask){
+
+                int point = points[day][task] + calMaxPointMemoization(day-1, task, points, dp);
+
+                maximumPoint = Math.max(maximumPoint, point);
+
+            }
+
+        }
+
+ 
+
+        return dp[day][lastTask] = maximumPoint;
+
+    }
+
+ }
