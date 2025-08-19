@@ -193,3 +193,6 @@ public class StockBuySell {
     }
 }
 ```
+-> Stocks with fees - 714. add "-fee"
+
+-> Stocks with cooldown - 309. replace idx+1 with idx+2 and add || idx==n+1
