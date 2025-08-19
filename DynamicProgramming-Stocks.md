@@ -1,4 +1,39 @@
--> Stocks 2
+-> Stocks 1- One transaction 
+
+```java
+class Solution {
+    public int maxProfit(int[] prices) {
+        int min=prices[0];
+        int minarr[]=new int[prices.length];
+        for(int i=0;i<prices.length;i++){
+            if(min>prices[i]){
+               min=prices[i];
+            }
+            minarr[i]=min;
+        }
+        for(int i=0;i<prices.length;i++){
+            System.out.println(minarr[i]);
+        }
+        int profit[]=new int[prices.length];
+        for(int i=1;i<profit.length;i++){
+            profit[i]=prices[i]-minarr[i-1];
+        }
+        for(int i=0;i<profit.length;i++){
+            System.out.println(profit[i]);
+        }
+        int max=0;
+        for(int i=0;i<profit.length;i++){
+            if(profit[i]>max){
+                max=profit[i];
+            }
+        }
+        return max;
+    }
+}
+```
+
+
+-> Stocks 2 - infinite transactions
 
 ```java
 
