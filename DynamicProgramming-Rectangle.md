@@ -1,5 +1,5 @@
 -> Maximum Rectangle area with all 1's - uses histogram concept - from a bar of histogram count until the bar less height than the current from both sides i.e. 
-area = arr[i]*(nextsmallbar-previoussmallbar-1) - Monotonic Stack concept also
+area = arr[i]*(nextsmallbar-previoussmallbar-1) - Monotonic Stack concept 
 
 
 [link1](https://www.youtube.com/watch?v=Bzat9vgD0fs)
