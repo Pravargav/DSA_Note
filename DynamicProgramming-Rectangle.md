@@ -21,6 +21,7 @@ class Solution {
                 // Update heights: increment if '1', reset if '0'
                 heights[i] = (row[i] == '1') ? heights[i] + 1 : 0;
             }
+            // Compare max area of each row and find final max of all rows
             maxArea = Math.max(maxArea, largestRectangleArea(heights));
         }
 
