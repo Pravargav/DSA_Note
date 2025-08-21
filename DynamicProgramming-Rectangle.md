@@ -36,6 +36,3 @@ class Solution {
     }
 }
 ```
--> Maximal Square with all 1's - Same conecpt as above sum - 
-
-Note-number of squares end at (i,j) <=>max size of square end at (i,j)
