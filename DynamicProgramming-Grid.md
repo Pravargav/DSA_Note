@@ -113,7 +113,7 @@ class Solution
 }
 ```
 
--> Triangle (Note: For Lists use null instead of -1 unless we get time limit exceeded error)
+-> Triangle (Note: For Lists use null instead of -1 unless we get time limit exceeded error, Also the concept used is dfs)
 
 ```java
 
