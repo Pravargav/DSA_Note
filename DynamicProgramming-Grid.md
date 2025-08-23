@@ -159,3 +159,34 @@ class Solution {
 }
 
 ```
+
+-> Minimum falling path(also use dfs)
+
+```java
+class Solution {
+    public int minFallingPathSum(int[][] matrix) {
+        int n = matrix.length;
+        Integer[][] dp = new Integer[n][n];
+        int ans = Integer.MAX_VALUE;
+        for (int j = 0; j < n; j++) {
+            ans = Math.min(ans, memo(matrix, dp, 0, j));
+        }
+        return ans;
+    }
+
+    private int memo(int[][] matrix, Integer[][] dp, int i, int j) {
+        int n = matrix.length;
+        if (j < 0 || j >= n) return Integer.MAX_VALUE;
+        if (i == n - 1) return matrix[i][j];
+
+        if (dp[i][j] != null) return dp[i][j];
+
+        int down = memo(matrix, dp, i + 1, j);
+        int left = memo(matrix, dp, i + 1, j - 1);
+        int right = memo(matrix, dp, i + 1, j + 1);
+
+        dp[i][j] = matrix[i][j] + Math.min(down, Math.min(left, right));
+        return dp[i][j];
+    }
+}
+```
