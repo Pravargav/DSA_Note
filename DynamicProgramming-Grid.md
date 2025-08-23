@@ -112,3 +112,50 @@ class Solution
   
 }
 ```
+
+-> Triangle (Note: For Lists use null instead of -1 unless we get time limit exceeded error)
+
+```java
+
+
+class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        int n = triangle.size();
+
+     
+        List<List<Integer>> dp = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            List<Integer> row = new ArrayList<>();
+            for (int j = 0; j < triangle.get(i).size(); j++) {
+                row.add(null); 
+            }
+            dp.add(row);
+        }
+
+        return memo(triangle, 0, 0, dp);
+    }
+
+    private int memo(List<List<Integer>> triangle, int row, int col, List<List<Integer>> dp) {
+     
+        if (row == triangle.size() - 1) {
+            return triangle.get(row).get(col);
+        }
+
+      
+        if (dp.get(row).get(col) != null) {
+            return dp.get(row).get(col);
+        }
+
+        
+        int down = memo(triangle, row + 1, col, dp);
+        int downRight = memo(triangle, row + 1, col + 1, dp);
+
+        int best = triangle.get(row).get(col) + Math.min(down, downRight);
+
+        dp.get(row).set(col, best); 
+
+        return best;
+    }
+}
+
+```
