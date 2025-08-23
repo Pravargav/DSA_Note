@@ -160,7 +160,7 @@ class Solution {
 
 ```
 
--> Minimum falling path(also use dfs)
+-> Minimum falling path (Note: For Lists use null instead of -1 unless we get time limit exceeded error, Also the concept used is dfs)
 
 ```java
 class Solution {
