@@ -1,4 +1,4 @@
-## Both problems are of dp[i]==dp[i-j] or dp[val]=dp[val-sub]+1  i.e. .... both are of type dp[x],dp[x-y]
+##### Both problems are of dp[i]==dp[i-j] or dp[val]=dp[val-sub]+1  i.e. .... both are of type dp[x],dp[x-y]
 
 -> Divisor Game
 
