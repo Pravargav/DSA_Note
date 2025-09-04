@@ -1,4 +1,4 @@
--> isSubsetSum
+-> is Subset Sum equal to k
 
 ```java
 public class SubsetSum {
