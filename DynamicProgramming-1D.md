@@ -43,7 +43,7 @@ class Solution {
 }
 ```
 
-##### frog jump problems
+##### Frog jump problems
 
 -> frog jump
 
