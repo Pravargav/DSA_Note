@@ -73,7 +73,7 @@ public static void main(String args[]) {
 }
 ```
 
--> frog jump k(i+1 to i+k possible)
+-> frog jump k(i+1 to i+k possible){This solution can be used to  solve above where k=2}
 
 ```java
 
