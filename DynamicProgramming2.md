@@ -1,3 +1,5 @@
+#### only 1 time you can take any element
+
 -> 0/1 knapsack
 
 ```java
@@ -61,7 +63,7 @@ class TUF {
     }
 }
 ```
-
+#### infinite times you can take any element
 -> Unbounded Knapsack(same as 0/1 knapsack but in place of ind-1 for taken replace with ind)
 
 ```java
