@@ -160,3 +160,44 @@ class SticklerThief {
 }
 ```
 
+-> House Robber 2
+
+```java
+class Solution {
+    public int rob(int[] nums) {
+        int n=nums.length;
+        if(n==1){
+            return nums[0];
+        }
+        int temp1[]=new int[n-1];
+        for(int i=0;i<n-1;i++){
+            temp1[i]=nums[i];
+            System.out.println(temp1[i]);
+        }
+        int temp2[]=new int[n-1];
+        for(int i=1;i<n;i++){
+            temp2[i-1]=nums[i];
+            System.out.println(temp2[i-1]);
+        }
+        int dp1[]=new int[n-1];
+        Arrays.fill(dp1,-1);
+        int f1=fun(temp1,n-2,dp1);
+        int dp2[]=new int[n-1];
+        Arrays.fill(dp2,-1);
+        int f2=fun(temp2,n-2,dp2);
+        if(f1>f2){
+            return f1;
+        }
+        return f2;
+    }
+    public int fun(int[] nums,int i,int[] dp){
+        if(i<0) return 0;
+        if(dp[i]!=-1) return dp[i];
+        
+        int pick=nums[i]+fun(nums,i-2,dp);
+        int notpick=fun(nums,i-1,dp);
+        return dp[i]=Math.max(pick,notpick);
+    }
+}
+```
+
