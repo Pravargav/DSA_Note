@@ -185,7 +185,7 @@ class TUF {
     }
 }
 ```
-->coin change- number of ways to make target-you can take any element infinite times(Same as above but in place of min/max(a,b) use a+b )
+->coin change 2 - number of ways to make target-you can take any element infinite times(Same as above but in place of min/max(a,b) use a+b )
 
 ```java
 import java.util.*;
