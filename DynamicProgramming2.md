@@ -1,30 +1,122 @@
 -> 0/1 knapsack
 
 ```java
-class Solution {
-    public int numSubseq(int[] nums, int target) {
-        int n = nums.length;
-        Integer[][] dp = new Integer[n + 1][target + 1]; // Use Boolean instead of boolean
-        return fun(nums, target, n, dp);
+import java.util.*;
+
+class TUF {
+    // Helper function to solve the knapsack problem recursively
+    static int knapsackUtil(int[] wt, int[] val, int ind, int W, int[][] dp) {
+        // Base case: If there are no items or the knapsack capacity is zero
+        if (ind == 0) {
+            if (wt[0] <= W) {
+                // Include the item if its weight is within the capacity
+                return val[0];
+            } else {
+                // Otherwise, exclude the item
+                return 0;
+            }
+        }
+
+        // If the result for this subproblem is already calculated, return it
+        if (dp[ind][W] != -1) {
+            return dp[ind][W];
+        }
+
+        // Calculate the maximum value when the current item is not taken
+        int notTaken = 0 + knapsackUtil(wt, val, ind - 1, W, dp);
+
+        // Calculate the maximum value when the current item is taken
+        int taken = Integer.MIN_VALUE;
+        if (wt[ind] <= W) {
+            taken = val[ind] + knapsackUtil(wt, val, ind - 1, W - wt[ind], dp);
+        }
+
+        // Store and return the result for the current state
+        dp[ind][W] = Math.max(notTaken, taken);
+        return dp[ind][W];
     }
 
-    public int fun(int[] nums, int sum, int l, Integer[][] dp) {
-        if (sum == 0) return 1;
-        if (l == 0) return 0;
+    // Function to solve the 0/1 Knapsack problem using dynamic programming
+    static int knapsack(int[] wt, int[] val, int n, int W) {
+        // Create a 2D DP array to store the maximum value for each subproblem
+        int dp[][] = new int[n][W + 1];
 
-        // Check memoization (now valid since dp is Boolean[][])
-        if (dp[l][sum] != null) {
-            return dp[l][sum];
+        // Initialize the DP array with -1 to indicate that subproblems are not solved
+        for (int row[] : dp) {
+            Arrays.fill(row, -1);
         }
 
-        if (nums[l - 1] > sum) {
-            dp[l][sum] = fun(nums, sum, l - 1, dp);
-        } else {
-            dp[l][sum] = fun(nums, sum - nums[l - 1], l - 1, dp) + 
-                         fun(nums, sum, l - 1, dp);
+        // Call the recursive knapsackUtil function to solve the problem
+        return knapsackUtil(wt, val, n - 1, W, dp);
+    }
+
+    public static void main(String args[]) {
+        int wt[] = {1, 2, 4, 5};
+        int val[] = {5, 4, 8, 6};
+        int W = 5;
+        int n = wt.length;
+
+        // Calculate and print the maximum value of items the thief can steal
+        System.out.println("The Maximum value of items the thief can steal is " + knapsack(wt, val, n, W));
+    }
+}
+```
+
+-> Unbounded Knapsack(same as 0/1 knapsack but in place of ind-1 for taken replace with ind)
+
+```java
+import java.util.*;
+
+class TUF {
+    // Recursive function to solve the unbounded knapsack problem
+    static int knapsackUtil(int[] wt, int[] val, int ind, int W, int[][] dp) {
+        // Base case: If there are no more items to consider
+        if (ind == 0) {
+            // Calculate and return the maximum value possible
+            return ((int) (W / wt[0])) * val[0];
         }
 
-        return dp[l][sum];
+        // If the result for this subproblem has already been calculated, return it
+        if (dp[ind][W] != -1)
+            return dp[ind][W];
+
+        // Calculate the maximum value when the current item is not taken
+        int notTaken = 0 + knapsackUtil(wt, val, ind - 1, W, dp);
+
+        // Initialize the maximum value when the current item is taken as the minimum integer value
+        int taken = Integer.MIN_VALUE;
+
+        // If the weight of the current item is less than or equal to the available capacity (W),
+        // calculate the maximum value when the current item is taken
+        if (wt[ind] <= W)
+            taken = val[ind] + knapsackUtil(wt, val, ind, W - wt[ind], dp);
+
+        // Store the result in the dp array and return it
+        return dp[ind][W] = Math.max(notTaken, taken);
+    }
+
+    // Function to find the maximum value of items that the thief can steal
+    static int unboundedKnapsack(int n, int W, int[] val, int[] wt) {
+        // Create a 2D array to store results of subproblems
+        int[][] dp = new int[n][W + 1];
+
+        // Initialize the dp array with -1 to indicate that subproblems are not solved yet
+        for (int row[] : dp)
+            Arrays.fill(row, -1);
+
+        // Call the knapsackUtil function to solve the problem
+        return knapsackUtil(wt, val, n - 1, W, dp);
+    }
+
+    public static void main(String args[]) {
+        int wt[] = { 2, 4, 6 };
+        int val[] = { 5, 11, 13 };
+        int W = 10;
+
+        int n = wt.length;
+
+        // Call the unboundedKnapsack function and print the result
+        System.out.println("The Maximum value of items, the thief can steal is " + unboundedKnapsack(n, W, val, wt));
     }
 }
 ```
