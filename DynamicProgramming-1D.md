@@ -43,7 +43,9 @@ class Solution {
 }
 ```
 
-##### frog jump
+##### frog jump problems
+
+-> frog jump
 
 ```java
 import java.util.*;
