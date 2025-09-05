@@ -120,7 +120,7 @@ class TUF {
     }
 }
 ```
--> Minimum coins(Same solution as above ditto but all weigts can be taken 1)
+-> Minimum coin change(Same solution as above ditto but all weigts can be taken 1)
 
 ```java
 import java.util.*;
