@@ -201,3 +201,60 @@ class Solution {
 }
 ```
 
+##### Max/min from both sides compute(Kandane's use if necessary)
+
+-> max product subarray
+
+```java
+class Solution {
+    public int maxProduct(int[] nums) {
+        int n = nums.length; //size of array.
+
+        int pre = 1, suff = 1;
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (pre == 0) pre = 1;
+            pre *= nums[i];
+            ans = Math.max(ans,pre);
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (suff == 0) suff = 1;
+            suff *= nums[n - i - 1];
+            ans = Math.max(ans, suff);
+        }
+        return ans;
+    }
+}
+
+```
+->Trapping Rain water
+
+```java
+import java.util.*;
+class TUF {
+    static int trap(int[] arr) {
+        int n = arr.length;
+        int waterTrapped = 0;
+        for (int i = 0; i < n; i++) {
+            int j = i;
+            int leftMax = 0, rightMax = 0;
+            while (j >= 0) {
+                leftMax = Math.max(leftMax, arr[j]);
+                j--;
+            }
+            j = i;
+            while (j < n) {
+                rightMax = Math.max(rightMax, arr[j]);
+                j++;
+            }
+            waterTrapped += Math.min(leftMax, rightMax) - arr[i];
+        }
+        return waterTrapped;
+    }
+    public static void main(String args[]) {
+        int arr[] = {0,1,0,2,1,0,1,3,2,1,2,1};
+        System.out.println("The duplicate element is " + trap(arr));
+    }
+}
+```
