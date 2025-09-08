@@ -174,3 +174,166 @@ public class Main {
     }
 }
 ```
+-> Diameter of a tree( gfg approach)
+```java
+// Java program to find the diameter
+// of a binary tree.
+import java.lang.Math;
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int x) {
+        data = x;
+        left = null;
+        right = null;
+    }
+}
+
+class GfG {
+
+    // Recursive function which finds the 
+    // height of root and also calculates 
+    // the diameter of the tree.
+    static int diameterRecur(Node root, int[] res) {
+
+        // Base case: tree is empty
+        if (root == null)
+            return 0;
+
+        // find the height of left and right subtree
+        // (it will also find of diameter for left 
+        // and right subtree).
+        int lHeight = diameterRecur(root.left, res);
+        int rHeight = diameterRecur(root.right, res);
+
+        // Check if diameter of root is greater
+        // than res.
+        res[0] = Math.max(res[0], lHeight + rHeight);
+
+        // return the height of current subtree.
+        return 1 + Math.max(lHeight, rHeight);
+    }
+
+    // Function to get diameter of a binary tree
+    static int diameter(Node root) {
+        int[] res = new int[1];
+        diameterRecur(root, res);
+        return res[0];
+    }
+
+    public static void main(String[] args) {
+
+        // Constructed binary tree is
+        //          5
+        //        /   \
+        //       8     6
+        //      / \   /
+        //     3   7 9
+        Node root = new Node(5);
+        root.left = new Node(8);
+        root.right = new Node(6);
+        root.left.left = new Node(3);
+        root.left.right = new Node(7);
+        root.right.left = new Node(9);
+
+        System.out.println(diameter(root));
+    }
+}
+```
+-> max sum between 2 leaf nodes(almost same code as above but in place of 1 use root.data and some minor changes)
+
+```java
+// Java program to find maximum path 
+// sum between two leaves of a binary tree
+
+class Node {
+    int data;
+    Node left, right;
+
+    Node(int x) {
+        data = x;
+        left = right = null;
+    }
+}
+
+class GfG {
+  
+    // mxPathSum function to calculate maximum path sum 
+  	// between two leaves and maximum sum from node to 
+  	// leaf in a single traversal
+    static int mxPathSum(Node root, int[] maxPathSum) {
+      
+        // Base case: If the node is null, return 0
+        if (root == null) {
+            return 0;
+        }
+
+        // Recursively calculate the maximum sum from 
+        // node to leaf for left and right subtrees
+        int mxLeft = mxPathSum(root.left, maxPathSum);
+        int mxRight = mxPathSum(root.right, maxPathSum);
+
+        // If both left and right children exist,
+      	// update maxPathSum
+        if (root.left != null && root.right != null) {
+          
+            // This is the sum of the left path, 
+            // right path, and the node's data
+            int maxSumPathViaNode = mxLeft + mxRight + root.data;
+
+            // Update the maximum sum path between
+          	// two leaves
+            maxPathSum[0] = Math.max
+              				(maxPathSum[0], maxSumPathViaNode);
+
+            // Return the maximum sum from the current
+          	// node to a leaf
+            return root.data + Math.max(mxLeft, mxRight);
+        }
+
+        // If only one child exists, return the sum
+      	// from the node to leaf
+        return root.data + 
+          (root.left != null ? mxLeft : mxRight);
+    }
+
+    // Function to return the maximum path 
+    // sum between any two leaves in the binary tree
+    static int findMaxSum(Node root) {
+      
+        // Edge case: If the tree is empty, return 0
+        if (root == null) {
+            return 0;
+        }
+
+        int[] maxPathSum = new int[] {Integer.MIN_VALUE};
+        mxPathSum(root, maxPathSum);
+
+        return maxPathSum[0];
+    }
+
+    public static void main(String[] args) {
+      
+        // Construct a sample binary tree
+        //
+        //         1
+        //       /   \
+        //     -2     3
+        //     / \   / \
+        //    8  -1  4  -5
+
+        Node root = new Node(1);
+        root.left = new Node(-2);
+        root.right = new Node(3);
+        root.left.left = new Node(8);
+        root.left.right = new Node(-1);
+        root.right.left = new Node(4);
+        root.right.right = new Node(-5);
+
+        int result = findMaxSum(root);
+        System.out.println(result);
+    }
+}
+```
