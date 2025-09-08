@@ -1,4 +1,4 @@
--> height of tree(diamter array not necessary)
+-> height of tree(diamter array not necessary) and (striver approach of diamter of tree)
 
 ```java
 
@@ -87,7 +87,7 @@ public class Main {
 }    
 
 ```
--> diameter of tree( Same code as above ditto)and(diameter array necessary)
+-> diameter of tree( Same code as above ditto)and(diameter array necessary)and(striver approach of diamter of tree)
 
 ```java
 class Node {
@@ -242,7 +242,7 @@ class GfG {
     }
 }
 ```
--> max sum between 2 leaf nodes(almost same code as above but in place of 1 use root.data and some minor changes) and(gfg)
+-> max sum between 2 leaf nodes(almost same code as above but in place of 1 use root.data and some minor changes) and(gfg approach)
 
 ```java
 // Java program to find maximum path 
