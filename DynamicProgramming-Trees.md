@@ -242,7 +242,7 @@ class GfG {
     }
 }
 ```
--> max sum between 2 leaf nodes(almost same code as above but in place of 1 use root.data and some minor changes)
+-> max sum between 2 leaf nodes(almost same code as above but in place of 1 use root.data and some minor changes) and(gfg)
 
 ```java
 // Java program to find maximum path 
