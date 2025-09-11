@@ -283,6 +283,85 @@ public class LCSubstringMemoString {
     }
 }
 ```
+-> Longest arthimatic progression(recurrsion code-if you want you can convert to dp)-(gfg solution)
 
+```java
+// Java program to find the length of the longest 
+// arithmetic progression (AP) using recursion
+import java.util.ArrayList;
+
+class GfG {
+
+    // Recursive function to find the length of AP 
+    // ending at index `index` with difference `diff`
+    static int solve(int index, int diff, 
+                     ArrayList<Integer> arr) {
+
+        // Base case: if index goes out of bounds, 
+        // return 0
+        if (index < 0) {
+            return 0;
+        }
+
+        int ans = 0;
+
+        // Iterate through previous elements 
+        // to find matching differences
+        for (int j = index - 1; j >= 0; j--) {
+
+            // If the difference matches, extend the AP
+            if (arr.get(index) - arr.get(j) == diff) {
+                ans = Math.max(ans, 
+                               1 + solve(j, diff, arr));
+            }
+        }
+
+        return ans;
+    }
+
+    // Function to find the length of the longest 
+    // arithmetic progression (AP) in the array
+    static int lengthOfLongestAP(ArrayList<Integer> arr) {
+        
+        int n = arr.size();
+
+        // If there are less than 3 elements, 
+        // return the size
+        if (n <= 2) {
+            return n;
+        }
+
+        int ans = 0;
+
+        // Iterate through all pairs of elements as 
+        // possible first two terms
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+
+                // Calculate difference and find AP 
+                // using recursion
+                int diff = arr.get(j) - arr.get(i);
+                ans = Math.max(ans, 
+                               2 + solve(i, diff, arr));
+            }
+        }
+
+        return ans;
+    }
+
+    public static void main(String[] args) {
+
+        ArrayList<Integer> arr = new ArrayList<>();
+        arr.add(1);
+        arr.add(7);
+        arr.add(10);
+        arr.add(15);
+        arr.add(27);
+        arr.add(29);
+
+        System.out.println(lengthOfLongestAP(arr));
+    }
+}
+```
 
 
