@@ -348,74 +348,52 @@ public static void main(String args[]) {
 }
 }
 ```
--> Count lis
+-> Count lis(chatgpt/gfg)
 
 ```java
-// java program to count the number of
-// longest increasing subsequences (LIS)
-// in the array using tabulation
+public class CountLIS {
+    public static int findNumberOfLIS(int[] nums) {
+        int n = nums.length;
+        if (n == 0) return 0;
 
-import java.util.*;
-class GfG {
-    static int numberofLIS(int[] arr) {
-        int n = arr.length;
+        int[] dp = new int[n];     // LIS length ending at i
+        int[] count = new int[n];  // count of LIS ending at i
 
-        // Array to store the length of the
-        // LIS ending at each element
-        int[] lis = new int[n];
+        int maxLen = 1, result = 0;
 
-        // Array to store the number of LIS
-        // of that length ending at each element
-        int[] count = new int[n];
+        for (int i = 0; i < n; i++) {
+            dp[i] = 1;      // every element is LIS of length 1
+            count[i] = 1;   // initially one sequence for each
+        }
 
-        // Initialize LIS and count arrays
-        Arrays.fill(lis, 1);
-        Arrays.fill(count, 1);
-
-        // Variable to track the length of
-        // the longest LIS found
-        int maxLen = 1;
-
-        for (int i = 1; i < n; i++) {
-            for (int prev = 0; prev < i; prev++) {
-                if (arr[i] > arr[prev]) {
-
-                    // If a longer subsequence is found,
-                    // update the lis and reset the count
-                    if (lis[i] < lis[prev] + 1) {
-                        lis[i] = lis[prev] + 1;
-                        count[i] = count[prev];
-                    }
-
-                    // If another subsequence of the
-                    // same length is found, add to the
-                    // count
-                    else if (lis[i] == lis[prev] + 1) {
-                        count[i] += count[prev];
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < i; j++) {
+                if (nums[i] > nums[j]) {
+                    if (dp[j] + 1 > dp[i]) {
+                        dp[i] = dp[j] + 1;
+                        count[i] = count[j];   // inherit count
+                    } else if (dp[j] + 1 == dp[i]) {
+                        count[i] += count[j];  // add ways
                     }
                 }
             }
-            if (lis[i] > maxLen) {
-                maxLen = lis[i];
-            }
+            maxLen = Math.max(maxLen, dp[i]);
         }
 
-        // Sum up counts of subsequences that
-        // have the maximum length
-        int res = 0;
+        // sum up counts for all max length LIS
         for (int i = 0; i < n; i++) {
-            if (lis[i] == maxLen) {
-                res += count[i];
+            if (dp[i] == maxLen) {
+                result += count[i];
             }
         }
 
-        return res;
+        return result;
     }
 
     public static void main(String[] args) {
-        int[] arr = { 10, 10, 10, 10 };
-        int res = numberofLIS(arr);
-        System.out.println(res);
+        int[] nums = {1, 3, 5, 4, 7};
+        System.out.println("Number of LIS: " + findNumberOfLIS(nums));
     }
 }
+
 ```
