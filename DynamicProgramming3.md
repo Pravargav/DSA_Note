@@ -348,3 +348,74 @@ public static void main(String args[]) {
 }
 }
 ```
+-> Count lis
+
+```java
+// java program to count the number of
+// longest increasing subsequences (LIS)
+// in the array using tabulation
+
+import java.util.*;
+class GfG {
+    static int numberofLIS(int[] arr) {
+        int n = arr.length;
+
+        // Array to store the length of the
+        // LIS ending at each element
+        int[] lis = new int[n];
+
+        // Array to store the number of LIS
+        // of that length ending at each element
+        int[] count = new int[n];
+
+        // Initialize LIS and count arrays
+        Arrays.fill(lis, 1);
+        Arrays.fill(count, 1);
+
+        // Variable to track the length of
+        // the longest LIS found
+        int maxLen = 1;
+
+        for (int i = 1; i < n; i++) {
+            for (int prev = 0; prev < i; prev++) {
+                if (arr[i] > arr[prev]) {
+
+                    // If a longer subsequence is found,
+                    // update the lis and reset the count
+                    if (lis[i] < lis[prev] + 1) {
+                        lis[i] = lis[prev] + 1;
+                        count[i] = count[prev];
+                    }
+
+                    // If another subsequence of the
+                    // same length is found, add to the
+                    // count
+                    else if (lis[i] == lis[prev] + 1) {
+                        count[i] += count[prev];
+                    }
+                }
+            }
+            if (lis[i] > maxLen) {
+                maxLen = lis[i];
+            }
+        }
+
+        // Sum up counts of subsequences that
+        // have the maximum length
+        int res = 0;
+        for (int i = 0; i < n; i++) {
+            if (lis[i] == maxLen) {
+                res += count[i];
+            }
+        }
+
+        return res;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = { 10, 10, 10, 10 };
+        int res = numberofLIS(arr);
+        System.out.println(res);
+    }
+}
+```
