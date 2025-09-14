@@ -225,7 +225,7 @@ class TUF {
 }
 
 ```
--> Longest String Chain( A mixture of lis and lcs of strings)
+Note - Longest String Chain Problem( A mixture of lis and lcs of strings)
 
 -> Longest Increasing Subsequence(for printing the actual subsequence)-(Same as above approach except adding hash array for storing indexes)-(striver)
 
