@@ -150,9 +150,10 @@ public class TUF {
 
 - i am doing this for single symbol '&' . '|' and '^' are not used for simplicity.
 
-- [aditya verma lecture link](https://youtu.be/pGVguAcWX4g?si=eXKR2O4x4lSD8_1D)
+- [aditya verma lecture link youtube refer]
 
 - p(a union b)= p(a) + p(b) also p(a intersection b) = p(a)*p(b) {if independent cases)
+
 
 ```java
 public class BooleanExpressionWays {
