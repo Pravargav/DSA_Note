@@ -142,7 +142,7 @@ public class TUF {
 }
 ```
 
--> Special problem - evaluate boolean expression
+-> Special problem - evaluate boolean expression(striver code)
 
 - for above three problems we used fn(i, ind - 1, a, dp) + fn(ind + 1, j, a, dp)
 
