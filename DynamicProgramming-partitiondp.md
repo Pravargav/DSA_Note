@@ -186,11 +186,11 @@ public class PalindromePartitioning {
 ```
 -> maximum sum after partitioning- same as above - i.e. replace "cost = 1 + f(j + 1, n, str, dp); with int sum = len * maxi + f(j + 1, num, k, dp);"
 
--> 'len' is length
+- 'len' is length
 
--> find maximum element of the partition i.e. 'maxi'- find maximum sum of all sums  - so used two times max function 
+- find maximum element of the partition i.e. 'maxi'- find maximum sum of all sums  - so used two times max function 
 
--> take 'maxi' and 'len' inplace of 1
+- take 'maxi' and 'len' inplace of 1
 
 ```java
 
