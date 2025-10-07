@@ -150,6 +150,8 @@ public class TUF {
 
 - i am doing this for single symbol '&' . '|' and '^' are not used for simplicity.
 
+- [aditya verma lecture link](https://youtu.be/pGVguAcWX4g?si=eXKR2O4x4lSD8_1D)
+
 ```java
 public class BooleanExpressionWays {
     static final int MOD = 1000000007;
