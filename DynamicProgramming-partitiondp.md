@@ -152,6 +152,8 @@ public class TUF {
 
 - [aditya verma lecture link](https://youtu.be/pGVguAcWX4g?si=eXKR2O4x4lSD8_1D)
 
+- p(a union b)= p(a) + p(b) also p(a intersection b) = p(a)*p(b) {if independent cases)
+
 ```java
 public class BooleanExpressionWays {
     static final int MOD = 1000000007;
