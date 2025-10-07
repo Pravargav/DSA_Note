@@ -185,7 +185,7 @@ public class PalindromePartitioning {
     }
 }
 ```
--> maximum sum after partitioning- same as above - i.e. replace "cost = 1 + f(j + 1, n, str, dp); with int sum = len * maxi + f(j + 1, num, k, dp);"
+-> maximum sum after partitioning- same as above - i.e. replace "int cost = 1 + f(j + 1, n, str, dp); with int sum = len * maxi + f(j + 1, num, k, dp);"
 
 - 'len' is length
 
