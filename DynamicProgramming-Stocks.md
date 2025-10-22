@@ -194,6 +194,10 @@ public class StockBuySell {
 }
 ```
 -> Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
+
+  - from  n-1 to 0 - short selling & from 0 to n-1 normal
+  - use max - short selling & use min - normal
+  - start with sell -short selling & start with buy - normal
 ```java
 class Solution {
     public long maximumProfit(int[] prices, int k) {
