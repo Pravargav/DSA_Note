@@ -192,7 +192,9 @@ public class StockBuySell {
         System.out.println("The maximum profit that can be generated is " + maximumProfit(prices, n, k));
     }
 }
+
 ```
+````markdown
 -> Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
 
   - from  n-1 to 0 - short selling & from 0 to n-1 normal
@@ -303,6 +305,7 @@ class Solution {
 }
 ```
 
+````
 -> Stocks with fees - 714. add "-fee"
 
 -> Stocks with cooldown - 309. replace idx+1 with idx+2 and add || idx==n+1
