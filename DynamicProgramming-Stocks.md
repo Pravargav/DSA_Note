@@ -206,18 +206,8 @@ class Solution {
                 Arrays.fill(dp[i][j], -1);
             }
         }
-
-        int fn = getAns(prices, n, n-1, 1, k, dp);
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < 2; j++) {
-                for (int l = 1; l < k + 1; l++) {
-                    System.out.print(dp[i][j][l] + " ");
-                }
-                System.out.println();
-            }
-            System.out.println();
-        }
-        return fn;
+     
+        return getAns(prices, n, n-1, 1, k, dp);;
     }
 
     public static int getAns(int[] prices, int n, int ind, int buy, int cap, int[][][] dp) {
