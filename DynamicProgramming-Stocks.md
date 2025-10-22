@@ -194,6 +194,8 @@ public class StockBuySell {
 }
 
 ```
+##### Example notes for reference(not actual problems0
+
 ````markdown
 -> Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
 
