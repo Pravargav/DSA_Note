@@ -244,7 +244,7 @@ class Solution {
     }
 }
 ```
-or 
+--------------------------(or)---------------------------------
 
 ->(method 2 of above) Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
 
