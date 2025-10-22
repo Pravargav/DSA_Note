@@ -198,6 +198,7 @@ public class StockBuySell {
   - from  n-1 to 0 - short selling & from 0 to n-1 normal
   - use max - short selling & use min - normal
   - start with sell -short selling & start with buy - normal
+  - cap-1 in buy- short selling & cap-1 in sell - normal
 ```java
 class Solution {
     public long maximumProfit(int[] prices, int k) {
@@ -211,7 +212,7 @@ class Solution {
             }
         }
      
-        return Math.abs(getAns(prices, n, n-1, 1, k, dp));
+        return getAns(prices, n, n-1, 1, k, dp);
     }
 
     public static int getAns(int[] prices, int n, int ind, int buy, int cap, int[][][] dp) {
