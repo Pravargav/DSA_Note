@@ -245,6 +245,7 @@ class Solution {
 }
 ```
 or 
+
 ->(method 2 of above) Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
 
   - just change order from n-1 to 0 TO 0 to n-1 of stocks 4 problem i.e normal problem
