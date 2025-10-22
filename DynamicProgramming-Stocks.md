@@ -207,7 +207,7 @@ class Solution {
             }
         }
      
-        return getAns(prices, n, n-1, 1, k, dp);;
+        return getAns(prices, n, n-1, 1, k, dp);
     }
 
     public static int getAns(int[] prices, int n, int ind, int buy, int cap, int[][][] dp) {
