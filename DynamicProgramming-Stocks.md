@@ -194,7 +194,7 @@ public class StockBuySell {
 }
 
 ```
--> Stocks 5(both normal and short selling leetcode)
+-> Stocks 5(both normal and short selling leetcode 3573)(Rithwik solution)
 
 ```java
 class Solution {
