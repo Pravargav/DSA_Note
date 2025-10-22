@@ -199,6 +199,8 @@ public class StockBuySell {
   - use max - short selling & use min - normal
   - start with sell -short selling & start with buy - normal
   - cap-1 in buy- short selling & cap-1 in sell - normal
+  - final answer use Math.abs
+    
 ```java
 class Solution {
     public long maximumProfit(int[] prices, int k) {
@@ -212,7 +214,7 @@ class Solution {
             }
         }
      
-        return getAns(prices, n, n-1, 1, k, dp);
+        return Math.abs(getAns(prices, n, n-1, 1, k, dp));
     }
 
     public static int getAns(int[] prices, int n, int ind, int buy, int cap, int[][][] dp) {
@@ -242,6 +244,64 @@ class Solution {
     }
 }
 ```
+or 
+->(method 2 of above) Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
+
+  - just change order from n-1 to 0 TO 0 to n-1 of stocks 4 problem
+    
+```java
+class Solution {
+    public long maximumProfit(int[] prices, int k) {
+        int n = prices.length;
+        int[][][] dp = new int[n][2][k + 1];
+
+        // Initialize dp with -1 to mark states as not calculated yet
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < 2; j++) {
+                Arrays.fill(dp[i][j], -1);
+            }
+        }
+        int fn=getAns(prices, n, n-1, 0, k, dp);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<2;j++){
+                for(int l=1;l<k+1;l++){
+                    System.out.print(dp[i][j][l]+" ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+        return fn;
+    }
+
+    public static int getAns(int[] prices, int n, int ind, int buy, int cap, int[][][] dp) {
+        // Base case
+        if (ind <0 || cap == 0) {
+            return 0;
+        }
+
+        // If the result is already calculated, return it
+        if (dp[ind][buy][cap] != -1) {
+            return dp[ind][buy][cap];
+        }
+
+        int profit;
+
+        if (buy == 0) { // We can buy the stock
+            profit = Math.max(0 + getAns(prices, n, ind - 1, 0, cap, dp),
+                    -prices[ind] + getAns(prices, n, ind - 1, 1, cap , dp));
+        } else { // We can sell the stock
+            profit = Math.max(0 + getAns(prices, n, ind - 1, 1, cap, dp),
+                    prices[ind] + getAns(prices, n, ind - 1, 0, cap-1, dp));
+        }
+
+        // Store the result in dp and return it
+        dp[ind][buy][cap] = profit;
+        return profit;
+    }
+}
+```
+
 -> Stocks with fees - 714. add "-fee"
 
 -> Stocks with cooldown - 309. replace idx+1 with idx+2 and add || idx==n+1
