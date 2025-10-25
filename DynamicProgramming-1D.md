@@ -288,13 +288,9 @@ public class Main {
 ##### Example notes for reference(not actual problems)
 
 ````markdown
--> Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
+-> House robber 4 (without list)
 
-  - from  n-1 to 0 - short selling & from 0 to n-1 normal
-  - use max - short selling & use min - normal
-  - start with sell -short selling & start with buy - normal
-  - cap-1 in buy- short selling & cap-1 in sell - normal
-  - final answer use Math.abs
+
     
 ```java
 class Solution {
@@ -317,9 +313,7 @@ class Solution {
 ```
 --------------------------(or)---------------------------------
 
-->(method 2 of above) Sample Example for stocks 5 i.e code for only short selling transaction(normal transaction excluded)
-
-  - just change order from n-1 to 0 TO 0 to n-1 of stocks 4 problem i.e normal problem
+->House robber 4 (with list)
     
 ```java
 class Solution {
