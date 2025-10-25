@@ -298,44 +298,20 @@ public class Main {
     
 ```java
 class Solution {
-    public long maximumProfit(int[] prices, int k) {
-        int n = prices.length;
-        int[][][] dp = new int[n][2][k + 1];
 
-        // Initialize dp with -1 to mark states as not calculated yet
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < 2; j++) {
-                Arrays.fill(dp[i][j], -1);
-            }
-        }
-     
-        return Math.abs(getAns(prices, n, n-1, 1, k, dp));
+    public int minCapability(int[] nums, int k) {
+        int n = nums.length;
+        return fun( nums, 0, k);
     }
 
-    public static int getAns(int[] prices, int n, int ind, int buy, int cap, int[][][] dp) {
-        // Base case
-        if (ind <0 || cap == 0) {
-            return 0;
-        }
+    public int fun( int nums[], int idx, int k) {
+        if(k==0)
+           return 0;
+        if(idx>=nums.length) return Integer.MAX_VALUE;
 
-        // If the result is already calculated, return it
-        if (dp[ind][buy][cap] != -1) {
-            return dp[ind][buy][cap];
-        }
-
-        int profit;
-
-        if (buy == 0) { // We can buy the stock
-            profit = Math.min(0 + getAns(prices, n, ind - 1, 0, cap, dp),
-                    -prices[ind] + getAns(prices, n, ind - 1, 1, cap-1 , dp));
-        } else { // We can sell the stock
-            profit = Math.min(0 + getAns(prices, n, ind - 1, 1, cap, dp),
-                    prices[ind] + getAns(prices, n, ind - 1, 0, cap, dp));
-        }
-
-        // Store the result in dp and return it
-        dp[ind][buy][cap] = profit;
-        return profit;
+        int take = Math.max(nums[idx],fun( nums,idx+2, k-1));
+        int not_take= fun(nums ,idx+1, k);
+        return Math.min(take,not_take);
     }
 }
 ```
