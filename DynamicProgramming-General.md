@@ -364,4 +364,36 @@ class GfG {
 }
 ```
 
+-> 2305. leetcode -fair distribution of cookies (backtracking concept)
 
+```java
+class Solution {
+    int res=Integer.MAX_VALUE; 
+    public int distributeCookies(int[] cookies, int k) {
+        int n=cookies.length;
+        int[]alloc=new int[k];
+        gen(cookies,alloc,0,k);
+        return res;
+    }
+
+      
+    public void gen(int arr[],int []alloc,int index,int k){
+        if(index==arr.length){
+            pall(alloc);
+            return;
+        }
+        for(int st=0;st<k;st++){
+            alloc[st]+=arr[index];
+            gen(arr,alloc,index+1,k);
+            alloc[st]-=arr[index];
+        }
+    }
+
+    public void pall(int[] alloc){
+        for(int i=0;i<alloc.length;i++){
+            System.out.print(alloc[i]+" ");
+        }
+        System.out.println();
+    }
+}
+```
