@@ -538,5 +538,19 @@ class Main {
 	}
 }
 ```
+->if(true) -> 63 values = 32 + 16 + 8 + 4 + 2 + 1
 
+->if(pick==-9) -> 32 values
+
+->if(pick==5) -> 16 values
+
+->if(pick==10)-> 8 values
+
+->if(pick==-50)-> 4 values
+
+->if(pick==-10)-> 2 values
+
+->if(pick==30)-> 1 values
+
+-> note: {3, -1, -5, 2, 5, -9} return 1 as index==nums.length, max of (-9, 1) = 1, max(5*1,1*1)= 5*1 , max(2*5*1,1*5*1)=2*5*1, max(-5*2*5*1,1*2*5*1)=1*2*5*1, max(-1*1*2*5*1,1*1*2*5*1)=1*1*2*5*1, max(3*1*1*2*5*1,1*1*1*2*5*1)=3*1*1*2*5*1 = 30
 ````
