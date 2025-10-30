@@ -463,20 +463,37 @@ class Solution {
 
     
 ```java
-class Solution {
-    public int solve(int[] nums, int index, int product) {
+import java.util.*;
+class Main {
+    List<List<Integer>> h=new ArrayList<>();
+    public int solve(int[] nums, int index,int p) {
+        // Base case: when all elements are processed
         if (index == nums.length) {
-            return product;
+            return p;
         }
+
         // Pick the current element
-        int pick = solve(nums, index + 1, product * nums[index]);
+        int pick=solve(nums, index + 1, p*nums[index]);
+
         // Do not pick the current element
-        int skip = solve(nums, index + 1, product);
-        return Math.max(pick, skip);
+        int notpick=solve(nums, index + 1,p);
+        List<Integer> l=new ArrayList<>();
+        l.add(pick);
+        l.add(notpick);
+        h.add(l);
+        return Math.max(pick,notpick);
     }
 
-    public int maxStrength(int[] nums) {
-        return solve(nums, 0, 1);
+    public void maxStrength(int[] nums) {
+        int val=solve(nums, 0, 1);
+        System.out.println(h);
+        System.out.println(h.size());
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {3, -1, -5, 2, 5, -9};
+        Main obj = new Main();
+        obj.maxStrength(nums);
     }
 } 
 ```
