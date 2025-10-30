@@ -485,22 +485,41 @@ class Solution {
 -> 2708. Maximum Strength of a Group( wrong answer)(Divide and recombine)
     
 ```java
-class Solution {
-    public int solve(int[] nums, int index) {
-        if (index == nums.length) {
-            return 1;
-        }
-        // Pick the current element
-        int pick = nums[index] * solve(nums, index + 1);
-        // Do not pick the current element
-        int skip = solve(nums, index + 1);
-        return Math.max(pick, skip);
-    }
+import java.util.*;
+class Main {
+	List<List<Integer>> lt=new ArrayList<>();
+	public int solve(int[] nums, int index) {
+		// Base case: when all elements are processed
+		if (index == nums.length) {
+			return 1;
+		}
 
-    public int maxStrength(int[] nums) {
-        return solve(nums, 0);
-    }
-} 
+		// Pick the current element
+		int pick=nums[index]*solve(nums, index + 1);
+
+		// Do not pick the current element
+		int notpick=solve(nums, index + 1);
+		List<Integer> l=new ArrayList<>();
+		if(true) {
+			l.add(pick);
+			l.add(notpick);
+			lt.add(l);
+		}
+		return Math.max(pick,notpick);
+	}
+
+	public void maxStrength(int[] nums) {
+		int val=solve(nums, 0);
+		System.out.println(lt);
+		System.out.println(lt.size());
+	}
+
+	public static void main(String[] args) {
+		int[] nums = {3, -1, -5, 2, 5, -9};
+		Main obj = new Main();
+		obj.maxStrength(nums);
+	}
+}
 ```
 
 ````
