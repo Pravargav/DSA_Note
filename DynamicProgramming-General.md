@@ -400,7 +400,7 @@ class Solution {
 ##### Example notes for reference(not actual problems)
 
 ````markdown
--> 2708. Maximum Strength of a Group( using void return type)
+-> 2708. Maximum Strength of a Group( using void return type)(backtracking)
 
 
     
@@ -431,7 +431,7 @@ class Solution {
 ```
 --------------------------(or)---------------------------------
 
--> 2708. Maximum Strength of a Group( using int return type)
+-> 2708. Maximum Strength of a Group( using int return type)(backtracking)
     
 ```java
 class Solution {
@@ -458,7 +458,7 @@ class Solution {
 ````
 
 ````markdown
--> 2708. Maximum Strength of a Group(right answer)
+-> 2708. Maximum Strength of a Group(right answer)(Backtracking)
 
 
     
@@ -482,7 +482,7 @@ class Solution {
 ```
 --------------------------(or)---------------------------------
 
--> 2708. Maximum Strength of a Group( wrong answer)
+-> 2708. Maximum Strength of a Group( wrong answer)(Divide and recombine)
     
 ```java
 class Solution {
