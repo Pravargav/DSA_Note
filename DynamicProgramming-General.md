@@ -456,3 +456,51 @@ class Solution {
 ```
 
 ````
+
+````markdown
+-> 2708. Maximum Strength of a Group(right answer)
+
+
+    
+```java
+class Solution {
+    public int solve(int[] nums, int index, int product) {
+        if (index == nums.length) {
+            return product;
+        }
+        // Pick the current element
+        int pick = solve(nums, index + 1, product * nums[index]);
+        // Do not pick the current element
+        int skip = solve(nums, index + 1, product);
+        return Math.max(pick, skip);
+    }
+
+    public int maxStrength(int[] nums) {
+        return solve(nums, 0, 1);
+    }
+} 
+```
+--------------------------(or)---------------------------------
+
+-> 2708. Maximum Strength of a Group( wrong answer)
+    
+```java
+class Solution {
+    public int solve(int[] nums, int index) {
+        if (index == nums.length) {
+            return 1;
+        }
+        // Pick the current element
+        int pick = nums[index] * solve(nums, index + 1);
+        // Do not pick the current element
+        int skip = solve(nums, index + 1);
+        return Math.max(pick, skip);
+    }
+
+    public int maxStrength(int[] nums) {
+        return solve(nums, 0);
+    }
+} 
+```
+
+````
