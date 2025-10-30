@@ -397,3 +397,62 @@ class Solution {
     }
 }
 ```
+##### Example notes for reference(not actual problems)
+
+````markdown
+-> 2708. Maximum Strength of a Group( using void return type)
+
+
+    
+```java
+class Solution {
+    int ans = Integer.MIN_VALUE;
+
+    public void solve(int[] nums, int index, int product, int size) {
+        if (index == nums.length) {
+            if (size != 0) {
+                ans = Math.max(ans, product);
+            }
+            return;
+        }
+
+        // Pick the current element
+        solve(nums, index + 1, product * nums[index], size + 1);
+
+        // Do not pick the current element
+        solve(nums, index + 1, product, size);
+    }
+
+    public int maxStrength(int[] nums) {
+        solve(nums, 0, 1, 0);
+        return ans;
+    }
+}
+```
+--------------------------(or)---------------------------------
+
+-> 2708. Maximum Strength of a Group( using int return type)
+    
+```java
+class Solution {
+    public int solve(int[] nums, int index, int product, int size) {
+        if (index == nums.length) {
+            return size != 0 ? product : Integer.MIN_VALUE;
+        }
+
+        // Pick the current element
+        int pick = solve(nums, index + 1, product * nums[index], size + 1);
+
+        // Do not pick the current element
+        int skip = solve(nums, index + 1, product, size);
+
+        return Math.max(pick, skip);
+    }
+
+    public int maxStrength(int[] nums) {
+        return solve(nums, 0, 1, 0);
+    }
+}
+```
+
+````
