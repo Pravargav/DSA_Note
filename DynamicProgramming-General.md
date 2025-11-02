@@ -397,6 +397,57 @@ class Solution {
     }
 }
 ```
+
+-> 1025. Divisor Game(GFG - leetcode)
+
+```java
+class Solution {
+    public boolean divisorGame(int n) {
+        int N = n;
+
+        int[][] dp = new int[N + 1][2];
+
+        for (int i = 0; i < N + 1; i++) {
+            for (int j = 0; j < 2; j++) {
+                dp[i][j] = -1;
+            }
+        }
+
+        if (divisorGame(N, 1, dp) == 1)
+            return true;
+        else
+            return false;
+    }
+
+    int divisorGame(int N, int A, int dp[][]) {
+
+        if (N == 1 || N == 3)
+            return 0;
+
+        if (N == 2)
+            return 1;
+
+        if (dp[N][A] != -1)
+            return dp[N][A];
+
+        int ans = (A == 1) ? 0 : 1;
+
+        for (int i = 1; i * i <= N; i++) {
+
+            if (N % i == 0) {
+
+                if (A == 1)
+                    ans |= divisorGame(N - i, 0, dp);
+
+                else
+                    ans &= divisorGame(N - i, 1, dp);
+            }
+        }
+
+        return dp[N][A] = ans;
+    }
+}
+```
 ##### Example notes for reference(not actual problems)
 
 ````markdown
