@@ -177,3 +177,38 @@ class TUF {
 }
 
 ```
+
+-> String matching for simple problems of subsequences like 792. (Number of Matching Subsequences),1048. (Longest String Chain)
+
+```java
+    public boolean lcs(String s1, String s2) {
+       // Ensure s1 is the shorter string
+        if (s1.length() > s2.length()) {
+            String temp = s1;
+            s1 = s2;
+            s2 = temp;
+        }
+
+        // Length must differ by exactly 1
+        if (s2.length() - s1.length() != 1)
+            return false;
+
+        int i = 0, j = 0;
+        boolean foundDifference = false;
+
+        while (i < s1.length() && j < s2.length()) {
+            if (s1.charAt(i) == s2.charAt(j)) {
+                i++;
+                j++;
+            } else {
+                if (foundDifference)
+                    return false; // more than one mismatch
+                foundDifference = true;
+                j++; // skip the extra character in longer string
+            }
+        }
+
+        // If all matched and only one extra char is allowed at end
+        return true;
+    }
+```
