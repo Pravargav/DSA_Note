@@ -609,23 +609,18 @@ class Main {
 ````
 
 ````markdown
--> 1025. Divisor Game
 
--> This is a tree as each has divisor number of possibilities get returned and aggregated using or/and operators.
-
--> ret = 1 means A wins ex: 0 or 0 or 0 or 0 or 1 = 1 so A wins, 1 or 1 or 1 or 1 or 0 = 1 so A wins
 
            A               A                 A                A                A               A
  (or)  | | | | |        | | | | |        | | | | |        | | | | |        | | | | |       | | | | |
     B  0 0 0 0 0        0 0 0 0 1        0 0 0 1 1        0 0 1 1 1        0 1 1 1 1       1 1 1 1 1
-      (0 B wins)        (1 A wins)       (1 A wins)       (1 A wins)       (1 A wins)      (1 A wins)
 
--> ret = 0 means B wins ex: 0 and 0 and 0 and 0 and 1 = 0 so B wins, 1 and 1 and 1 and 1 and 0 = 0 so B wins
+
 
            B               B                 B                B                B               B
 (and)  | | | | |        | | | | |        | | | | |        | | | | |        | | | | |       | | | | |
     A  0 0 0 0 0        0 0 0 0 1        0 0 0 1 1        0 0 1 1 1        0 1 1 1 1       1 1 1 1 1
-      (0 B wins)        (0 B wins)       (0 B wins)       (0 B wins)       (0 B wins)      (1 A wins)
+
 
 
 -> sample tree recursion
