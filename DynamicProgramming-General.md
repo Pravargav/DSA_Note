@@ -623,7 +623,7 @@ class Main {
 
 
 
--> sample tree recursion
+- sample tree recursion
                                                                     |                                                                           (A)
 
                |                                     |                                |                                 |                       (B)
