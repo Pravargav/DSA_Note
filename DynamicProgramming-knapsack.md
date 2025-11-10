@@ -129,32 +129,27 @@ import java.util.*;
 
 class TUF {
     // Recursive function to find the minimum number of elements to achieve the target sum
-    static int minimumElementsUtil(int[] arr, int ind, int T, int[][] dp) {
-        // Base case: If the current index is 0
-        if (ind == 0) {
-            // If T is divisible by the first element of the array, return the quotient
-            if (T % arr[0] == 0)
-                return T / arr[0];
-            else
-                // If not, return a large value to indicate it's not possible
-                return (int) Math.pow(10, 9);
-        }
+    static  int minimumElementsUtil(int[] arr, int ind, int T, int[][] dp) {
+        // Base case: if target becomes negative, it's invalid
+        if (T < 0)
+            return (int) Math.pow(10, 9);
 
-        // If the result for this subproblem has already been calculated, return it
+        // Base case: if no elements left to consider
+        if (ind < 0)
+            return (T == 0) ? 0 : (int) Math.pow(10, 9);
+
+        // Memoization check
         if (dp[ind][T] != -1)
             return dp[ind][T];
 
-        // Calculate the minimum number of elements needed without taking the current element
-        int notTaken = 0 + minimumElementsUtil(arr, ind - 1, T, dp);
+        // Don't take current element
+        int notTaken = minimumElementsUtil(arr, ind - 1, T, dp);
 
-        // Initialize the minimum number of elements needed taking the current element
+        // Take current element if possible
         int taken = (int) Math.pow(10, 9);
-
-        // If the current element is less than or equal to T, calculate the minimum taking it
         if (arr[ind] <= T)
             taken = 1 + minimumElementsUtil(arr, ind, T - arr[ind], dp);
 
-        // Store the minimum result in the dp array and return it
         return dp[ind][T] = Math.min(notTaken, taken);
     }
 
