@@ -1,8 +1,8 @@
-`1)  3304. Find the K-th Character in String Game I `
+`  3304. Find the K-th Character in String Game I `
 
 -> returns function of return type char( function call) until actual return type char value at base condition is returned.
 
-`2) 2550. Count Collisions of Monkeys on a Polygon`
+` 2550. Count Collisions of Monkeys on a Polygon`
 
 -> return (int) ((max + pow(n) - 2) % max);   
 
@@ -29,7 +29,7 @@
 -> https://www.geeksforgeeks.org/multiplicative-inverse-under-modulo-m/
 
 
-`3) 2487. Remove Nodes From Linked List`
+` 2487. Remove Nodes From Linked List`
 
 ```
 /**
@@ -68,11 +68,9 @@ Linkedlist node1[val1,node2]; Linkedlist node2[val1,node3]; Linkedlist node3[val
 
 -> visualise head.next= remove(head.next) as 5.next=remove(5.next) , 2.next=remove(2.next) etc.. for better understanding and visualization.
 
-`4) 234. Palindrome Linked List `
 
-`5) 203. Remove Linked List Elements`
 
-`6) 206. Reverse Linked List `
+` 206. Reverse Linked List `
 
 ```
 /**
@@ -89,17 +87,9 @@ Linkedlist node1[val1,node2]; Linkedlist node2[val1,node3]; Linkedlist node3[val
 
 -> ListNode newNode = reverseList(head.next);  here newnode is like temp adress variable
 
-`7) 21. Merge Two Sorted Lists `
+`
 
-`8) 143. Reorder List `
-
-`9) 231. Power of Two`
-
-`10) 326. Power of Three `
-
-`11) 342. Power of Four `
-
-`12) 50. Pow(x, n) `
+` 50. Pow(x, n) `
 
 -> 323 - odd i.e. 323-1 = 322
 -> 322 - even i.e. 322/2 = 161
@@ -108,31 +98,13 @@ Linkedlist node1[val1,node2]; Linkedlist node2[val1,node3]; Linkedlist node3[val
 
 returun type double for fun(x*x) / x*fun() calls
 
-write function call as double t = fun(x*x,n/2) or double t = x*fun(x,n-1) and then return t;
-note: 
-```
-double t = x*fun(x,n-1);
-return t;
-```
 
-equivalent to 
 
-```
-return x* fun(x,n-1);
-
-```
-
-`13) 1823. Find the Winner of the Circular Game`
+` 1823. Find the Winner of the Circular Game`
 
 -> https://stackoverflow.com/questions/58295981/can-someone-explain-how-the-modulus-work
 
-`14) 509. Fibonacci Number`
-
-`15) 2. Add Two Numbers`
-
-`16) 1922. Count Good Numbers`
-
-`17) 1969. Minimum Non-Zero Product of the Array Elements`
+` 1969. Minimum Non-Zero Product of the Array Elements`
 
 
 
@@ -144,11 +116,7 @@ return x* fun(x,n-1);
 
 for every mod problem....
 
-`18) 779. K-th Symbol in Grammar`
 
-
-
-`19) 1545. Find Kth Bit in Nth Binary String`
 
 
 
