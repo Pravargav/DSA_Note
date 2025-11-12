@@ -135,8 +135,6 @@ for (int i = 0; i < V; i++) {
 
 ```
 
-``797. All Paths From Source to Target``
-
 ``994. Rotting Oranges``(implicit graph format not adjacency list)
 
 ``200. Number of Islands``(implicit graph format not adjacency list)
@@ -149,9 +147,6 @@ for (int i = 0; i < V; i++) {
 
 -> To check cyclicity of undirected graph we keep track of the parent node and visited array
 
-``207. Course Schedule``
-
-``802. Find Eventual Safe States``
 
 <------------------------------------------------------------------>
 
