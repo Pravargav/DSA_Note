@@ -93,7 +93,7 @@ return find(4,4);
 
 
 
-`16)226. Invert Binary Tree`
+`226. Invert Binary Tree`
 
 -> same formula we used for linked list(swapping) and Treenode return sums **i.e. take temporary vairable temp of type TreeNode/linked list and swap like swap elements in array** using temp.
 
