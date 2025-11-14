@@ -310,96 +310,103 @@ class Solution {
 ````
 
 ````markdown
--> Sliding window and max value till a point from back and front - used in reducing a problem from  nested loop to single loop 2-3 times
+
+-> VERY VERY VERY IMPORTANT CODE FOR MAX SUFFIX, MAX PREFIX OF SLIDING WINDOW
+
+-> used in reducing a problem from  nested loop to single loop 2-3 times
 
 ```java
+import java.util.*;
+
 class Solution {
-    public int maxSumTwoNoOverlap(int[] nums, int firstLen, int secondLen) {
+    public int maxSum(int[] nums, int firstLen, int secondLen) {
 
-        List<List<Integer>> fl=new ArrayList<>();
-        List<List<Integer>> sl=new ArrayList<>();
-        List<Integer> lmk=new ArrayList<>();
+        // -----------------------------------------
+        // FIRST WINDOW (size = firstLen)
+        // -----------------------------------------
 
+        List<List<Integer>> firstWinRanges = new ArrayList<>();   // stores [start, end]
+        List<Integer> firstWinSums = new ArrayList<>();           // stores window sums
 
+        int firstWindowSum = 0;
 
-        //sliding window sum - window length firstLen
-        int sumft=0;
-        for(int i=0;i<firstLen;i++){
-            sumft+=nums[i];
+        // initial window sum
+        for (int i = 0; i < firstLen; i++) {
+            firstWindowSum += nums[i];
         }
-        lmk.add(sumft);
-        int r=firstLen-1;
-        List<Integer> fl2=Arrays.asList(0,r);
-        fl.add(fl2);
-      
-        for(int i=1;i<=nums.length - firstLen;i++){
-            sumft=sumft-nums[i-1];
-            sumft=sumft+nums[i+firstLen-1];
-            int s=i+firstLen-1;
-            List<Integer> fl3=Arrays.asList(i,s);
-            fl.add(fl3);
-            lmk.add(sumft);
+        firstWinSums.add(firstWindowSum);
+        firstWinRanges.add(Arrays.asList(0, firstLen - 1));
+
+        // sliding forward
+        for (int i = 1; i <= nums.length - firstLen; i++) {
+            firstWindowSum = firstWindowSum - nums[i - 1] + nums[i + firstLen - 1];
+            firstWinSums.add(firstWindowSum);
+            firstWinRanges.add(Arrays.asList(i, i + firstLen - 1));
         }
+
         System.out.println("---");
 
+        // -----------------------------------------
+        // SECOND WINDOW (size = secondLen)
+        // -----------------------------------------
 
-        //sliding window sum - window length secondLen
-        List<Integer> lk=new ArrayList<>();
-        int sumbk=0;
-        for(int i=0;i<secondLen;i++){
-            sumbk+=nums[i];
+        List<List<Integer>> secondWinRanges = new ArrayList<>();
+        List<Integer> secondWinSums = new ArrayList<>();
+
+        int secondWindowSum = 0;
+
+        // initial window sum
+        for (int i = 0; i < secondLen; i++) {
+            secondWindowSum += nums[i];
         }
-        lk.add(sumbk);
-        int q=secondLen-1;
-        List<Integer> sl2=Arrays.asList(0,q);
-        sl.add(sl2);
-        for(int i=1;i<=nums.length - secondLen;i++){
-            sumbk=sumbk-nums[i-1];
-            sumbk=sumbk+nums[i+secondLen-1];
-            int p=i+secondLen-1;
-            List<Integer> sl3=Arrays.asList(i,p);
-            sl.add(sl3);
-            lk.add(sumbk);
+        secondWinSums.add(secondWindowSum);
+        secondWinRanges.add(Arrays.asList(0, secondLen - 1));
+
+        // sliding forward
+        for (int i = 1; i <= nums.length - secondLen; i++) {
+            secondWindowSum = secondWindowSum - nums[i - 1] + nums[i + secondLen - 1];
+            secondWinSums.add(secondWindowSum);
+            secondWinRanges.add(Arrays.asList(i, i + secondLen - 1));
         }
+
         System.out.println("---");
 
+        // -----------------------------------------
+        // Max values from front & back (based on secondWinSums)
+        // -----------------------------------------
 
+        List<Integer> maxPrefix = new ArrayList<>(); // max from 0..i
+        List<Integer> maxSuffix = new ArrayList<>(); // max from i..end
 
-        List<Integer> lf=new ArrayList<>();
-        List<Integer> bf=new ArrayList<>();
-        
-
-
-
-        //Saving the max value from front
-        int maxf=Integer.MIN_VALUE;
-        for(int i=0;i<lk.size();i++){
-            maxf=Math.max(lk.get(i),maxf);
-            lf.add(maxf);
+        // prefix max (front → back)
+        int prefixMax = Integer.MIN_VALUE;
+        for (int sum : secondWinSums) {
+            prefixMax = Math.max(prefixMax, sum);
+            maxPrefix.add(prefixMax);
         }
+
         System.out.println("---");
 
-
-
-        //Saving the max value from back
-        int maxb=Integer.MIN_VALUE;
-        for(int i=lk.size()-1;i>=0;i--){
-            maxb=Math.max(lk.get(i),maxb);
-            bf.add(maxb);
+        // suffix max (back → front)
+        int suffixMax = Integer.MIN_VALUE;
+        for (int i = secondWinSums.size() - 1; i >= 0; i--) {
+            suffixMax = Math.max(suffixMax, secondWinSums.get(i));
+            maxSuffix.add(suffixMax);
         }
-        Collections.reverse(bf);
+        Collections.reverse(maxSuffix);
 
+        // -----------------------------------------
+        // Debug Output (same as before)
+        // -----------------------------------------
+        System.out.println(firstWinRanges);
+        System.out.println(firstWinSums);
 
-        System.out.println(fl);
-        System.out.println(lmk);
-
-        System.out.println(sl);
-        System.out.println(lf);
-        System.out.println(bf);
-
+        System.out.println(secondWinRanges);
+        System.out.println(maxPrefix);
+        System.out.println(maxSuffix);
 
         return 0;
     }
-}
+} 
 ```
 ````
