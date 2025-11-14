@@ -361,12 +361,13 @@ class Solution {
             sl.add(sl3);
             lk.add(sumbk);
         }
+        System.out.println("---");
 
 
 
         List<Integer> lf=new ArrayList<>();
         List<Integer> bf=new ArrayList<>();
-        System.out.println("---");
+        
 
 
 
