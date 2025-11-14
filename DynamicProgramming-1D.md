@@ -250,8 +250,11 @@ class Solution {
     public int maxSumTwoNoOverlap(int[] nums, int firstLen, int secondLen) {
         List<List<Integer>> fl=new ArrayList<>();
         List<List<Integer>> sl=new ArrayList<>();
-
         List<Integer> lmk=new ArrayList<>();
+
+
+
+        //sliding window sum - window length firstLen
         int sumft=0;
         for(int i=0;i<firstLen;i++){
             sumft+=nums[i];
@@ -260,6 +263,7 @@ class Solution {
         int r=firstLen-1;
         List<Integer> fl2=Arrays.asList(0,r);
         fl.add(fl2);
+      
         for(int i=1;i<=nums.length - firstLen;i++){
             sumft=sumft-nums[i-1];
             sumft=sumft+nums[i+firstLen-1];
@@ -269,6 +273,9 @@ class Solution {
             lmk.add(sumft);
         }
         System.out.println("---");
+
+
+        //sliding window sum - window length secondLen
         List<Integer> lk=new ArrayList<>();
         int sumbk=0;
         for(int i=0;i<secondLen;i++){
@@ -287,6 +294,10 @@ class Solution {
             lk.add(sumbk);
         }
 
+
+
+
+
         List<Integer> lf=new ArrayList<>();
         List<Integer> bf=new ArrayList<>();
         System.out.println("---");
@@ -301,6 +312,8 @@ class Solution {
             maxb=Math.max(lk.get(i),maxb);
             bf.add(maxb);
         }
+
+
         Collections.reverse(bf);
 
         System.out.println(fl);
