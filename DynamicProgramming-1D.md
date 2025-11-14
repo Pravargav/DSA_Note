@@ -298,6 +298,8 @@ class Solution {
 
         List<Integer> lf=new ArrayList<>();
         List<Integer> bf=new ArrayList<>();
+
+
         System.out.println("---");
         //Saving the max value from front
         int maxf=Integer.MIN_VALUE;
@@ -305,6 +307,8 @@ class Solution {
             maxf=Math.max(lk.get(i),maxf);
             lf.add(maxf);
         }
+
+
         System.out.println("---");
         //Saving the max value from back
         int maxb=Integer.MIN_VALUE;
