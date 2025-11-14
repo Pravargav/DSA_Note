@@ -386,9 +386,8 @@ class Solution {
             maxb=Math.max(lk.get(i),maxb);
             bf.add(maxb);
         }
-
-
         Collections.reverse(bf);
+
 
         System.out.println(fl);
         System.out.println(lmk);
@@ -396,6 +395,8 @@ class Solution {
         System.out.println(sl);
         System.out.println(lf);
         System.out.println(bf);
+
+
         return 0;
     }
 }
