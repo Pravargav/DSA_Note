@@ -243,11 +243,79 @@ public class Main {
 }
 ```
 
--> Sliding window and max value till a point from back and front
+
+
+##### Example notes for reference(not actual problems)
+
+````markdown
+-> House robber 4 (without list)
+
+
+    
+```java
+class Solution {
+
+    public int minCapability(int[] nums, int k) {
+        int n = nums.length;
+        return fun( nums, 0, k);
+    }
+
+    public int fun( int nums[], int idx, int k) {
+        if(k==0)
+           return 0;
+        if(idx>=nums.length) return Integer.MAX_VALUE;
+
+        int take = Math.max(nums[idx],fun( nums,idx+2, k-1));
+        int not_take= fun(nums ,idx+1, k);
+        return Math.min(take,not_take);
+    }
+}
+```
+--------------------------(or)---------------------------------
+
+->House robber 4 (with list)
+    
+```java
+class Solution {
+    int min = Integer.MAX_VALUE;
+
+    public int minCapability(int[] nums, int k) {
+        int n = nums.length;
+        List<Integer> lt = new ArrayList<>();
+        fun(n, nums, lt, 0, k);
+        return min;
+    }
+
+    public void fun(int n, int nums[], List<Integer> lt, int idx, int k) {
+        if (idx >= n) {
+            int max = Integer.MIN_VALUE;
+            if (lt.size() >= k) {
+                for (int i = 0; i < lt.size(); i++) {
+                    max = Math.max(max, lt.get(i));
+                }
+                // System.out.println(max);
+                min = Math.min(min, max);
+            }
+            return;
+        }
+
+        lt.add(nums[idx]);
+        fun(n, nums, lt, idx + 2, k);
+        lt.remove(lt.size() - 1);
+        fun(n, nums, lt, idx + 1, k);
+    }
+}
+```
+
+````
+
+````markdown
+-> Sliding window and max value till a point from back and front - used in reducing a problem from  nested loop to single loop 2-3 times
 
 ```java
 class Solution {
     public int maxSumTwoNoOverlap(int[] nums, int firstLen, int secondLen) {
+
         List<List<Integer>> fl=new ArrayList<>();
         List<List<Integer>> sl=new ArrayList<>();
         List<Integer> lmk=new ArrayList<>();
@@ -330,67 +398,4 @@ class Solution {
     }
 }
 ```
-
-##### Example notes for reference(not actual problems)
-
-````markdown
--> House robber 4 (without list)
-
-
-    
-```java
-class Solution {
-
-    public int minCapability(int[] nums, int k) {
-        int n = nums.length;
-        return fun( nums, 0, k);
-    }
-
-    public int fun( int nums[], int idx, int k) {
-        if(k==0)
-           return 0;
-        if(idx>=nums.length) return Integer.MAX_VALUE;
-
-        int take = Math.max(nums[idx],fun( nums,idx+2, k-1));
-        int not_take= fun(nums ,idx+1, k);
-        return Math.min(take,not_take);
-    }
-}
-```
---------------------------(or)---------------------------------
-
-->House robber 4 (with list)
-    
-```java
-class Solution {
-    int min = Integer.MAX_VALUE;
-
-    public int minCapability(int[] nums, int k) {
-        int n = nums.length;
-        List<Integer> lt = new ArrayList<>();
-        fun(n, nums, lt, 0, k);
-        return min;
-    }
-
-    public void fun(int n, int nums[], List<Integer> lt, int idx, int k) {
-        if (idx >= n) {
-            int max = Integer.MIN_VALUE;
-            if (lt.size() >= k) {
-                for (int i = 0; i < lt.size(); i++) {
-                    max = Math.max(max, lt.get(i));
-                }
-                // System.out.println(max);
-                min = Math.min(min, max);
-            }
-            return;
-        }
-
-        lt.add(nums[idx]);
-        fun(n, nums, lt, idx + 2, k);
-        lt.remove(lt.size() - 1);
-        fun(n, nums, lt, idx + 1, k);
-    }
-}
-```
-
 ````
