@@ -133,7 +133,14 @@ public class LongestCommonSubstringMemo {
         for (int[] row : memo) {
             Arrays.fill(row, -1); // Initialize with -1
         }
-        lcSubstringHelper(s1, s2, m, n);
+        // Find the longest common substring ending
+        // at every pair of characters and take the 
+        // maximum of all.
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                maxLen = Math.max(maxLen, lcSubstringHelper(s1, s2, i, j));
+            }
+        }
         return maxLen;
     }
 
