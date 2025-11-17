@@ -229,67 +229,7 @@ public class LCSubsequenceMemoArray {
     }
 }
 ```
--> Longest Common Substring (return substring rather than the length)
 
-```java
-public class LCSubstringMemoString {
-
-    private static String[][] memo;
-    private static String maxSubstring = "";
-
-    public static String lcSubstring(String s1, String s2) {
-        int m = s1.length();
-        int n = s2.length();
-        memo = new String[m + 1][n + 1];
-        maxSubstring = "";
-        
-        lcSubstringHelper(s1, s2, m, n);
-        
-        return maxSubstring;
-    }
-
-    private static String lcSubstringHelper(String s1, String s2, int m, int n) {
-        if (m == 0 || n == 0) {
-            return "";
-        }
-        
-        // Check if already computed
-        if (memo[m][n] != null) {
-            return memo[m][n];
-        }
-        
-        String result;
-        if (s1.charAt(m - 1) == s2.charAt(n - 1)) {
-            String prev = lcSubstringHelper(s1, s2, m - 1, n - 1);
-            result = prev + s1.charAt(m - 1);
-            
-            // Update max substring if current is longer
-            if (result.length() > maxSubstring.length()) {
-                maxSubstring = result;
-            }
-        } else {
-            result = "";
-            lcSubstringHelper(s1, s2, m - 1, n);
-            lcSubstringHelper(s1, s2, m, n - 1);
-        }
-        
-        memo[m][n] = result;
-        return result;
-    }
-
-    public static void main(String[] args) {
-        String s1 = "ABABC";
-        String s2 = "BABCA";
-        
-        String result = lcSubstring(s1, s2);
-        System.out.println("LCSubstring is: " + result);
-        System.out.println("Length of LCSubstring is: " + result.length());
-        // Output:
-        // LCSubstring is: BABC
-        // Length of LCSubstring is: 4
-    }
-}
-```
 -> Longest arthimatic progression(recurrsion code-if you want you can convert to dp)-(gfg solution)
 
 ```java
