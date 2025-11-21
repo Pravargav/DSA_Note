@@ -412,5 +412,14 @@ class Solution {
 ````
 
 ````markdown
-hello
+-> pk is sum of a subarray containing all positive elements
+
+-> nk is sum of a subarray containing all negative elements
+
+-> For max sum subarray first remove the nk from both ends if they exist
+
+   ex: n1 p1 n2 p2 n3 to p1 n2 p2, n1 p1 n2 p2 n3 p3 to p1 n2 p2 n3 p3, p1 n1 p2 n2 p3 n3 to p1 n1 p2 n2 p3
+
+   ie. the final output should contain a pk on both ends
+    
 ````
