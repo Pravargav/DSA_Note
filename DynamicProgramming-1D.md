@@ -421,5 +421,34 @@ class Solution {
    ex: n1 p1 n2 p2 n3 to p1 n2 p2, n1 p1 n2 p2 n3 p3 to p1 n2 p2 n3 p3, p1 n1 p2 n2 p3 n3 to p1 n1 p2 n2 p3
 
    ie. the final output should contain a pk on both ends
+
+-> Theorm1 -
+
+   if p2 + n2 + p3 + n3 + p4 + n4 > p3 + n3 + p4 + n4 then p2 + n2 > 0
+
+   if p2 + n2 + p3 + n3 + p4 + n4 < p3 + n3 + p4 + n4 then p2 + n2 < 0 then make p2 + n2 = 0 i.e dont include p2 + n2 in sum
+
+-> Kandane algorithm-
+
+```java
+ public int maxSubArray(int[] nums) {
+    int currentSum = 0;
+    int maxSum = Integer.MIN_VALUE;
+
+    for (int n : nums) {
+        currentSum += n;
+
+        if (currentSum > maxSum) {
+            maxSum = currentSum;
+        }
+
+        if (currentSum < 0) {
+            currentSum = 0;
+        }
+    }
+
+    return maxSum;
+}
+```
     
 ````
