@@ -301,3 +301,54 @@ public class MaxSumAfterPartitioning {
     }
 }
 ```
+````markdown
+```java
+
+class Solution {
+    public int countPartitions(int[] nums, int k) {
+        return fun(nums, k, Integer.MIN_VALUE, Integer.MAX_VALUE, 0);
+    }
+
+    private int fun(int[] nums, int k, int max, int min, int idx) {
+        int n = nums.length;
+
+        if (idx == n - 1) {
+            int nmin = Math.min(min, nums[idx]);
+            int nmax = Math.max(max, nums[idx]);
+            return (nmax - nmin <= k) ? 1 : 0;
+        }
+
+        int nmin = Math.min(min, nums[idx]);
+        int nmax = Math.max(max, nums[idx]);
+
+        if (nmax - nmin <= k) {
+
+            return fun(nums, k, nmax, nmin, idx + 1)
+                    + fun(nums, k, Integer.MIN_VALUE, Integer.MAX_VALUE, idx + 1);
+        } else {
+
+            return 0;
+        }
+    }
+}
+-----
+class Solution {
+    public int countPartitions(int[] nums, int k) {
+        return fun(nums, k, Integer.MIN_VALUE, Integer.MAX_VALUE, 0)/2;
+    }
+
+    public int fun(int[] nums, int k, int max, int min, int idx) {
+        if (idx == nums.length) {
+            return 1;
+        }
+        int nmin = Math.min(min, nums[idx]);
+        int nmax = Math.max(max, nums[idx]);
+        if (nmax - nmin <= k) {
+            return fun(nums, k, nmax, nmin, idx + 1) + fun(nums, k, Integer.MIN_VALUE, Integer.MAX_VALUE, idx + 1);
+        } else {
+            return 0;
+        }
+    }
+}
+```
+````
