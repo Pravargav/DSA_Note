@@ -303,7 +303,7 @@ public class MaxSumAfterPartitioning {
 ```
 ````markdown
 ```java
-
+//gives exact answer
 class Solution {
     public int countPartitions(int[] nums, int k) {
         return fun(nums, k, Integer.MIN_VALUE, Integer.MAX_VALUE, 0);
@@ -333,7 +333,7 @@ class Solution {
 }
 
 -----
-
+//gives doule value of answer so we divide by 2
 class Solution {
     public int countPartitions(int[] nums, int k) {
         return fun(nums, k, Integer.MIN_VALUE, Integer.MAX_VALUE, 0)/2;
