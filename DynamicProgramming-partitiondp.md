@@ -297,4 +297,59 @@ public class MaxSumAfterPartitioning {
     }
 }
 ```
+->3578. Count Partitions With Max-Min Difference at Most K
 
+```java
+class Solution {
+    static final int MOD = 1_000_000_007;
+
+    public int countPartitions(int[] nums, int k) {
+        Map<String, Integer> memo = new HashMap<>();
+        return dfs(nums, k, 0, false, 0, 0, memo);
+    }
+
+    private int dfs(
+        int[] nums,
+        int k,
+        int idx,
+        boolean started,
+        int curMin,
+        int curMax,
+        Map<String, Integer> memo
+    ) {
+        if (idx == nums.length) {
+            return started ? 1 : 0;
+        }
+
+        String key = idx + "|" + started + "|" + curMin + "|" + curMax;
+        if (memo.containsKey(key)) {
+            return memo.get(key);
+        }
+
+        int ways;
+
+        if (!started) {
+            // must start a new partition
+            ways = dfs(nums, k, idx + 1, true, nums[idx], nums[idx], memo);
+        } else {
+            // option 1: extend current partition
+            int extendWays = 0;
+            int nmin = Math.min(curMin, nums[idx]);
+            int nmax = Math.max(curMax, nums[idx]);
+
+            if (nmax - nmin <= k) {
+                extendWays = dfs(nums, k, idx + 1, true, nmin, nmax, memo);
+            }
+
+            // option 2: start new partition
+            int newWays = dfs(nums, k, idx + 1, true, nums[idx], nums[idx], memo);
+
+            ways = (extendWays + newWays) % MOD;
+        }
+
+        memo.put(key, ways);
+        return ways;
+    }
+} 
+
+```
