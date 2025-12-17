@@ -58,7 +58,7 @@ public static void main(String args[]) {
 }
 }
 ```
--> Minimum cost to cut the stick-same as above - i.e. inplace of "arr[i-1]*arr[k]*arr[j] replace with cuts.get(j + 1) - cuts.get(i - 1)"
+-> Minimum cost to cut the stick-same as above
 
 ```java
 import java.util.*;
@@ -103,7 +103,7 @@ public class TUF {
     }
 }
 ```
--> Burst Ballons- i.e. "cuts.get(j + 1) - cuts.get(i - 1) replace with a.get(i - 1) * a.get(ind) * a.get(j + 1)"
+-> Burst Ballons- 
 
 ```java
 import java.util.*;
