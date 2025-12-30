@@ -766,3 +766,7 @@ public class KahnsAlgorithm {
     }
 }
 ```
+##### Example notes for reference
+
+````markdown
+````
