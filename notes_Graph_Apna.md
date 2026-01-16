@@ -773,7 +773,7 @@ public class KahnsAlgorithm {
 ##### Example notes for reference
 
 ````markdown
-
+```java
 class Solution {
     static class Edge {
         int x;
@@ -855,11 +855,11 @@ class Solution {
 }
 
 //https://leetcode.com/problems/rotting-oranges/description/
-
+```
 ````
 ````markdown
 
-
+```java
 class Solution {
     static class Edge {
 
@@ -912,5 +912,5 @@ class Solution {
 }
 
 //https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
-
+```
 ````
