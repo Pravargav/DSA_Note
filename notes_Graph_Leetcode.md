@@ -270,3 +270,9 @@ while(!pq.isEmpty()) {
 ![alt text](https://cp-algorithms.com/graph/strongly-connected-components-tikzpicture/cond_graph.svg)
 
 -> Other Concepts include Bridges and Articulation Points(Can be solved using Kosaraju's algorithm and Tarjan's Algorithms)
+
+-> The low-link value of a node is the smallest node ID reachable from that node when doing a depth-first search (DFS), including itself.
+
+[youtube-willam-heist](https://youtu.be/wUgWX0nc4NY?si=rj0aLhlNHrLHv95C)
+
+[google-ref-tarjan](https://www.topcoder.com/thrive/articles/tarjans-algorithm-for-strongly-connected-components)
