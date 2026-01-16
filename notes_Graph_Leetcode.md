@@ -275,4 +275,3 @@ while(!pq.isEmpty()) {
 
 [youtube-willam-heist](https://youtu.be/wUgWX0nc4NY?si=rj0aLhlNHrLHv95C)
 
-[google-ref-tarjan](https://www.topcoder.com/thrive/articles/tarjans-algorithm-for-strongly-connected-components)
