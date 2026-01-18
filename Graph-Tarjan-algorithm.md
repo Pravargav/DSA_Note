@@ -283,13 +283,6 @@ dt[curr] = low[curr] = ++time[0];
 
 ---
 
-## 🧠 Final Summary (Exam / Interview)
 
-* ❌ Passing `int time` → **BUG**
-* ✅ Use **static variable** or **array reference**
-* ✔ Your reasoning is **perfect**
-* ✔ This is a **very common Tarjan interview trap**
-
----
 
 
