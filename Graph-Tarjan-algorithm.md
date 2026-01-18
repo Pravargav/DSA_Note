@@ -96,3 +96,200 @@ Here is the **correct technical formulation** replacing TopCoder’s wording:
 
 ---
 -> Striver and Apna college assigned node-id's intelligently so to exactly match time with node-id's.But both are not same.Refer to striver's graph diagram and Apna graph diagram in youtube [striver-ex](https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55).
+
+
+You are **100% correct** in your analysis 👍
+Your **bug identification and explanation are accurate**, and your conclusion about the fix is exactly right.
+
+Let me give a **clear final verdict**, then show the **corrected code**.
+
+---
+```java
+
+import java.util.*;
+
+public class TarjanSCC {
+
+    static class Edge {
+        int src, dest;
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
+        }
+    }
+
+    public static void dfs(ArrayList<Edge> graph[], int curr,
+                           int dt[], int low[],
+                           boolean inStack[],
+                           Stack<Integer> stack,
+                           int time) {
+
+        dt[curr] = low[curr] = ++time;
+        stack.push(curr);
+        inStack[curr] = true;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+
+            // If node not visited
+            if (dt[e.dest] == 0) {
+                dfs(graph, e.dest, dt, low, inStack, stack, time);
+                low[curr] = Math.min(low[curr], low[e.dest]);
+            }
+            // Back edge to node in stack
+            else if (inStack[e.dest]) {
+                low[curr] = Math.min(low[curr], dt[e.dest]);
+            }
+        }
+
+        // Head of SCC
+        if (dt[curr] == low[curr]) {
+            System.out.print("SCC : ");
+            while (true) {
+                int node = stack.pop();
+                inStack[node] = false;
+                System.out.print(node + " ");
+                if (node == curr)
+                    break;
+            }
+            System.out.println();
+        }
+    }
+
+    public static void getSCC(ArrayList<Edge> graph[], int V) {
+        int dt[] = new int[V];
+        int low[] = new int[V];
+        boolean inStack[] = new boolean[V];
+        Stack<Integer> stack = new Stack<>();
+
+        int time = 0;
+
+        for (int i = 0; i < V; i++) {
+            if (dt[i] == 0) {
+                dfs(graph, i, dt, low, inStack, stack, time);
+            }
+        }
+    }
+}
+```
+## ❌ Is the given code correct?
+
+**No — as written, it is NOT correct.**
+
+### ❗ Reason: Java pass-by-value for `int time`
+
+```java
+public static void dfs(..., int time)
+```
+
+* Each recursive call receives **its own copy** of `time`
+* `++time` only updates the local copy
+* Parent calls do **not see the increment**
+* Multiple nodes receive the **same discovery time (`dt`)**
+* This **breaks Tarjan’s SCC logic**
+
+✔ Your explanation of the bug is **exactly right**
+
+---
+
+## ✅ Correct Fixes (Two Valid Options)
+
+---
+
+## ✔️ FIX 1 (BEST & CLEANEST): Use `static int time`
+
+### ✅ Corrected Working Code
+
+```java
+import java.util.*;
+
+public class TarjanSCC {
+
+    static class Edge {
+        int src, dest;
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
+        }
+    }
+
+    static int time = 0;  // ✅ global time
+
+    public static void dfs(ArrayList<Edge> graph[], int curr,
+                           int dt[], int low[],
+                           boolean inStack[],
+                           Stack<Integer> stack) {
+
+        dt[curr] = low[curr] = ++time;
+        stack.push(curr);
+        inStack[curr] = true;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+
+            if (dt[e.dest] == 0) {
+                dfs(graph, e.dest, dt, low, inStack, stack);
+                low[curr] = Math.min(low[curr], low[e.dest]);
+            } 
+            else if (inStack[e.dest]) {
+                low[curr] = Math.min(low[curr], dt[e.dest]);
+            }
+        }
+
+        if (dt[curr] == low[curr]) {
+            System.out.print("SCC : ");
+            while (true) {
+                int node = stack.pop();
+                inStack[node] = false;
+                System.out.print(node + " ");
+                if (node == curr) break;
+            }
+            System.out.println();
+        }
+    }
+
+    public static void getSCC(ArrayList<Edge> graph[], int V) {
+        int dt[] = new int[V];
+        int low[] = new int[V];
+        boolean inStack[] = new boolean[V];
+        Stack<Integer> stack = new Stack<>();
+
+        time = 0; // reset before DFS
+
+        for (int i = 0; i < V; i++) {
+            if (dt[i] == 0) {
+                dfs(graph, i, dt, low, inStack, stack);
+            }
+        }
+    }
+}
+```
+
+---
+
+## ✔️ FIX 2: Use `int[] time` (Reference Style)
+
+```java
+int time[] = {0};
+
+dfs(..., time);
+
+// inside dfs
+dt[curr] = low[curr] = ++time[0];
+```
+
+✔ Works
+❌ Slightly less clean for interviews/exams
+
+---
+
+## 🧠 Final Summary (Exam / Interview)
+
+* ❌ Passing `int time` → **BUG**
+* ✅ Use **static variable** or **array reference**
+* ✔ Your reasoning is **perfect**
+* ✔ This is a **very common Tarjan interview trap**
+
+---
+
+
