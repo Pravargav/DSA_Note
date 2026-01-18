@@ -551,6 +551,23 @@ public class ArticulationTarjan {
 ---
 
 
+Tarjan’s Algorithm
+✅ Can Do
 
+Strongly Connected Components (SCCs)
+
+Bridges (undirected graph)
+
+Articulation Points (undirected graph)
+
+Detect cycles (via SCCs)
+
+Build condensation graph
+
+❌ Cannot Do
+
+Direct topological sort
+
+Shortest path
 
 
