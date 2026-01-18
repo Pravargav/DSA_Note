@@ -9,11 +9,6 @@
 
 [youtube-willam-heist](https://youtu.be/wUgWX0nc4NY?si=rj0aLhlNHrLHv95C)
 
-Short answer: **partly right, partly misleading**.
-TopCoder’s explanation captures the *intuition*, but it is **technically imprecise** in one very important place.
-
-Let’s go line by line.
-
 ---
 
 ## ❌ Statement 1 (Incorrect / Misleading)
