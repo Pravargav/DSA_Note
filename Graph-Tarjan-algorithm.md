@@ -391,6 +391,157 @@ For correctness in real implementations, use:
 
 ---
 
+Below are the **corrected, fully working Java implementations** of **Bridge** and **Articulation Point** using **Tarjan’s Algorithm**, fixing the **pass-by-value `time` bug** by using a **static variable**.
+
+These are **exam-safe, interview-safe, and production-correct**.
+
+---
+
+## ✅ Corrected Bridge in Graph (Tarjan’s Algorithm)
+
+### 🔧 Fix Applied
+
+* `time` is made **static**
+* Removed `time` from DFS parameters
+
+```java
+import java.util.*;
+
+public class BridgeTarjan {
+
+    static class Edge {
+        int src, dest;
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
+        }
+    }
+
+    static int time = 0; // ✅ FIX
+
+    public static void dfs(ArrayList<Edge> graph[], int curr, int par,
+                           boolean vis[], int dt[], int low[]) {
+
+        vis[curr] = true;
+        dt[curr] = low[curr] = ++time;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+
+            if (e.dest == par)
+                continue;
+
+            if (vis[e.dest]) {
+                low[curr] = Math.min(low[curr], dt[e.dest]);
+            } else {
+                dfs(graph, e.dest, curr, vis, dt, low);
+                low[curr] = Math.min(low[curr], low[e.dest]);
+
+                if (dt[curr] < low[e.dest]) {
+                    System.out.println("BRIDGE : " + curr + " --- " + e.dest);
+                }
+            }
+        }
+    }
+
+    public static void getBridge(ArrayList<Edge> graph[], int V) {
+        int dt[] = new int[V];
+        int low[] = new int[V];
+        boolean vis[] = new boolean[V];
+
+        time = 0; // reset
+
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]) {
+                dfs(graph, i, -1, vis, dt, low);
+            }
+        }
+    }
+}
+```
+
+---
+
+## ✅ Corrected Articulation Point in Graph (Tarjan’s Algorithm)
+
+### 🔧 Fix Applied
+
+* `time` is **static**
+* DFS no longer receives `time` as parameter
+
+```java
+import java.util.*;
+
+public class ArticulationTarjan {
+
+    static class Edge {
+        int src, dest;
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
+        }
+    }
+
+    static int time = 0; // ✅ FIX
+
+    public static void dfs(ArrayList<Edge> graph[], int curr, int par,
+                           boolean vis[], int dt[], int low[],
+                           boolean isArticulation[]) {
+
+        vis[curr] = true;
+        dt[curr] = low[curr] = ++time;
+        int child = 0;
+
+        for (int i = 0; i < graph[curr].size(); i++) {
+            Edge e = graph[curr].get(i);
+
+            if (e.dest == par)
+                continue;
+
+            if (vis[e.dest]) {
+                low[curr] = Math.min(low[curr], dt[e.dest]);
+            } else {
+                dfs(graph, e.dest, curr, vis, dt, low, isArticulation);
+                low[curr] = Math.min(low[curr], low[e.dest]);
+
+                if (dt[curr] <= low[e.dest] && par != -1) {
+                    isArticulation[curr] = true;
+                }
+                child++;
+            }
+        }
+
+        if (par == -1 && child > 1) {
+            isArticulation[curr] = true;
+        }
+    }
+
+    public static void getArticulation(ArrayList<Edge> graph[], int V) {
+        int dt[] = new int[V];
+        int low[] = new int[V];
+        boolean vis[] = new boolean[V];
+        boolean isArticulation[] = new boolean[V];
+
+        time = 0; // reset
+
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]) {
+                dfs(graph, i, -1, vis, dt, low, isArticulation);
+            }
+        }
+
+        for (int i = 0; i < V; i++) {
+            if (isArticulation[i]) {
+                System.out.println(i);
+            }
+        }
+    }
+}
+```
+
+---
+
+
 
 
 
