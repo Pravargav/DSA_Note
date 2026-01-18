@@ -88,7 +88,7 @@ This is the **core invariant** of Tarjan’s algorithm.
 
 ---
 
-## 🧠 The Precise, Exam/Interview-Ready Version
+## 🧠 The Precise Version
 
 Here is the **correct technical formulation** replacing TopCoder’s wording:
 
