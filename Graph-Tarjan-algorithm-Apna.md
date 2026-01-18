@@ -1,3 +1,12 @@
+-> A condensation graph is a DAG (Directed Acyclic Graph) formed by collapsing each Strongly Connected Component (SCC) of a directed graph into a single node.
+
+Each SCC → one node in condensation graph
+
+Original edges between SCCs → edges between nodes
+
+Resulting graph is always a DAG, even if the original graph had cycles
+
+
 -> A strongly connected component (SCC) can contain overlapping or nested cycles, paths that are not part of simple cycles, or a combination of both.( Chatgpt and DeepSeek)
 [visit this article](https://cp-algorithms.com/graph/strongly-connected-components.html)(Can be solved using Kosaraju's algorithm and Tarjan's algorithm)
 
