@@ -95,4 +95,4 @@ Here is the **correct technical formulation** replacing TopCoder’s wording:
 > The low-link value of a node `u` is the minimum DFS discovery time reachable from `u`, including itself, by following DFS tree edges and at most one back edge to a node currently on the stack. The stack is used to track active nodes in the current DFS path, and nodes are removed from the stack only when an SCC is fully identified.
 
 ---
--> Striver and Apna college assigned node-id's intelligently so to exactly match time with node-id's.But both are not same [striver-ex](https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55).
+-> Striver and Apna college assigned node-id's intelligently so to exactly match time with node-id's.But both are not same.Refer to striver's graph diagram and Apna graph diagram in youtube [striver-ex](https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55).
