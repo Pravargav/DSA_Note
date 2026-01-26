@@ -4,5 +4,5 @@
 
 **scc1->scc2, scc1->scc2, scc1->scc2** - possible beacause there can be any number of directed edges from one scc to another in a single direction.
 
-[https://www.baeldung.com/cs/kosaraju-algorithm-scc](baldeung-kosaraju-scc)
+[baldeung-kosaraju-scc](https://www.baeldung.com/cs/kosaraju-algorithm-scc)
 
