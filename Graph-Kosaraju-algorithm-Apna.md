@@ -29,7 +29,7 @@ which looks similar to topo sort but is NOT topo sort.
 So the fix is mostly conceptual + small code cleanup.
 
 
----
+
 
 🔴 What is wrong in your code
 
@@ -47,7 +47,7 @@ So the fix is mostly conceptual + small code cleanup.
 
 
 
----
+
 
 ✅ Correct Concept (Important for exams & interviews)
 
@@ -64,7 +64,7 @@ Push node to stack after DFS finishes
 This works even if the graph has cycles.
 
 
----
+
 
 ✅ Corrected & Clean Kosaraju Code (Java)
 
@@ -174,7 +174,7 @@ public class Kosaraju {
 }
 
 ```
----
+
 
 🧠 Key Interview Line (Use this 🔥)
 
@@ -184,7 +184,7 @@ It uses DFS finishing time order, which is valid even for cyclic graphs.
 
 
 
----
+
 
 ⚠ Why calling it Top Sort is dangerous
 
@@ -205,4 +205,4 @@ dfsStackOrder
 
 
 
----
+
