@@ -197,10 +197,8 @@ Naming it topSort() causes conceptual penalty in exams
 
 ✔ Correct name:
 
-dfsFinishTime
-
-fillOrder
-
+dfsFinishTime,
+fillOrder,
 dfsStackOrder
 
 
