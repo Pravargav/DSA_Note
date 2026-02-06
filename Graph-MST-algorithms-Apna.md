@@ -6,3 +6,5 @@ A **minimum spanning tree (MST)** or **minimum weight spanning tree** is a subse
 That is, it is a **spanning tree whose sum of edge weights is as small as possible**.[2]
 
 More generally, any edge-weighted undirected graph (not necessarily connected) has a **minimum spanning forest**, which is a union of the minimum spanning trees for its connected components.
+
+-> [princeton university](https://algs4.cs.princeton.edu/43mst/)- watch two visualisation videos in this link.
