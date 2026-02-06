@@ -17,3 +17,9 @@ Visit the Princeton University MST page to watch **two visualization videos** th
 👉 Link: [princeton university — MST Visualizations](https://algs4.cs.princeton.edu/43mst/)
 
 These videos appear under the **“Visualizations”** section of the page, showing how both algorithms operate on a Euclidean graph with 500 vertices.  
+
+#### Union-Find Algorithm — Video Resource
+
+Watch the Union-Find (Disjoint Set Union) algorithm explanation here:
+
+👉 [Union-find](https://youtu.be/ayW5B2W9hfo?si=IdoGvXzGN8j4NshB)
