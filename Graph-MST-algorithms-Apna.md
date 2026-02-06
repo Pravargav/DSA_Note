@@ -7,4 +7,13 @@ That is, it is a **spanning tree whose sum of edge weights is as small as possib
 
 More generally, any edge-weighted undirected graph (not necessarily connected) has a **minimum spanning forest**, which is a union of the minimum spanning trees for its connected components.
 
--> [princeton university](https://algs4.cs.princeton.edu/43mst/)- watch two visualisation videos in this link.
+#### MST Visualizations — Princeton University
+
+Visit the Princeton University MST page to watch **two visualization videos** that demonstrate:
+
+1. **Kruskal’s Algorithm Visualization**  
+2. **Prim’s Algorithm Visualization**
+
+👉 Link: [princeton university — MST Visualizations](https://algs4.cs.princeton.edu/43mst/)
+
+These videos appear under the **“Visualizations”** section of the page, showing how both algorithms operate on a Euclidean graph with 500 vertices.  
