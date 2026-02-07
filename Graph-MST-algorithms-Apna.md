@@ -28,8 +28,6 @@ Watch the Union-Find (Disjoint Set Union) algorithm explanation here:
 
 #### MST Visualizations — Wikipedia
 
-Visit the Princeton University MST page to watch **two visualization videos** that demonstrate:
-
 1. **Kruskal’s Algorithm Visualization**  
 2. **Prim’s Algorithm Visualization**
 
