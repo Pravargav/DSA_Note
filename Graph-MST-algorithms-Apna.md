@@ -56,6 +56,6 @@ To improve time complexity:
 
 👉 Link: [Kruskal’s Algorithm Source2](https://youtu.be/JZBQLXgSGfs?si=Oa79wrzmBssDaa-9)
 
-
+👉 Link: [prims’s Algorithm Source2](https://youtu.be/20QfaLQPLqQ?si=32I0uXw1EzTp7zhg)
 
 
