@@ -61,3 +61,5 @@ To improve time complexity:
 -> Note: Williamfeast lazy prims and eager prims videos are wrong.Don't trust and don't watch.
 
 -> Note2: Apna college only shows calculating the minimum total cost, not the printing the edges of mst.
+
+-> Note3: Techdose code is same as gfg code for prims algorithm.They are using min key function in place of priority queue.
