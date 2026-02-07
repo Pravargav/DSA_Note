@@ -34,3 +34,37 @@ Watch the Union-Find (Disjoint Set Union) algorithm explanation here:
 👉 Link: [kruskal's](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
 
 👉 Link: [prim's](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
+
+
+
+####  Prim’s Algorithm- 👉 Link: [Prim’s Algorithm Source:](https://www.baeldung.com/cs/kruskals-vs-prims-algorithm)
+
+Prim’s algorithm is similar in spirit to **Dijkstra’s algorithm**.  
+Instead of edges, it grows the MST by always choosing the **next nearest node**.
+
+##### **Steps**
+1. Choose a **starting node**.
+2. Add all its neighbors to a **priority queue (min‑heap)**.
+3. Repeat:
+   - Extract the node reachable by the **edge with the smallest weight**
+   - Add it to the MST
+   - Add its neighbors to the priority queue
+
+##### **Priority Queue**
+Each entry stores:
+- The node
+- The weight of the edge used to reach it
+
+The queue is sorted based on **edge weight**.
+
+##### **Optimization**
+To improve time complexity:
+- Ensure each node **appears only once** in the queue
+- Use an `addOrUpdate` function:
+  - If a node is already in the queue **and** the new edge weight is smaller  
+    → remove the old entry and insert the new one  
+  - If it isn’t present  
+    → simply add it  
+
+
+
