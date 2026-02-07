@@ -25,3 +25,14 @@ Watch the Union-Find (Disjoint Set Union) algorithm explanation here:
 👉  Link: [Union-find-Explanation](https://youtu.be/ayW5B2W9hfo?si=IdoGvXzGN8j4NshB)
 
 👉  Link: [Union-find-Explanation2](https://youtu.be/92UpvDXc8fs?si=fgcueqAXGoSwh3fc)
+
+#### MST Visualizations — Wikipedia
+
+Visit the Princeton University MST page to watch **two visualization videos** that demonstrate:
+
+1. **Kruskal’s Algorithm Visualization**  
+2. **Prim’s Algorithm Visualization**
+
+👉 Link: [kruskal's](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm)
+
+👉 Link: [prim's](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
