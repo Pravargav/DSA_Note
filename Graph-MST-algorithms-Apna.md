@@ -37,7 +37,7 @@ Watch the Union-Find (Disjoint Set Union) algorithm explanation here:
 
 
 
-####  Prim’s Algorithm- 👉 Link: [Prim’s Algorithm Source:](https://www.baeldung.com/cs/kruskals-vs-prims-algorithm)
+####  Prim’s Algorithm- 👉 Link: [Prim’s Algorithm Source](https://www.baeldung.com/cs/kruskals-vs-prims-algorithm)
 
 Prim’s algorithm is similar in spirit to **Dijkstra’s algorithm**.  
 Instead of edges, it grows the MST by always choosing the **next nearest node**.
@@ -52,9 +52,9 @@ To improve time complexity:
   - If it isn’t present then simply add it
 
 
-👉 Link: [Kruskal’s Algorithm Source:](https://youtu.be/OxfTT8slSLs?si=ucQFVqdZjzw5EBEN)
+👉 Link: [Kruskal’s Algorithm Source](https://youtu.be/OxfTT8slSLs?si=ucQFVqdZjzw5EBEN)
 
-👉 Link: [Kruskal’s Algorithm Source2:](https://youtu.be/JZBQLXgSGfs?si=Oa79wrzmBssDaa-9)
+👉 Link: [Kruskal’s Algorithm Source2](https://youtu.be/JZBQLXgSGfs?si=Oa79wrzmBssDaa-9)
 
 
 
