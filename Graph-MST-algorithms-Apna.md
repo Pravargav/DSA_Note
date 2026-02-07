@@ -49,7 +49,13 @@ To improve time complexity:
 - Ensure each node **appears only once** in the queue
 - Use an `addOrUpdate` function:
   - If a node is already in the queue **and** the new edge weight is smaller then remove the old entry and insert the new one  
-  - If it isn’t present then simply add it  
+  - If it isn’t present then simply add it
+
+
+👉 Link: [Kruskal’s Algorithm Source:](https://youtu.be/OxfTT8slSLs?si=ucQFVqdZjzw5EBEN)
+
+👉 Link: [Kruskal’s Algorithm Source2:](https://youtu.be/JZBQLXgSGfs?si=Oa79wrzmBssDaa-9)
+
 
 
 
