@@ -1,5 +1,5 @@
 #### Minimum Spanning Tree (MST) - Wikipedia
-👉 Link: [wikipedia - definition](https://en.wikipedia.org/wiki/Minimum_spanning_tree#:~:text=A%20minimum%20spanning%20tree%20(MST)%20or%20minimum,minimum%20spanning%20trees%20for%20its%20connected%20components.)
+👉 Link: [wikipedia - definition](https://en.wikipedia.org/wiki/Minimum_spanning_tree)
 
 A **minimum spanning tree (MST)** or **minimum weight spanning tree** is a subset of the edges of a connected, edge‑weighted undirected graph that connects all the vertices together, without any cycles and with the minimum possible total edge weight.[1]
 
