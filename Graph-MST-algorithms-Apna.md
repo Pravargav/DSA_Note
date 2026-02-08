@@ -171,6 +171,7 @@ class MST {
 -> If multiple parents are possible for a tree then we can't use parent array because each index can store only one value/parent.
 
 ```java
+//same code as above but using arraylist to store edges rather than parent array
 import java.util.*;
 
 class MST {
