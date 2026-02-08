@@ -182,3 +182,93 @@ class MST {
 -> Therefore only single parent exists for each node.So that single parent id can be stored in the index.
 
 -> If multiple parents are possible for a tree then we can't use parent array because each index can store only one value/parent.
+
+```java
+import java.util.*;
+
+class MST {
+
+    // Find vertex with minimum key value
+    int minKey(int key[], Boolean mstSet[])
+    {
+        int min = Integer.MAX_VALUE, min_index = -1;
+
+        for (int v = 0; v < mstSet.length; v++)
+            if (!mstSet[v] && key[v] < min) {
+                min = key[v];
+                min_index = v;
+            }
+
+        return min_index;
+    }
+
+    // Print MST edges stored in ArrayList
+    void printMST(ArrayList<int[]> edges)
+    {
+        System.out.println("Edge \tWeight");
+        for (int[] e : edges)
+            System.out.println(e[0] + " - " + e[1] + "\t" + e[2]);
+    }
+
+    // Prim's MST
+    void primMST(int graph[][])
+    {
+        int V = graph.length;
+
+        int key[] = new int[V];
+        Boolean mstSet[] = new Boolean[V];
+        int parent[] = new int[V];
+
+        for (int i = 0; i < V; i++) {
+            key[i] = Integer.MAX_VALUE;
+            mstSet[i] = false;
+            parent[i] = -1;
+        }
+
+        key[0] = 0;
+
+        for (int count = 0; count < V - 1; count++) {
+
+            int u = minKey(key, mstSet);
+
+            // Safety check for disconnected graph
+            if (u == -1)
+                break;
+
+            mstSet[u] = true;
+
+            for (int v = 0; v < V; v++)
+                if (graph[u][v] != 0 && !mstSet[v]
+                        && graph[u][v] < key[v]) {
+                    parent[v] = u;
+                    key[v] = graph[u][v];
+                }
+        }
+
+        // Store MST edges in ArrayList
+        ArrayList<int[]> mstEdges = new ArrayList<>();
+
+        for (int i = 1; i < V; i++) {
+            if (parent[i] != -1)
+                mstEdges.add(new int[]{parent[i], i, graph[parent[i]][i]});
+        }
+
+        printMST(mstEdges);
+    }
+
+    public static void main(String[] args)
+    {
+        MST t = new MST();
+
+        int graph[][] = new int[][] {
+            { 0, 2, 0, 6, 0 },
+            { 2, 0, 3, 8, 5 },
+            { 0, 3, 0, 0, 7 },
+            { 6, 8, 0, 0, 9 },
+            { 0, 5, 7, 9, 0 }
+        };
+
+        t.primMST(graph);
+    }
+} 
+```
