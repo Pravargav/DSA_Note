@@ -260,3 +260,69 @@ class MST {
     }
 } 
 ```
+
+-> Prims algo using Priority Queue - Apna, striver and Gfg(second version of gfg code).
+
+```java
+import java.util.PriorityQueue;
+import java.util.ArrayList;
+
+class GFG {
+
+    // Returns total weight of the Minimum Spanning Tree
+    static int spanningTree(int V, ArrayList<ArrayList<int[]>> adj) {
+
+        // Min-heap storing {weight, vertex}
+        PriorityQueue<int[]> pq =
+            new PriorityQueue<>((a, b) -> a[0] - b[0]);
+
+        boolean[] visited = new boolean[V];
+        int res = 0;
+
+        // Start from node 0
+        pq.add(new int[]{0, 0});
+
+        while(!pq.isEmpty()) {
+
+            int[] p = pq.poll();
+            int wt = p[0];
+            int u = p[1];
+
+            if(visited[u])
+                continue;
+
+            res += wt;
+            visited[u] = true;
+
+            // Push adjacent edges
+            for(int[] v : adj.get(u)) {
+                if(!visited[v[0]]) {
+                    pq.add(new int[]{v[1], v[0]});
+                }
+            }
+        }
+
+        return res;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 3;
+        ArrayList<ArrayList<int[]>> adj = new ArrayList<>();
+
+        for(int i = 0; i < V; i++)
+            adj.add(new ArrayList<>());
+
+        adj.get(0).add(new int[]{1, 5});
+        adj.get(1).add(new int[]{0, 5});
+
+        adj.get(1).add(new int[]{2, 3});
+        adj.get(2).add(new int[]{1, 3});
+
+        adj.get(0).add(new int[]{2, 1});
+        adj.get(2).add(new int[]{0, 1});
+
+        System.out.println(spanningTree(V, adj));
+    }
+}
+```
