@@ -265,6 +265,7 @@ class MST {
 -> Prims algo using Priority Queue - Apna, striver and Gfg(second version of gfg code).
 
 ```java
+//Striver code
 import java.util.*;
 
 // User function Template for Java
@@ -346,6 +347,7 @@ public class tUf {
 -> Kruskal's algorithm - Gfg and striver code
 
 ```java
+//Striver Code
 import java.util.*;
 
 class DisjointSet {
