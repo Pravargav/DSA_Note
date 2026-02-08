@@ -264,65 +264,81 @@ class MST {
 -> Prims algo using Priority Queue - Apna, striver and Gfg(second version of gfg code).
 
 ```java
-import java.util.PriorityQueue;
-import java.util.ArrayList;
+import java.util.*;
 
-class GFG {
+// User function Template for Java
 
-    // Returns total weight of the Minimum Spanning Tree
-    static int spanningTree(int V, ArrayList<ArrayList<int[]>> adj) {
+class Pair {
+    int node;
+    int distance;
+    public Pair(int distance, int node) {
+        this.node = node;
+        this.distance = distance;
+    }
+}
+class Solution {
+    //Function to find sum of weights of edges of the Minimum Spanning Tree.
+    static int spanningTree(int V,
+                            ArrayList<ArrayList<ArrayList<Integer>>> adj) {
+        PriorityQueue<Pair> pq =
+            new PriorityQueue<Pair>((x, y) -> x.distance - y.distance);
 
-        // Min-heap storing {weight, vertex}
-        PriorityQueue<int[]> pq =
-            new PriorityQueue<>((a, b) -> a[0] - b[0]);
+        int[] vis = new int[V];
+        // {wt, node}
+        pq.add(new Pair(0, 0));
+        int sum = 0;
+        while (pq.size() > 0) {
+            int wt = pq.peek().distance;
+            int node = pq.peek().node;
+            pq.remove();
 
-        boolean[] visited = new boolean[V];
-        int res = 0;
+            if (vis[node] == 1) continue;
+            // add it to the mst
+            vis[node] = 1;
+            sum += wt;
 
-        // Start from node 0
-        pq.add(new int[]{0, 0});
-
-        while(!pq.isEmpty()) {
-
-            int[] p = pq.poll();
-            int wt = p[0];
-            int u = p[1];
-
-            if(visited[u])
-                continue;
-
-            res += wt;
-            visited[u] = true;
-
-            // Push adjacent edges
-            for(int[] v : adj.get(u)) {
-                if(!visited[v[0]]) {
-                    pq.add(new int[]{v[1], v[0]});
+            for (int i = 0; i < adj.get(node).size(); i++) {
+                int edW = adj.get(node).get(i).get(1);
+                int adjNode = adj.get(node).get(i).get(0);
+                if (vis[adjNode] == 0) {
+                    pq.add(new Pair(edW, adjNode));
                 }
             }
         }
-
-        return res;
+        return sum;
     }
+}
 
+public class tUf {
     public static void main(String[] args) {
+        int V = 5;
+        ArrayList<ArrayList<ArrayList<Integer>>> adj = new ArrayList<ArrayList<ArrayList<Integer>>>();
+        int[][] edges =  {{0, 1, 2}, {0, 2, 1}, {1, 2, 1}, {2, 3, 2}, {3, 4, 1}, {4, 2, 2}};
 
-        int V = 3;
-        ArrayList<ArrayList<int[]>> adj = new ArrayList<>();
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<ArrayList<Integer>>());
+        }
 
-        for(int i = 0; i < V; i++)
-            adj.add(new ArrayList<>());
+        for (int i = 0; i < 6; i++) {
+            int u = edges[i][0];
+            int v = edges[i][1];
+            int w = edges[i][2];
 
-        adj.get(0).add(new int[]{1, 5});
-        adj.get(1).add(new int[]{0, 5});
+            ArrayList<Integer> tmp1 = new ArrayList<Integer>();
+            ArrayList<Integer> tmp2 = new ArrayList<Integer>();
+            tmp1.add(v);
+            tmp1.add(w);
 
-        adj.get(1).add(new int[]{2, 3});
-        adj.get(2).add(new int[]{1, 3});
+            tmp2.add(u);
+            tmp2.add(w);
 
-        adj.get(0).add(new int[]{2, 1});
-        adj.get(2).add(new int[]{0, 1});
+            adj.get(u).add(tmp1);
+            adj.get(v).add(tmp2);
+        }
 
-        System.out.println(spanningTree(V, adj));
+        Solution obj = new Solution();
+        int sum = obj.spanningTree(V, adj);
+        System.out.println("The sum of all the edge weights: " + sum);
     }
 }
 ```
