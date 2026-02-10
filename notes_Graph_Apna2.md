@@ -762,153 +762,7 @@ public class KahnsAlgorithm {
 }
 ```
 
--------------------------------------
 
-
-##### Example notes for reference
-
-````markdown
-```java
-class Solution {
-    static class Edge {
-        int x;
-        int y;
-
-        public Edge(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
-    }
-
-    public int orangesRotting(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-
-        Queue<Edge> q = new LinkedList<>();
-
-        int fresh = 0;
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 2) {
-                    q.add(new Edge(i,j));
-                }
-                if (grid[i][j] == 1) {
-                    fresh++;
-                }
-            }
-        }
-        if (fresh == 0)
-            return 0;
-        if (q.isEmpty())
-            return -1;
-
-        int min = -1;
-        int[][] dirs = new int[4][2];
-
-        dirs[0][0]=1;
-        dirs[0][1]=0;
-
-        dirs[1][0]=-1;
-        dirs[1][1]=0;
-
-        dirs[2][0]=0;
-        dirs[2][1]=-1;
-
-        dirs[3][0]=0;
-        dirs[3][1]=1;
-
-        while (!q.isEmpty()) {
-            int size = q.size();
-            while (size-- > 0) {
-
-                Edge e = q.remove();
-                int x = e.x;
-                int y = e.y;
-
-                for (int[] dir : dirs) {
-                    int i = x + dir[0];
-                    int j = y + dir[1];
-                    if ((i >= 0 && i < m) && (j >= 0 && j < n) && grid[i][j] == 1) {
-                        grid[i][j] = 2;
-                        fresh--;
-                        q.add(new Edge(i,j));
-                    }
-                }
-            }
-            min++;
-        }
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (grid[i][j] == 1) {
-                    return -1;
-                }
-            }
-        }
-        return min;
-    }
-}
-
-//https://leetcode.com/problems/rotting-oranges/description/
-```
-````
-````markdown
-
-```java
-class Solution {
-    static class Edge {
-
-        int dest;
-        int wt;
-
-        public Edge(int d, int w) {
-
-            this.dest = d;
-            this.wt = w;
-        }
-    }
-
-    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
-
-        List<List<Edge>> lst= new ArrayList<>();
-        for (int i = 0; i < n; i++)
-            lst.add(new ArrayList<>());
-
-
-        for (int[] flight : flights) {
-            lst.get(flight[0]).add(new Edge(flight[1], flight[2]));
-        }
-        Queue<Edge> q = new LinkedList<>();
-        q.offer(new Edge(src, 0));
-        int[] minCost = new int[n];
-        Arrays.fill(minCost, Integer.MAX_VALUE);
-        int stops = 0;
-
-
-        while (!q.isEmpty() && stops <= k) {
-            int size = q.size();
-            while (size-- > 0) {
-                Edge curr = q.remove();
-                for (Edge neighbour : lst.get(curr.dest)) {
-                    int price = neighbour.wt, neighbourNode = neighbour.dest;
-                    if (price + curr.wt < minCost[neighbourNode]){ 
-                    minCost[neighbourNode] = price + curr.wt;
-                    q.offer(new Edge(neighbourNode, minCost[neighbourNode]));
-                    }
-                }
-            }
-            stops++;
-        }
-        if(minCost[dst]==Integer.MAX_VALUE){
-            return -1;
-        }
-        return minCost[dst];
-    }
-}
-
-//https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
-```
-````
 
 
 -> Building arraylist of arraylist from 2d array
@@ -1286,3 +1140,151 @@ public class KahnsAlgorithm {
     }
 }
 ```
+
+-------
+
+
+##### Example notes for reference
+
+````markdown
+```java
+class Solution {
+    static class Edge {
+        int x;
+        int y;
+
+        public Edge(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    public int orangesRotting(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+
+        Queue<Edge> q = new LinkedList<>();
+
+        int fresh = 0;
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 2) {
+                    q.add(new Edge(i,j));
+                }
+                if (grid[i][j] == 1) {
+                    fresh++;
+                }
+            }
+        }
+        if (fresh == 0)
+            return 0;
+        if (q.isEmpty())
+            return -1;
+
+        int min = -1;
+        int[][] dirs = new int[4][2];
+
+        dirs[0][0]=1;
+        dirs[0][1]=0;
+
+        dirs[1][0]=-1;
+        dirs[1][1]=0;
+
+        dirs[2][0]=0;
+        dirs[2][1]=-1;
+
+        dirs[3][0]=0;
+        dirs[3][1]=1;
+
+        while (!q.isEmpty()) {
+            int size = q.size();
+            while (size-- > 0) {
+
+                Edge e = q.remove();
+                int x = e.x;
+                int y = e.y;
+
+                for (int[] dir : dirs) {
+                    int i = x + dir[0];
+                    int j = y + dir[1];
+                    if ((i >= 0 && i < m) && (j >= 0 && j < n) && grid[i][j] == 1) {
+                        grid[i][j] = 2;
+                        fresh--;
+                        q.add(new Edge(i,j));
+                    }
+                }
+            }
+            min++;
+        }
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1) {
+                    return -1;
+                }
+            }
+        }
+        return min;
+    }
+}
+
+//https://leetcode.com/problems/rotting-oranges/description/
+```
+````
+````markdown
+
+```java
+class Solution {
+    static class Edge {
+
+        int dest;
+        int wt;
+
+        public Edge(int d, int w) {
+
+            this.dest = d;
+            this.wt = w;
+        }
+    }
+
+    public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
+
+        List<List<Edge>> lst= new ArrayList<>();
+        for (int i = 0; i < n; i++)
+            lst.add(new ArrayList<>());
+
+
+        for (int[] flight : flights) {
+            lst.get(flight[0]).add(new Edge(flight[1], flight[2]));
+        }
+        Queue<Edge> q = new LinkedList<>();
+        q.offer(new Edge(src, 0));
+        int[] minCost = new int[n];
+        Arrays.fill(minCost, Integer.MAX_VALUE);
+        int stops = 0;
+
+
+        while (!q.isEmpty() && stops <= k) {
+            int size = q.size();
+            while (size-- > 0) {
+                Edge curr = q.remove();
+                for (Edge neighbour : lst.get(curr.dest)) {
+                    int price = neighbour.wt, neighbourNode = neighbour.dest;
+                    if (price + curr.wt < minCost[neighbourNode]){ 
+                    minCost[neighbourNode] = price + curr.wt;
+                    q.offer(new Edge(neighbourNode, minCost[neighbourNode]));
+                    }
+                }
+            }
+            stops++;
+        }
+        if(minCost[dst]==Integer.MAX_VALUE){
+            return -1;
+        }
+        return minCost[dst];
+    }
+}
+
+//https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
+```
+````
