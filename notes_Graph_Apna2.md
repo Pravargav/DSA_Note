@@ -1,9 +1,4 @@
-```java
-List<List<Edge>> graph = new ArrayList<>(V);  // Better approach
-for (int i = 0; i < V; i++) {
-    graph.add(new ArrayList<>());  // Initialize each adjacency list
-}
-```
+
 **bfs**
 
 ```java
