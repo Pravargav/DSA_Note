@@ -265,7 +265,8 @@ while(!pq.isEmpty()) {
 -> Example/Sample Leetcode problems
 
 
-````markdown
+a)
+
 ```java
 class Solution {
     static class Edge {
@@ -349,8 +350,8 @@ class Solution {
 
 //https://leetcode.com/problems/rotting-oranges/description/
 ```
-````
-````markdown
+
+b)
 
 ```java
 class Solution {
@@ -406,6 +407,6 @@ class Solution {
 
 //https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
 ```
-````
+
 
 
