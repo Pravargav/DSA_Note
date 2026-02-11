@@ -613,6 +613,8 @@ public class InDegreeExample {
 
 **khan's algorithm for topological sort(using bfs and indegree)**
 
+Note: works for disconnected graph also.
+
 ```java
 
 public class KahnsAlgorithm {
