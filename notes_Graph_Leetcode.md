@@ -139,7 +139,7 @@ for (int i = 0; i < V; i++) {
 
 ``200. Number of Islands``(implicit graph format not adjacency list)
 
-<------------------------------------------------------------------>
+<--->
 
 -> To check cyclicity of directed graph we use both visited array and recursion stack array because [visit this video](https://youtu.be/9twcmtQj4DU?si=9ytHYKKb5rtX_bSX)
 
@@ -148,7 +148,7 @@ for (int i = 0; i < V; i++) {
 -> To check cyclicity of undirected graph we keep track of the parent node and visited array
 
 
-<------------------------------------------------------------------>
+<--->
 
 ```java
 PriorityQueue<Pair> pq = new PriorityQueue<>();
@@ -238,7 +238,7 @@ for(int i=0; i<dist.length; i++) {
 }
 
 ```
-<------------------------------------------------------------------------>
+<--->
 
 -> Prims (Mst) Algorithm is simply adding nodes from Non-MST set to MST set using Priority Queue
 
