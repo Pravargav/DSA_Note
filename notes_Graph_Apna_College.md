@@ -613,7 +613,7 @@ public class InDegreeExample {
 
 **khan's algorithm for topological sort(using bfs and indegree)**
 
-Note: works for disconnected graph also.
+Note: works for disconnected graph also.(confirmed by chatgpt)
 
 ```java
 
@@ -997,6 +997,8 @@ public class DijkstraDirected {
 **khan's algorithm for topological sort**
 
 Note: using bfs and indegree.
+
+Note2: works for disconnected graph also.(confirmed by chatgpt)
 
 ```java
 
