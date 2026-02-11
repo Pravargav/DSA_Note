@@ -679,7 +679,7 @@ public class KahnsAlgorithm {
 
 
 
--> Building arraylist of arraylist from 2d array
+**Building arraylist of arraylist from 2d array**
 ```java
 public class Solution {
     public boolean validPath(int n, int[][] edges, int source, int destination) {
@@ -719,7 +719,7 @@ public class Solution {
 }
 ```
 
--> count of Connected components
+**count of Connected components**
 ```java
 import java.util.*;
 
@@ -771,7 +771,7 @@ public class ConnectedComponentsBFS {
 }
 
 ```
--> matrix/grid 4 directions left,right,top,bottom moves using dijikstras shortest path
+**matrix/grid 4 directions left,right,top,bottom moves using dijikstras shortest path**
 
 ```java
 import java.util.*;
@@ -809,7 +809,7 @@ class Solution {
     }
 }
 ```
--> check if path exists between src and dest 
+**check if path exists between src and dest**
 
 ```java
 import java.util.*;
@@ -856,7 +856,7 @@ public class PathExistenceAdjList {
 }
 
 ```
--> Dijikstras algorithm
+**Dijikstras algorithm**
 
 ```java
 
@@ -918,7 +918,9 @@ public class DijkstraAdjList {
     }
 }
 ```
--> weighted dijikstra using pair (no difference between directed and undirected code just the input adjacency list is changed)
+**weighted dijikstra using pair** 
+
+Note: no difference between directed and undirected code just the input adjacency list is changed.
 
 ```java
 
@@ -990,7 +992,9 @@ public class DijkstraDirected {
     }
 }
 ```
--> khan's algorithm for topological sort(using bfs and indegree)
+**khan's algorithm for topological sort**
+
+Note: using bfs and indegree.
 
 ```java
 
@@ -1058,7 +1062,7 @@ public class KahnsAlgorithm {
 -------
 
 
-##### Example notes for reference
+##### Example Problmes 
 
 ````markdown
 ```java
