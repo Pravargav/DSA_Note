@@ -240,27 +240,7 @@ for(int i=0; i<dist.length; i++) {
 ```
 <--->
 
--> Prims (Mst) Algorithm is simply adding nodes from Non-MST set to MST set using Priority Queue
 
-```java
-boolean vis[] = new boolean[graph.length];
-PriorityQueue<Pair> pq = new PriorityQueue<>();
-pq.add(new Pair(0, 0));
-int cost = 0;
-while(!pq.isEmpty()) {
-	Pair curr = pq.remove();
-	if(!vis[curr.v]) {
-		vis[curr.v] = true;
-		cost += curr.wt;
-		for(int i=0; i<graph[curr.v].size(); i++) {
-			Edge e = graph[curr.v].get(i);
-			if(!vis[e.dest]) {
-				pq.add(new Pair(e.dest, e.wt));
-			}
-		}
-	}
-}
-```
 
 -> Example/Sample Leetcode problems
 
