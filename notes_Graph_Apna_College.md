@@ -611,6 +611,54 @@ public class InDegreeExample {
 }
 ```
 
+**outdegree**
+
+```java
+import java.util.*;
+
+public class OutDegreeExample {
+    public static void main(String[] args) {
+        int vertices = 5; // Number of vertices (0 to 4)
+
+        // Example directed edges
+        int[][] edges = {
+            {0, 1},
+            {0, 2},
+            {1, 2},
+            {2, 3},
+            {3, 4}
+        };
+
+        // Adjacency list representation
+        List<List<Integer>> graph = new ArrayList<>();
+        for (int i = 0; i < vertices; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Build the graph
+        for (int[] edge : edges) {
+            int u = edge[0];
+            int v = edge[1];
+            graph.get(u).add(v);
+        }
+
+        // Array to store outdegrees
+        int[] outdegree = new int[vertices];
+
+        // Calculate outdegrees
+        for (int u = 0; u < vertices; u++) {
+            outdegree[u] = graph.get(u).size();
+        }
+
+        // Print outdegree of each vertex
+        for (int i = 0; i < vertices; i++) {
+            System.out.println("Vertex " + i + " -> Out-degree: " + outdegree[i]);
+        }
+    }
+}
+```
+
+
 **khan's algorithm for topological sort(using bfs and indegree)**
 
 Note: works for disconnected graph also.(confirmed by chatgpt)
