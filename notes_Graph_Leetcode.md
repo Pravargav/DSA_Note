@@ -421,4 +421,146 @@ class Solution {
 
 <--->
 
+```
 
+🔗 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i
+🔗 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii
+
+
+---
+
+Java Solution
+
+class Solution {
+
+    static class Pair implements Comparable<Pair> {
+        int x;
+        int y;
+        int minT;
+
+        public Pair(int x, int y, int minT) {
+            this.x = x;
+            this.y = y;
+            this.minT = minT;
+        }
+
+        @Override
+        public int compareTo(Pair p2) {
+            return this.minT - p2.minT;
+        }
+    }
+
+    public int minTimeToReach(int[][] moveTime) {
+        int m = moveTime.length;
+        int n = moveTime[0].length;
+
+        int dist[][] = new int[m][n];
+        boolean vis[][] = new boolean[m][n];
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+        for (int i = 0; i < dist.length; i++) {
+            for (int j = 0; j < dist[0].length; j++) {
+                dist[i][j] = Integer.MAX_VALUE;
+            }
+        }
+
+        dist[0][0] = 0;
+
+        pq.add(new Pair(0, 0, 0));
+
+        while (!pq.isEmpty()) {
+            Pair curr = pq.remove();
+            if (!vis[curr.x][curr.y]) {
+                vis[curr.x][curr.y] = true;
+
+                int ux1 = curr.x;
+                int uy1 = curr.y;
+
+                if (curr.x + 1 < m) {
+
+                    int vx1 = curr.x + 1;
+                    int vy1 = curr.y;
+                    int nT = 0;
+
+                    if ( dist[ux1][uy1] < moveTime[vx1][vy1]) {
+                        nT = moveTime[vx1][vy1] + 1;
+
+                    } else if ( dist[ux1][uy1] >= moveTime[vx1][vy1]) {
+                        nT = dist[ux1][uy1] + 1;
+                    }
+                    if (!vis[vx1][vy1] && nT < dist[vx1][vy1]) {
+                        dist[vx1][vy1] = nT;
+                        pq.add(new Pair(vx1, vy1, dist[vx1][vy1]));
+                    }
+
+                }
+
+                if (curr.x - 1 >= 0) {
+
+                    int vx2 = curr.x - 1;
+                    int vy2 = curr.y;
+                    int nT = 0;
+
+                    if ( dist[ux1][uy1] < moveTime[vx2][vy2]) {
+                        nT = moveTime[vx2][vy2] + 1;
+                    } else if (dist[ux1][uy1] >= moveTime[vx2][vy2]) {
+                        nT = dist[ux1][uy1] + 1;
+
+                    }
+                    if (!vis[vx2][vy2] && nT < dist[vx2][vy2]) {
+                        dist[vx2][vy2] = nT;
+                        pq.add(new Pair(vx2, vy2, dist[vx2][vy2]));
+                    }
+
+                }
+
+                if (curr.y + 1 < n) {
+
+                    int vx3 = curr.x;
+                    int vy3 = curr.y + 1;
+                    int nT = 0;
+
+                    if (dist[ux1][uy1] < moveTime[vx3][vy3]) {
+                        nT = moveTime[vx3][vy3] + 1;
+                    } else if (  dist[ux1][uy1] >= moveTime[vx3][vy3]) {
+                        nT = dist[ux1][uy1] + 1;
+                    }
+
+                    if (!vis[vx3][vy3] && nT < dist[vx3][vy3]) {
+                        dist[vx3][vy3] = nT;
+                        pq.add(new Pair(vx3, vy3, dist[vx3][vy3]));
+                    }
+
+                }
+
+                if (curr.y - 1 >= 0) {
+
+                    int vx4 = curr.x;
+                    int vy4 = curr.y - 1;
+                    int nT = 0;
+
+                    if ( dist[ux1][uy1] < moveTime[vx4][vy4]) {
+                        nT = moveTime[vx4][vy4] + 1;
+
+                    } else if ( dist[ux1][uy1] >= moveTime[vx4][vy4]) {
+                        nT = dist[ux1][uy1] + 1;
+                    }
+
+                    if (!vis[vx4][vy4] && nT < dist[vx4][vy4]) {
+                        dist[vx4][vy4] = nT;
+                        pq.add(new Pair(vx4, vy4, dist[vx4][vy4]));
+                    }
+
+                }
+
+            }
+
+        }
+
+        return dist[m - 1][n - 1];
+    }
+}
+
+
+```
