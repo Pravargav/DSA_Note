@@ -429,9 +429,6 @@ c)
 ```java
 
 
----
-
-Java Solution
 
 class Solution {
 
