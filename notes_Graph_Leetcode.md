@@ -421,10 +421,12 @@ class Solution {
 
 <--->
 
-```
-
+c) 
 🔗 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i
 🔗 https://leetcode.com/problems/find-minimum-time-to-reach-last-room-ii
+
+
+```java
 
 
 ---
