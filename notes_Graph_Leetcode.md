@@ -135,36 +135,8 @@ for (int i = 0; i < V; i++) {
 
 ```
 
--> BFS for distance from start node
+-> Write a code finds the shortest distance from the starting node to every node in an unweighted graph using BFS/dijikstras algorithm.
 
-```java
-    static int[] bfs(List<List<Integer>> graph, int start) {
-        int n = graph.size();
-        boolean[] vis = new boolean[n];
-        int[] dist = new int[n];
-        Arrays.fill(dist, -1);
-
-        Queue<List<Integer>> q = new LinkedList<>();
-        q.offer(Arrays.asList(start, 0));
-        vis[start] = true;
-        dist[start] = 0;
-
-        while (!q.isEmpty()) {
-            List<Integer> cur = q.poll();
-            int u = cur.get(0);
-            int d = cur.get(1);
-
-            for (int v : graph.get(u)) {
-                if (!vis[v]) {
-                    vis[v] = true;
-                    dist[v] = d + 1; // store in array at index v
-                    q.offer(Arrays.asList(v, d + 1));
-                }
-            }
-        }
-        return dist;
-    }
-```
 
 ``994. Rotting Oranges``(implicit graph format not adjacency list)
 
