@@ -383,8 +383,6 @@ class Solution {
 
 ```
 
-<--->
-
 c) 
 
  i) https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i
