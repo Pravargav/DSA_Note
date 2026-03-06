@@ -248,7 +248,7 @@ for(int i=0; i<dist.length; i++) {
 -> Example/Sample Leetcode problems
 
 
-a)
+a) https://leetcode.com/problems/rotting-oranges/description/
 
 ```java
 class Solution {
@@ -331,10 +331,10 @@ class Solution {
     }
 }
 
-//https://leetcode.com/problems/rotting-oranges/description/
+//
 ```
 
-b)
+b) https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
 
 ```java
 class Solution {
@@ -388,7 +388,7 @@ class Solution {
     }
 }
 
-//https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
+
 ```
 
 <--->
