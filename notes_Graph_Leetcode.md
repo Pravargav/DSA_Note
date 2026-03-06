@@ -1,10 +1,4 @@
-1. ArrayList<Edge> g[]
-Declares an array of ArrayList<Edge>.
 
-Each index g[i] represents the adjacency list of node i.
-
-2. = new ArrayList[V]
-Creates the array with V elements (one for each vertex).
 
 Note: This does not initialize each ArrayList inside — you need to do that in a loop.
 
@@ -49,15 +43,9 @@ public class Graph {
 }
 ```
 
-3. Graphs - bfs traversal( done using <ins>Queue data structure not Priority Queue</ins>)
 
-4. Graphs - dfs traversal is done using recurrsion
 
-5. Absolutely! You're spot on — not all graphs are connected. Graphs can consist of multiple disconnected components, and that's where this pattern shines.
-
-Let’s break it down.
-
-6. Why vis[] and the loop over all nodes?
+-> Why vis[] and the loop over all nodes?
 In disconnected graphs, running DFS or BFS from just one node (e.g., 0) won’t reach all other nodes — because some might not be connected at all.
 
 ->DFS
@@ -138,9 +126,9 @@ for (int i = 0; i < V; i++) {
 -> Write a code finds the shortest distance from the starting node to every node in an unweighted graph using BFS/dijikstras algorithm.
 
 
-``994. Rotting Oranges``(implicit graph format not adjacency list)
 
-``200. Number of Islands``(implicit graph format not adjacency list)
+
+
 
 <--->
 
@@ -248,7 +236,9 @@ for(int i=0; i<dist.length; i++) {
 -> Example/Sample Leetcode problems
 
 
-a) https://leetcode.com/problems/rotting-oranges/description/
+a) https://leetcode.com/problems/rotting-oranges/description/ 
+
+(implicit graph format not adjacency list)
 
 ```java
 class Solution {
@@ -335,6 +325,8 @@ class Solution {
 ```
 
 b) https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
+
+(implicit graph format not adjacency list)
 
 ```java
 class Solution {
