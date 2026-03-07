@@ -585,6 +585,8 @@ public class Main {
 
 **print all cycles**
 
+*Note: Same as above code just replace visited with stack in if condition*
+
 ```java
 import java.util.*;
 
