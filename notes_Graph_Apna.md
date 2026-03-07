@@ -409,22 +409,20 @@ public class Dijkstras {
 ```java
 import java.util.*;
 
-public class CycleDirected {
+public class Main {
+
     static class Edge {
         int src;
         int dest;
-        
-        public Edge(int s, int d) {
-            this.src = s;
-            this.dest = d;
+
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
         }
     }
 
-    // Graph1 - true (contains cycle)
     static void createGraph(List<List<Edge>> graph) {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.set(i, new ArrayList<>());
-        }
+
         graph.get(0).add(new Edge(0, 1));
         graph.get(1).add(new Edge(1, 2));
         graph.get(2).add(new Edge(2, 3));
@@ -446,46 +444,155 @@ public class CycleDirected {
         graph.get(8).add(new Edge(8, 6));
     }
 
-    public static boolean isCyclicUtil(List<List<Edge>> graph, int curr, 
-                                     boolean[] vis, boolean[] stack) {
-        vis[curr] = true;
+    static boolean dfs(List<List<Edge>> graph, int curr,
+                       boolean[] visited, boolean[] stack) {
+
+        visited[curr] = true;
         stack[curr] = true;
-        
-        // Using normal for loop
-        for (int i = 0; i < graph.get(curr).size(); i++) {
-            Edge e = graph.get(curr).get(i);
-            if (stack[e.dest]) { // Cycle exists
-                return true;
-            } else if (!vis[e.dest] && isCyclicUtil(graph, e.dest, vis, stack)) {
+
+        for (Edge e : graph.get(curr)) {
+
+            if (stack[e.dest]) {
                 return true;
             }
-        }
-        
-        stack[curr] = false;
-        return false;
-    }
 
-    // O(V + E)
-    public static boolean isCyclic(List<List<Edge>> graph) {
-        boolean[] vis = new boolean[graph.size()];
-        for (int i = 0; i < graph.size(); i++) {
-            if (!vis[i]) {
-                if (isCyclicUtil(graph, i, vis, new boolean[vis.length])) {
+            if (!visited[e.dest]) {
+                if (dfs(graph, e.dest, visited, stack)) {
                     return true;
                 }
             }
         }
+
+        stack[curr] = false;
         return false;
     }
 
-    public static void main(String args[]) {
-        int V = 4;
-        List<List<Edge>> graph = new ArrayList<>(V);
+    static boolean isCyclic(List<List<Edge>> graph, int V) {
+
+        boolean[] visited = new boolean[V];
+        boolean[] stack = new boolean[V];
+
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
+                if (dfs(graph, i, visited, stack)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 9;
+
+        List<List<Edge>> graph = new ArrayList<>();
+
         for (int i = 0; i < V; i++) {
             graph.add(new ArrayList<>());
         }
+
         createGraph(graph);
-        System.out.println(isCyclic(graph));
+
+        System.out.println(isCyclic(graph, V));
+    }
+}
+```
+
+
+
+**print all cycles**
+
+*Note: Same as above code just replace visited with stack in if condition*
+
+```java
+import java.util.*;
+
+public class Main {
+
+    static class Edge {
+        int src;
+        int dest;
+
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
+        }
+    }
+
+    static void createGraph(List<List<Edge>> graph) {
+
+        graph.get(0).add(new Edge(0, 1));
+        graph.get(1).add(new Edge(1, 2));
+        graph.get(2).add(new Edge(2, 3));
+        graph.get(3).add(new Edge(3, 4));
+        graph.get(4).add(new Edge(4, 5));
+        graph.get(5).add(new Edge(5, 6));
+        graph.get(6).add(new Edge(6, 0));
+
+        graph.get(2).add(new Edge(2, 7));
+        graph.get(7).add(new Edge(7, 8));
+        graph.get(8).add(new Edge(8, 3));
+        graph.get(3).add(new Edge(3, 6));
+        graph.get(5).add(new Edge(5, 2));
+
+        graph.get(1).add(new Edge(1, 5));
+        graph.get(6).add(new Edge(6, 1));
+
+        graph.get(4).add(new Edge(4, 2));
+        graph.get(8).add(new Edge(8, 6));
+    }
+
+    static void dfs(List<List<Edge>> graph, int curr, boolean[] visited,
+                    boolean[] stack, List<Integer> stack2) {
+
+        visited[curr] = true;
+        stack[curr] = true;
+        stack2.add(curr);
+
+        for (Edge e : graph.get(curr)) {
+
+            if (!stack[e.dest]) {
+                dfs(graph, e.dest, visited, stack, stack2);
+            }
+
+            else if (stack[e.dest]) {
+
+                int index = stack2.indexOf(e.dest);
+
+                System.out.print("Cycle:");
+                for (int i = index; i < stack2.size(); i++) {
+                    System.out.print(stack2.get(i) + " ");
+                }
+                System.out.println(e.dest);
+            }
+        }
+
+        stack[curr] = false;
+        stack2.remove(stack2.size() - 1);
+    }
+
+    public static void main(String[] args) {
+
+        int V = 9;
+
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        createGraph(graph);
+
+        boolean[] visited = new boolean[V];
+        boolean[] stack = new boolean[V];
+
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
+                dfs(graph, i, visited, stack, new ArrayList<>());
+            }
+        }
     }
 }
 ```
@@ -540,101 +647,6 @@ public class Main {
         for (Edge e : graph.get(curr)) {
 
             if (!visited[e.dest]) {
-                dfs(graph, e.dest, visited, stack, stack2);
-            }
-
-            else if (stack[e.dest]) {
-
-                int index = stack2.indexOf(e.dest);
-
-                System.out.print("Cycle:");
-                for (int i = index; i < stack2.size(); i++) {
-                    System.out.print(stack2.get(i) + " ");
-                }
-                System.out.println(e.dest);
-            }
-        }
-
-        stack[curr] = false;
-        stack2.remove(stack2.size() - 1);
-    }
-
-    public static void main(String[] args) {
-
-        int V = 9;
-
-        List<List<Edge>> graph = new ArrayList<>();
-
-        for (int i = 0; i < V; i++) {
-            graph.add(new ArrayList<>());
-        }
-
-        createGraph(graph);
-
-        boolean[] visited = new boolean[V];
-        boolean[] stack = new boolean[V];
-
-        for (int i = 0; i < V; i++) {
-            if (!visited[i]) {
-                dfs(graph, i, visited, stack, new ArrayList<>());
-            }
-        }
-    }
-}
-```
-
-**print all cycles**
-
-*Note: Same as above code just replace visited with stack in if condition*
-
-```java
-import java.util.*;
-
-public class Main {
-
-    static class Edge {
-        int src;
-        int dest;
-
-        Edge(int s, int d) {
-            src = s;
-            dest = d;
-        }
-    }
-
-    static void createGraph(List<List<Edge>> graph) {
-
-        graph.get(0).add(new Edge(0, 1));
-        graph.get(1).add(new Edge(1, 2));
-        graph.get(2).add(new Edge(2, 3));
-        graph.get(3).add(new Edge(3, 4));
-        graph.get(4).add(new Edge(4, 5));
-        graph.get(5).add(new Edge(5, 6));
-        graph.get(6).add(new Edge(6, 0));
-
-        graph.get(2).add(new Edge(2, 7));
-        graph.get(7).add(new Edge(7, 8));
-        graph.get(8).add(new Edge(8, 3));
-        graph.get(3).add(new Edge(3, 6));
-        graph.get(5).add(new Edge(5, 2));
-
-        graph.get(1).add(new Edge(1, 5));
-        graph.get(6).add(new Edge(6, 1));
-
-        graph.get(4).add(new Edge(4, 2));
-        graph.get(8).add(new Edge(8, 6));
-    }
-
-    static void dfs(List<List<Edge>> graph, int curr, boolean[] visited,
-                    boolean[] stack, List<Integer> stack2) {
-
-        visited[curr] = true;
-        stack[curr] = true;
-        stack2.add(curr);
-
-        for (Edge e : graph.get(curr)) {
-
-            if (!stack[e.dest]) {
                 dfs(graph, e.dest, visited, stack, stack2);
             }
 
