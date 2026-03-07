@@ -547,7 +547,7 @@ public class Main {
 
                 int index = stack2.indexOf(e.dest);
 
-                System.out.print("Cycle: ");
+                System.out.print("Cycle:");
                 for (int i = index; i < stack2.size(); i++) {
                     System.out.print(stack2.get(i) + " ");
                 }
@@ -642,7 +642,7 @@ public class Main {
 
                 int index = stack2.indexOf(e.dest);
 
-                System.out.print("Cycle: ");
+                System.out.print("Cycle:");
                 for (int i = index; i < stack2.size(); i++) {
                     System.out.print(stack2.get(i) + " ");
                 }
