@@ -437,7 +437,6 @@ public class CycleDirected {
         graph.get(7).add(new Edge(7, 8));
         graph.get(8).add(new Edge(8, 3));
         graph.get(3).add(new Edge(3, 6));
-        graph.get(6).add(new Edge(6, 5));
         graph.get(5).add(new Edge(5, 2));
 
         graph.get(1).add(new Edge(1, 5));
