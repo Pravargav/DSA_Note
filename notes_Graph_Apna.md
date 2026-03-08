@@ -502,7 +502,7 @@ public class Main {
 
 
 
-**print all cycles**
+**print all cycles(not exactly correct-experimental)**
 
 *Note: Same as below code just replace visited with stack in if condition*
 
@@ -597,7 +597,7 @@ public class Main {
 }
 ```
 
--> **print all cycles formed due to back-edges**- *Same as above code just replace stack with visited in if condition*
+-> **print all cycles formed due to back-edges(not exactly correct-experimental)**- *Same as above code just replace stack with visited in if condition*
 
 
 **bellman ford**
