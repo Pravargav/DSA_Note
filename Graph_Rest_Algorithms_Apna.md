@@ -868,11 +868,23 @@ public class Solution {
 ```
 ---
 
+#### Dijikstra's algorithm ####
+
 -> Dijikstras Algorithm works for
+
 a) graph has cycles - yes
+
 b) graph is directed - yes
+
 c) graph is undirected - yes
+
 d) graph has negative weights - no
+
+-> https://youtu.be/j0OUwduDOS0?si=csRukXqR1gGkMJq8
+
+-> https://youtu.be/EFg3u_E6eHU?si=yJOH7fIPYzKyw6HP
+
+-> https://youtu.be/bZkzH5x0SKU?si=tl2VSPupOlq1RpvP
 
 **Dijikstras algorithm**
 
