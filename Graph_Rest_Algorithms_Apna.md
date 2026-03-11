@@ -227,81 +227,96 @@ public class PrintAllPaths {
 import java.util.*;
 
 public class CycleUndirected {
+
     static class Edge {
         int src;
         int dest;
-        
-        public Edge(int s, int d) {
-            this.src = s;
-            this.dest = d;
+
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
         }
     }
 
     static void createGraph(List<List<Edge>> graph) {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.set(i, new ArrayList<>());
-        }
 
         graph.get(0).add(new Edge(0, 1));
         graph.get(0).add(new Edge(0, 2));
-        graph.get(0).add(new Edge(0, 3));
+
         graph.get(1).add(new Edge(1, 0));
-        graph.get(1).add(new Edge(1, 2));
+        graph.get(1).add(new Edge(1, 3));
+        graph.get(1).add(new Edge(1, 4));
+
         graph.get(2).add(new Edge(2, 0));
-        graph.get(2).add(new Edge(2, 1));
-        graph.get(3).add(new Edge(3, 0));
+        graph.get(2).add(new Edge(2, 5));
+
+        graph.get(3).add(new Edge(3, 1));
         graph.get(3).add(new Edge(3, 4));
+
+        graph.get(4).add(new Edge(4, 1));
         graph.get(4).add(new Edge(4, 3));
+        graph.get(4).add(new Edge(4, 6));
+
+        graph.get(5).add(new Edge(5, 2));
+        graph.get(5).add(new Edge(5, 7));
+
+        graph.get(6).add(new Edge(6, 4));
+        graph.get(6).add(new Edge(6, 7));
+
+        graph.get(7).add(new Edge(7, 5));
+        graph.get(7).add(new Edge(7, 6));
     }
 
-    public static boolean isCyclicUtil(List<List<Edge>> graph, boolean[] vis, int curr, int par) {
+    static boolean dfs(List<List<Edge>> graph, boolean[] vis, int curr, int parent) {
+
         vis[curr] = true;
-        for (int i = 0; i < graph.get(curr).size(); i++) {
-            Edge e = graph.get(curr).get(i);
-            // Case 1: Already visited and not parent
-            if (vis[e.dest] && e.dest != par) {
+
+        for (Edge e : graph.get(curr)) {
+
+            int neighbor = e.dest;
+
+            if (vis[neighbor] && neighbor != parent) {
                 return true;
             }
-            
-            // Case 3: Not visited - recurse
-            else if(!vis[e.dest]){
-                boolean isCycle = isCyclicUtil(graph, vis, e.dest, curr);
-                if (isCycle) {
+
+            if (!vis[neighbor]) {
+                if (dfs(graph, vis, neighbor, curr)) {
                     return true;
                 }
             }
         }
+
         return false;
     }
 
-    public static boolean isCyclic(List<List<Edge>> graph, boolean[] vis) {
+    static boolean hasCycle(List<List<Edge>> graph) {
+
+        boolean[] vis = new boolean[graph.size()];
+
         for (int i = 0; i < graph.size(); i++) {
             if (!vis[i]) {
-                if (isCyclicUtil(graph, vis, i, -1)) {
+                if (dfs(graph, vis, i, -1)) {
                     return true;
                 }
             }
         }
+
         return false;
     }
 
-    public static void main(String args[]) {
-        /*
-            0 ------- 3
-           / |        |
-          /  |        |
-         1   |        4
-          \  |
-           \ |
-            2
-        */
-        int V = 5;
-        List<List<Edge>> graph = new ArrayList<>(V);
+    public static void main(String[] args) {
+
+        int V = 8;
+
+        List<List<Edge>> graph = new ArrayList<>();
+
         for (int i = 0; i < V; i++) {
             graph.add(new ArrayList<>());
         }
+
         createGraph(graph);
-        System.out.println(isCyclic(graph, new boolean[V]));
+
+        System.out.println(hasCycle(graph));
     }
 }
 
