@@ -645,93 +645,6 @@ public class Main {
 -> **print all cycles formed due to back-edges(not exactly correct-experimental)**- *Same as above code just replace stack with visited in if condition*
 
 
-**bellman ford**
-
-```java
-import java.util.*;
-
-public class BellmanFord {
-    static class Edge {
-        int src;
-        int dest;
-        int wt;
-        
-        public Edge(int s, int d, int w) {
-            this.src = s;
-            this.dest = d;
-            this.wt = w;
-        }
-    }
-
-    static void createGraph(List<List<Edge>> graph) {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.set(i, new ArrayList<>());
-        }
-        
-        graph.get(0).add(new Edge(0, 1, 2));
-        graph.get(0).add(new Edge(0, 2, 4));
-        graph.get(1).add(new Edge(1, 2, -4));
-        graph.get(2).add(new Edge(2, 3, 2));
-        graph.get(3).add(new Edge(3, 4, 4));
-        graph.get(4).add(new Edge(4, 1, -1));
-    }
-
-    public static void bellmanFord(List<List<Edge>> graph, int src) {
-        int[] dist = new int[graph.size()];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
-        
-        // Relax all edges V-1 times
-        for (int i = 0; i < graph.size() - 1; i++) {
-            for (int j = 0; j < graph.size(); j++) {
-                for (int k = 0; k < graph.get(j).size(); k++) {
-                    Edge e = graph.get(j).get(k);
-                    int u = e.src;
-                    int v = e.dest;
-                    int wt = e.wt;
-                    
-                    if (dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v]) {
-                        dist[v] = dist[u] + wt;
-                    }
-                }
-            }
-        }
-        
-        // Check for negative weight cycles
-        for (int j = 0; j < graph.size(); j++) {
-            for (int k = 0; k < graph.get(j).size(); k++) {
-                Edge e = graph.get(j).get(k);
-                int u = e.src;
-                int v = e.dest;
-                int wt = e.wt;
-                
-                if (dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v]) {
-                    System.out.println("Negative weight cycle exists");
-                    return;
-                }
-            }
-        }
-        
-        // Print distances
-        for (int i = 0; i < dist.length; i++) {
-            System.out.print(dist[i] + " ");
-        }
-        System.out.println();
-    }
-
-    public static void main(String args[]) {
-        int V = 5;
-        List<List<Edge>> graph = new ArrayList<>(V);
-        for (int i = 0; i < V; i++) {
-            graph.add(new ArrayList<>());
-        }
-        createGraph(graph);
-        
-        int src = 0;
-        bellmanFord(graph, src);
-    }
-}
-```
 ---
 
 
@@ -1156,6 +1069,95 @@ public class DijkstraDirected {
 ```
 
 
+---
 
+
+**bellman ford**
+
+```java
+import java.util.*;
+
+public class BellmanFord {
+    static class Edge {
+        int src;
+        int dest;
+        int wt;
+        
+        public Edge(int s, int d, int w) {
+            this.src = s;
+            this.dest = d;
+            this.wt = w;
+        }
+    }
+
+    static void createGraph(List<List<Edge>> graph) {
+        for (int i = 0; i < graph.size(); i++) {
+            graph.set(i, new ArrayList<>());
+        }
+        
+        graph.get(0).add(new Edge(0, 1, 2));
+        graph.get(0).add(new Edge(0, 2, 4));
+        graph.get(1).add(new Edge(1, 2, -4));
+        graph.get(2).add(new Edge(2, 3, 2));
+        graph.get(3).add(new Edge(3, 4, 4));
+        graph.get(4).add(new Edge(4, 1, -1));
+    }
+
+    public static void bellmanFord(List<List<Edge>> graph, int src) {
+        int[] dist = new int[graph.size()];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+        
+        // Relax all edges V-1 times
+        for (int i = 0; i < graph.size() - 1; i++) {
+            for (int j = 0; j < graph.size(); j++) {
+                for (int k = 0; k < graph.get(j).size(); k++) {
+                    Edge e = graph.get(j).get(k);
+                    int u = e.src;
+                    int v = e.dest;
+                    int wt = e.wt;
+                    
+                    if (dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v]) {
+                        dist[v] = dist[u] + wt;
+                    }
+                }
+            }
+        }
+        
+        // Check for negative weight cycles
+        for (int j = 0; j < graph.size(); j++) {
+            for (int k = 0; k < graph.get(j).size(); k++) {
+                Edge e = graph.get(j).get(k);
+                int u = e.src;
+                int v = e.dest;
+                int wt = e.wt;
+                
+                if (dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v]) {
+                    System.out.println("Negative weight cycle exists");
+                    return;
+                }
+            }
+        }
+        
+        // Print distances
+        for (int i = 0; i < dist.length; i++) {
+            System.out.print(dist[i] + " ");
+        }
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        int V = 5;
+        List<List<Edge>> graph = new ArrayList<>(V);
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+        createGraph(graph);
+        
+        int src = 0;
+        bellmanFord(graph, src);
+    }
+}
+```
 
 
