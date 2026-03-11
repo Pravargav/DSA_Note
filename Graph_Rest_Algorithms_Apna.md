@@ -156,73 +156,94 @@ public class DFS {
     }
 }
 ```
-**print all paths**
+**print all paths(DFS)**
 
 ```java
 import java.util.*;
 
 public class PrintAllPaths {
+
     static class Edge {
         int src;
         int dest;
-        
-        public Edge(int s, int d) {
-            this.src = s;
-            this.dest = d;
+
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
         }
     }
 
     static void createGraph(List<List<Edge>> graph) {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.set(i, new ArrayList<>());
-        }
 
         graph.get(0).add(new Edge(0, 1));
         graph.get(0).add(new Edge(0, 2));
+
         graph.get(1).add(new Edge(1, 0));
         graph.get(1).add(new Edge(1, 3));
+
         graph.get(2).add(new Edge(2, 0));
         graph.get(2).add(new Edge(2, 4));
+
         graph.get(3).add(new Edge(3, 1));
         graph.get(3).add(new Edge(3, 4));
         graph.get(3).add(new Edge(3, 5));
+
         graph.get(4).add(new Edge(4, 2));
         graph.get(4).add(new Edge(4, 3));
         graph.get(4).add(new Edge(4, 5));
+
         graph.get(5).add(new Edge(5, 3));
         graph.get(5).add(new Edge(5, 4));
         graph.get(5).add(new Edge(5, 6));
+
         graph.get(6).add(new Edge(6, 5));
     }
 
-    public static void printAllPaths(List<List<Edge>> graph, int src, int tar, String path, boolean[] vis) {
-        if (src == tar) {
+    static void printAllPaths(List<List<Edge>> graph, int src, int dest, boolean[] vis, String path) {
+
+        if (src == dest) {
             System.out.println(path);
             return;
         }
-        for (int i = 0; i < graph.get(src).size(); i++) {
-            Edge e = graph.get(src).get(i);
+
+        for (Edge e : graph.get(src)) {
+
             if (!vis[e.dest]) {
+
                 vis[e.dest] = true;
-                printAllPaths(graph, e.dest, tar, path + "->" + e.dest, vis);
+
+                printAllPaths(
+                        graph,
+                        e.dest,
+                        dest,
+                        vis,
+                        path + " -> " + e.dest
+                );
+
                 vis[e.dest] = false;
             }
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
+
         int V = 7;
-        List<List<Edge>> graph = new ArrayList<>(V);
+
+        List<List<Edge>> graph = new ArrayList<>();
+
         for (int i = 0; i < V; i++) {
             graph.add(new ArrayList<>());
         }
+
         createGraph(graph);
 
         int src = 0;
-        int tar = 5;
+        int dest = 5;
+
         boolean[] vis = new boolean[V];
         vis[src] = true;
-        printAllPaths(graph, src, tar, "" + src, vis);
+
+        printAllPaths(graph, src, dest, vis, String.valueOf(src));
     }
 }
 ```
