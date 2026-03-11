@@ -79,7 +79,11 @@ public class BFS {
 
 ```
 
-**dfs**
+**DFS**
+
+-> https://youtu.be/84jNzUOY78c?si=b7GQGIuUOVLRh5EM
+
+-> https://youtu.be/3czYbhac160?si=CHZWJSO5-y0YPOLZ
 
 ```java
 import java.util.*;
