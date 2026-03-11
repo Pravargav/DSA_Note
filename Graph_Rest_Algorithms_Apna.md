@@ -307,102 +307,7 @@ public class CycleUndirected {
 
 ```
 
-**dijikstra's**
 
-```java
-import java.util.*;
-
-public class Dijkstras {
-    static class Edge {
-        int src;
-        int dest;
-        int wt;
-        
-        public Edge(int s, int d, int w) {
-            this.src = s;
-            this.dest = d;
-            this.wt = w;
-        }
-    }
-
-    static void createGraph(List<List<Edge>> graph) {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.set(i, new ArrayList<>());
-        }
-        
-        graph.get(0).add(new Edge(0, 1, 2));
-        graph.get(0).add(new Edge(0, 2, 4));
-        graph.get(1).add(new Edge(1, 3, 7));
-        graph.get(1).add(new Edge(1, 2, 1));
-        graph.get(2).add(new Edge(2, 4, 3));
-        graph.get(3).add(new Edge(3, 5, 1));
-        graph.get(4).add(new Edge(4, 3, 2));
-        graph.get(4).add(new Edge(4, 5, 5));
-    }
-
-    static class Pair implements Comparable<Pair> {
-        int n;
-        int path;
-        
-        public Pair(int n, int path) {
-            this.n = n;
-            this.path = path;
-        }
-        
-        @Override
-        public int compareTo(Pair p2) {
-            return this.path - p2.path;
-        }
-    }
-
-    public static int[] dijkstra(List<List<Edge>> graph, int src) {
-        PriorityQueue<Pair> pq = new PriorityQueue<>();
-        int[] dist = new int[graph.size()];
-        boolean[] vis = new boolean[graph.size()];
-        
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
-        
-        pq.add(new Pair(src, 0));
-        
-        while (!pq.isEmpty()) {
-            Pair curr = pq.remove();
-            
-            if (!vis[curr.n]) {
-                vis[curr.n] = true;
-                
-                // Using normal for loop instead of enhanced for loop
-                for (int i = 0; i < graph.get(curr.n).size(); i++) {
-                    Edge e = graph.get(curr.n).get(i);
-                    int u = e.src;
-                    int v = e.dest;
-                    if (!vis[v] && dist[u] + e.wt < dist[v]) {
-                        dist[v] = dist[u] + e.wt;
-                        pq.add(new Pair(v, dist[v]));
-                    }
-                }
-            }
-        }
-        return dist;
-    }
-
-    public static void main(String args[]) {
-        int V = 6;
-        List<List<Edge>> graph = new ArrayList<>(V);
-        for (int i = 0; i < V; i++) {
-            graph.add(new ArrayList<>());
-        }
-        createGraph(graph);
-        
-        int src = 0;
-        int[] dist = dijkstra(graph, src);
-        
-        for (int i = 0; i < dist.length; i++) {
-            System.out.print(dist[i] + " ");
-        }
-    }
-}
-```
 
 **cycle directed**
 
@@ -958,6 +863,104 @@ public class DijkstraAdjList {
     }
 }
 ```
+
+**dijikstra's**
+
+```java
+import java.util.*;
+
+public class Dijkstras {
+    static class Edge {
+        int src;
+        int dest;
+        int wt;
+        
+        public Edge(int s, int d, int w) {
+            this.src = s;
+            this.dest = d;
+            this.wt = w;
+        }
+    }
+
+    static void createGraph(List<List<Edge>> graph) {
+        for (int i = 0; i < graph.size(); i++) {
+            graph.set(i, new ArrayList<>());
+        }
+        
+        graph.get(0).add(new Edge(0, 1, 2));
+        graph.get(0).add(new Edge(0, 2, 4));
+        graph.get(1).add(new Edge(1, 3, 7));
+        graph.get(1).add(new Edge(1, 2, 1));
+        graph.get(2).add(new Edge(2, 4, 3));
+        graph.get(3).add(new Edge(3, 5, 1));
+        graph.get(4).add(new Edge(4, 3, 2));
+        graph.get(4).add(new Edge(4, 5, 5));
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int n;
+        int path;
+        
+        public Pair(int n, int path) {
+            this.n = n;
+            this.path = path;
+        }
+        
+        @Override
+        public int compareTo(Pair p2) {
+            return this.path - p2.path;
+        }
+    }
+
+    public static int[] dijkstra(List<List<Edge>> graph, int src) {
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+        int[] dist = new int[graph.size()];
+        boolean[] vis = new boolean[graph.size()];
+        
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        dist[src] = 0;
+        
+        pq.add(new Pair(src, 0));
+        
+        while (!pq.isEmpty()) {
+            Pair curr = pq.remove();
+            
+            if (!vis[curr.n]) {
+                vis[curr.n] = true;
+                
+                // Using normal for loop instead of enhanced for loop
+                for (int i = 0; i < graph.get(curr.n).size(); i++) {
+                    Edge e = graph.get(curr.n).get(i);
+                    int u = e.src;
+                    int v = e.dest;
+                    if (!vis[v] && dist[u] + e.wt < dist[v]) {
+                        dist[v] = dist[u] + e.wt;
+                        pq.add(new Pair(v, dist[v]));
+                    }
+                }
+            }
+        }
+        return dist;
+    }
+
+    public static void main(String args[]) {
+        int V = 6;
+        List<List<Edge>> graph = new ArrayList<>(V);
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+        createGraph(graph);
+        
+        int src = 0;
+        int[] dist = dijkstra(graph, src);
+        
+        for (int i = 0; i < dist.length; i++) {
+            System.out.print(dist[i] + " ");
+        }
+    }
+}
+```
+
 **weighted dijikstra using pair** 
 
 Note: no difference between directed and undirected code just the input adjacency list is changed.
@@ -1100,5 +1103,7 @@ public class KahnsAlgorithm {
     }
 }
 ```
+
+
 
 
