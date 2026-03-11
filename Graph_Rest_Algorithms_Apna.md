@@ -866,7 +866,13 @@ public class Solution {
     }
 }
 ```
+---
 
+-> Dijikstras Algorithm works for
+a) graph has cycles - yes
+b) graph is directed - yes
+c) graph is undirected - yes
+d) graph has negative weights - no
 
 **Dijikstras algorithm**
 
