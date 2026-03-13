@@ -649,6 +649,8 @@ public class Main {
 
 **Topological Sort**
 
+-> https://youtu.be/NX1_etRg078?si=tyQIGE2DkyYijT7r
+
 **Indegree**
 
 ```java
