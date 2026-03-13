@@ -916,6 +916,8 @@ public class DijkstraClean {
 
 -> https://youtu.be/Mn9bFIIyXIM?si=D8WU8NRn7gETDS0Z
 
+-> Use this code for negative edges graph
+
 ```java
 import java.util.*;
 
