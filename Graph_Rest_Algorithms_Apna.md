@@ -647,8 +647,9 @@ public class Main {
 
 ---
 
+**Topological Sort**
 
-**indegree**
+**Indegree**
 
 ```java
 public class InDegreeExample {
@@ -695,7 +696,7 @@ public class InDegreeExample {
 }
 ```
 
-**outdegree**
+**Outdegree**
 
 ```java
 import java.util.*;
@@ -743,7 +744,7 @@ public class OutDegreeExample {
 ```
 
 
-**khan's algorithm for topological sort(using bfs and indegree)**
+**Kahn's algorithm for topological sort(using bfs and indegree)**
 
 Note: using bfs and indegree.
 
