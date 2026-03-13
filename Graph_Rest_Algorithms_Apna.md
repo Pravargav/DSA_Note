@@ -754,6 +754,8 @@ Note: using bfs and indegree.
 
 Note2: works for disconnected graph also.(confirmed by chatgpt)
 
+-> Using BFS
+
 ```java
 import java.util.*;
 
@@ -820,6 +822,91 @@ public class KahnsTopologicalSort {
 
         if (result.isEmpty())
             System.out.println("Cycle detected! Topological sort not possible.");
+        else
+            System.out.println("Topological Order: " + result);
+    }
+
+    static void addEdge(List<List<Integer>> graph, int u, int v) {
+        graph.get(u).add(v);
+    }
+}
+```
+
+-> Using DFS
+
+```java
+import java.util.*;
+
+public class TopoSortDFS {
+
+    public static List<Integer> topoSort(int V, List<List<Integer>> graph) {
+
+        boolean[] visited = new boolean[V];
+        boolean[] inStack = new boolean[V]; // for cycle detection
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
+                if (!dfs(i, graph, visited, inStack, stack)) {
+                    return Collections.emptyList(); // cycle detected
+                }
+            }
+        }
+
+        List<Integer> topo = new ArrayList<>();
+        while (!stack.isEmpty()) {
+            topo.add(stack.pop());
+        }
+
+        return topo;
+    }
+
+    private static boolean dfs(int u,
+                               List<List<Integer>> graph,
+                               boolean[] visited,
+                               boolean[] inStack,
+                               Stack<Integer> stack) {
+
+        visited[u] = true;
+        inStack[u] = true;
+
+        for (int v : graph.get(u)) {
+
+            if (!visited[v]) {
+                if (!dfs(v, graph, visited, inStack, stack))
+                    return false;
+            }
+            else if (inStack[v]) {
+                // Back edge → cycle
+                return false;
+            }
+        }
+
+        inStack[u] = false;
+        stack.push(u); // push after processing children
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 6;
+        List<List<Integer>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++)
+            graph.add(new ArrayList<>());
+
+        addEdge(graph, 5, 2);
+        addEdge(graph, 5, 0);
+        addEdge(graph, 4, 0);
+        addEdge(graph, 4, 1);
+        addEdge(graph, 2, 3);
+        addEdge(graph, 3, 1);
+
+        List<Integer> result = topoSort(V, graph);
+
+        if (result.isEmpty())
+            System.out.println("Cycle detected! No Topological Order.");
         else
             System.out.println("Topological Order: " + result);
     }
