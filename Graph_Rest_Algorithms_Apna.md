@@ -910,10 +910,6 @@ public class DijkstraClean {
 }
 ```
 
-
----
-
-
 **bellman ford**
 
 ```java
