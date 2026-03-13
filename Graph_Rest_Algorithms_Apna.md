@@ -755,64 +755,77 @@ Note: using bfs and indegree.
 Note2: works for disconnected graph also.(confirmed by chatgpt)
 
 ```java
+import java.util.*;
 
-public class KahnsAlgorithm {
-    public static void main(String[] args) {
-        int vertices = 6; // Number of vertices (0 to 5)
+public class KahnsTopologicalSort {
 
-        // Directed edges
-        int[][] edges = {
-            {5, 2},
-            {5, 0},
-            {4, 0},
-            {4, 1},
-            {2, 3},
-            {3, 1}
-        };
+    // Kahn's Algorithm (BFS Topological Sort)
+    public static List<Integer> topoSort(int V, List<List<Integer>> graph) {
 
-        // Build adjacency list
-        List<List<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < vertices; i++) {
-            graph.add(new ArrayList<>());
-        }
-        int[] indegree = new int[vertices];
+        int[] indegree = new int[V];
 
-        for (int[] edge : edges) {
-            int u = edge[0];
-            int v = edge[1];
-            graph.get(u).add(v);
-            indegree[v]++; // count incoming edges
-        }
-
-        // Queue for vertices with indegree 0
-        Queue<Integer> queue = new LinkedList<>();
-        for (int i = 0; i < vertices; i++) {
-            if (indegree[i] == 0) {
-                queue.add(i);
+        // Compute indegree of each node
+        for (int u = 0; u < V; u++) {
+            for (int v : graph.get(u)) {
+                indegree[v]++;
             }
         }
 
-        // Kahn's BFS topological sort
-        List<Integer> topoOrder = new ArrayList<>();
-        while (!queue.isEmpty()) {
-            int node = queue.poll();
-            topoOrder.add(node);
+        // Use ArrayDeque (faster than LinkedList)
+        Queue<Integer> q = new ArrayDeque<>();
 
-            // Reduce indegree of neighbors
-            for (int neighbor : graph.get(node)) {
-                indegree[neighbor]--;
-                if (indegree[neighbor] == 0) {
-                    queue.add(neighbor);
+        // Add nodes with indegree 0
+        for (int i = 0; i < V; i++) {
+            if (indegree[i] == 0) q.offer(i);
+        }
+
+        List<Integer> topo = new ArrayList<>();
+
+        while (!q.isEmpty()) {
+            int u = q.poll();
+            topo.add(u);
+
+            for (int v : graph.get(u)) {
+                if (--indegree[v] == 0) {
+                    q.offer(v);
                 }
             }
         }
 
-        // Check for cycle
-        if (topoOrder.size() != vertices) {
-            System.out.println("Cycle detected! Topological sort not possible.");
-        } else {
-            System.out.println("Topological Order: " + topoOrder);
+        // If not all nodes processed → cycle exists
+        if (topo.size() != V) {
+            return Collections.emptyList(); // indicates cycle
         }
+
+        return topo;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 6;
+        List<List<Integer>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++)
+            graph.add(new ArrayList<>());
+
+        // Directed edges
+        addEdge(graph, 5, 2);
+        addEdge(graph, 5, 0);
+        addEdge(graph, 4, 0);
+        addEdge(graph, 4, 1);
+        addEdge(graph, 2, 3);
+        addEdge(graph, 3, 1);
+
+        List<Integer> result = topoSort(V, graph);
+
+        if (result.isEmpty())
+            System.out.println("Cycle detected! Topological sort not possible.");
+        else
+            System.out.println("Topological Order: " + result);
+    }
+
+    static void addEdge(List<List<Integer>> graph, int u, int v) {
+        graph.get(u).add(v);
     }
 }
 ```
