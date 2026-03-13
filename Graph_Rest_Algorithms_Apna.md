@@ -910,7 +910,11 @@ public class DijkstraClean {
 }
 ```
 
-**bellman ford**
+**Bellman ford**
+
+-> https://youtu.be/j0OUwduDOS0?si=K3riyaeuZE_l0u2k
+
+-> https://youtu.be/Mn9bFIIyXIM?si=D8WU8NRn7gETDS0Z
 
 ```java
 import java.util.*;
