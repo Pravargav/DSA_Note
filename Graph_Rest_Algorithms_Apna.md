@@ -836,234 +836,76 @@ d) graph has negative weights - no
 **Dijikstras algorithm**
 
 ```java
-
-
-public class DijkstraAdjList {
-
-    public static int[] dijkstra(List<List<int[]>> graph, int src) {
-        int n = graph.size();
-        int[] dist = new int[n];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
-
-        // Min-heap: [distance, node]
-        PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
-        pq.offer(new int[]{0, src});
-
-        while (!pq.isEmpty()) {
-            int[] current = pq.poll();
-            int d = current[0];
-            int u = current[1];
-
-            if (d > dist[u]) continue; // Skip outdated entries
-
-            for (int[] edge : graph.get(u)) {
-                int v = edge[0];
-                int weight = edge[1];
-                if (dist[u] + weight < dist[v]) {
-                    dist[v] = dist[u] + weight;
-                    pq.offer(new int[]{dist[v], v});
-                }
-            }
-        }
-        return dist;
-    }
-
-    public static void main(String[] args) {
-        int n = 5;
-        List<List<int[]>> graph = new ArrayList<>();
-        for (int i = 0; i < n; i++) graph.add(new ArrayList<>());
-
-        // Undirected weighted edges
-        graph.get(0).add(new int[]{1, 2});
-        graph.get(1).add(new int[]{0, 2});
-
-        graph.get(0).add(new int[]{4, 1});
-        graph.get(4).add(new int[]{0, 1});
-
-        graph.get(1).add(new int[]{2, 3});
-        graph.get(2).add(new int[]{1, 3});
-
-
-        int src = 0;
-        int[] dist = dijkstra(graph, src);
-
-        System.out.println("Shortest distances from node " + src + ":");
-        for (int i = 0; i < n; i++) {
-            System.out.println("Node " + i + " -> " + dist[i]);
-        }
-    }
-}
-```
-
-**dijikstra's**
-
-```java
 import java.util.*;
 
-public class Dijkstras {
+public class DijkstraClean {
+
+    // Edge: destination + weight
     static class Edge {
-        int src;
-        int dest;
-        int wt;
-        
-        public Edge(int s, int d, int w) {
-            this.src = s;
-            this.dest = d;
-            this.wt = w;
-        }
-    }
+        int to, weight;
 
-    static void createGraph(List<List<Edge>> graph) {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.set(i, new ArrayList<>());
-        }
-        
-        graph.get(0).add(new Edge(0, 1, 2));
-        graph.get(0).add(new Edge(0, 2, 4));
-        graph.get(1).add(new Edge(1, 3, 7));
-        graph.get(1).add(new Edge(1, 2, 1));
-        graph.get(2).add(new Edge(2, 4, 3));
-        graph.get(3).add(new Edge(3, 5, 1));
-        graph.get(4).add(new Edge(4, 3, 2));
-        graph.get(4).add(new Edge(4, 5, 5));
-    }
-
-    static class Pair implements Comparable<Pair> {
-        int n;
-        int path;
-        
-        public Pair(int n, int path) {
-            this.n = n;
-            this.path = path;
-        }
-        
-        @Override
-        public int compareTo(Pair p2) {
-            return this.path - p2.path;
-        }
-    }
-
-    public static int[] dijkstra(List<List<Edge>> graph, int src) {
-        PriorityQueue<Pair> pq = new PriorityQueue<>();
-        int[] dist = new int[graph.size()];
-        boolean[] vis = new boolean[graph.size()];
-        
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
-        
-        pq.add(new Pair(src, 0));
-        
-        while (!pq.isEmpty()) {
-            Pair curr = pq.remove();
-            
-            if (!vis[curr.n]) {
-                vis[curr.n] = true;
-                
-                // Using normal for loop instead of enhanced for loop
-                for (int i = 0; i < graph.get(curr.n).size(); i++) {
-                    Edge e = graph.get(curr.n).get(i);
-                    int u = e.src;
-                    int v = e.dest;
-                    if (!vis[v] && dist[u] + e.wt < dist[v]) {
-                        dist[v] = dist[u] + e.wt;
-                        pq.add(new Pair(v, dist[v]));
-                    }
-                }
-            }
-        }
-        return dist;
-    }
-
-    public static void main(String args[]) {
-        int V = 6;
-        List<List<Edge>> graph = new ArrayList<>(V);
-        for (int i = 0; i < V; i++) {
-            graph.add(new ArrayList<>());
-        }
-        createGraph(graph);
-        
-        int src = 0;
-        int[] dist = dijkstra(graph, src);
-        
-        for (int i = 0; i < dist.length; i++) {
-            System.out.print(dist[i] + " ");
-        }
-    }
-}
-```
-
-**weighted dijikstra using pair** 
-
-Note: no difference between directed and undirected code just the input adjacency list is changed.
-
-```java
-
-
-public class DijkstraDirected {
-    static class Pair {
-        int node, weight;
-        Pair(int node, int weight) {
-            this.node = node;
+        Edge(int to, int weight) {
+            this.to = to;
             this.weight = weight;
         }
     }
 
-    static List<List<Pair>> graph = new ArrayList<>();
-
-    static void dijkstra(int start) {
+    // Dijkstra Algorithm
+    public static int[] dijkstra(List<List<Edge>> graph, int src) {
         int n = graph.size();
         int[] dist = new int[n];
         Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[start] = 0;
 
-        PriorityQueue<Pair> pq = new PriorityQueue<>(Comparator.comparingInt(a -> a.weight));
-        pq.add(new Pair(start, 0));
+        PriorityQueue<int[]> pq =
+                new PriorityQueue<>(Comparator.comparingInt(a -> a[0]));
+
+        dist[src] = 0;
+        pq.offer(new int[]{0, src}); // {distance, node}
 
         while (!pq.isEmpty()) {
-            Pair cur = pq.poll();
-            int node = cur.node;
-            int curDist = cur.weight;
+            int[] cur = pq.poll();
+            int d = cur[0];
+            int u = cur[1];
 
-            if (curDist > dist[node]) continue; // Skip outdated entries
+            // Skip outdated entry
+            if (d != dist[u]) continue;
 
-            for (Pair edge : graph.get(node)) {
-                int newDist = curDist + edge.weight;
-                if (newDist < dist[edge.node]) {
-                    dist[edge.node] = newDist;
-                    pq.add(new Pair(edge.node, newDist));
+            for (Edge e : graph.get(u)) {
+                int v = e.to;
+                int newDist = d + e.weight;
+
+                if (newDist < dist[v]) {
+                    dist[v] = newDist;
+                    pq.offer(new int[]{newDist, v});
                 }
             }
         }
 
-        // Print shortest distances
-        for (int i = 0; i < n; i++) {
-            if (dist[i] == Integer.MAX_VALUE)
-                System.out.println("Node " + i + " is unreachable");
-            else
-                System.out.println("Shortest distance to node " + i + " = " + dist[i]);
-        }
-    }
-
-    static void addEdge(int u, int v, int w) {
-        graph.get(u).add(new Pair(v, w)); // Directed edge
+        return dist;
     }
 
     public static void main(String[] args) {
-        int n = 5; // Number of nodes
-        for (int i = 0; i < n; i++) {
+        int n = 6;
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < n; i++)
             graph.add(new ArrayList<>());
-        }
 
-        // Directed weighted edges
-        addEdge(0, 1, 2);
-        addEdge(0, 2, 4);
-        addEdge(1, 2, 1);
-        addEdge(1, 3, 7);
-        addEdge(2, 4, 3);
-        addEdge(3, 4, 1);
+        // Add edges (DIRECTED)
+        graph.get(0).add(new Edge(1, 2));
+        graph.get(0).add(new Edge(2, 4));
+        graph.get(1).add(new Edge(2, 1));
+        graph.get(1).add(new Edge(3, 7));
+        graph.get(2).add(new Edge(4, 3));
+        graph.get(4).add(new Edge(3, 2));
+        graph.get(3).add(new Edge(5, 1));
 
-        dijkstra(0); // Start from node 0
+        int src = 0;
+        int[] dist = dijkstra(graph, src);
+
+        System.out.println("Shortest distances from " + src + ":");
+        for (int i = 0; i < n; i++)
+            System.out.println("Node " + i + " -> " + dist[i]);
     }
 }
 ```
