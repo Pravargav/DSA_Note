@@ -919,85 +919,73 @@ public class DijkstraClean {
 ```java
 import java.util.*;
 
-public class BellmanFord {
+public class BellmanFordClean {
+
+    // Edge representation
     static class Edge {
-        int src;
-        int dest;
-        int wt;
-        
-        public Edge(int s, int d, int w) {
-            this.src = s;
-            this.dest = d;
-            this.wt = w;
+        int u, v, w;
+
+        Edge(int u, int v, int w) {
+            this.u = u;
+            this.v = v;
+            this.w = w;
         }
     }
 
-    static void createGraph(List<List<Edge>> graph) {
-        for (int i = 0; i < graph.size(); i++) {
-            graph.set(i, new ArrayList<>());
-        }
-        
-        graph.get(0).add(new Edge(0, 1, 2));
-        graph.get(0).add(new Edge(0, 2, 4));
-        graph.get(1).add(new Edge(1, 2, -4));
-        graph.get(2).add(new Edge(2, 3, 2));
-        graph.get(3).add(new Edge(3, 4, 4));
-        graph.get(4).add(new Edge(4, 1, -1));
-    }
+    // Bellman-Ford Algorithm
+    public static int[] bellmanFord(int V, List<Edge> edges, int src) {
 
-    public static void bellmanFord(List<List<Edge>> graph, int src) {
-        int[] dist = new int[graph.size()];
+        int[] dist = new int[V];
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[src] = 0;
-        
-        // Relax all edges V-1 times
-        for (int i = 0; i < graph.size() - 1; i++) {
-            for (int j = 0; j < graph.size(); j++) {
-                for (int k = 0; k < graph.get(j).size(); k++) {
-                    Edge e = graph.get(j).get(k);
-                    int u = e.src;
-                    int v = e.dest;
-                    int wt = e.wt;
-                    
-                    if (dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v]) {
-                        dist[v] = dist[u] + wt;
-                    }
+
+        // Relax edges V-1 times
+        for (int i = 1; i <= V - 1; i++) {
+            for (Edge e : edges) {
+                if (dist[e.u] != Integer.MAX_VALUE &&
+                    dist[e.u] + e.w < dist[e.v]) {
+
+                    dist[e.v] = dist[e.u] + e.w;
                 }
             }
         }
-        
-        // Check for negative weight cycles
-        for (int j = 0; j < graph.size(); j++) {
-            for (int k = 0; k < graph.get(j).size(); k++) {
-                Edge e = graph.get(j).get(k);
-                int u = e.src;
-                int v = e.dest;
-                int wt = e.wt;
-                
-                if (dist[u] != Integer.MAX_VALUE && dist[u] + wt < dist[v]) {
-                    System.out.println("Negative weight cycle exists");
-                    return;
-                }
+
+        // Detect negative cycle
+        for (Edge e : edges) {
+            if (dist[e.u] != Integer.MAX_VALUE &&
+                dist[e.u] + e.w < dist[e.v]) {
+
+                System.out.println("Negative weight cycle detected!");
+                return null;
             }
         }
-        
-        // Print distances
-        for (int i = 0; i < dist.length; i++) {
-            System.out.print(dist[i] + " ");
-        }
-        System.out.println();
+
+        return dist;
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
+
         int V = 5;
-        List<List<Edge>> graph = new ArrayList<>(V);
-        for (int i = 0; i < V; i++) {
-            graph.add(new ArrayList<>());
-        }
-        createGraph(graph);
-        
+        List<Edge> edges = new ArrayList<>();
+
+        // Directed weighted edges
+        edges.add(new Edge(0, 1, 2));
+        edges.add(new Edge(0, 2, 4));
+        edges.add(new Edge(1, 2, -4));
+        edges.add(new Edge(2, 3, 2));
+        edges.add(new Edge(3, 4, 4));
+        edges.add(new Edge(4, 1, -1));
+
         int src = 0;
-        bellmanFord(graph, src);
+
+        int[] dist = bellmanFord(V, edges, src);
+
+        if (dist != null) {
+            System.out.println("Shortest distances from " + src + ":");
+            for (int i = 0; i < V; i++) {
+                System.out.println("Node " + i + " -> " + dist[i]);
+            }
+        }
     }
 }
 ```
