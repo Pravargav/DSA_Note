@@ -254,6 +254,73 @@ public class DFS {
     }
 }
 ```
+
+**DFS-priting weights from parent**
+
+```
+import java.util.*;
+
+public class Main {
+
+    
+    static class Edge {
+        int dest;
+        int weight;
+
+        Edge(int d, int w) {
+            this.dest = d;
+            this.weight = w;
+        }
+    }
+
+    // Recursive DFS
+    public static void dfs(List<List<Edge>> graph, int curr, boolean[] visited, int x) {
+
+        visited[curr] = true;
+
+        // Traverse neighbors
+        for (Edge e : graph.get(curr)) {
+            if (!visited[e.dest]) {
+                dfs(graph, e.dest, visited, x*e.weight);
+            }
+            System.out.println(e.dest+ " "+ x*e.weight);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        int V = 10; 
+
+        // Adjacency List
+        List<List<Edge>> graph = new ArrayList<>(V);
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Weighted DAG edges
+        graph.get(0).add(new Edge(1, 5));
+        graph.get(0).add(new Edge(2, 3));
+        graph.get(1).add(new Edge(3, 6));
+        graph.get(1).add(new Edge(2, 2));
+        graph.get(2).add(new Edge(4, 4));
+        graph.get(2).add(new Edge(5, 2));
+        graph.get(3).add(new Edge(6, 1));
+        graph.get(4).add(new Edge(6, 2));
+        graph.get(5).add(new Edge(7, 3));
+        graph.get(6).add(new Edge(8, 4));
+        graph.get(7).add(new Edge(9, 1));
+
+        boolean[] visited = new boolean[V];
+
+        // Important for BIG graphs: handle disconnected components
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
+                dfs(graph, i, visited, 1);
+            }
+        }
+    }
+}
+```
 **print all paths(DFS)**
 
 ```java
