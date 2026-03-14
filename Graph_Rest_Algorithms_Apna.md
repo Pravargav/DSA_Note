@@ -255,9 +255,9 @@ public class DFS {
 }
 ```
 
-**DFS-priting weights from parent**
+**DFS-printing weights from parent**
 
-```
+```java
 import java.util.*;
 
 public class Main {
