@@ -533,3 +533,86 @@ class Solution {
 
 
 ```
+d) https://leetcode.com/problems/find-closest-node-to-given-two-nodes/
+
+```java
+class Solution {
+    static class Edge {
+        int to;
+        int weight;
+
+        Edge(int to, int weight) {
+            this.to = to;
+            this.weight = weight;
+        }
+    }
+
+    static int[] dijikstra(List<List<Edge>> graph, int src) {
+        int n = graph.size();
+        int[] dist = new int[n];
+        boolean[] vis = new boolean[n];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+
+        Queue<int[]> pq = new LinkedList<>();
+
+        dist[src] = 0;
+        pq.offer(new int[] { 0, src });
+
+        while (!pq.isEmpty()) {
+            int[] cur = pq.poll();
+            int d = cur[0];
+            int u = cur[1];
+
+            if (vis[u])
+                continue;
+            vis[u] = true;
+
+            for (Edge e : graph.get(u)) {
+                int v = e.to;
+                int newDist = d + 1;
+                if (!vis[v]) {
+                    dist[v] = newDist;
+                    pq.offer(new int[] { newDist, v });
+                }
+            }
+        }
+        return dist;
+    }
+
+    public int closestMeetingNode(int[] edges, int node1, int node2) {
+        List<List<Edge>> graph = new ArrayList<>();
+        for (int i = 0; i < edges.length; i++)
+            graph.add(new ArrayList<>());
+        for (int i = 0; i < edges.length; i++) {
+            if (edges[i] != -1) {
+                graph.get(i).add(new Edge(edges[i], 1));
+            }
+        }
+
+        int[] dist1 = dijikstra(graph, node1);
+        int[] dist2 = dijikstra(graph, node2);
+
+        for (int i = 0; i < dist1.length; i++) {
+            System.out.print(dist1[i] + " ");
+        }
+        System.out.println();
+        for (int i = 0; i < dist2.length; i++) {
+            System.out.print(dist2[i] + " ");
+        }
+
+        int min = Integer.MAX_VALUE;
+        int minidx = -1;
+        for (int i = 0; i < dist1.length; i++) {
+            if (dist1[i] != -1 && dist2[i] != -1) {
+                int k = Math.max(dist1[i], dist2[i]);
+                if (k < min) {
+                    min = k;
+                    minidx = i;
+                }
+            }
+        }
+        return minidx;
+    }
+
+}
+```
