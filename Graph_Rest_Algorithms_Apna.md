@@ -924,7 +924,7 @@ d) graph has negative weights - no
 ```java
 import java.util.*;
 
-public class DijkstraClean {
+public class DijkstraWithVisited {
 
     // Edge: destination + weight
     static class Edge {
@@ -936,10 +936,11 @@ public class DijkstraClean {
         }
     }
 
-    // Dijkstra Algorithm
     public static int[] dijkstra(List<List<Edge>> graph, int src) {
         int n = graph.size();
         int[] dist = new int[n];
+        boolean[] vis = new boolean[n]; // 👈 visited array
+
         Arrays.fill(dist, Integer.MAX_VALUE);
 
         PriorityQueue<int[]> pq =
@@ -953,14 +954,16 @@ public class DijkstraClean {
             int d = cur[0];
             int u = cur[1];
 
-            // Skip outdated entry
-            if (d != dist[u]) continue;
+            // 👇 Skip if already processed
+            if (vis[u]) continue;
+
+            vis[u] = true; // mark as visited
 
             for (Edge e : graph.get(u)) {
                 int v = e.to;
                 int newDist = d + e.weight;
 
-                if (newDist < dist[v]) {
+                if (!vis[v] && newDist < dist[v]) {
                     dist[v] = newDist;
                     pq.offer(new int[]{newDist, v});
                 }
@@ -977,7 +980,7 @@ public class DijkstraClean {
         for (int i = 0; i < n; i++)
             graph.add(new ArrayList<>());
 
-        // Add edges (DIRECTED)
+        // Directed edges
         graph.get(0).add(new Edge(1, 2));
         graph.get(0).add(new Edge(2, 4));
         graph.get(1).add(new Edge(2, 1));
