@@ -1,3 +1,4 @@
+-> ***Note: A graph is a bipartite if and only if it does not contain no odd cycles***
 
 **BFS**
 
@@ -1081,4 +1082,4 @@ public class BellmanFordClean {
 }
 ```
 
-
+-> ***Note: A graph is a bipartite if and only if it does not contain no odd cycles***
