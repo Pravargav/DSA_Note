@@ -1,5 +1,7 @@
 
--> Example/Sample Leetcode problems
+#### Example/Sample Leetcode problems
+
+**HIGH LEVEL**
 
 
 a) https://leetcode.com/problems/rotting-oranges/description/ 
@@ -148,8 +150,11 @@ class Solution {
 
 
 ```
+----
 
-c) 
+**MEDIUM LEVEL**
+
+a) 
 
  i) https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i
 
@@ -294,7 +299,7 @@ class Solution {
 
 
 ```
-d) https://leetcode.com/problems/find-closest-node-to-given-two-nodes/
+b) https://leetcode.com/problems/find-closest-node-to-given-two-nodes/
 
 ```java
 class Solution {
