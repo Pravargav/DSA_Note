@@ -1,7 +1,7 @@
 
 #### Example/Sample Leetcode problems
 
-**HIGH LEVEL**
+**HARD LEVEL**
 
 
 a) https://leetcode.com/problems/rotting-oranges/description/ 
