@@ -90,7 +90,7 @@ public class BFS {
 }
 
 ```
-
+**Two-Coloring BFS- Bipartite**
 
 **DFS**
 
