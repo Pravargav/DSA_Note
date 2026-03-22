@@ -175,6 +175,98 @@ public class DFS {
 ```java
 import java.util.*;
 
+class Solution {
+
+    static class Edge {
+        int u, v;
+        Edge(int u, int v) {
+            this.u = u;
+            this.v = v;
+        }
+    }
+
+    public int[] gardenNoAdj(int n, int[][] paths) {
+
+        boolean[][] ok = new boolean[n + 1][5];
+
+        for (int i = 1; i <= n; i++) {
+            for (int c = 1; c <= 4; c++) {
+                ok[i][c] = true;
+            }
+        }
+
+        List<List<Edge>> g = new ArrayList<>(n + 1);
+
+        for (int i = 0; i <= n; i++) {
+            g.add(new ArrayList<>());
+        }
+
+        for (int[] p : paths) {
+            int a = p[0], b = p[1];
+            g.get(a).add(new Edge(a, b));
+            g.get(b).add(new Edge(b, a));
+        }
+
+        boolean[] vis = new boolean[n + 1];
+        int[] col = new int[n + 1];
+
+        Queue<Integer> q = new LinkedList<>();
+
+        for (int i = 1; i <= n; i++) {
+
+            if (!vis[i]) {
+
+                q.add(i);
+                vis[i] = true;
+                col[i] = 1;
+
+                for (int c = 1; c <= 4; c++) ok[i][c] = false;
+
+                for (Edge e : g.get(i)) ok[e.v][1] = false;
+
+                while (!q.isEmpty()) {
+
+                    int cur = q.remove();
+
+                    for (Edge e : g.get(cur)) {
+
+                        int nb = e.v;
+
+                        if (!vis[nb]) {
+
+                            for (int c = 1; c <= 4; c++) {
+                                if (ok[nb][c]) {
+                                    col[nb] = c;
+                                    vis[nb] = true;
+
+                                    for (Edge x : g.get(nb)) {
+                                        ok[x.v][c] = false;
+                                    }
+                                    break;
+                                }
+                            }
+
+                            q.add(nb);
+                        }
+                    }
+                }
+            }
+        }
+
+        int[] ans = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            ans[i] = col[i + 1];
+        }
+
+        return ans;
+    }
+}
+```
+
+```java
+import java.util.*;
+
 public class Main {
 
     
