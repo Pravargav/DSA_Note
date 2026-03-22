@@ -1,4 +1,4 @@
-### Java Scanner — Reading Strings in Different Ways
+### Java Scanner — Reading strings in different ways
 
 This document contains examples of reading strings using Java `Scanner`:
 
