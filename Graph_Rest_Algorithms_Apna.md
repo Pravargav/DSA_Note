@@ -101,92 +101,84 @@ public class BFS {
   iii) 886. Possible Bipartition
 
 ```java
-import java.util.*;
-
 class Solution {
-
     static class Edge {
-        int u, v;
-        Edge(int u, int v) {
-            this.u = u;
-            this.v = v;
+        int src;
+        int dest;
+
+        Edge(int s, int d) {
+            src = s;
+            dest = d;
         }
     }
 
     public int[] gardenNoAdj(int n, int[][] paths) {
-
-        boolean[][] ok = new boolean[n + 1][5];
-
-        for (int i = 1; i <= n; i++) {
-            for (int c = 1; c <= 4; c++) {
-                ok[i][c] = true;
+        boolean status[][] = new boolean[n + 1][5];
+        for (int i = 1; i < n + 1; i++) {
+            for (int j = 1; j < 5; j++) {
+                status[i][j] = true;
             }
         }
 
-        List<List<Edge>> g = new ArrayList<>(n + 1);
+        List<List<Edge>> graph = new ArrayList<>(n + 1);
 
-        for (int i = 0; i <= n; i++) {
-            g.add(new ArrayList<>());
+        for (int i = 0; i < n + 1; i++) {
+            graph.add(new ArrayList<>());
         }
 
-        for (int[] p : paths) {
-            int a = p[0], b = p[1];
-            g.get(a).add(new Edge(a, b));
-            g.get(b).add(new Edge(b, a));
+        for (int i = 0; i < paths.length; i++) {
+            int s = paths[i][0];
+            int d = paths[i][1];
+            graph.get(s).add(new Edge(s, d));
+            graph.get(d).add(new Edge(d, s));
         }
 
-        boolean[] vis = new boolean[n + 1];
-        int[] col = new int[n + 1];
-
+        boolean[] visited = new boolean[graph.size()];
+        int[] plant = new int[graph.size()];
         Queue<Integer> q = new LinkedList<>();
 
-        for (int i = 1; i <= n; i++) {
-
-            if (!vis[i]) {
-
-                q.add(i);
-                vis[i] = true;
-                col[i] = 1;
-
-                for (int c = 1; c <= 4; c++) ok[i][c] = false;
-
-                for (Edge e : g.get(i)) ok[e.v][1] = false;
+        for (int t = 1; t < n + 1; t++) {
+            if (!visited[t]) {
+                q.add(t);
+                visited[t] = true;
+                plant[t] = 1;
+                status[t][1] = false;
+                status[t][2] = false;
+                status[t][3] = false;
+                status[t][4] = false;
+                for (Edge e2 : graph.get(t)) {
+                    status[e2.dest][1] = false;
+                }
 
                 while (!q.isEmpty()) {
 
-                    int cur = q.remove();
+                    int curr = q.remove();
+                    int lt = plant[curr];
 
-                    for (Edge e : g.get(cur)) {
-
-                        int nb = e.v;
-
-                        if (!vis[nb]) {
-
-                            for (int c = 1; c <= 4; c++) {
-                                if (ok[nb][c]) {
-                                    col[nb] = c;
-                                    vis[nb] = true;
-
-                                    for (Edge x : g.get(nb)) {
-                                        ok[x.v][c] = false;
+                    for (Edge e : graph.get(curr)) {
+                        if (!visited[e.dest]) {
+                            for (int i = 1; i <= 4; i++) {
+                                if (status[e.dest][i]) {
+                                    plant[e.dest] = i;
+                                    visited[e.dest] = true;
+                                    for (Edge e2 : graph.get(e.dest)) {
+                                        status[e2.dest][i] = false;
                                     }
                                     break;
                                 }
                             }
-
-                            q.add(nb);
+                            q.add(e.dest);
                         }
                     }
                 }
             }
         }
 
-        int[] ans = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            ans[i] = col[i + 1];
+        int lk = plant.length - 1;
+        int ans[] = new int[lk];
+        for (int i = 0; i < ans.length; i++) {
+            ans[i] = plant[i + 1];
         }
-
         return ans;
     }
 }
