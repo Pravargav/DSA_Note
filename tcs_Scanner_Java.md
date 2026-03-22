@@ -9,7 +9,7 @@ This document contains examples of reading strings using Java `Scanner`:
 - Detecting space characters
 - Detecting newline / blank lines
 
----
+
 
 #### 0) Original Code — Using `hasNextInt()` + `nextLine()`
 
