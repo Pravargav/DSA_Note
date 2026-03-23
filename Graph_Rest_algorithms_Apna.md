@@ -1092,6 +1092,97 @@ public class DijkstraWithVisited {
 }
 ```
 
+**Dijikstras algorithm for product maximisation**
+
+```java
+import java.util.*;
+
+public class MaxProductPath {
+
+    static class Edge {
+        int to;
+        double prob;
+
+        Edge(int t, double p) {
+            to = t;
+            prob = p;
+        }
+    }
+
+    static class Node implements Comparable<Node> {
+        int v;
+        double dist;
+
+        Node(int v, double d) {
+            this.v = v;
+            this.dist = d;
+        }
+
+        public int compareTo(Node o) {
+            return Double.compare(this.dist, o.dist);
+        }
+    }
+
+    public static double[] dijkstraMaxProduct(List<List<Edge>> graph, int src) {
+
+        int n = graph.size();
+        double[] dist = new double[n];
+        Arrays.fill(dist, Double.POSITIVE_INFINITY);
+
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        dist[src] = 0;
+        pq.add(new Node(src, 0));
+
+        while (!pq.isEmpty()) {
+            Node cur = pq.poll();
+
+            if (cur.dist > dist[cur.v]) continue;
+
+            int u = cur.v;
+
+            for (Edge e : graph.get(u)) {
+
+                // ⭐ YOUR REQUIRED LINE
+                double newDist = dist[u] + (-Math.log(e.prob));
+
+                if (newDist < dist[e.to]) {
+                    dist[e.to] = newDist;
+                    pq.add(new Node(e.to, newDist));
+                }
+            }
+        }
+
+        return dist;
+    }
+
+    public static void main(String[] args) {
+
+        int n = 4;
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < n; i++)
+            graph.add(new ArrayList<>());
+
+        // Probabilities on edges
+        graph.get(0).add(new Edge(1, 0.5));
+        graph.get(0).add(new Edge(2, 0.2));
+        graph.get(1).add(new Edge(2, 0.8));
+        graph.get(1).add(new Edge(3, 0.3));
+        graph.get(2).add(new Edge(3, 0.9));
+
+        double[] result = dijkstraMaxProduct(graph, 0);
+
+        System.out.println("Maximum product path probabilities:");
+
+        for (int i = 0; i < n; i++) {
+
+            double maxProb = Math.exp(-result[i]); // convert back
+            System.out.println("0 -> " + i + " : " + maxProb);
+        }
+    }
+}
+```
+
 **Bellman ford**
 
 -> https://youtu.be/j0OUwduDOS0?si=K3riyaeuZE_l0u2k
