@@ -1015,7 +1015,94 @@ d) graph has negative weights - no
 **Dijikstras algorithm**
 
 ```java
+import java.util.*;
 
+public class DijkstraClean {
+
+    static class Edge {
+        int dest, wt;
+
+        Edge(int dest, int wt) {
+            this.dest = dest;
+            this.wt = wt;
+        }
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int node, dist;
+
+        Pair(int node, int dist) {
+            this.node = node;
+            this.dist = dist;
+        }
+
+        public int compareTo(Pair p) {
+            return this.dist - p.dist;
+        }
+    }
+
+    public static int[] dijkstra(List<List<Edge>> graph, int src) {
+
+        int V = graph.size();
+        int[] dist = new int[V];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+        dist[src] = 0;
+        pq.add(new Pair(src, 0));
+
+        while (!pq.isEmpty()) {
+
+            Pair curr = pq.poll();
+            int u = curr.node;
+
+            // Skip outdated entry
+            if (curr.dist > dist[u]) continue;
+
+            for (Edge e : graph.get(u)) {
+                int v = e.dest;
+                int newDist = dist[u] + e.wt;
+
+                if (newDist < dist[v]) {
+                    dist[v] = newDist;
+                    pq.add(new Pair(v, newDist));
+                }
+            }
+        }
+
+        return dist;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 5;
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++)
+            graph.add(new ArrayList<>());
+
+        // Undirected edges
+        graph.get(0).add(new Edge(1, 2));
+        graph.get(1).add(new Edge(0, 2));
+
+        graph.get(0).add(new Edge(2, 4));
+        graph.get(2).add(new Edge(0, 4));
+
+        graph.get(1).add(new Edge(2, 1));
+        graph.get(2).add(new Edge(1, 1));
+
+        graph.get(1).add(new Edge(3, 7));
+        graph.get(3).add(new Edge(1, 7));
+
+        graph.get(2).add(new Edge(4, 3));
+        graph.get(4).add(new Edge(2, 3));
+
+        int[] dist = dijkstra(graph, 0);
+
+        System.out.println(Arrays.toString(dist));
+    }
+}
 ```
 
 **Dijikstras algorithm for product maximisation**
