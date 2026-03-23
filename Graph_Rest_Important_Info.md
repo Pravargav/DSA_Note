@@ -43,11 +43,6 @@ public class Graph {
 }
 ```
 
-
-
--> Why vis[] and the loop over all nodes?
-In disconnected graphs, running DFS or BFS from just one node (e.g., 0) won’t reach all other nodes — because some might not be connected at all.
-
 ->DFS
 
 ```java
@@ -122,11 +117,6 @@ for (int i = 0; i < V; i++) {
 }
 
 ```
-
--> Write a code finds the shortest distance from the starting node to every node in an unweighted graph using BFS/dijikstras algorithm.
-
-
-
 
 
 
