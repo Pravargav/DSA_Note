@@ -108,16 +108,17 @@ public boolean isIdentical(TreeNode root, TreeNode subRoot) {
 }
 
 ```
-#### Imp points ####
+**🔗Linked List and Binary Tree – Key Points**
+
+-> Approach 1 (Mover Pointer)
+
+1)Create head from first element
+
+2)Use mover to attach next nodes
+
+3)Move forward step by step
 
 ```java
-🔗Linked List – Key Points
-
-Approach 1 (Mover Pointer)
-Create head from first element
-Use mover to attach next nodes
-Move forward step by step
-Java
 static class Node {
     int data;
     Node next;
@@ -138,13 +139,17 @@ static Node arrayToLL(int[] arr) {
 
     return head;
 }
+```
 
-Approach 2 (Head + Temp Pointer)
+-> Approach 2 (Head + Temp Pointer)
 
-Initialize head = null
-First node → assign to both head and temp
-Then keep linking
-Java
+1)Initialize head = null
+
+2)First node → assign to both head and temp
+
+3)Then keep linking
+
+```java
 static class ListNode {
     int val;
     ListNode next;
