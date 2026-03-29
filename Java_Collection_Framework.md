@@ -6,11 +6,11 @@ Java Collections – Clean Notes
 
 ArrayList
 
-Definition: A dynamic (resizable) array.
+Definition- A dynamic (resizable) array.
 
-Memory: Stored in a contiguous block.
+Memory- Stored in a contiguous block.
 
-Key Points:
+Key Points-
 
 Fast random access (get(index))
 
