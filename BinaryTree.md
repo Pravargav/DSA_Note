@@ -81,71 +81,23 @@ public class Main
 ```
 **count nodes**
 ```java
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
-public class Main
-{
-  public static int countNodes(Node root){
-      if(root==null){
-          return 0;
-      }
-      int leftNodes=countNodes(root.left);
-      int rightNodes=countNodes(root.right);
-      return leftNodes+rightNodes+1;
-  }
+public static int countNodes(Node root) {
+    if (root == null) return 0;
+    return countNodes(root.left) + countNodes(root.right) + 1;
 }
 ```
 **sum nodes**
 ```java
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
-public class Main
-{
-  public static int sumNodes(Node root){
-      if(root==null){
-          return 0;
-      }
-      int leftsum=sumOfNodes(root.left);
-      int rightsum=sumOfNodes(root.right);
-      
-      return leftsum+rightsum+root.data;
-  }
+public static int sumNodes(Node root) {
+    if (root == null) return 0;
+    return sumNodes(root.left) + sumNodes(root.right) + root.data;
 }
 ```
 **find height**
 ```java
-/******************************************************************************
-
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
-public class Main
-{
-  public static int findHeight(Node root){
-      if(root==null){
-          return 0;
-      }
-      int leftH=findHeight(root.left);
-      int rightH=findHeight(root.right);
-      
-      int height=max(leftH,rightH)+1;
-      return height;
-  }
+public static int findHeight(Node root) {
+    if (root == null) return 0;
+    return Math.max(findHeight(root.left), findHeight(root.right)) + 1;
 }
 ```
 **find diameter**
