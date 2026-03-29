@@ -1,10 +1,10 @@
 ---
 
-📚 Java Collections – Clean Notes
+Java Collections – Clean Notes
 
 🔹 1. ArrayList vs LinkedList
 
-✅ ArrayList
+ArrayList
 
 Definition: A dynamic (resizable) array.
 
