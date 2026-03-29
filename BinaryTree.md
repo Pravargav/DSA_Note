@@ -1,41 +1,27 @@
 **build Tree**
 ```java
-/******************************************************************************
+static class Node {
+    int data;
+    Node left, right;
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
+    Node(int data) {
+        this.data = data;
+    }
+}
 
-*******************************************************************************/
-public class Main
-{
-  static class Node{
-      int data;
-      Node left;
-      Node right;
-      
-      Node(int data){
-          this.data=data;
-          left=null;
-          right=null;
-      }
-  }
-  
-  static class BinaryTree{
-      static int idx=-1;
-      public static Node buildTree(int nodes[]){
-          idx++;
-          if(node[idx]==-1){
-              return null;
-          }
-          Node newNode=new Node(nodes[idx]);
-          newNode.left=buildTree(nodes);
-          newNode.right=buildTree(nodes);
-          
-          return newNode;
-      }
-  }
+static class BinaryTree {
+    static int idx = -1;
+
+    public static Node buildTree(int[] nodes) {
+        idx++;
+        if (nodes[idx] == -1) return null;
+
+        Node root = new Node(nodes[idx]);
+        root.left = buildTree(nodes);
+        root.right = buildTree(nodes);
+
+        return root;
+    }
 }
 ```
 **level order**
