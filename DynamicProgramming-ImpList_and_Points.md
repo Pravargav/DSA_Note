@@ -1,3 +1,4 @@
+```java
 int fun(int m, int n) {
     int arr[][]=new int[m][n];
 	for(int i=0;i<m;i++){
@@ -36,6 +37,7 @@ int fun(int m, int n) {
     left = fun(i, j - 1);
     return dp[i][j]=up + left;
 }
+```
 
 https://youtube.com/playlist?list=PLM68oyaqFM7QsfZJ8W2YHgiA2EDp3FryV&si=LTEcZVE1UBx4uWq3
 --------------------------------------------------------------
