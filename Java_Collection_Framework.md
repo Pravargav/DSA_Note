@@ -685,34 +685,6 @@ Typically implemented using a balanced tree (e.g., a Red-Black tree in TreeSet).
 Provides logarithmic-time performance (O(log n)) for basic operations like add, remove, and contains.
 
 
-
-### **Methods Specific to SortedSet**
-
-| **Category**                | **Method**                                        | **Description**                                                                       |
-| --------------------------- | ------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| **Range Views**             | `SortedSet<E> subSet(E fromElement, E toElement)` | Returns a view of elements from `fromElement` (inclusive) to `toElement` (exclusive). |
-|                             | `SortedSet<E> headSet(E toElement)`               | Returns a view of elements strictly less than `toElement`.                            |
-|                             | `SortedSet<E> tailSet(E fromElement)`             | Returns a view of elements greater than or equal to `fromElement`.                    |
-| **First and Last Elements** | `E first()`                                       | Returns the first (lowest) element in the set.                                        |
-|                             | `E last()`                                        | Returns the last (highest) element in the set.                                        |
-| **Comparator**              | `Comparator<? super E> comparator()`              | Returns the comparator used for ordering, or `null` if using natural ordering.        |
-
-
-
-
-### **Methods Specific to NavigableSet**
-
-| **Category**             | **Method**                                                                         | **Description**                                                                                 |
-| ------------------------ | ---------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| **Closest Match**        | `E lower(E e)`                                                                     | Returns the greatest element **strictly less than** the given element, or `null` if none.       |
-|                          | `E floor(E e)`                                                                     | Returns the greatest element **less than or equal to** the given element, or `null` if none.    |
-|                          | `E ceiling(E e)`                                                                   | Returns the smallest element **greater than or equal to** the given element, or `null` if none. |
-|                          | `E higher(E e)`                                                                    | Returns the smallest element **strictly greater than** the given element, or `null` if none.    |
-| **Polling**              | `E pollFirst()`                                                                    | Retrieves and removes the **first (lowest)** element, or returns `null` if empty.               |
-|                          | `E pollLast()`                                                                     | Retrieves and removes the **last (highest)** element, or returns `null` if empty.               |
-| **Reverse View**         | `NavigableSet<E> descendingSet()`                                                  | Returns a **reverse-order** view of the elements in the set.                                    |
-
-
 -> Two types of comparators multiple comparators and Chained Comparators
 
 https://stackoverflow.com/questions/2265503/why-do-i-need-to-override-the-equals-and-hashcode-methods-in-java
