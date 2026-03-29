@@ -1,6 +1,6 @@
 ---
 
-Java Collections – Clean Notes
+✅Java Collections – Clean Notes
 
 🔹 1. ArrayList vs LinkedList
 
@@ -20,11 +20,11 @@ Slower insert/delete (shifting required)
 
 ✅ LinkedList
 
-Definition: A doubly linked list (each node has prev + next).
+Definition- A doubly linked list (each node has prev + next).
 
-Memory: Stored in non-contiguous memory.
+Memory- Stored in non-contiguous memory.
 
-Key Points:
+Key Points-
 
 Faster insert/delete
 
