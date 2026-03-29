@@ -1,65 +1,25 @@
 **insert**
 ```java
-/******************************************************************************
+public static Node insert(Node root, int val) {
+    if (root == null) return new Node(val);
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
-public class Main
-{
-  public static Node insert(Node root,int val){
-      if(root==null){
-          root=new Node(val);
-          return root;
-      }
-      
-      if(root.data>val){
-          root.left=insert(root.left);
-      }
-      else{
-          root.right=insert(root.right);
-      }
-      
-      return root;
-  }
-  
-  public static void main(String args[]){
-      Node root=null;
-      for(int i=0;i<arr.length;i++){
-          root=insert(root,arr[i]);
-      }
-  }
+    if (val < root.data) {
+        root.left = insert(root.left, val);
+    } else {
+        root.right = insert(root.right, val);
+    }
+    return root;
 }
 ```
 **search**
 ```java
-/******************************************************************************
+public static boolean search(Node root, int key) {
+    if (root == null) return false;
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
+    if (key < root.data) return search(root.left, key);
+    if (key == root.data) return true;
 
-*******************************************************************************/
-public class Main
-{
-  public static boolean search(Node root,int key){
-      if(root==null){
-          return false;
-      }
-      if(root.data>key){
-          return search(root.left,key);
-      }
-      else if(root.data==key){
-          return true;
-      }
-      else{
-          return search(roo.right,key);
-      }
-  }
+    return search(root.right, key);
 }
 ```
 **delete**
