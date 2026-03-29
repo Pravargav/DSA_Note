@@ -70,64 +70,35 @@ public class Main
 ```
 **print in range**
 ```java
-/******************************************************************************
+public static void printInRange(Node root, int x, int y) {
+    if (root == null) return;
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
-
-*******************************************************************************/
-public class Main
-{
-   public static void printInRange(Node root,int X,int Y){
-       if(root==null){
-           return;
-       }
-       if(root.data>=X&&root.data<=Y){
-           printInRange(root.left,X,Y);
-           System.out.println(root.data+" ");
-           printInRange(root.right,X,Y);
-       }
-       else if(root.data<=X){
-           printInRange(root.right,X,Y);
-       }
-       else{
-           printInRange(root.left,X,Y);
-       }
-   }
+    if (root.data >= x && root.data <= y) {
+        printInRange(root.left, x, y);
+        System.out.print(root.data + " ");
+        printInRange(root.right, x, y);
+    } else if (root.data < x) {
+        printInRange(root.right, x, y);
+    } else {
+        printInRange(root.left, x, y);
+    }
 }
 ```
 **print path**
 ```java
-/******************************************************************************
+public static void printRootToLeaf(Node root, ArrayList<Integer> path) {
+    if (root == null) return;
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
+    path.add(root.data);
 
-*******************************************************************************/
-public class Main
-{
-  public static void printPath(ArrayList<Integer> path){
-      for(int i=0;i<path.size();i++){
-          System.out.print(path.get(i)+" ");
-      }
-      System.out.println();
-  }
-  public static void printRoot2Leaf(Node root,ArrayList<Integer> path){
-      if(root==null){
-          return;
-      }
-      path.add(root.data);
-      if(root.left==null&&root.right==null){
-          printPath(path);
-      }else{
-          printRoot2Leaf(root.left,path);
-          printRoot2Leaf(root.right,path);
-      }
-      path.remove(path.size()-1);
-  }
+    if (root.left == null && root.right == null) {
+        for (int x : path) System.out.print(x + " ");
+        System.out.println();
+    } else {
+        printRootToLeaf(root.left, path);
+        printRootToLeaf(root.right, path);
+    }
+
+    path.remove(path.size() - 1);
 }
 ```
