@@ -24,48 +24,29 @@ public static boolean search(Node root, int key) {
 ```
 **delete**
 ```java
-/******************************************************************************
+public static Node delete(Node root, int val) {
+    if (root == null) return null;
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
+    if (val < root.data) {
+        root.left = delete(root.left, val);
+    } else if (val > root.data) {
+        root.right = delete(root.right, val);
+    } else {
+        if (root.left == null && root.right == null) return null;
+        if (root.left == null) return root.right;
+        if (root.right == null) return root.left;
 
-*******************************************************************************/
-public class Main
-{
-   public static Node delete(Node root,int val){
-       if(root.data>val){
-           root.left=delete(root.left,val);
-       }
-       else if(root.data<val){
-           root.right=delete(root.right,val);
-       }
-       else{
-           if(root.left==null&&root.right==null){
-               return null;
-           }
-           if(root.left==null){
-               return root.right;
-           }
-           if(root.right==null){
-               return root.left;
-           }
-           
-           Node IS=inorderSuccessor(root.right);
-           root.data=IS.data;
-           root.right=delete(root.right,IS.data);
-       }
-       
-       return root;
-   }
-   
-   public static Node inorderSuccessor(Node root){
-       while(root.left!=null){
-           root=root.left;
-       }
-       return root;
-   }
+        Node is = inorderSuccessor(root.right);
+        root.data = is.data;
+        root.right = delete(root.right, is.data);
+    }
+
+    return root;
+}
+
+public static Node inorderSuccessor(Node root) {
+    while (root.left != null) root = root.left;
+    return root;
 }
 ```
 **print in range**
