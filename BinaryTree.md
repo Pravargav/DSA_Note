@@ -110,7 +110,7 @@ public boolean isIdentical(TreeNode root, TreeNode subRoot) {
 ```
 **🔗Linked List and Binary Tree – Key Points**
 
--> <u>Approach 1 (Mover Pointer)</u>
+-> *Approach 1 (Mover Pointer)*
 
 1)Create head from first element
 
@@ -141,7 +141,7 @@ static Node arrayToLL(int[] arr) {
 }
 ```
 
--> <u>Approach 2 (Head + Temp Pointer)</u>
+-> *Approach 2 (Head + Temp Pointer)*
 
 1)Initialize head = null
 
