@@ -102,77 +102,40 @@ public static int findHeight(Node root) {
 ```
 **find diameter**
 ```java
-/******************************************************************************
+public static int findHeight(Node root) {
+    if (root == null) return 0;
+    return Math.max(findHeight(root.left), findHeight(root.right)) + 1;
+}
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
+public static int findDiameter(Node root) {
+    if (root == null) return 0;
 
-*******************************************************************************/
-public class Main
-{
-   public static int findHeight(Node root){
-       if(root==null){
-           return 0;
-       }
-       int leftH=findHeight(root.left);
-       int rightH=findHeight(root.right);
-       int height=max(leftH,rightH)+1;
-       
-       return height;
-   }
-   
-   public static int findDiameter(Node root){
-       if(root==null){
-           return 0;
-       }
-       int diaM1=findDiameter(root.left);
-       int diaM2=findDiameter(root.right);
-       int diaM3=height(root.left)+height(root.right)+1;
-       return Math.max(diaM3,Math.max(diaM2,diaM1));
-   }
+    int leftDia = findDiameter(root.left);
+    int rightDia = findDiameter(root.right);
+    int selfDia = findHeight(root.left) + findHeight(root.right) + 1;
+
+    return Math.max(selfDia, Math.max(leftDia, rightDia));
 }
 ```
 **is Subtree**
 ```java
-/******************************************************************************
+public boolean isSubTree(TreeNode root, TreeNode subRoot) {
+    if (subRoot == null) return true;
+    if (root == null) return false;
 
-Welcome to GDB Online.
-GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
-C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
-Code, Compile, Run and Debug online from anywhere in world.
+    if (root.val == subRoot.val && isIdentical(root, subRoot)) return true;
 
-*******************************************************************************/
-public class Main
-{
-  public boolean isSubTree(TreeNode root,TreeNode subRoot){
-      if(root==null){
-          return true;
-      }
-      if(subRoot==null){
-          return false;
-      }
-      if(root.val==subRoot.val){
-          if(isIdentical(root,subRoot)){
-              return true;
-          }
-      }
-      return isSubTree(root.left,subRoot)||isSubTree(root.right,subRoot);
-  }
-  
-  public boolean isIdentical(TreeNode root,TreeNode subRoot){
-      if(root==null&&subRoot==null){
-          return true;
-      }
-      if(root==null||subRoot==null){
-          return false;
-      }
-      if(root.val==subRoot.val){
-      return isIdentical(root.left,subRoot.left) && isIdentical(root.right,subRoot.right);
-      }
-      return false;
-  }
+    return isSubTree(root.left, subRoot) || isSubTree(root.right, subRoot);
+}
+
+public boolean isIdentical(TreeNode root, TreeNode subRoot) {
+    if (root == null && subRoot == null) return true;
+    if (root == null || subRoot == null) return false;
+
+    if (root.val != subRoot.val) return false;
+
+    return isIdentical(root.left, subRoot.left) &&
+           isIdentical(root.right, subRoot.right);
 }
 
 ```
