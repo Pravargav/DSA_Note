@@ -1,3 +1,25 @@
+**all path sums from root to leafs**
+```java
+class Solution {
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        boolean k = sumLeaf(root, 0, targetSum);
+        return k;
+    }
+
+    public boolean sumLeaf(TreeNode root, int sum, int target) {
+        if (root == null) {
+            return false;
+        }
+        if (root.left == null && root.right == null) {
+            if (sum + root.val == target) {
+                return true;
+            }
+        }
+        return sumLeaf(root.left, sum + root.val, target) || sumLeaf(root.right, sum + root.val, target);
+    }
+}
+```
+
 **build Tree**
 ```java
 static class Node {
