@@ -18,9 +18,10 @@ class Solution {
         return sumLeaf(root.left, sum + root.val, target) || sumLeaf(root.right, sum + root.val, target);
     }
 }
-
+```
 ---(OR)---
 
+```java
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
         List<Integer> lt=new ArrayList<>();
