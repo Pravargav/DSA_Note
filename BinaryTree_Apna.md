@@ -1,4 +1,4 @@
-**all path sums from root to leafs**
+**all paths from root to leafs**
 ```java
 class Solution {
     public boolean hasPathSum(TreeNode root, int targetSum) {
