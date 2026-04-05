@@ -18,6 +18,33 @@ class Solution {
         return sumLeaf(root.left, sum + root.val, target) || sumLeaf(root.right, sum + root.val, target);
     }
 }
+
+------
+
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<Integer> lt=new ArrayList<>();
+        fun(root, lt);
+        return new ArrayList<>();
+    }
+
+    public void fun(TreeNode root, List<Integer> lt){
+         if(root==null){
+            return;
+         }
+         if(root.left==null&&root.right==null){
+            lt.add(root.val);
+            System.out.println(lt);
+            lt.remove(lt.size()-1);
+         }
+        lt.add(root.val);
+         fun(root.left, lt);
+        lt.remove(lt.size()-1);
+        lt.add(root.val);
+         fun(root.right, lt);
+        lt.remove(lt.size()-1);
+    }
+}
 ```
 
 **build Tree**
