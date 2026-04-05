@@ -19,7 +19,7 @@ class Solution {
     }
 }
 
-------
+---(OR)---
 
 class Solution {
     public List<String> binaryTreePaths(TreeNode root) {
