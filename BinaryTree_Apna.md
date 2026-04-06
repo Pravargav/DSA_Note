@@ -47,33 +47,6 @@ class Solution {
     }
 }
 ```
-
-**build Tree**
-```java
-static class Node {
-    int data;
-    Node left, right;
-
-    Node(int data) {
-        this.data = data;
-    }
-}
-
-static class BinaryTree {
-    static int idx = -1;
-
-    public static Node buildTree(int[] nodes) {
-        idx++;
-        if (nodes[idx] == -1) return null;
-
-        Node root = new Node(nodes[idx]);
-        root.left = buildTree(nodes);
-        root.right = buildTree(nodes);
-
-        return root;
-    }
-}
-```
 **level order**
 ```java
 public static void levelOrder(Node root) {
