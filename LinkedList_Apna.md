@@ -43,7 +43,7 @@ public ListNode createList(int[] arr) {
 ```
 **Remove all nodes having given input value**
 
-->     
+->  **Approach** 
      Idea:
      
      1. Traverse the list using a pointer.
