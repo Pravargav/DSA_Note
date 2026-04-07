@@ -42,18 +42,25 @@ public ListNode createList(int[] arr) {
 }
 ```
 **Remove all nodes having given input value**
+
+->     
+     Idea:
+     
+     1. Traverse the list using a pointer.
+     
+     2. If the NEXT node has the target value,
+        skip it by changing links.
+        
+     3. Otherwise move forward.
+     
+     4. Finally handle the special case where
+        the head itself must be removed.
+     
+     
 ```java
 class Solution {
 
-    /*
-     * Idea:
-     * 1. Traverse the list using a pointer.
-     * 2. If the NEXT node has the target value,
-     *    skip it by changing links.
-     * 3. Otherwise move forward.
-     * 4. Finally handle the special case where
-     *    the head itself must be removed.
-     */
+
 
     public ListNode removeElements(ListNode head, int val) {
 
