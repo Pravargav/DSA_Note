@@ -41,7 +41,7 @@ public ListNode createList(int[] arr) {
     return head;
 }
 ```
-**Remove all nodes of value val**
+**Remove all nodes having given input value**
 ```java
 class Solution {
 
