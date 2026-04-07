@@ -81,6 +81,7 @@ class Solution {
                 // Skip the node having target value
                 // (delete curr.next)
                 curr.next = curr.next.next;
+                //remove consecutive nodes ahead whose value equals val
 
             } else {
                 // Move forward only when no deletion happens
