@@ -46,9 +46,6 @@ public ListNode createList(int[] arr) {
 class Solution {
 
     /*
-     * Goal:
-     * Remove all nodes from the linked list whose value == val
-     *
      * Idea:
      * 1. Traverse the list using a pointer.
      * 2. If the NEXT node has the target value,
