@@ -75,11 +75,11 @@ class Solution {
         // Traverse until last node
         while (curr != null) {
 
-            /*
-             * Check the NEXT node (not current)
-             * because removing current node
-             * would lose the reference.
-             */
+            
+             //Check the NEXT node (not current)
+             //because removing current node
+             //would lose the reference.
+             
             if (curr.next != null && curr.next.val == val) {
 
                 // Skip the node having target value
@@ -93,11 +93,11 @@ class Solution {
             }
         }
 
-        /*
-         * Handle head separately:
-         * If head itself contains the value,
-         * move head forward.
-         */
+        
+         //Handle head separately:
+         //If head itself contains the value,
+         //move head forward.
+         
         if (head.val == val) {
             head = head.next;
         }
