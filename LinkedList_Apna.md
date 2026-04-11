@@ -107,9 +107,12 @@ class Solution {
 }
 ```
 ***very very important solution for head.next!=null check rather than head==null check***
+
+-> https://leetcode.com/problems/remove-duplicates-from-sorted-list/?envType=problem-list-v2&envId=wga5p0ds
+
 ```java
 class Solution {
-    public ListNode deleteDuplicates(ListNode head) {
+    public ListNode delete_duplicates(ListNode head) {
         ListNode temp = head;
         while (head != null) {
             if(head.next==null){
