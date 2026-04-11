@@ -106,3 +106,22 @@ class Solution {
     }
 }
 ```
+***very very important solution for head.next!=null check rather than head==null check***
+```java
+class Solution {
+    public ListNode deleteDuplicates(ListNode head) {
+        ListNode temp = head;
+        while (head != null) {
+            if(head.next==null){
+                break;
+            }
+            if (head.val == head.next.val) {
+                head.next = head.next.next;
+            } else {
+                head = head.next;
+            }
+        }
+        return temp;
+    }
+}
+```
