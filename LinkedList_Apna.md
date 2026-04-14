@@ -136,55 +136,58 @@ class Solution {
 ```
 **Design front middle back queue**
 ```java
-class FrontMiddleBackQueue {
+class MyCircularQueue {
 
-    LinkedList<Integer> l;
+    List<Integer> lt;
+    int size;
 
-    public FrontMiddleBackQueue() {
-        this.l= new LinkedList<>();
+    public MyCircularQueue(int k) {
+        lt = new LinkedList<>();
+        size = k;
     }
     
-    public void pushFront(int val) {
-        l.add(0,val);
+    public boolean enQueue(int value) {
+        if(lt.size()==size){
+            return false;
+        }
+        lt.add(value);
+        return true;
     }
     
-    public void pushMiddle(int val) {
-        int s=l.size();
-        if(s%2==0){
-             l.add(s/2,val);
-        }else{
-        l.add(s/2,val);}
+    public boolean deQueue() {
+        if(lt.size()==0){
+            return false;
+        }
+        lt.remove(0);
+        return true;
     }
     
-    public void pushBack(int val) {
-        l.add(val);
-    }
-    
-    public int popFront() {
-        int s=l.size();
-        if(s==0){
+    public int Front() {
+        if(lt.size()==0){
             return -1;
         }
-        return l.remove(0);
+        return lt.get(0);
     }
     
-    public int popMiddle() {
-        int s=l.size();
-        if(s==0){
+    public int Rear() {
+        if(lt.size()==0){
             return -1;
         }
-        if(s%2==0){
-            return l.remove((s/2)-1);
-        }
-        return l.remove(s/2);
+        return lt.get(lt.size()-1);
     }
     
-    public int popBack() {
-        int s=l.size();
-        if(s==0){
-            return -1;
+    public boolean isEmpty() {
+        if(lt.size()==0){
+            return true;
         }
-        return l.remove(s-1);
+        return false;
+    }
+    
+    public boolean isFull() {
+        if(lt.size()==size){
+            return true;
+        }
+        return false;
     }
 }
 ```
