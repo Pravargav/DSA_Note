@@ -136,11 +136,21 @@ class Solution {
 ```
 **Design circular queue**
 
+a)
+
 i) https://leetcode.com/problems/design-circular-queue/?envType=problem-list-v2&envId=wga5p0ds
 
 ii) https://leetcode.com/problems/design-front-middle-back-queue/?envType=problem-list-v2&envId=wga5p0ds
 
 iii) https://leetcode.com/problems/design-circular-deque/description/?envType=problem-list-v2&envId=wga5p0ds
+
+b)
+
+i) https://youtu.be/vTjFPOYaHnI?si=mMhs0MDRn6ZDcP7i (varible size)
+
+ii) https://youtu.be/8sjFA-IX-Ww?si=8uEZlyWBwLoZMl4t (fixed size)
+
+iii) https://neetcode.io/solutions/design-circular-queue
 
 ```java
 class MyCircularQueue {
@@ -222,8 +232,4 @@ class Solution {
 }
 ```
 
-i) https://youtu.be/vTjFPOYaHnI?si=mMhs0MDRn6ZDcP7i (varible size)
 
-ii) https://youtu.be/8sjFA-IX-Ww?si=8uEZlyWBwLoZMl4t (fixed size)
-
-iii) https://neetcode.io/solutions/design-circular-queue
