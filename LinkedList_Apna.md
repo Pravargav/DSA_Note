@@ -64,40 +64,30 @@ class Solution {
 
     public ListNode removeElements(ListNode head, int val) {
 
-        // Edge case: empty list
+   
         if (head == null) {
             return null;
         }
 
-        // Pointer used to traverse the list
+
         ListNode curr = head;
 
-        // Traverse until last node
+
         while (curr != null) {
 
-            
-             //Check the NEXT node (not current)
-             //because removing current node
-             //would lose the reference.
+
              
             if (curr.next != null && curr.next.val == val) {
 
-                // Skip the node having target value
-                // (delete curr.next)
+
                 curr.next = curr.next.next;
-                //remove consecutive nodes ahead whose value equals val
 
             } else {
-                // Move forward only when no deletion happens
+
                 curr = curr.next;
             }
         }
 
-        
-         //Handle head separately:
-         //If head itself contains the value,
-         //move head forward.
-         
         if (head.val == val) {
             head = head.next;
         }
