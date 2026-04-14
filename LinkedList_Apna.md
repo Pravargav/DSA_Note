@@ -134,7 +134,14 @@ class Solution {
     }
 }
 ```
-**Design front middle back queue**
+**Design circular queue**
+
+i) https://leetcode.com/problems/design-circular-queue/?envType=problem-list-v2&envId=wga5p0ds
+
+ii) https://leetcode.com/problems/design-front-middle-back-queue/?envType=problem-list-v2&envId=wga5p0ds
+
+iii) https://leetcode.com/problems/design-circular-deque/description/?envType=problem-list-v2&envId=wga5p0ds
+
 ```java
 class MyCircularQueue {
 
