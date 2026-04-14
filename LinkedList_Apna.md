@@ -189,7 +189,7 @@ class FrontMiddleBackQueue {
 }
 ```
 
-### **head.next!=null check rather than head==null check**
+#### **head.next!=null check rather than head==null check**
 
 -> https://leetcode.com/problems/remove-duplicates-from-sorted-list/?envType=problem-list-v2&envId=wga5p0ds
 
