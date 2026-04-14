@@ -58,40 +58,24 @@ public ListNode createList(int[] arr) {
      
      
 ```java
+
 class Solution {
 
-
-
     public ListNode removeElements(ListNode head, int val) {
-
-   
         if (head == null) {
             return null;
         }
-
-
         ListNode curr = head;
-
-
         while (curr != null) {
-
-
-             
             if (curr.next != null && curr.next.val == val) {
-
-
                 curr.next = curr.next.next;
-
             } else {
-
                 curr = curr.next;
             }
         }
-
         if (head.val == val) {
             head = head.next;
         }
-
         return head;
     }
 }
