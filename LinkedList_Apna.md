@@ -129,7 +129,7 @@ iii) https://neetcode.io/solutions/design-circular-queue
 ```java
 class MyCircularQueue {
 
-    List<Integer> lt;
+    LinkedList<Integer> lt;
     int size;
 
     public MyCircularQueue(int k) {
@@ -181,6 +181,7 @@ class MyCircularQueue {
         return false;
     }
 }
+
 ```
 
 #### **head.next!=null check rather than head!=null check**
