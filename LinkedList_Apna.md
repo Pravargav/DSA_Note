@@ -1,4 +1,5 @@
-**Traverse LinkedList**
+**LeetCode LinkedList structure**
+
 ```java
 public class ListNode {
     int val;
@@ -10,7 +11,11 @@ public class ListNode {
         this.next = next; 
     }
 }
+```
 
+**Traverse LinkedList**
+
+```java
 public void traverse(ListNode head) {
     ListNode curr = head;
 
