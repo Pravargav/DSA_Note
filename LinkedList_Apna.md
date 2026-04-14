@@ -106,28 +106,7 @@ class Solution {
     }
 }
 ```
-***very very important solution for head.next!=null check rather than head==null check***
 
--> https://leetcode.com/problems/remove-duplicates-from-sorted-list/?envType=problem-list-v2&envId=wga5p0ds
-
-```java
-class Solution {
-    public ListNode delete_duplicates(ListNode head) {
-        ListNode temp = head;
-        while (head != null) {
-            if(head.next==null){
-                break;
-            }
-            if (head.val == head.next.val) {
-                head.next = head.next.next;
-            } else {
-                head = head.next;
-            }
-        }
-        return temp;
-    }
-}
-```
 **reverse linked list**
 ```java
 
@@ -152,6 +131,83 @@ class Solution {
             }
         }
         return newx;
+    }
+}
+```
+**Design front middle back queue**
+```java
+class FrontMiddleBackQueue {
+
+    LinkedList<Integer> l;
+
+    public FrontMiddleBackQueue() {
+        this.l= new LinkedList<>();
+    }
+    
+    public void pushFront(int val) {
+        l.add(0,val);
+    }
+    
+    public void pushMiddle(int val) {
+        int s=l.size();
+        if(s%2==0){
+             l.add(s/2,val);
+        }else{
+        l.add(s/2,val);}
+    }
+    
+    public void pushBack(int val) {
+        l.add(val);
+    }
+    
+    public int popFront() {
+        int s=l.size();
+        if(s==0){
+            return -1;
+        }
+        return l.remove(0);
+    }
+    
+    public int popMiddle() {
+        int s=l.size();
+        if(s==0){
+            return -1;
+        }
+        if(s%2==0){
+            return l.remove((s/2)-1);
+        }
+        return l.remove(s/2);
+    }
+    
+    public int popBack() {
+        int s=l.size();
+        if(s==0){
+            return -1;
+        }
+        return l.remove(s-1);
+    }
+}
+```
+
+***very very important solution for head.next!=null check rather than head==null check***
+
+-> https://leetcode.com/problems/remove-duplicates-from-sorted-list/?envType=problem-list-v2&envId=wga5p0ds
+
+```java
+class Solution {
+    public ListNode delete_duplicates(ListNode head) {
+        ListNode temp = head;
+        while (head != null) {
+            if(head.next==null){
+                break;
+            }
+            if (head.val == head.next.val) {
+                head.next = head.next.next;
+            } else {
+                head = head.next;
+            }
+        }
+        return temp;
     }
 }
 ```
