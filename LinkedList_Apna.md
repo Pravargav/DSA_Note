@@ -228,5 +228,27 @@ class Solution {
     }
 }
 ```
+**journey of head (Recursion – Forward & Return Path)**
 
+-> In this recursive function, head is a reference (address) to the current node.
+During recursion, the same head reference moves forward, and during return, it follows the same path backward.
+
+```java
+class Solution {
+    public ListNode testList(ListNode head) {
+        if (head == null || head.next == null) {
+            System.out.println("---");
+            return head; 
+        } 
+
+        System.out.println(head.val + " ");
+
+        ListNode newHead = testList(head.next);
+
+        System.out.println(head.val + " ");
+
+        return newHead;
+    }
+}
+```
 
