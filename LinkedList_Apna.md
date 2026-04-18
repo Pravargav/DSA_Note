@@ -251,4 +251,8 @@ class Solution {
     }
 }
 ```
+-> list.remove(Integer.valueOf(20)); - remove by value
 
+-> list.remove(20); - remove by index
+
+->  For integers, use Integer.valueOf() to avoid confusion with index.
