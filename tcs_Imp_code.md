@@ -136,4 +136,6 @@ class Solution {
 }
 
 ```
-https://youtu.be/hnswaLJvr6g?si=pqkYYKi773NwxUi9
+-> https://youtu.be/hnswaLJvr6g?si=pqkYYKi773NwxUi9
+
+-> An Amrstrong number is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
