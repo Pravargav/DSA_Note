@@ -70,3 +70,6 @@ public class Main {
 }
 
 ```
+```java
+System.out.println((double) (arr[ind1] + arr[ind2]) / 2); 
+```
