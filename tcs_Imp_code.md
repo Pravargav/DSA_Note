@@ -6,7 +6,6 @@ public class FrequencyCounter {
     public static void main(String[] args) {
         String[] arr = {"apple", "banana", "apple", "orange", "banana", "apple"};
         
- =
         HashMap<String, Integer> map = new HashMap<>();
 
         for (String str : arr) {
@@ -18,4 +17,14 @@ public class FrequencyCounter {
         }
     }
 }
+```
+```java
+Arrays.sort(arr);
+Arrays.toString(arr)
+Arrays.sort(arr, Collections.reverseOrder());
+Collections.sort(list);
+Collections.sort(list, Collections.reverseOrder());
+Collections.sort(list);
+Collections.sort(list, Collections.reverseOrder());
+Collections.sort(list, (a, b) -> b - a);
 ```
