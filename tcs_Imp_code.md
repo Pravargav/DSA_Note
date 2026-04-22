@@ -1,7 +1,4 @@
 ```java
-import java.util.HashMap;
-import java.util.Map;
-
 public class FrequencyCounter {
     public static void main(String[] args) {
         String[] arr = {"apple", "banana", "apple", "orange", "banana", "apple"};
