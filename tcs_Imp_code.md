@@ -67,9 +67,6 @@ Set<Integer> set = new TreeSet<>(list);//sorted order
 ArrayList<Integer> list = new ArrayList<>(set);
 ```
 ```java
-mp.containsKey(second)
-```
-```java
 public int[] sortByFrequency(int[] arr) {
     Map<Integer, Integer> freq = new HashMap<>();
 
