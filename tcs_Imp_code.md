@@ -25,3 +25,53 @@ Collections.sort(list);
 Collections.sort(list, Collections.reverseOrder());
 Collections.sort(list, (a, b) -> b - a);
 ```
+```java
+//Rotate array by k pos
+import java.util.*;
+
+class ArrayRotation {
+
+    static void reverseSection(int[] array, int start, int end) {
+        while (start < end) {
+            int temp = array[start];
+            array[start] = array[end];
+            array[end] = temp;
+            start++;
+            end--;
+        }
+    }
+    // Function to left rotate array by k positions
+    static void leftRotate(int[] array, int positions) {
+        int length = array.length;
+        positions %= length;
+        if (positions == 0) return;
+
+        reverseSection(array, 0, positions - 1);
+        reverseSection(array, positions, length - 1);
+        reverseSection(array, 0, length - 1);
+    }
+
+    // Function to right rotate array by k positions
+    static void rightRotate(int[] array, int positions) {
+        int length = array.length;
+        leftRotate(array, length - (positions % length));
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        int[] array = {1, 2, 3, 4, 5};
+        int k = 2;
+
+        ArrayRotation.leftRotate(array, k);
+
+        System.out.println();
+
+        array = new int[]{1, 2, 3, 4, 5};
+
+        ArrayRotation.rightRotate(array, k);
+    }
+}
+
+```
