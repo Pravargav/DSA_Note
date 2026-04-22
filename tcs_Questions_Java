@@ -1,4 +1,4 @@
--> TCS NQT Coding Sheet - TCS Coding Questions
+TCS NQT Coding Sheet - TCS Coding Questions
 
 -> Problems on Arrays
 Find the smallest number in an array
@@ -26,7 +26,9 @@ Finding Circular rotation of an array by K positions
 Sort an array according to the order defined by another array
 Search an element in an array
 Check if Array is a subset of another array or not
-Problems on Numbers
+
+
+-> Problems on Numbers
 Check if a number is palindrome or not
 Find all Palindrome numbers in a given range
 Check if a number is prime or not
@@ -62,7 +64,8 @@ Replace all 0s with 1s in a given integer
 Can a number be expressed as a sum of two prime numbers
 Calculate the area of circle
 Program to find roots of a Quadratic Equation
-Problems on Number System
+
+-> Problems on Number System
 Convert Binary to Decimal
 Convert binary to octal
 Decimal to Binary conversion
