@@ -139,3 +139,5 @@ class Solution {
 -> https://youtu.be/hnswaLJvr6g?si=pqkYYKi773NwxUi9
 
 -> An Amrstrong number is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
+
+-> A perfect number is defined as a number that is the sum of its proper divisors ( all its positive divisors excluding itself).
