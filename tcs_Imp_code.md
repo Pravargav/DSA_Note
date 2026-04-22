@@ -143,3 +143,31 @@ class Solution {
 -> A perfect number is defined as a number that is the sum of its proper divisors ( all its positive divisors excluding itself).
 
 -> A year is a leap year only if it satisfies the following condition-  i) The year is divisible by ii) the year is divisible by 4 but not by 100
+
+```java
+static double myPow(double x, int n) {
+    double ans = 1;
+
+    if (x == 0 || x == 1) {
+        return x;
+    }
+
+    if (n < 0) {
+        x = 1 / x;
+        n = -(n + 1);
+        ans *= x;
+    }
+
+    while (n > 0) {
+        if (n % 2 == 1) {
+            ans *= x;
+            n--;
+        } else {
+            x *= x;
+            n /= 2;
+        }
+    }
+
+    return ans;
+}
+```
