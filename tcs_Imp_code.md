@@ -63,3 +63,9 @@ class ArrayRotation {
 ```java
 System.out.println((double) (arr[ind1] + arr[ind2]) / 2); 
 ```
+```java
+Set<Integer> set = new HashSet<>(list);
+Set<Integer> set = new LinkedHashSet<>(list);//insertion order
+Set<Integer> set = new TreeSet<>(list);//sorted order
+ArrayList<Integer> list = new ArrayList<>(set);
+```
