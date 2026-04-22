@@ -168,3 +168,5 @@ static double myPow(double x, int n) {
 }
 ```
 -> When the sum of factorial of individual digits of a number is equal to the original number the number is called a strong number. 
+
+-> A number is called an Automorphic number if and only if its square ends in the same digits as the number itself..
