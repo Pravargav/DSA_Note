@@ -66,3 +66,6 @@ Set<Integer> set = new LinkedHashSet<>(list);//insertion order
 Set<Integer> set = new TreeSet<>(list);//sorted order
 ArrayList<Integer> list = new ArrayList<>(set);
 ```
+```java
+mp.containsKey(second)
+```
