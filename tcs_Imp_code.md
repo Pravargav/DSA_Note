@@ -141,3 +141,5 @@ class Solution {
 -> An Amrstrong number is a number that is equal to the sum of its own digits each raised to the power of the number of digits.
 
 -> A perfect number is defined as a number that is the sum of its proper divisors ( all its positive divisors excluding itself).
+
+-> A year is a leap year only if it satisfies the following condition-  i) The year is divisible by ii) the year is divisible by 4 but not by 100
