@@ -113,3 +113,26 @@ public int[] replaceWithRank(int[] arr) {
     return result;
 }
 ```
+```java
+class Solution {
+    public int maxProductsubarray(int[] nums) {
+        int n = nums.length; //size of array.
+
+        int pre = 1, suff = 1;
+        int ans = Integer.MIN_VALUE;
+        for (int i = 0; i < n; i++) {
+            if (pre == 0) pre = 1;
+            pre *= nums[i];
+            ans = Math.max(ans,pre);
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (suff == 0) suff = 1;
+            suff *= nums[n - i - 1];
+            ans = Math.max(ans, suff);
+        }
+        return ans;
+    }
+}
+
+```
