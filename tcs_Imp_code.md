@@ -16,8 +16,8 @@ public class FrequencyCounter {
 }
 ```
 ```java
-Arrays.sort(arr);
 Arrays.toString(arr)
+Arrays.sort(arr);
 Arrays.sort(arr, Collections.reverseOrder());
 Collections.sort(list);
 Collections.sort(list, Collections.reverseOrder());
