@@ -167,3 +167,4 @@ static double myPow(double x, int n) {
     return ans;
 }
 ```
+-> When the sum of factorial of individual digits of a number is equal to the original number the number is called a strong number. 
