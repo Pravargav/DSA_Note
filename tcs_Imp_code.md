@@ -58,16 +58,6 @@ class ArrayRotation {
     }
 }
 
-public class Main {
-    public static void main(String[] args) {
-        int[] array = {1, 2, 3, 4, 5};
-        int k = 2;
-        ArrayRotation.leftRotate(array, k);
-        System.out.println();
-        array = new int[]{1, 2, 3, 4, 5};
-        ArrayRotation.rightRotate(array, k);
-    }
-}
 
 ```
 ```java
