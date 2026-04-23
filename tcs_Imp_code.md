@@ -350,3 +350,14 @@ public String removeWhitespaces(String str) {
     return result.toString();
 }
 ```
+-> Anagram check
+
+-First, check if the lengths of both strings are equal. If not, they can't be anagrams and return false immediately.
+
+-If the lengths match, sort both strings using a built-in sorting algorithm.
+
+-Once sorted, iterate through each character of both strings and compare them one by one.
+
+-If any character mismatch is found, return false.
+
+-If all characters match, return true, confirming that the strings are anagrams.
