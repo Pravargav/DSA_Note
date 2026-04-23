@@ -490,4 +490,7 @@ System.out.println(Pattern.matches("\\S+", "gfg"));       // true (no whitespace
 ---
 
 
-
+```java
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+```
