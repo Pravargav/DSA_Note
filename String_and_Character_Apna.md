@@ -63,13 +63,10 @@ String s1 = s.replaceAll("[aeiou]", "");
 ##  Remove Non-Alphabetic Characters from String
 
 ```java
-for (int i = 0; i < s.length(); i++) {
-    if ((s.charAt(i) < 'A' || s.charAt(i) > 'Z') &&
-        (s.charAt(i) < 'a' || s.charAt(i) > 'z')) {
-        s = s.substring(0, i) + s.substring(i + 1);
-        i--;
-    }
-}
+
+        String str = "H@ello#123 World!";
+        str = str.replaceAll("[^a-zA-Z]", "");
+
 ```
 
 ---
