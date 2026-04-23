@@ -384,3 +384,6 @@ static String solve(String str) {
 }
 
 ```
+```java
+string1.indexOf(string2);
+```
