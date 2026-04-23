@@ -219,3 +219,23 @@ public static int lcm(int a, int b) {
 -This reduces our problem to checking whether both n and n - 2 are prime.
 
 -If both are prime, return Yes; otherwise, return No.
+
+```java
+    public void addFractions(int num1, int den1, int num2, int den2) {
+        // Find LCM of both denominators
+        int lcm = (den1 * den2) / gcd(den1, den2);
+
+        // Convert both numerators to same denominator
+        int newNum1 = num1 * (lcm / den1);
+        int newNum2 = num2 * (lcm / den2);
+
+        // Add the numerators
+        int resultNum = newNum1 + newNum2;
+        int resultDen = lcm;
+
+        // Simplify the result by dividing by gcd
+        int common = gcd(resultNum, resultDen);
+        resultNum /= common;
+        resultDen /= common;
+    }
+```
