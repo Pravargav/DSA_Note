@@ -177,6 +177,8 @@ static double myPow(double x, int n) {
 
 -If the discriminant is less than 0, the roots are complex and different.
 
+-> This approach is similar to the repeated subtraction approach. But, in this approach, we replace B with the modulus of A and B instead of the difference.Ex - int a = 20, b = 30;
+
 ```java
 
     static int gcd(int a, int b) {
@@ -187,6 +189,7 @@ static double myPow(double x, int n) {
     }
 
 ```
+-> This approach is based on the principle that the GCD of two numbers A and B will be the same even if we replace the larger number with the difference between A and B. Ex - int a = 30, b = 20; 
 ```java
 
     static int gcd(int a, int b) {
