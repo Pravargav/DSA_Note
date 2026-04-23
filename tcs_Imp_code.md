@@ -361,3 +361,26 @@ public String removeWhitespaces(String str) {
 -If any character mismatch is found, return false.
 
 -If all characters match, return true, confirming that the strings are anagrams.
+
+-> Change every letter to the next lexicographic alphabet
+```java
+static String solve(String str) {
+    StringBuilder result = new StringBuilder();
+
+    for (int i = 0; i < str.length(); i++) {
+        char ch = str.charAt(i);
+
+        if (ch == 'Z')
+            result.append('A');
+        else if (ch == 'z')
+            result.append('a');
+        else if ((ch >= 'A' && ch < 'Z') || (ch >= 'a' && ch < 'z'))
+            result.append((char) (ch + 1));
+        else
+            result.append(ch);
+    }
+
+    return result.toString();
+}
+
+```
