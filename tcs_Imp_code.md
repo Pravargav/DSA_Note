@@ -169,8 +169,6 @@ static double myPow(double x, int n) {
 ```
 -> When the sum of factorial of individual digits of a number is equal to the original number the number is called a strong number. 
 
--> A number is called an Automorphic number if and only if its square ends in the same digits as the number itself.
-
 -> To calculate discriminant, we can simply use the formula D = b^2 - 4*a*c
 
 -If the discriminant is greater than 0, the roots are real and different.
