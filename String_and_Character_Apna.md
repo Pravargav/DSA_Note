@@ -1,6 +1,6 @@
 
 
-## 🔤 Character Methods
+##  Character Methods
 
 ```java
 Character.isDigit(ch);        // Check if character is a digit (0-9)
@@ -9,7 +9,7 @@ Character.isLowerCase(ch);    // Check if character is lowercase
 Character.isUpperCase(ch);    // Check if character is uppercase
 ```
 
-## 🔢 ASCII Ranges
+##  ASCII Ranges
 
 | Character | Range  |
 | --------- | ------ |
@@ -19,7 +19,7 @@ Character.isUpperCase(ch);    // Check if character is uppercase
 
 ---
 
-## 🔁 Character ↔ Integer Conversion
+##  Character ↔ Integer Conversion
 
 ```java
 char c = '9';
@@ -37,7 +37,7 @@ char c = (char)(num + '0');  // 7 → '7'
 
 ---
 
-## 🔠 Toggle Case of Characters in a String
+##  Toggle Case of Characters in a String
 
 ```java
 String s1 = "";
@@ -51,7 +51,7 @@ for (int i = 0; i < s.length(); i++) {
 
 ---
 
-## 🔤 Remove Vowels from a String
+##  Remove Vowels from a String
 
 ```java
 String s = "prepinsta";
@@ -60,7 +60,7 @@ String s1 = s.replaceAll("[aeiou]", "");
 
 ---
 
-## 🚫 Remove Non-Alphabetic Characters from String
+##  Remove Non-Alphabetic Characters from String
 
 ```java
 for (int i = 0; i < s.length(); i++) {
