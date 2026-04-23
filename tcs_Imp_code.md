@@ -116,7 +116,7 @@ public int[] replaceWithRank(int[] arr) {
 ```java
 class Solution {
     public int maxProductsubarray(int[] nums) {
-        int n = nums.length; //size of array.
+        int n = nums.length; 
 
         int pre = 1, suff = 1;
         int ans = Integer.MIN_VALUE;
