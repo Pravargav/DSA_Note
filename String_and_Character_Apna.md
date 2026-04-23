@@ -296,7 +296,7 @@ String strFromArray2 = String.valueOf(charArray3);  // char array to String
 
 ---
 
-## 🧵 Common `String` Methods
+##  Common `String` Methods
 
 ### 🔹 Length & Character Access
 
@@ -410,7 +410,7 @@ s.concat(" Tendulkar");         // Strings are immutable
 System.out.println(s);          // Output: Sachin
 ```
 
-### ✅ If you want to actually append:
+### If you want to actually append:
 
 ```java
 String name = "Sachin";
@@ -421,7 +421,7 @@ System.out.println(name);       // Output: Sachin Tendulkar
 
 ---
 
-## 🔹 Java Regex Patterns – Character Classes
+##  Java Regex Patterns – Character Classes
 
 | Pattern           | Meaning                               |
 | ----------------- | ------------------------------------- |
