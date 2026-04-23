@@ -474,8 +474,7 @@ System.out.println(Pattern.matches("[geks]*", "geeksgeeks")); // true
 | `\S`    | Non-whitespace                         |
 | `\w`    | Word character `[a-zA-Z_0-9]`          |
 | `\W`    | Non-word character                     |
-| `\b`    | Word boundary                          |
-| `\B`    | Non-word boundary                      |
+
 
 ---
 
