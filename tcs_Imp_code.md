@@ -1,5 +1,6 @@
+-> Frequency Counter
 ```java
-public class FrequencyCounter {
+
     public static void main(String[] args) {
         String[] arr = {"apple", "banana", "apple", "orange", "banana", "apple"};
         HashMap<String, Integer> map = new HashMap<>();
@@ -10,7 +11,7 @@ public class FrequencyCounter {
             System.out.println(entry.getKey() + ": " + entry.getValue());
         }
     }
-}
+
 ```
 ```java
 Arrays.toString(arr)
@@ -290,4 +291,34 @@ public static int lcm(int a, int b) {
         String binary = Integer.toBinaryString(decimal);
 
 
+```
+-> Reverse words in a string
+
+```java
+class Main {
+    public static void main(String[] args) {
+        String s = "welcome to the jungle";
+
+        // Split into array
+        String[] arr = s.split(" ");
+
+        // Reverse array
+        int i = 0, j = arr.length - 1;
+        while (i < j) {
+            String temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+            i++;
+            j--;
+        }
+
+        // Attach (join) words
+        String result = "";
+        for (String word : arr) {
+            result += word + " ";
+        }
+
+        System.out.println(result.trim());
+    }
+}
 ```
