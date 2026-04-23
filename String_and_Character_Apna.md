@@ -71,9 +71,9 @@ String s1 = s.replaceAll("[aeiou]", "");
 
 ---
 
-## 🧱 StringBuilder in Java
+## StringBuilder in Java
 
-### 🔨 Common Operations
+### Common Operations
 
 ```java
 StringBuilder sb = new StringBuilder("Java");
@@ -91,7 +91,7 @@ String s = "(a+b)=c";
 String result = s.replaceAll("[(){}]", "");  // Remove brackets
 ```
 
-### 🧰 StringBuilder Methods Summary
+### StringBuilder Methods Summary
 
 | Method                                  | Description                   |
 | --------------------------------------- | ----------------------------- |
@@ -114,7 +114,7 @@ String result = s.replaceAll("[(){}]", "");  // Remove brackets
 
 ---
 
-## 🧱 StringBuilder Operations
+## StringBuilder Operations
 
 ```java
 StringBuilder sb = new StringBuilder("Hello World");
@@ -158,7 +158,7 @@ String result = sb.toString();
 
 ---
 
-## 🔠 String Splitting
+## String Splitting
 
 ```java
 String s = "geeks@for@geeks";
@@ -232,7 +232,7 @@ String[] arr = s.split("[, ?.@]+");
 
 ---
 
-## 🔤 char to String Conversion
+## char to String Conversion
 
 ```java
 char ch1 = 'A';
@@ -247,7 +247,7 @@ String str3 = "" + ch3;
 
 ---
 
-## 🔢 String to char and int
+##  String to char and int
 
 ```java
 String str = "Hello";
@@ -263,7 +263,7 @@ int number2 = Integer.parseInt(numberStr2);  // 456
 
 ---
 
-## 🔁 String ↔ Integer Conversion
+##  String ↔ Integer Conversion
 
 ```java
 String numberStr = "123";
@@ -281,7 +281,7 @@ String str3 = "" + number3;                      // Integer to String
 
 ---
 
-## 🔁 String ↔ char\[]
+##  String ↔ char\[]
 
 ```java
 String str = "Hello";
