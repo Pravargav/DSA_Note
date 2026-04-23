@@ -210,15 +210,7 @@ public class BlankLineDetector {
     }
 }
 ```
-#### Important Scanner Notes
 
-| Method         | Reads          | Stops at space | Keeps spaces |
-|----------------|----------------|---------------|--------------|
-| `next()`       | Word           | Yes           | No           |
-| `nextLine()`   | Full line      | No            | Yes          |
-| `hasNext()`    | Token available| —             | —            |
-| `hasNextLine()`| Line available | —             | —            |
-| `nextInt()`    | Integer        | —             | —            |
 
 #### Important Trick
 After using nextInt(), always call:
