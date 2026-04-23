@@ -387,3 +387,16 @@ static String solve(String str) {
 ```java
 string1.indexOf(string2);
 ```
+```java
+        // Words for single digits
+        String[] singleDigit = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
+        // Words for numbers from 10 to 19
+        String[] twoDigits = {"ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"};
+
+        // Words for multiples of ten from 20 onwards
+        String[] tensMultiple = {"", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"};
+
+        // Words for higher powers
+        String[] tensPower = {"hundred", "thousand"};
+```
