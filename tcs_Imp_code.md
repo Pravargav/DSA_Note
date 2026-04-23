@@ -176,3 +176,24 @@ static double myPow(double x, int n) {
 -If the discriminant is equal to 0, the roots are real and equal.
 
 -If the discriminant is less than 0, the roots are complex and different.
+
+```java
+
+    static int gcd(int a, int b) {
+        if (b == 0)
+            return a;
+        else
+            return gcd(b, a % b);
+    }
+
+```
+```java
+
+    static int gcd(int a, int b) {
+        if (b == 0)
+            return a;
+        else
+            return gcd(b, Math.abs(a - b));
+    }
+
+```
