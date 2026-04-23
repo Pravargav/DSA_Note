@@ -104,7 +104,6 @@ public class ScanUsingHasNextLine {
         }
 
         System.out.println("\nLines:");
-        lines.forEach(System.out::println);
 
         sc.close();
     }
