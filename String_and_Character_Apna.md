@@ -435,7 +435,7 @@ System.out.println(name);       // Output: Sachin Tendulkar
 
 ---
 
-## 🔹 Regex Quantifiers
+##  Regex Quantifiers
 
 | Quantifier | Description                                           |
 | ---------- | ----------------------------------------------------- |
@@ -448,7 +448,7 @@ System.out.println(name);       // Output: Sachin Tendulkar
 
 ---
 
-## 🔹 Regex Examples using `Pattern.matches()`
+##  Regex Examples using `Pattern.matches()`
 
 ```java
 System.out.println(Pattern.matches("[a-z]", "g"));             // true
@@ -463,7 +463,7 @@ System.out.println(Pattern.matches("[geks]*", "geeksgeeks")); // true
 
 ---
 
-## 🔹 Predefined Regex Character Classes
+##  Predefined Regex Character Classes
 
 | Pattern | Meaning                                |
 | ------- | -------------------------------------- |
@@ -479,7 +479,7 @@ System.out.println(Pattern.matches("[geks]*", "geeksgeeks")); // true
 
 ---
 
-## 🔹 Examples
+##  Examples
 
 ```java
 System.out.println(Pattern.matches("\\d+", "1234"));      // true (digits only)
