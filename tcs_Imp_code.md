@@ -208,3 +208,14 @@ public static int lcm(int a, int b) {
 	return Math.abs(a * b) / gcd(a, b);
 }
 ```
+-> Express given number as sum of primes
+
+-We know that all prime numbers (except 2) are odd.
+
+-An odd number cannot be written as the sum of two odd prime numbers, because the sum of two odd numbers is even.
+
+-So, if a number is prime and we want to express it as the sum of two prime numbers, one of them must be 2 (the only even prime).
+
+-This reduces our problem to checking whether both n and n - 2 are prime.
+
+-If both are prime, return Yes; otherwise, return No.
