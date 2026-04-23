@@ -239,3 +239,55 @@ public static int lcm(int a, int b) {
         resultDen /= common;
     }
 ```
+```java
+
+        String binary = "1011";
+        int decimal = Integer.parseInt(binary, 2);
+
+```
+
+```java
+
+        String binary = "1011";
+        int decimal = Integer.parseInt(binary, 2);
+        String octal = Integer.toOctalString(decimal);
+
+
+```
+
+```java
+
+        int decimal = 10;
+        String binary = Integer.toBinaryString(decimal);
+
+
+
+```
+
+```java
+
+
+        int decimal = 25;
+        String octal = Integer.toOctalString(decimal);
+
+
+```
+
+```java
+
+
+        String octal = "31";
+        int decimal = Integer.parseInt(octal, 8)
+
+
+```
+
+```java
+
+
+        String octal = "31";
+        int decimal = Integer.parseInt(octal, 8);
+        String binary = Integer.toBinaryString(decimal);
+
+
+```
