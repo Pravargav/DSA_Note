@@ -1,17 +1,6 @@
-### Java Scanner — Reading strings in different ways
-
-This document contains examples of reading strings using Java `Scanner`:
-
-- Using `hasNextInt()` + `nextLine()` (Original Code)
-- Using `hasNext()` (token-based)
-- Using `hasNextLine()` (line-based)
-- Character scanning (no `hasNextChar()` in Java)
-- Detecting space characters
-- Detecting newline / blank lines
 
 
-
-#### 0) Original Code — Using `hasNextInt()` + `nextLine()`
+####  Original Code — Using `hasNextInt()` + `nextLine()`
 
 Reads number of strings, then reads full lines.
 
@@ -65,7 +54,7 @@ public class ScanListOfStrings {
     }
 }
 ```
-#### 1) Using hasNext() — Token-Based Input
+####  Using hasNext() — Token-Based Input
 Reads words separated by whitespace.
 ```java
 import java.util.*;
@@ -93,7 +82,7 @@ public class ScanUsingHasNext {
     }
 }
 ```
-#### 2) Using hasNextLine() — Line-Based Input
+####  Using hasNextLine() — Line-Based Input
 Reads full lines including spaces.
 ```java
 import java.util.*;
@@ -121,7 +110,7 @@ public class ScanUsingHasNextLine {
     }
 }
 ```
-#### 3) Character Scanning (No hasNextChar() in Java)
+####  Character Scanning (No hasNextChar() in Java)
 Java does NOT provide hasNextChar().
 ```java
 import java.util.*;
@@ -141,7 +130,7 @@ public class ScanCharacters {
     }
 }
 ```
-#### 4) Detecting Space Characters
+####  Detecting Space Characters
 Counts spaces in a line.
 ```java
 import java.util.*;
@@ -167,7 +156,7 @@ public class DetectSpaces {
 }
 ```
 
-#### 5) Detecting Newline Behavior
+####  Detecting Newline Behavior
 Counts number of lines entered.
 ```java
 import java.util.*;
@@ -196,7 +185,7 @@ public class CountLines {
 }
 ```
 
-#### 6) Detecting Blank Lines (Only Enter Pressed)
+####  Detecting Blank Lines (Only Enter Pressed)
 ```java
 import java.util.*;
 
