@@ -338,18 +338,13 @@ class Main {
 }
 ```
 ```java
-public String removeVowels(String s) {
+public String removeWhitespaces(String str) {
     StringBuilder result = new StringBuilder();
 
-    for (char ch : s.toCharArray()) {
-        char lower = Character.toLowerCase(ch);
-
-        if (lower == 'a' || lower == 'e' || lower == 'i' ||
-            lower == 'o' || lower == 'u') {
-            continue;
+    for (char c : str.toCharArray()) {
+        if (c != ' ' && c != '\t' && c != '\n') {
+            result.append(c);
         }
-
-        result.append(ch);
     }
 
     return result.toString();
