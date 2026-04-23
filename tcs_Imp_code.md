@@ -337,3 +337,21 @@ class Main {
     }
 }
 ```
+```java
+public String removeVowels(String s) {
+    StringBuilder result = new StringBuilder();
+
+    for (char ch : s.toCharArray()) {
+        char lower = Character.toLowerCase(ch);
+
+        if (lower == 'a' || lower == 'e' || lower == 'i' ||
+            lower == 'o' || lower == 'u') {
+            continue;
+        }
+
+        result.append(ch);
+    }
+
+    return result.toString();
+}
+```
