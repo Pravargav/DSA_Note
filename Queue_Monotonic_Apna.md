@@ -1,4 +1,10 @@
+-> offer
 
+-> poll
+
+-> peek
+
+-> isempty
 
 
 🔷 Monotonic Queue
