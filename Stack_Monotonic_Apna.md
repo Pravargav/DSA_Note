@@ -1,3 +1,11 @@
+-> pop
+
+-> push
+
+-> peek
+
+-> isempty 
+
 ### Next Greater Element (NGE)/Previous Smaller Element/Next Smaller element/ Previous Greater  — Monotonic Decreasing Stack
 
 ```java
