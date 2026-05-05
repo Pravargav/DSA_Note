@@ -1,3 +1,5 @@
+-> print all subsets of array(i.e subsequences not subarrays)
+
 ```java
 import java.util.*;
  
