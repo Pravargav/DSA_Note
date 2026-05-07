@@ -215,7 +215,7 @@ class TUF {
     }
 }
 ```
-##### 3D - Dp Sum
+##### 3D - Dp Problem
 
 -> Stone Game leetcode - Alice bob kind of sums when both play optimally.
 
