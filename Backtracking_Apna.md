@@ -26,7 +26,7 @@ public class Main {
     }
 }
 ```
--> Print all permutations
+-> Print all permutations of array
 
 ```java
 import java.util.*;
