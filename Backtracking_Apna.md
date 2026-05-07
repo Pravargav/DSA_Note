@@ -67,33 +67,108 @@ public class Main {
     }
 }
 ```
--> Stone Game leetcode - Alice bob kind of sums when both play optimally
+
+-> leetcode -fair distribution of cookies (backtracking concept)
 
 ```java
 class Solution {
-    int [][][] memo;
-    public boolean stoneGame(int[] piles) {
-        memo = new int[piles.length + 1][piles.length + 1][2];
-        for(int [][] arr : memo)
-            for(int [] subArr : arr)
-                Arrays.fill(subArr, -1);
-        
-        return (helper(0, piles.length - 1, piles, 1) > 0);
+    int res=Integer.MAX_VALUE; 
+    public int distributeCookies(int[] cookies, int k) {
+        int n=cookies.length;
+        int[]alloc=new int[k];
+        gen(cookies,alloc,0,k);
+        return res;
     }
-    
-    public int helper(int l, int r, int [] piles, int ID){
-        if(r < l)
-            return 0;
-        if(memo[l][r][ID] != -1)
-            return memo[l][r][ID];
-        
-        int next = Math.abs(ID - 1);
-        if(ID == 1)
-            memo[l][r][ID] = Math.max(piles[l] + helper(l + 1, r, piles, next), piles[r] + helper(l, r - 1, piles, next));
-        else
-            memo[l][r][ID] = Math.min(-piles[l] + helper(l + 1, r, piles, next), -piles[r] + helper(l, r - 1, piles, next));
-        
-        return memo[l][r][ID];
+
+      
+    public void gen(int arr[],int []alloc,int index,int k){
+        if(index==arr.length){
+            pall(alloc);
+            return;
+        }
+        for(int st=0;st<k;st++){
+            alloc[st]+=arr[index];
+            gen(arr,alloc,index+1,k);
+            alloc[st]-=arr[index];
+        }
+    }
+
+    public void pall(int[] alloc){
+        for(int i=0;i<alloc.length;i++){
+            System.out.print(alloc[i]+" ");
+        }
+        System.out.println();
     }
 }
+```
+
+
+-> Generate all subsets
+```java
+import java.util.*;
+
+public class AllSubsets {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+
+        generateSubsets(arr, 0, current, result);
+
+        // Print all subsets
+        for (List<Integer> subset : result) {
+            System.out.println(subset);
+        }
+    }
+
+    static void generateSubsets(int[] arr, int index, List<Integer> current, List<List<Integer>> result) {
+        // Add the current subset to result (copy it)
+        result.add(new ArrayList<>(current));
+
+        for (int i = index; i < arr.length; i++) {
+            current.add(arr[i]);                        // choose
+            generateSubsets(arr, i + 1, current, result); // explore
+            current.remove(current.size() - 1);          // un-choose (backtrack)
+        }
+    }
+} 
+```
+
+->Generate all permutaitons
+
+```java
+import java.util.*;
+
+public class PermutationsList {
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 3};
+        List<List<Integer>> result = new ArrayList<>();
+        List<Integer> current = new ArrayList<>();
+        boolean[] used = new boolean[arr.length];
+
+        permute(arr, used, current, result);
+
+        // Print all permutations
+        for (List<Integer> perm : result) {
+            System.out.println(perm);
+        }
+    }
+
+    static void permute(int[] arr, boolean[] used, List<Integer> current, List<List<Integer>> result) {
+        if (current.size() == arr.length) {
+            result.add(new ArrayList<>(current)); // copy current permutation
+            return;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (!used[i]) {
+                used[i] = true;
+                current.add(arr[i]);         // choose
+                permute(arr, used, current, result); // explore
+                current.remove(current.size() - 1);  // un-choose
+                used[i] = false;
+            }
+        }
+    }
+} 
 ```
