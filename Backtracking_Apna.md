@@ -417,3 +417,63 @@ public class Main {
     }
 }
 ```
+-> palindrome partitioning
+
+```java
+import java.util.*;
+ 
+public class Main {
+ 
+    public static void main(String[] args) {
+ 
+        String s = "aab";
+ 
+        List<List<String>> result = new ArrayList<>();
+ 
+        backtrack(s, 0, new ArrayList<>(), result);
+ 
+        System.out.println(result);
+    }
+ 
+    static void backtrack(String s,
+                          int index,
+                          List<String> current,
+                          List<List<String>> result) {
+ 
+        if (index == s.length()) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+ 
+        for (int i = index; i < s.length(); i++) {
+ 
+            if (isPalindrome(s, index, i)) {
+ 
+                current.add(s.substring(index, i + 1));
+ 
+                backtrack(s,
+                          i + 1,
+                          current,
+                          result);
+ 
+                current.remove(current.size() - 1);
+            }
+        }
+    }
+ 
+    static boolean isPalindrome(String s, int left, int right) {
+ 
+        while (left < right) {
+ 
+            if (s.charAt(left) != s.charAt(right)) {
+                return false;
+            }
+ 
+            left++;
+            right--;
+        }
+ 
+        return true;
+    }
+}
+```
