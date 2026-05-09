@@ -557,3 +557,59 @@ public class Main {
     }
 }
 ```
+-> Rat in a maze
+
+```java
+import java.util.*;
+ 
+public class Main {
+ 
+    static int N = 4;
+ 
+    public static void main(String[] args) {
+ 
+        int[][] maze = {
+                {1, 0, 0, 0},
+                {1, 1, 0, 1},
+                {0, 1, 0, 0},
+                {1, 1, 1, 1}
+        };
+ 
+        boolean[][] visited = new boolean[N][N];
+ 
+        solve(maze, 0, 0, "", visited);
+    }
+ 
+    static void solve(int[][] maze,
+                      int row,
+                      int col,
+                      String path,
+                      boolean[][] visited) {
+ 
+        if (row == N - 1 && col == N - 1) {
+            System.out.println(path);
+            return;
+        }
+ 
+        if (row < 0 || col < 0 ||
+            row >= N || col >= N ||
+            maze[row][col] == 0 ||
+            visited[row][col]) {
+ 
+            return;
+        }
+ 
+        visited[row][col] = true;
+ 
+        solve(maze, row + 1, col, path + "D", visited);
+ 
+        solve(maze, row, col - 1, path + "L", visited);
+ 
+        solve(maze, row, col + 1, path + "R", visited);
+ 
+        solve(maze, row - 1, col, path + "U", visited);
+ 
+        visited[row][col] = false;
+    }
+}
+```
