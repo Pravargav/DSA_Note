@@ -613,3 +613,92 @@ public class Main {
     }
 }
 ```
+
+-> sudoku solver
+
+```java
+
+class Solution {
+    static int N = 9;
+
+    public void solveSudoku(char[][] board) {
+        // 4D temp array for 3x3 sub-boxes
+        char[][][][] temp = new char[3][3][3][3];
+
+        // Initialize temp from board
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                temp[i / 3][j / 3][i % 3][j % 3] = board[i][j];
+            }
+        }
+
+        solve(board, 0, 0, temp);
+    }
+
+    // Backtracking using row and column
+    public static boolean solve(char[][] board, int row, int col, char[][][][] temp) {
+        // If all rows processed, sudoku is solved
+        if (row == 9) {
+            return true;
+        }
+
+        // Move to next row
+        if (col == 9) {
+            return solve(board, row + 1, 0, temp);
+        }
+
+        // Skip filled cells
+        if (board[row][col] != '.') {
+            return solve(board, row, col + 1, temp);
+        }
+
+        // Try digits 1 to 9
+        for (char ch = '1'; ch <= '9'; ch++) {
+            if (isSafe(board, row, col, ch, temp)) {
+                board[row][col] = ch;
+                temp[row / 3][col / 3][row % 3][col % 3] = ch;
+
+                if (solve(board, row, col + 1, temp)) {
+                    return true;
+                }
+
+                // Backtrack
+                board[row][col] = '.';
+                temp[row / 3][col / 3][row % 3][col % 3] = '.';
+            }
+        }
+
+        return false;
+    }
+
+    static boolean isSafe(char[][] board, int row, int col, char ch, char[][][][] temp) {
+        // Check row
+        for (int j = 0; j < 9; j++) {
+            if (board[row][j] == ch) {
+                return false;
+            }
+        }
+
+        // Check column
+        for (int i = 0; i < 9; i++) {
+            if (board[i][col] == ch) {
+                return false;
+            }
+        }
+
+        // Check 3x3 box using temp array
+        int boxRow = row / 3;
+        int boxCol = col / 3;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (temp[boxRow][boxCol][i][j] == ch) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+}
+```
