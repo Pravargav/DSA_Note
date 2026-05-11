@@ -67,74 +67,7 @@ public class Main {
     }
 }
 ```
-
--> leetcode -fair distribution of cookies (backtracking concept)
-
-```java
-class Solution {
-    int res=Integer.MAX_VALUE; 
-    public int distributeCookies(int[] cookies, int k) {
-        int n=cookies.length;
-        int[]alloc=new int[k];
-        gen(cookies,alloc,0,k);
-        return res;
-    }
-
-      
-    public void gen(int arr[],int []alloc,int index,int k){
-        if(index==arr.length){
-            pall(alloc);
-            return;
-        }
-        for(int st=0;st<k;st++){
-            alloc[st]+=arr[index];
-            gen(arr,alloc,index+1,k);
-            alloc[st]-=arr[index];
-        }
-    }
-
-    public void pall(int[] alloc){
-        for(int i=0;i<alloc.length;i++){
-            System.out.print(alloc[i]+" ");
-        }
-        System.out.println();
-    }
-}
-```
-
-
--> Generate all subsets
-```java
-import java.util.*;
-
-public class AllSubsets {
-    public static void main(String[] args) {
-        int[] arr = {1, 2, 3};
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> current = new ArrayList<>();
-
-        generateSubsets(arr, 0, current, result);
-
-        // Print all subsets
-        for (List<Integer> subset : result) {
-            System.out.println(subset);
-        }
-    }
-
-    static void generateSubsets(int[] arr, int index, List<Integer> current, List<List<Integer>> result) {
-        // Add the current subset to result (copy it)
-        result.add(new ArrayList<>(current));
-
-        for (int i = index; i < arr.length; i++) {
-            current.add(arr[i]);                        // choose
-            generateSubsets(arr, i + 1, current, result); // explore
-            current.remove(current.size() - 1);          // un-choose (backtrack)
-        }
-    }
-} 
-```
-
-->Generate all permutaitons
+(OR)
 
 ```java
 import java.util.*;
@@ -172,6 +105,47 @@ public class PermutationsList {
     }
 } 
 ```
+
+-> leetcode -fair distribution of cookies (backtracking concept)
+
+```java
+class Solution {
+    int res=Integer.MAX_VALUE; 
+    public int distributeCookies(int[] cookies, int k) {
+        int n=cookies.length;
+        int[]alloc=new int[k];
+        gen(cookies,alloc,0,k);
+        return res;
+    }
+
+      
+    public void gen(int arr[],int []alloc,int index,int k){
+        if(index==arr.length){
+            pall(alloc);
+            return;
+        }
+        for(int st=0;st<k;st++){
+            alloc[st]+=arr[index];
+            gen(arr,alloc,index+1,k);
+            alloc[st]-=arr[index];
+        }
+    }
+
+    public void pall(int[] alloc){
+        for(int i=0;i<alloc.length;i++){
+            System.out.print(alloc[i]+" ");
+        }
+        System.out.println();
+    }
+}
+```
+
+
+
+
+->Generate all permutaitons
+
+
 
 -> N-Queen's problem
 
