@@ -40,8 +40,11 @@ public class MonotonicQueue {
 }
 ```
 #####  Repeated template- 3589. Count Prime-Gap Balanced Subarrays
+
 ->1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
+
 ->2762. Continuous Subarrays
+
 ```java
 import java.util.*;
 
