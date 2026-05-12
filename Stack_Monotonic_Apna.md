@@ -1,6 +1,6 @@
 **pop, push, peek, isempty**
 
-### Next Greater Element (NGE)/Previous Smaller Element/Next Smaller element/ Previous Greater  — Monotonic Decreasing Stack
+##### Next Greater Element (NGE)/Previous Smaller Element/Next Smaller element/ Previous Greater  — Monotonic Decreasing Stack
 
 ```java
 import java.util.*;
@@ -32,7 +32,7 @@ public class NextGreaterElement {
 
 ```
 
-### Many stack problems use list/map of 26 stacks as 26 characters to track indexes of character
+##### Many stack problems use list/map of 26 stacks as 26 characters to track indexes of character
 
 ```java
 class Solution {
