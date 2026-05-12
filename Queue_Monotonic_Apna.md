@@ -1,16 +1,9 @@
--> offer
-
--> poll
-
--> peek
-
--> isempty
-
+**offer, poll, peek, isempty**
 
 🔷 Monotonic Queue
 A Monotonic Queue is a double-ended queue (deque) where the elements are kept in monotonic order, typically used in sliding window maximum or minimum problems.
 
- ### Java Code: Monotonic Decreasing Queue (Sliding Window Maximum)
+ ##### Java Code: Monotonic Decreasing Queue (Sliding Window Maximum)
  ```java
 import java.util.*;
 
@@ -43,7 +36,7 @@ public class MonotonicQueue {
     }
 }
 ```
-#  Repeated template- 3589. Count Prime-Gap Balanced Subarrays
+#####  Repeated template- 3589. Count Prime-Gap Balanced Subarrays
 ->1438. Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit
 ->2762. Continuous Subarrays
 ```java
