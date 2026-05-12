@@ -28,7 +28,8 @@ public class MonotonicQueue {
 
             deque.offerLast(i);
 
-            // Record the max value when the first window is complete as the First complete window ends at i = k - 1
+            // Record the max value when the first window is complete as the
+            // first complete window ends at i = k - 1
             if (i >= k - 1) {
                 res[i - k + 1] = nums[deque.peekFirst()];
             }
