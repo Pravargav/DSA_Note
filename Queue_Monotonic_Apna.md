@@ -14,7 +14,9 @@ public class MonotonicQueue {
         Deque<Integer> deque = new ArrayDeque<>();
 
         for (int i = 0; i < n; i++) {
-            // Remove indices out of the current window
+            //Current window is [i - k + 1, i]
+            //If an index is less than i - k + 1, it is outside the window
+            //Remove it from the front
             while (!deque.isEmpty() && deque.peekFirst() <= i - k) {
                 deque.pollFirst();
             }
