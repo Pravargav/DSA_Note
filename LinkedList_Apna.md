@@ -237,7 +237,7 @@ During recursion, the same head reference moves forward, and during return, it f
 class Solution {
     public ListNode testList(ListNode head) {
         if (head == null || head.next == null) {
-            System.out.println("---");
+            //System.out.println("---");
             return head; 
         } 
 
