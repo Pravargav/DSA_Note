@@ -266,13 +266,13 @@ class DisjointSet {
     
     // Constructor
     public DisjointSet(int n) {
-        rank = new ArrayList<>(n + 1);
-        Collections.fill(rank, 0);
         parent = new ArrayList<>(n + 1);
         size = new ArrayList<>(n + 1);
+        rank = new ArrayList<>(n + 1);
         for (int i = 0; i <= n; i++) {
             parent.add(i);
             size.add(1);
+            rank.add(0);
         }
     }
     
