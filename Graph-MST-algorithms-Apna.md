@@ -253,6 +253,21 @@ public class tUf {
     }
 }
 ```
+##### Difference b/q dijikstra's and prim's - main difference
+
+->prim's
+```
+pq.add(new Pair(edW, adjNode));
+```
+
+->dijikstra's
+```
+if (dist[node] + edW < dist[adjNode]) {
+    dist[adjNode] = dist[node] + edW;
+    pq.add(new Pair(dist[adjNode], adjNode));
+}
+```
+
 -> Kruskal's algorithm - Gfg and striver code
 
 ```java
