@@ -256,12 +256,12 @@ public class tUf {
 ##### Difference b/q dijikstra's and prim's - main difference
 
 ->prim's
-```
+```java
 pq.add(new Pair(edW, adjNode));
 ```
 
 ->dijikstra's
-```
+```java
 if (dist[node] + edW < dist[adjNode]) {
     dist[adjNode] = dist[node] + edW;
     pq.add(new Pair(dist[adjNode], adjNode));
