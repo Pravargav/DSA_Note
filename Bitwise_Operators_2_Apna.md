@@ -1,7 +1,7 @@
 
-# Tips & Tricks for DSA Using Bitwise Operators
+#### Tips & Tricks for DSA Using Bitwise Operators
 
-### 1. Check if a number is **odd** or **even**
+#### 1. Check if a number is **odd** or **even**
 
 ```java
 if ((n & 1) == 1) {
@@ -15,7 +15,7 @@ if ((n & 1) == 1) {
 
 ---
 
-### 2. Multiply or divide by powers of two
+#### 2. Multiply or divide by powers of two
 
 ```java
 int x = n << 3; // n * 8
@@ -24,7 +24,7 @@ int y = n >> 2; // n / 4 (for positive n)
 
 ---
 
-### 3. Swap two numbers without a temporary variable
+#### 3. Swap two numbers without a temporary variable
 
 ```java
 a = a ^ b;
@@ -34,7 +34,7 @@ a = a ^ b; // now a = original b
 
 ---
 
-### 4. Check if a number is a **power of two**
+#### 4. Check if a number is a **power of two**
 
 ```java
 boolean isPowerOfTwo = (n > 0) && ((n & (n - 1)) == 0);
@@ -44,7 +44,7 @@ boolean isPowerOfTwo = (n > 0) && ((n & (n - 1)) == 0);
 
 ---
 
-### 5. Get the **rightmost set bit** (lowest set bit)
+#### 5. Get the **rightmost set bit** (lowest set bit)
 
 ```java
 int rightmostSetBit = n & (-n);
@@ -54,7 +54,7 @@ int rightmostSetBit = n & (-n);
 
 ---
 
-### 6. Turn off the **rightmost set bit**
+#### 6. Turn off the **rightmost set bit**
 
 ```java
 int newNum = n & (n - 1);
