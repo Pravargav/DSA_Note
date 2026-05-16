@@ -1,5 +1,5 @@
 
-## Bitwise NOT `~`
+#### Bitwise NOT `~`
 
 **Flips all bits (1's complement).**
 
@@ -20,7 +20,7 @@ int b = ~a;  //  11111111 11111111 11111111 11111010  (which is -6)
 
 ---
 
-## ✅ 5. Left Shift `<<`
+#### Left Shift `<<`
 
 **Shifts bits left (multiplies by 2ⁿ).**
 
@@ -36,7 +36,7 @@ int c = a << 2; // 00010100 = 20
 
 ---
 
-## ✅ 6. Signed Right Shift `>>`
+####  Signed Right Shift `>>`
 
 **Shifts bits right (preserves sign).**
 
@@ -55,7 +55,7 @@ int d = c >> 1; // 11111100 = -4
 
 ---
 
-## ✅ 7. Unsigned Right Shift `>>>`
+#### Unsigned Right Shift `>>>`
 
 **Shifts bits right (fills left with 0, always positive).**
 
@@ -74,7 +74,7 @@ Sure! Here’s a complete, handy guide on **Java bitwise operators** with tips, 
 
 ---
 
-# Java Bitwise Operators Quick Reference
+#### Java Bitwise Operators Quick Reference
 
 | Operator | Description                    | Example      | Result                          |
 |----------|-------------------------------|--------------|----------------------------------|
