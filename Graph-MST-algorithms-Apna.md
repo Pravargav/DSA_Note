@@ -64,6 +64,73 @@ To improve time complexity:
 
 -> Note3: Techdose code is same as gfg code for prims algorithm.They are using min key function in place of priority queue.
 
+````markdown
+
+### Initial State
+
+    key = [0, ∞, ∞, ∞, ∞]
+    mstSet = [false, false, false, false, false]
+
+***
+
+### Cycle 1 (pick vertex 0)
+
+Update neighbors of 0:
+
+    key = [0, 2, ∞, 6, ∞]
+
+***
+
+### Cycle 2 (pick vertex 1)
+
+Update neighbors of 1:
+
+    key = [0, 2, 3, 6, 5]
+
+***
+
+### Cycle 3 (pick vertex 2)
+
+Update neighbors of 2:
+
+    key = [0, 2, 3, 6, 5]
+
+(no change)
+
+***
+
+### Cycle 4 (pick vertex 4)
+
+Update neighbors of 4:
+
+    key = [0, 2, 3, 6, 5]
+
+(no change)
+
+***
+
+### Cycle 5 (pick vertex 3)
+
+Final MST completed:
+
+    key = [0, 2, 3, 6, 5]
+
+***
+
+### ✅ Final Key Array
+
+    [0, 2, 3, 6, 5]
+
+***
+
+### ✅ Order of Vertex Selection
+
+    0 → 1 → 2 → 4 → 3
+
+***
+
+````
+
 ```java
 import java.util.*;
 
