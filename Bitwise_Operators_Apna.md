@@ -1,69 +1,5 @@
 
-
-## ✅ 1. Bitwise AND `&`
-
-**Each bit of the result is 1 if both bits are 1.**
-
-| A (bit) | B (bit) | A & B |
-| ------- | ------- | ----- |
-| 0       | 0       | 0     |
-| 0       | 1       | 0     |
-| 1       | 0       | 0     |
-| 1       | 1       | 1     |
-
-**Example (Java):**
-
-```java
-int a = 5;  // 0101
-int b = 3;  // 0011
-int c = a & b; // 0001 = 1
-```
-
----
-
-## ✅ 2. Bitwise OR `|`
-
-**Each bit of the result is 1 if at least one bit is 1.**
-
-| A (bit) | B (bit) | A \| B |
-| ------- | ------- | ------ |
-| 0       | 0       | 0      |
-| 0       | 1       | 1      |
-| 1       | 0       | 1      |
-| 1       | 1       | 1      |
-
-**Example (Java):**
-
-```java
-int a = 5;  // 0101
-int b = 3;  // 0011
-int c = a | b; // 0111 = 7
-```
-
----
-
-## ✅ 3. Bitwise XOR `^`
-
-**Each bit of the result is 1 if only one bit is 1 (not both).**
-
-| A (bit) | B (bit) | A ^ B |
-| ------- | ------- | ----- |
-| 0       | 0       | 0     |
-| 0       | 1       | 1     |
-| 1       | 0       | 1     |
-| 1       | 1       | 0     |
-
-**Example (Java):**
-
-```java
-int a = 5;  // 0101
-int b = 3;  // 0011
-int c = a ^ b; // 0110 = 6
-```
-
----
-
-## ✅ 4. Bitwise NOT `~`
+## Bitwise NOT `~`
 
 **Flips all bits (1's complement).**
 
@@ -142,9 +78,7 @@ Sure! Here’s a complete, handy guide on **Java bitwise operators** with tips, 
 
 | Operator | Description                    | Example    | Result                   |     |           |              |
 | -------- | ------------------------------ | ---------- | ------------------------ | --- | --------- | ------------ |
-| `&`      | Bitwise AND                    | `5 & 3`    | `1` (0101 & 0011 = 0001) |     |           |              |
-| \`       | \`                             | Bitwise OR | \`5                      | 3\` | `7` (0101 | 0011 = 0111) |
-| `^`      | Bitwise XOR                    | `5 ^ 3`    | `6` (0101 ^ 0011 = 0110) |     |           |              |
+             |
 | `~`      | Bitwise NOT (one’s complement) | `~5`       | `-6` (invert all bits)   |     |           |              |
 | `<<`     | Left shift                     | `3 << 2`   | `12` (0011 << 2 = 1100)  |     |           |              |
 | `>>`     | Right shift (signed)           | `12 >> 2`  | `3` (1100 >> 2 = 0011)   |     |           |              |
