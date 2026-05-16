@@ -29,22 +29,22 @@ class Solution {
         return new ArrayList<>();
     }
 
-    public void fun(TreeNode root, List<Integer> lt){
-         if(root==null){
-            return;
-         }
-         if(root.left==null&&root.right==null){
-            lt.add(root.val);
-            System.out.println(lt);
-            lt.remove(lt.size()-1);
-         }
-        lt.add(root.val);
-         fun(root.left, lt);
-        lt.remove(lt.size()-1);
-        lt.add(root.val);
-         fun(root.right, lt);
-        lt.remove(lt.size()-1);
+public void fun(List<Integer> lt, TreeNode root){
+    if(root == null){
+        return;
     }
+
+    lt.add(root.val);
+
+    if(root.left == null && root.right == null){
+        System.out.println(lt);
+    } else {
+        fun(lt, root.left);
+        fun(lt, root.right);
+    }
+
+    lt.remove(lt.size() - 1); // backtrack
+}
 }
 ```
 **level order**
