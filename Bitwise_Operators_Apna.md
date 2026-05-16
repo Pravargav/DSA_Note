@@ -78,7 +78,7 @@ Sure! Here’s a complete, handy guide on **Java bitwise operators** with tips, 
 
 | Operator | Description                    | Example    | Result                   |     |           |              |
 | -------- | ------------------------------ | ---------- | ------------------------ | --- | --------- | ------------ |
-             |
+             
 | `~`      | Bitwise NOT (one’s complement) | `~5`       | `-6` (invert all bits)   |     |           |              |
 | `<<`     | Left shift                     | `3 << 2`   | `12` (0011 << 2 = 1100)  |     |           |              |
 | `>>`     | Right shift (signed)           | `12 >> 2`  | `3` (1100 >> 2 = 0011)   |     |           |              |
