@@ -48,6 +48,51 @@ public void fun(List<Integer> lt, TreeNode root){
 }
 ```
 **level order**
+````markdown
+
+####  Why `q.add(null)` is used twice?
+
+👉 It is used as a **level separator (marker)** to distinguish between different levels of the tree.
+
+***
+
+#### 1️⃣ First time:
+
+```java
+q.add(root);
+q.add(null);
+```
+
+✅ Purpose:
+
+*   After inserting the root, you add `null` to mark:
+    👉 **"End of level 1"**
+
+***
+
+#### 2️⃣ Second time:
+
+```java
+if (curr == null) {
+    System.out.println();
+
+    if (q.isEmpty()) break;
+
+    q.add(null);   // ✅ second use
+}
+```
+
+✅ Purpose:
+
+*   When you encounter a `null`, it means:
+    👉 **"Current level is finished"**
+
+*   Then you:
+    *   print a newline (move to next level)
+    *   add another `null` to mark the **end of next level**
+
+***
+````
 ```java
 public static void levelOrder(Node root) {
     if (root == null) return;
