@@ -184,25 +184,13 @@ class MST {
 | **Suitable for**      | Small / dense graphs   | Large / sparse graphs      |
 | **Code simplicity**   | Easy                   | Moderate                   |
 
----
-
 #####  Intuition Difference
 
 ##### minKey()
--> Searches the entire list every time to find the minimum
+-> Searches the entire list every time to find the minimum -  Like checking every student's marks each time to find the topper  
 
 ##### Priority Queue
--> Minimum element is always available at the top (efficient retrieval)
-
----
-
-##### Real-Life Analogy
-
-- **minKey()**  
-  Like checking every student's marks each time to find the topper  
-
-- **Priority Queue**  
-  Like maintaining a sorted leaderboard where the topper is always at the top
+-> Minimum element is always available at the top (efficient retrieval) -   Like maintaining a sorted leaderboard where the topper is always at the top.
 
 ````
 
