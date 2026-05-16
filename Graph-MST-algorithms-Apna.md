@@ -65,102 +65,72 @@ To improve time complexity:
 -> Note3: Techdose code is same as gfg code for prims algorithm.They are using min key function in place of priority queue.
 
 ```java
-//gfg and Techdose code
-import java.io.*;
-import java.lang.*;
 import java.util.*;
 
 class MST {
 
- 
-    int minKey(int key[], Boolean mstSet[])
-    {
-        // Initialize min value
-        int min = Integer.MAX_VALUE, min_index = -1;
+    int minKey(int[] key, boolean[] mstSet) {
+        int min = Integer.MAX_VALUE;
+        int minIndex = -1;
 
-        for (int v = 0; v < mstSet.length; v++)
-            if (mstSet[v] == false && key[v] < min) {
+        for (int v = 0; v < key.length; v++) {
+            if (!mstSet[v] && key[v] < min) {
                 min = key[v];
-                min_index = v;
+                minIndex = v;
             }
-
-        return min_index;
-    }
-
-
-    void printMST(int parent[], int graph[][])
-    {
-        System.out.println("Edge \tWeight");
-        for (int i = 1; i < graph.length; i++)
-            System.out.println(parent[i] + " - " + i + "\t"
-                               + graph[parent[i]][i]);
-    }
-
-
-    void primMST(int graph[][])
-    {
-        int V = graph.length;
-        
-        // Array to store constructed MST
-        int parent[] = new int[V];
-
-        // Key values used to pick minimum weight edge in
-        // cut
-        int key[] = new int[V];
-
-        // To represent set of vertices included in MST
-        Boolean mstSet[] = new Boolean[V];
-
-        // Initialize all keys as INFINITE
-        for (int i = 0; i < V; i++) {
-            key[i] = Integer.MAX_VALUE;
-            mstSet[i] = false;
         }
+        return minIndex;
+    }
 
+    void printMST(int[] parent, int[][] graph) {
+        System.out.println("Edge \tWeight");
+        for (int i = 1; i < graph.length; i++) {
+            System.out.println(parent[i] + " - " + i + "\t" + graph[parent[i]][i]);
+        }
+    }
+
+    void primMST(int[][] graph) {
+        int V = graph.length;
+
+        int[] parent = new int[V];
+        int[] key = new int[V];
+        boolean[] mstSet = new boolean[V];
+
+        Arrays.fill(key, Integer.MAX_VALUE);
+        Arrays.fill(mstSet, false);
 
         key[0] = 0;
-      
-        // First node is always root of MST
         parent[0] = -1;
 
-        // The MST will have V vertices
-        for (int count = 0; count < V - 1; count++) {
-            
-
-
+        for (int i = 0; i < V - 1; i++) {
             int u = minKey(key, mstSet);
-
-            // Add the picked vertex to the MST Set
             mstSet[u] = true;
 
-
-            for (int v = 0; v < V; v++)
-
-
-                if (graph[u][v] != 0 && mstSet[v] == false
-                    && graph[u][v] < key[v]) {
+            for (int v = 0; v < V; v++) {
+                if (graph[u][v] != 0 && !mstSet[v] && graph[u][v] < key[v]) {
                     parent[v] = u;
                     key[v] = graph[u][v];
                 }
+            }
         }
 
-        // Print the constructed MST
         printMST(parent, graph);
     }
 
-    public static void main(String[] args)
-    {
-        MST t = new MST();
-        int graph[][] = new int[][] { { 0, 2, 0, 6, 0 },
-                                      { 2, 0, 3, 8, 5 },
-                                      { 0, 3, 0, 0, 7 },
-                                      { 6, 8, 0, 0, 9 },
-                                      { 0, 5, 7, 9, 0 } };
+    public static void main(String[] args) {
+        MST mst = new MST();
 
-        // Print the solution
-        t.primMST(graph);
+        int[][] graph = {
+            {0, 2, 0, 6, 0},
+            {2, 0, 3, 8, 5},
+            {0, 3, 0, 0, 7},
+            {6, 8, 0, 0, 9},
+            {0, 5, 7, 9, 0}
+        };
+
+        mst.primMST(graph);
     }
-}
+
 ```
 -> Here in above code we do use parent array to store parent indices of each node.
 
