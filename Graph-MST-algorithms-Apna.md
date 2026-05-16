@@ -117,17 +117,6 @@ Final MST completed:
 
 ***
 
-### ✅ Final Key Array
-
-    [0, 2, 3, 6, 5]
-
-***
-
-### ✅ Order of Vertex Selection
-
-    0 → 1 → 2 → 4 → 3
-
-***
 
 ````
 
