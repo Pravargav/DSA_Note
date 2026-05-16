@@ -283,7 +283,7 @@ public class Main {
 }
 
 ```
-***Note***:*count inversions (just do some changes in merge sort code)*
+***Note*** : *count inversions (just do some changes in merge sort code)*
 
 -> Quick Sort 
 
