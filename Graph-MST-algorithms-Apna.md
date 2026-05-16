@@ -170,6 +170,41 @@ class MST {
 
 -> If multiple parents are possible for a tree then we can't use parent array because each index can store only one value/parent.
 
+````markdown
+##### Side-by-Side Comparison: minKey() vs Priority Queue
+
+#####  Feature Comparison
+
+| Feature                | minKey() (Linear Scan) | Priority Queue (Min-Heap) |
+|-----------------------|------------------------|----------------------------|
+| **Approach**          | Linear scan            | Min-heap                   |
+| **Find minimum**      | O(V)                   | O(log V)                   |
+| **Total complexity**  | O(V²)                  | O(E log V)                 |
+| **Data structures**   | Arrays                 | Heap (PriorityQueue)       |
+| **Suitable for**      | Small / dense graphs   | Large / sparse graphs      |
+| **Code simplicity**   | Easy                   | Moderate                   |
+
+---
+
+#####  Intuition Difference
+
+##### minKey()
+-> Searches the entire list every time to find the minimum
+
+##### Priority Queue
+-> Minimum element is always available at the top (efficient retrieval)
+
+---
+
+##### Real-Life Analogy
+
+- **minKey()**  
+  Like checking every student's marks each time to find the topper  
+
+- **Priority Queue**  
+  Like maintaining a sorted leaderboard where the topper is always at the top
+
+````
 
 -> Prims algo using Priority Queue - Apna, striver and Gfg(second version of gfg code).
 
