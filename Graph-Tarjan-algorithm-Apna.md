@@ -107,9 +107,6 @@ Here is the **correct technical formulation** replacing TopCoder’s wording:
 -> Striver and Apna college assigned node-id's intelligently so to exactly match time with node-id's.But both are not same.Refer to striver's graph diagram and Apna graph diagram in youtube [striver-ex](https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55).
 
 
-You are **100% correct** in your analysis 👍
-Your **bug identification and explanation are accurate**, and your conclusion about the fix is exactly right.
-
 Let me give a **clear final verdict**, then show the **corrected code**.
 
 ---
