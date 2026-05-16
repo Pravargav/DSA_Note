@@ -1,5 +1,5 @@
 
-#### Tips & Tricks for DSA Using Bitwise Operators
+#### Tips & Tricks 
 
 #### 1. Check if a number is **odd** or **even**
 
