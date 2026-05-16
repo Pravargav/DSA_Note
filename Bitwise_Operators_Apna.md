@@ -70,9 +70,6 @@ int b = a >>> 1;  // 01111111 11111111 11111111 11111100 = 2147483644
 
 ---
 
-Sure! Here’s a complete, handy guide on **Java bitwise operators** with tips, tricks, and important patterns that frequently come up in **DSA (Data Structures and Algorithms)** problems:
-
----
 
 #### Java Bitwise Operators Quick Reference
 
