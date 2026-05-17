@@ -1064,17 +1064,20 @@ public class DijkstraClean {
 
             Pair curr = pq.poll();
             int u = curr.node;
+            int w = curr.dist;
+
+            int oldDist = dist[u];
 
             // Skip outdated entry
-            if (curr.dist > dist[u]) continue;
+            if (w > oldDist) continue;
 
             for (Edge e : graph.get(u)) {
                 int v = e.dest;
-                int newDist = dist[u] + e.wt;
+                int newDist = oldDist + e.wt;
 
                 if (newDist < dist[v]) {
                     dist[v] = newDist;
-                    pq.add(new Pair(v, newDist));
+                    pq.add(new Pair(v, dist[v]));
                 }
             }
         }
