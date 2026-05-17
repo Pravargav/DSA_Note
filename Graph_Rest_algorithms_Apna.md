@@ -142,11 +142,14 @@ class Solution {
             if (!visited[t]) {
                 q.add(t);
                 visited[t] = true;
+                //Assign first flower type = 1
                 plant[t] = 1;
+                //Mark all colors unavailable for itself
                 status[t][1] = false;
                 status[t][2] = false;
                 status[t][3] = false;
                 status[t][4] = false;
+                //Then restrict neighbors from using color 1
                 for (Edge e2 : graph.get(t)) {
                     status[e2.dest][1] = false;
                 }
@@ -158,10 +161,12 @@ class Solution {
 
                     for (Edge e : graph.get(curr)) {
                         if (!visited[e.dest]) {
+                            //Choose first available flower type i.e starting from 1 to 4
                             for (int i = 1; i <= 4; i++) {
                                 if (status[e.dest][i]) {
                                     plant[e.dest] = i;
                                     visited[e.dest] = true;
+                                    //Neighbors cannot use the same color
                                     for (Edge e2 : graph.get(e.dest)) {
                                         status[e2.dest][i] = false;
                                     }
