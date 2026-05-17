@@ -853,26 +853,28 @@ public class KahnsTopologicalSort {
             }
         }
 
-        // Use ArrayDeque (faster than LinkedList)
-        Queue<Integer> q = new ArrayDeque<>();
+Queue<Integer> q = new ArrayDeque<>();
 
-        // Add nodes with indegree 0
-        for (int i = 0; i < V; i++) {
-            if (indegree[i] == 0) q.offer(i);
+for (int i = 0; i < V; i++) {
+    if (indegree[i] == 0) {
+        q.offer(i);
+    }
+}
+
+List<Integer> topo = new ArrayList<>();
+
+while (!q.isEmpty()) {
+    int u = q.poll();
+    topo.add(u);
+
+    for (int v : graph.get(u)) {
+        indegree[v]--;
+        if (indegree[v] == 0) {
+            q.offer(v);
         }
+    }
+}
 
-        List<Integer> topo = new ArrayList<>();
-
-        while (!q.isEmpty()) {
-            int u = q.poll();
-            topo.add(u);
-
-            for (int v : graph.get(u)) {
-                if (--indegree[v] == 0) {
-                    q.offer(v);
-                }
-            }
-        }
 
         // If not all nodes processed → cycle exists
         if (topo.size() != V) {
