@@ -54,9 +54,9 @@ public class BFS {
         boolean[] visited = new boolean[graph.size()];
         Queue<Integer> q = new LinkedList<>();
 
-        q.add(0);
-        visited[0] = true;
 
+        visited[0] = true;
+        q.add(0);
         while (!q.isEmpty()) {
 
             int curr = q.remove();
