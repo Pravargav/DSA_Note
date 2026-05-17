@@ -1023,19 +1023,11 @@ d) graph has negative weights - no
 ````markdown
 -> here in dijikstra we use List<List<Edge>> graph i.e
 
-List<List<    static class Edge {
-
-        int dest, wt;
-
-        Edge(int dest, int wt) {
-
+List<List<  Edge(int dest, int wt) {
             this.dest = dest;
-
             this.wt = wt;
+}  > > graph;
 
-        }
-
-    }  >> graph
 ````
 
 **Dijikstras algorithm**
