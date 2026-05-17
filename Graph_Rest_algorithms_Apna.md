@@ -114,18 +114,18 @@ class Solution {
 
     public int[] gardenNoAdj(int n, int[][] paths) {
         boolean status[][] = new boolean[n + 1][5];
+        //can garden i take jth flower
         for (int i = 1; i < n + 1; i++) {
             for (int j = 1; j < 5; j++) {
                 status[i][j] = true;
             }
         }
-
+        //creating an undirected graph
         List<List<Edge>> graph = new ArrayList<>(n + 1);
-
         for (int i = 0; i < n + 1; i++) {
             graph.add(new ArrayList<>());
         }
-
+        //creating an undirected graph
         for (int i = 0; i < paths.length; i++) {
             int s = paths[i][0];
             int d = paths[i][1];
@@ -137,6 +137,7 @@ class Solution {
         int[] plant = new int[graph.size()];
         Queue<Integer> q = new LinkedList<>();
 
+        //handles disconnected components
         for (int t = 1; t < n + 1; t++) {
             if (!visited[t]) {
                 q.add(t);
