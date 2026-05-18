@@ -178,7 +178,11 @@ class TUF {
 
 ```
 
--> String matching for is subsequence like 792. (Number of Matching Subsequences),1048. (Longest String Chain)
+-> String matching for is subsequence 
+
+ex1 - 792. (Number of Matching Subsequences)
+
+ex2 - 1048. (Longest String Chain)
 
 ```java
     public boolean lcs(String s1, String s2) {
