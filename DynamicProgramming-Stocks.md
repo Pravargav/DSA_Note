@@ -385,7 +385,7 @@ But reverse transaction meaning
 
 Sequence: SELL -> BUY BACK
 
-This is cleaner than Approach 1.
+-> This is cleaner than Approach 1
 
 ```java
 class Solution {
