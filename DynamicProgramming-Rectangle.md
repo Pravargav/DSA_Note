@@ -19,7 +19,11 @@ class Solution {
         for (char[] row : matrix) {
             for (int i = 0; i < cols; i++) {
                 // Update heights: increment if '1', reset if '0'
-                heights[i] = (row[i] == '1') ? heights[i] + 1 : 0;
+                if (row[i] == '1') {
+                    heights[i] = heights[i] + 1;
+                } else {
+                    heights[i] = 0;
+                }
             }
             // Compare max area of each row and find final max of all rows
             maxArea = Math.max(maxArea, largestRectangleArea(heights));
@@ -39,7 +43,13 @@ class Solution {
             while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
                 stack.pop();
             }
-            left[i] = (stack.isEmpty()) ? -1 : stack.peek();
+
+            if (stack.isEmpty()) {
+                left[i] = -1;
+            } else {
+                left[i] = stack.peek();
+            }
+
             stack.push(i);
         }
 
@@ -50,7 +60,13 @@ class Solution {
             while (!stack.isEmpty() && heights[stack.peek()] >= heights[i]) {
                 stack.pop();
             }
-            right[i] = (stack.isEmpty()) ? n : stack.peek();
+
+            if (stack.isEmpty()) {
+                right[i] = n;
+            } else {
+                right[i] = stack.peek();
+            }
+
             stack.push(i);
         }
 
