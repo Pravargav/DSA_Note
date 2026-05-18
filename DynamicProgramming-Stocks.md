@@ -348,4 +348,210 @@ class Solution {
 ```
 
 ````
+1. Normal Stock Buy/Sell (BUY → SELL)
 
+class Solution {
+
+    public int maxProfit(int[] prices, int k) {
+
+        int n = prices.length;
+
+        // dp[index][buy][cap]
+        Integer[][][] dp = new Integer[n][2][k + 1];
+
+        // Start from day 0
+        // buy = 1 means we can BUY now
+        return solve(0, 1, k, prices, dp);
+    }
+
+    int solve(int ind, int buy, int cap,
+              int[] prices, Integer[][][] dp) {
+
+        // No days left OR no transactions left
+        if (ind == prices.length || cap == 0)
+            return 0;
+
+        // Memoization
+        if (dp[ind][buy][cap] != null)
+            return dp[ind][buy][cap];
+
+        int profit;
+
+        // BUY state
+        if (buy == 1) {
+
+            // Option 1: Skip buying
+            int skip = solve(ind + 1, 1, cap, prices, dp);
+
+            // Option 2: Buy stock
+            int take = -prices[ind]
+                    + solve(ind + 1, 0, cap, prices, dp);
+
+            profit = Math.max(skip, take);
+        }
+
+        // SELL state
+        else {
+
+            // Option 1: Skip selling
+            int skip = solve(ind + 1, 0, cap, prices, dp);
+
+            // Option 2: Sell stock
+            int sell = prices[ind]
+                    + solve(ind + 1, 1, cap - 1, prices, dp);
+
+            profit = Math.max(skip, sell);
+        }
+
+        return dp[ind][buy][cap] = profit;
+    }
+}
+
+
+---
+
+2. Short Selling Approach 1 (Reverse Traversal Trick)
+
+Core idea:
+
+Traverse from n-1 → 0
+Use MIN instead of MAX
+Final answer uses abs()
+
+Sequence becomes:
+
+SELL → BUY BACK
+
+class Solution {
+
+    public long maximumProfit(int[] prices, int k) {
+
+        int n = prices.length;
+
+        Integer[][][] dp = new Integer[n][2][k + 1];
+
+        // Start from last index
+        // buy = 1 means we can SHORT SELL now
+        int ans = solve(n - 1, 1, k, prices, dp);
+
+        // Internally answer becomes negative
+        // convert to positive
+        return Math.abs(ans);
+    }
+
+    int solve(int ind, int buy, int cap,
+              int[] prices, Integer[][][] dp) {
+
+        // No days left OR no transactions left
+        if (ind < 0 || cap == 0)
+            return 0;
+
+        // Memoization
+        if (dp[ind][buy][cap] != null)
+            return dp[ind][buy][cap];
+
+        int profit;
+
+        // BUY BACK state
+        if (buy == 0) {
+
+            // Option 1: Skip buy back
+            int skip = solve(ind - 1, 0, cap, prices, dp);
+
+            // Option 2: Buy back stock
+            // buying costs money => negative
+            int buyBack = -prices[ind]
+                    + solve(ind - 1, 1, cap - 1, prices, dp);
+
+            // Use MIN because answers become negative internally
+            profit = Math.min(skip, buyBack);
+        }
+
+        // SHORT SELL state
+        else {
+
+            // Option 1: Skip short sell
+            int skip = solve(ind - 1, 1, cap, prices, dp);
+
+            // Option 2: Short sell stock
+            // selling first gives money => positive
+            int sellFirst = prices[ind]
+                    + solve(ind - 1, 0, cap, prices, dp);
+
+            profit = Math.min(skip, sellFirst);
+        }
+
+        return dp[ind][buy][cap] = profit;
+    }
+}
+
+
+---
+
+3. Short Selling Approach 2 (Cleaner Method)
+
+Core idea:
+
+Normal traversal (0 → n-1)
+But reverse transaction meaning
+
+Sequence:
+
+SELL → BUY BACK
+
+This is cleaner than Approach 1.
+
+class Solution {
+
+    public long maximumProfit(int[] prices, int k) {
+
+        int n = prices.length;
+
+        Integer[][][] dp = new Integer[n][2][k + 1];
+
+        // buy = 0 means we can SHORT SELL now
+        return solve(0, 0, k, prices, dp);
+    }
+
+    int solve(int ind, int buy, int cap,
+              int[] prices, Integer[][][] dp) {
+
+        // No days left OR no transactions left
+        if (ind == prices.length || cap == 0)
+            return 0;
+
+        // Memoization
+        if (dp[ind][buy][cap] != null)
+            return dp[ind][buy][cap];
+
+        int profit;
+
+        // SHORT SELL state
+        if (buy == 0) {
+
+            // Option 1: Skip short selling
+            int skip = solve(ind + 1, 0, cap, prices, dp);
+
+            // Option 2: Sell first
+            int sellFirst = prices[ind]
+                    + solve(ind + 1, 1, cap, prices, dp);
+
+            profit = Math.max(skip, sellFirst);
+        }
+
+        // BUY BACK state
+        else {
+
+            // Option 1: Skip buy back
+            int skip = solve(ind + 1, 1, cap, prices, dp);
+
+            // Option 2: Buy back stock
+            int buyBack = -prices[ind]
+                    + solve(ind + 1, 0, cap - 1, prices, dp);
+
+            profit = Math.max(skip, buyBack);
+        }
+
+        return dp[ind][buy][cap] = profit;
+    }
+}
