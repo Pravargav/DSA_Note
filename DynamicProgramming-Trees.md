@@ -85,95 +85,35 @@ class Solution {
 -> max sum between 2 leaf nodes(almost same code as above but in place of 1 use root.data and some minor changes) and(gfg approach)
 
 ```java
-// Java program to find maximum path 
-// sum between two leaves of a binary tree
-
 class Node {
     int data;
     Node left, right;
 
-    Node(int x) {
-        data = x;
-        left = right = null;
+    Node(int data) {
+        this.data = data;
     }
 }
 
-class GfG {
-  
-    // mxPathSum function to calculate maximum path sum 
-  	// between two leaves and maximum sum from node to 
-  	// leaf in a single traversal
-    static int mxPathSum(Node root, int[] maxPathSum) {
-      
-        // Base case: If the node is null, return 0
-        if (root == null) {
-            return 0;
-        }
+class Solution {
+    private int maxSum = Integer.MIN_VALUE;
 
-        // Recursively calculate the maximum sum from 
-        // node to leaf for left and right subtrees
-        int mxLeft = mxPathSum(root.left, maxPathSum);
-        int mxRight = mxPathSum(root.right, maxPathSum);
-
-        // If both left and right children exist,
-      	// update maxPathSum
-        if (root.left != null && root.right != null) {
-          
-            // This is the sum of the left path, 
-            // right path, and the node's data
-            int maxSumPathViaNode = mxLeft + mxRight + root.data;
-
-            // Update the maximum sum path between
-          	// two leaves
-            maxPathSum[0] = Math.max
-              				(maxPathSum[0], maxSumPathViaNode);
-
-            // Return the maximum sum from the current
-          	// node to a leaf
-            return root.data + Math.max(mxLeft, mxRight);
-        }
-
-        // If only one child exists, return the sum
-      	// from the node to leaf
-        return root.data + 
-          (root.left != null ? mxLeft : mxRight);
+    public int findMaxSum(Node root) {
+        dfs(root);
+        return maxSum;
     }
 
-    // Function to return the maximum path 
-    // sum between any two leaves in the binary tree
-    static int findMaxSum(Node root) {
-      
-        // Edge case: If the tree is empty, return 0
-        if (root == null) {
-            return 0;
+    private int dfs(Node node) {
+        if (node == null) return 0;
+
+        int left = dfs(node.left);
+        int right = dfs(node.right);
+
+        if (node.left != null && node.right != null) {
+            maxSum = Math.max(maxSum, left + right + node.data);
+            return node.data + Math.max(left, right);
         }
 
-        int[] maxPathSum = new int[] {Integer.MIN_VALUE};
-        mxPathSum(root, maxPathSum);
-
-        return maxPathSum[0];
-    }
-
-    public static void main(String[] args) {
-      
-        // Construct a sample binary tree
-        //
-        //         1
-        //       /   \
-        //     -2     3
-        //     / \   / \
-        //    8  -1  4  -5
-
-        Node root = new Node(1);
-        root.left = new Node(-2);
-        root.right = new Node(3);
-        root.left.left = new Node(8);
-        root.left.right = new Node(-1);
-        root.right.left = new Node(4);
-        root.right.right = new Node(-5);
-
-        int result = findMaxSum(root);
-        System.out.println(result);
+        return node.data + (node.left != null ? left : right);
     }
 }
 ```
