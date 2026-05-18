@@ -113,7 +113,11 @@ class Solution {
             return node.data + Math.max(left, right);
         }
 
-        return node.data + (node.left != null ? left : right);
+        if (node.left != null) {
+            return node.data + left;
+        } else {
+            return node.data + right;
+        }
     }
 }
 ```
