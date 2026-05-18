@@ -124,80 +124,32 @@ class Solution {
 
 -> Max path sum between any two nodes(If either left or right height is negative or zero no need to include in total sum at each node.If positive height then only adding to the total sum makes some value for max getting) and (same approach by both gfg and striver)
 ```java
-import java.util.*;
-
-// Node structure for the binary tree
 class Node {
     int data;
-    Node left;
-    Node right;
+    Node left, right;
 
-    // Constructor to initialize
-    // the node with a value
-    Node(int val) {
-        data = val;
-        left = null;
-        right = null;
+    Node(int data) {
+        this.data = data;
     }
 }
 
-public class Solution {
-    // Recursive function to find the maximum path sum
-    // for a given subtree rooted at 'root'
-    // The variable 'maxi' is a reference parameter
-    // updated to store the maximum path sum encountered
-    int findMaxPathSum(Node root, int[] maxi) {
-        // Base case: If the current node is null, return 0
-        if (root == null) {
-            return 0;
-        }
+class Solution {
+    private int maxSum = Integer.MIN_VALUE;
 
-        // Calculate the maximum path sum
-        // for the left and right subtrees
-        int leftMaxPath = Math.max(0, findMaxPathSum(root.left, maxi));
-        int rightMaxPath = Math.max(0, findMaxPathSum(root.right, maxi));
-
-        // Update the overall maximum
-        // path sum including the current node
-        maxi[0] = Math.max(maxi[0], leftMaxPath + rightMaxPath + root.data);
-
-        // Return the maximum sum considering
-        // only one branch (either left or right)
-        // along with the current node
-        return Math.max(leftMaxPath, rightMaxPath) + root.data;
+    public int maxPathSum(Node root) {
+        dfs(root);
+        return maxSum;
     }
 
-    // Function to find the maximum
-    // path sum for the entire binary tree
-    int maxPathSum(Node root) {
-        // Initialize maxi to the
-        // minimum possible integer value
-        int[] maxi = {Integer.MIN_VALUE};
+    private int dfs(Node node) {
+        if (node == null) return 0;
 
-        // Call the recursive function to
-        // find the maximum path sum
-        findMaxPathSum(root, maxi);
+        int left = Math.max(0, dfs(node.left));
+        int right = Math.max(0, dfs(node.right));
 
-        // Return the final maximum path sum
-        return maxi[0];
-    }
+        maxSum = Math.max(maxSum, left + right + node.data);
 
-    public static void main(String[] args) {
-        // Creating a sample binary tree
-        Node root = new Node(1);
-        root.left = new Node(2);
-        root.right = new Node(3);
-        root.left.left = new Node(4);
-        root.left.right = new Node(5);
-        root.left.right.right = new Node(6);
-        root.left.right.right.right = new Node(7);
-
-        // Creating an instance of the Solution class
-        Solution solution = new Solution();
-
-        // Finding and printing the maximum path sum
-        int maxPathSum = solution.maxPathSum(root);
-        System.out.println("Maximum Path Sum: " + maxPathSum);
+        return node.data + Math.max(left, right);
     }
 }
 ```
