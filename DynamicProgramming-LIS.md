@@ -208,22 +208,22 @@ class TUF {
 import java.util.*;
 
 class DivisibleSet {
-    // Function to find the longest divisible subset
+
     static List<Integer> divisibleSet(List<Integer> arr) {
         int n = arr.size();
 
-        // Sort the array
         Collections.sort(arr);
 
         List<Integer> dp = new ArrayList<>(Collections.nCopies(n, 1));
         List<Integer> hash = new ArrayList<>(Collections.nCopies(n, 0));
 
         for (int i = 0; i < n; i++) {
-            hash.set(i, i); // Initializing with current index
-            for (int prev_index = 0; prev_index <= i - 1; prev_index++) {
-                if (arr.get(i) % arr.get(prev_index) == 0 && 1 + dp.get(prev_index) > dp.get(i)) {
-                    dp.set(i, 1 + dp.get(prev_index));
-                    hash.set(i, prev_index);
+            hash.set(i, i);
+            for (int prevIndex = 0; prevIndex <= i - 1; prevIndex++) {
+                if (arr.get(i) % arr.get(prevIndex) == 0
+                        && 1 + dp.get(prevIndex) > dp.get(i)) {
+                    dp.set(i, 1 + dp.get(prevIndex));
+                    hash.set(i, prevIndex);
                 }
             }
         }
@@ -246,22 +246,21 @@ class DivisibleSet {
             temp.add(arr.get(lastIndex));
         }
 
-        // Reverse the array
         Collections.reverse(temp);
-
         return temp;
     }
 
     public static void main(String[] args) {
 
         List<Integer> arr = Arrays.asList(1, 16, 7, 8, 4);
-
         List<Integer> ans = divisibleSet(arr);
 
         System.out.print("The longest divisible subset elements are: ");
-        for (int i = 0; i < ans.size(); i++) {
-            System.out.print(ans.get(i) + " ");
+        for (int x : ans) {
+            System.out.print(x + " ");
         }
+    }
+}
 
 ```
 -> Count lis(chatgpt/gfg)
