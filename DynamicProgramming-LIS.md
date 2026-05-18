@@ -109,7 +109,7 @@ class TUF {
             }
         }
 
-        // Reverse the direction of nested loops and calculate the lengths of decreasing subsequences
+        // Calculate the lengths of decreasing subsequences
         for (int i = n - 1; i >= 0; i--) {
             for (int prevIndex = n - 1; prevIndex > i; prevIndex--) {
                 if (arr[prevIndex] < arr[i]) {
