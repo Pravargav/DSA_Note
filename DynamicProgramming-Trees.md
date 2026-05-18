@@ -1,3 +1,22 @@
+````markdown
+ -> So what actually needs array here?
+
+-> Only this:
+
+```java
+int[] diameter = new int[1];
+```
+
+-> ✅ Why Because?
+
+-> diameter is updated inside recursion
+
+-> We want changes to persist across all calls
+
+_> Java is pass-by-value, so we wrap it in an array
+
+````
+
 -> height of tree(diamter array not necessary) and (striver approach of diamter of tree)
 
 ```java
