@@ -378,88 +378,7 @@ class Solution {
 
 ````
 
-````markdown
--> 2708. Maximum Strength of a Group(right answer)(Backtracking)
 
-
-    
-```java
-import java.util.*;
-class Main {
-    List<List<Integer>> h=new ArrayList<>();
-    public int solve(int[] nums, int index,int p) {
-        // Base case: when all elements are processed
-        if (index == nums.length) {
-            return p;
-        }
-
-        // Pick the current element
-        int pick=solve(nums, index + 1, p*nums[index]);
-
-        // Do not pick the current element
-        int notpick=solve(nums, index + 1,p);
-        List<Integer> l=new ArrayList<>();
-        l.add(pick);
-        l.add(notpick);
-        h.add(l);
-        return Math.max(pick,notpick);
-    }
-
-    public void maxStrength(int[] nums) {
-        int val=solve(nums, 0, 1);
-        System.out.println(h);
-        System.out.println(h.size());
-    }
-
-    public static void main(String[] args) {
-        int[] nums = {3, -1, -5, 2, 5, -9};
-        Main obj = new Main();
-        obj.maxStrength(nums);
-    }
-} 
-```
---------------------------(or)---------------------------------
-
--> 2708. Maximum Strength of a Group( wrong answer)(Divide and recombine)
-    
-```java
-import java.util.*;
-class Main {
-	List<List<Integer>> lt=new ArrayList<>();
-	public int solve(int[] nums, int index) {
-		// Base case: when all elements are processed
-		if (index == nums.length) {
-			return 1;
-		}
-
-		// Pick the current element
-		int pick=nums[index]*solve(nums, index + 1);
-
-		// Do not pick the current element
-		int notpick=solve(nums, index + 1);
-		List<Integer> l=new ArrayList<>();
-		if(true) {
-			l.add(pick);
-			l.add(notpick);
-			lt.add(l);
-		}
-		return Math.max(pick,notpick);
-	}
-
-	public void maxStrength(int[] nums) {
-		int val=solve(nums, 0);
-		System.out.println(lt);
-		System.out.println(lt.size());
-	}
-
-	public static void main(String[] args) {
-		int[] nums = {3, -1, -5, 2, 5, -9};
-		Main obj = new Main();
-		obj.maxStrength(nums);
-	}
-}
-```
-````
 ````markdown
 ->if(true) -> 63 values = 32 + 16 + 8 + 4 + 2 + 1
 
@@ -660,57 +579,6 @@ This mixes incompatible decisions.
 
 ---
 
-Clean Correct Backtracking Code
-
-import java.util.*;
-
-class Main {
-
-    long ans = Long.MIN_VALUE;
-
-    void solve(int[] nums, int index, long product, boolean taken) {
-
-        // Base case
-        if (index == nums.length) {
-
-            // subset should not be empty
-            if (taken) {
-                ans = Math.max(ans, product);
-            }
-
-            return;
-        }
-
-        // PICK current element
-        solve(nums,
-              index + 1,
-              product * nums[index],
-              true);
-
-        // NOT PICK current element
-        solve(nums,
-              index + 1,
-              product,
-              taken);
-    }
-
-    public long maxStrength(int[] nums) {
-
-        solve(nums, 0, 1, false);
-
-        return ans;
-    }
-
-    public static void main(String[] args) {
-
-        int[] nums = {3, -1, -5, 2, 5, -9};
-
-        Main obj = new Main();
-
-        System.out.println(obj.maxStrength(nums));
-    }
-}
-
 
 ---
 
@@ -731,23 +599,7 @@ means at least one element selected.
 
 ---
 
-Time Complexity
 
-At every index:
-
-pick
-not pick
-
-So total subsets:
-
-2^n
-
-Complexity:
-
-O(2^n)
-
-
----
 
 Simple Rule to Remember
 
