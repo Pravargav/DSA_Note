@@ -486,7 +486,7 @@ class Main {
     }
 }
 ```
-
+````markdown
 ### Why The above Code Works
 
 #### Your first code:
@@ -506,7 +506,7 @@ pick     -> include nums[index]
 notpick  -> skip nums[index]
 
 This is TRUE backtracking.
-
+````
 
 
 -> Wrong Code (Divide & Recombine)
@@ -541,8 +541,8 @@ class Main {
     }
 }
 ```
-
-### Why Second Code Fails
+````markdown
+### Why the Above Code Fails
 
 #### Your second code:
 
@@ -564,7 +564,7 @@ class Main {
 -> So you're multiplying current number with an already maximized result.
 
 -> That creates invalid combinations.
-
+````
 ````markdown
 ### Simple Rule to Remember
 
