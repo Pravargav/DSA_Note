@@ -471,7 +471,8 @@ class Solution {
    if p2 + n2 + p3 + n3 + p4 + n4 > p3 + n3 + p4 + n4 then p2 + n2 > 0
 
    if p2 + n2 + p3 + n3 + p4 + n4 < p3 + n3 + p4 + n4 then p2 + n2 < 0 then make p2 + n2 = 0 i.e dont include p2 + n2 in sum
-
+````
+````markdown
 -> Kandane algorithm-
 
 ```java
