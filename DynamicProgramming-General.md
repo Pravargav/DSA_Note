@@ -806,3 +806,73 @@ Pattern:
 return combine(left,right)
 
 NOT for subset construction problems.
+
+Right Code (Backtracking)
+
+class Main {
+
+    long ans = Long.MIN_VALUE;
+
+    long solve(int[] nums, int index, long product, boolean taken) {
+
+        if (index == nums.length) {
+            if (taken) {
+                ans = Math.max(ans, product);
+            }
+            return ans;
+        }
+
+        solve(nums, index + 1, product * nums[index], true);
+
+        solve(nums, index + 1, product, taken);
+
+        return ans;
+    }
+
+    public long maxStrength(int[] nums) {
+        return solve(nums, 0, 1, false);
+    }
+
+    public static void main(String[] args) {
+
+        int[] nums = {3, -1, -5, 2, 5, -9};
+
+        Main obj = new Main();
+
+        System.out.println(obj.maxStrength(nums));
+    }
+}
+
+
+---
+
+Wrong Code (Divide & Recombine)
+
+class Main {
+
+    long solve(int[] nums, int index) {
+
+        if (index == nums.length) {
+            return 1;
+        }
+
+        long pick = nums[index] * solve(nums, index + 1);
+
+        long notpick = solve(nums, index + 1);
+
+        return Math.max(pick, notpick);
+    }
+
+    public long maxStrength(int[] nums) {
+        return solve(nums, 0);
+    }
+
+    public static void main(String[] args) {
+
+        int[] nums = {3, -1, -5, 2, 5, -9};
+
+        Main obj = new Main();
+
+        System.out.println(obj.maxStrength(nums));
+    }
+}
