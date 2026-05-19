@@ -468,33 +468,7 @@ This is TRUE backtracking.
 
 ---
 
-Visualization
 
-Suppose:
-
-nums = [2,3]
-
-Tree:
-
-(1)
-               /           \
-            *2              skip
-          (2)                (1)
-        /     \            /     \
-      *3      skip      *3      skip
-     (6)      (2)      (3)      (1)
-
-Generated subset products:
-
-[2,3] -> 6
-[2]   -> 2
-[3]   -> 3
-[]    -> 1
-
-Maximum = 6
-
-
----
 
 Why Second Code Fails
 
