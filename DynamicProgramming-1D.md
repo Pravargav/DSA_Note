@@ -306,41 +306,6 @@ class Solution {
 ```
  
 ````
-->House robber 4 (with list)
-    
-```java
-class Solution {
-    int min = Integer.MAX_VALUE;
-
-    public int minCapability(int[] nums, int k) {
-        int n = nums.length;
-        List<Integer> lt = new ArrayList<>();
-        fun(n, nums, lt, 0, k);
-        return min;
-    }
-
-    public void fun(int n, int nums[], List<Integer> lt, int idx, int k) {
-        if (idx >= n) {
-            int max = Integer.MIN_VALUE;
-            if (lt.size() >= k) {
-                for (int i = 0; i < lt.size(); i++) {
-                    max = Math.max(max, lt.get(i));
-                }
-                // System.out.println(max);
-                min = Math.min(min, max);
-            }
-            return;
-        }
-
-        lt.add(nums[idx]);
-        fun(n, nums, lt, idx + 2, k);
-        lt.remove(lt.size() - 1);
-        fun(n, nums, lt, idx + 1, k);
-    }
-}
-```
-
-````
 ````markdown
 -> House Robber 4 — With List (Clean Backtracking)
  ```java
