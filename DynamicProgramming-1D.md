@@ -341,7 +341,51 @@ class Solution {
 ```
 
 ````
-
+````markdown
+-> House Robber 4 — With List (Clean Backtracking)
+ ```java
+class Solution {
+ 
+    int ans = Integer.MAX_VALUE;
+ 
+    public int minCapability(int[] nums, int k) {
+ 
+        List<Integer> list = new ArrayList<>();
+ 
+        solve(nums, 0, k, list);
+ 
+        return ans;
+    }
+ 
+    public void solve(int[] nums, int idx, int k, List<Integer> list) {
+ 
+        if (list.size() == k) {
+ 
+            int max = Integer.MIN_VALUE;
+ 
+            for (int num : list) {
+                max = Math.max(max, num);
+            }
+ 
+            ans = Math.min(ans, max);
+            return;
+        }
+ 
+        if (idx >= nums.length) {
+            return;
+        }
+ 
+        list.add(nums[idx]);
+ 
+        solve(nums, idx + 2, k, list);
+ 
+        list.remove(list.size() - 1);
+ 
+        solve(nums, idx + 1, k, list);
+    }
+}
+```java
+````
 ````markdown
 
 -> VERY VERY VERY IMPORTANT CODE FOR MAX SUFFIX, MAX PREFIX OF SLIDING WINDOW
