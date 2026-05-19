@@ -597,54 +597,6 @@ taken == true
 means at least one element selected.
 
 
----
-
-
-
-Simple Rule to Remember
-
-Use parameter/state passing when:
-
-You are constructing subsets/combinations/permutations.
-
-solve(index,currentState)
-
-Examples:
-
-subset generation
-
-backtracking
-
-path building
-
-permutations
-
-combinations
-
-
-
----
-
-Use divide & recombine when:
-
-Subproblems are independent.
-
-Examples:
-
-merge sort
-
-tree DP
-
-Fibonacci DP
-
-max path problems
-
-
-Pattern:
-
-return combine(left,right)
-
-NOT for subset construction problems.
 
 -> Right Code (Backtracking)
 
@@ -716,3 +668,51 @@ class Main {
     }
 }
 ```
+---
+
+
+
+Simple Rule to Remember
+
+Use parameter/state passing when:
+
+You are constructing subsets/combinations/permutations.
+
+solve(index,currentState)
+
+Examples:
+
+subset generation
+
+backtracking
+
+path building
+
+permutations
+
+combinations
+
+
+
+---
+
+Use divide & recombine when:
+
+Subproblems are independent.
+
+Examples:
+
+merge sort
+
+tree DP
+
+Fibonacci DP
+
+max path problems
+
+
+Pattern:
+
+return combine(left,right)
+
+NOT for subset construction problems.
