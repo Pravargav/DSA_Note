@@ -417,6 +417,7 @@ class Solution {
     A  0 0 0 0 0        0 0 0 0 1        0 0 0 1 1        0 0 1 1 1        0 1 1 1 1       1 1 1 1 1
 
 ````
+
 Your first code is correct because it follows proper backtracking / subset generation.
 
 Your second code is wrong because it tries to recombine answers incorrectly and loses subset state.
@@ -527,48 +528,6 @@ skipped -3
 Recursion loses actual subset structure.
 
 
----
-
-Key Difference
-
-Correct Backtracking
-
-Carries current state downward.
-
-solve(index, currentProduct)
-
-Each path = one real subset.
-
-
----
-
-Wrong Divide & Recombine
-
-Returns already optimized answers upward.
-
-nums[index] * solve(index+1)
-
-This mixes incompatible decisions.
-
-
----
-
-
----
-
-Why We Need taken
-
-Because empty subset product becomes:
-
-1
-
-But empty subset is NOT allowed.
-
-So:
-
-taken == true
-
-means at least one element selected.
 
 
 
@@ -686,3 +645,31 @@ iv) max path problems
 return combine(left,right)
 
 NOT for subset construction problems.
+
+
+---
+
+
+### Key Difference
+
+#### Correct: Backtracking
+
+-> Carries current state downward.
+
+-> solve(index, currentProduct)
+
+-> Each path = one real subset.
+
+
+
+
+#### Wrong: Divide & Recombine
+
+-> Returns already optimized answers upward.
+
+-> nums[index] * solve(index+1)
+
+-> This mixes incompatible decisions.
+
+
+
