@@ -418,114 +418,25 @@ class Solution {
 
 ````
 
-Your first code is correct because it follows proper backtracking / subset generation.
-
-Your second code is wrong because it tries to recombine answers incorrectly and loses subset state.
 
 
----
+````markdown
 
-Core Idea of Problem
+### 2708. Maximum Strength of a Group, we must:
 
-In 2708. Maximum Strength of a Group, we must:
+-> choose any non-empty subset
 
-choose any non-empty subset
+-> calculate product
 
-calculate product
+-> return maximum product
 
-return maximum product
-
-
-So every recursive path must maintain:
-
-current subset product
-
-whether we picked something or not
+````
 
 
 
----
-
-Why First Code Works
-
-Your first code:
-
-solve(nums,index,p)
-
-Here:
-
-index → current position
-
-p → product of currently selected subset
-
-
-At every step:
-
-pick     -> include nums[index]
-notpick  -> skip nums[index]
-
-This is TRUE backtracking.
-
-
----
 
 
 
-Why Second Code Fails
-
-Your second code:
-
-pick = nums[index] * solve(index+1)
-
-This looks similar but is fundamentally different.
-
-
----
-
-BIG PROBLEM
-
-solve(index+1) already returns:
-
-maximum product possible from remaining array
-
-NOT:
-
-product of one specific subset
-
-So you're multiplying current number with an already maximized result.
-
-That creates invalid combinations.
-
-
----
-
-Example Where It Breaks
-
-Consider:
-
-nums = [-1, 2, -3]
-
-Suppose:
-
-solve(2) returns max(-3,1)=1
-
-Then:
-
-pick = 2 * 1 = 2
-
-But:
-
-1 came from "not picking -3"
-
-now we combined:
-
-picked 2
-
-skipped -3
-
-
-
-Recursion loses actual subset structure.
 
 
 
@@ -569,6 +480,30 @@ class Main {
 }
 ```
 
+Why First Code Works
+
+Your first code:
+
+solve(nums,index,p)
+
+Here:
+
+index → current position
+
+p → product of currently selected subset
+
+
+At every step:
+
+pick     -> include nums[index]
+notpick  -> skip nums[index]
+
+This is TRUE backtracking.
+
+
+---
+
+
 -> Wrong Code (Divide & Recombine)
 
 ```java
@@ -601,6 +536,32 @@ class Main {
     }
 }
 ```
+
+
+Why Second Code Fails
+
+Your second code:
+
+pick = nums[index] * solve(index+1)
+
+This looks similar but is fundamentally different.
+
+
+---
+
+BIG PROBLEM
+
+solve(index+1) already returns:
+
+maximum product possible from remaining array
+
+NOT:
+
+product of one specific subset
+
+So you're multiplying current number with an already maximized result.
+
+That creates invalid combinations.
 
 ````markdown
 ### Simple Rule to Remember
