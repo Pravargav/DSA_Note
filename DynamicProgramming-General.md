@@ -480,28 +480,26 @@ class Main {
 }
 ```
 
-Why First Code Works
+### Why The above Code Works
 
-Your first code:
+#### Your first code:
 
-solve(nums,index,p)
+-> solve(nums,index,p)
 
-Here:
+-> Here:
 
-index → current position
+i) index -> current position
 
-p → product of currently selected subset
+ii) p -> product of currently selected subset
 
 
-At every step:
+#### At every step:
 
 pick     -> include nums[index]
 notpick  -> skip nums[index]
 
 This is TRUE backtracking.
 
-
----
 
 
 -> Wrong Code (Divide & Recombine)
