@@ -602,7 +602,7 @@ class Main {
 }
 ```
 
-
+````markdown
 ### Simple Rule to Remember
 
 #### Use parameter/state passing when:
@@ -647,7 +647,6 @@ return combine(left,right)
 NOT for subset construction problems.
 
 
----
 
 
 ### Key Difference
@@ -672,4 +671,4 @@ NOT for subset construction problems.
 -> This mixes incompatible decisions.
 
 
-
+````
