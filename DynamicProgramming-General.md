@@ -644,9 +644,9 @@ class Main {
 ```
 
 
-#### Simple Rule to Remember
+### Simple Rule to Remember
 
-##### Use parameter/state passing when:
+#### Use parameter/state passing when:
 
 -> You are constructing subsets/combinations/permutations.
 
@@ -666,7 +666,7 @@ combinations
 
 
 
-##### Use divide & recombine when:
+#### Use divide & recombine when:
 
 Subproblems are independent.
 
@@ -681,7 +681,7 @@ Fibonacci DP
 max path problems
 
 
-##### Pattern:
+#### Pattern:
 
 return combine(left,right)
 
