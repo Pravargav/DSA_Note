@@ -654,15 +654,15 @@ solve(index,currentState)
 
 -> Examples:
 
-subset generation
+i) subset generation
 
-backtracking
+ii) backtracking
 
-path building
+iii) path building
 
-permutations
+iv) permutations
 
-combinations
+v) combinations
 
 
 
@@ -672,13 +672,13 @@ Subproblems are independent.
 
 -> Examples:
 
-merge sort
+i) merge sort
 
-tree DP
+ii) tree DP
 
-Fibonacci DP
+iii) Fibonacci DP
 
-max path problems
+iv) max path problems
 
 
 #### Pattern:
