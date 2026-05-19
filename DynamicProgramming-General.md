@@ -807,8 +807,9 @@ return combine(left,right)
 
 NOT for subset construction problems.
 
-Right Code (Backtracking)
+-> Right Code (Backtracking)
 
+```java
 class Main {
 
     long ans = Long.MIN_VALUE;
@@ -842,12 +843,11 @@ class Main {
         System.out.println(obj.maxStrength(nums));
     }
 }
+```
 
+-> Wrong Code (Divide & Recombine)
 
----
-
-Wrong Code (Divide & Recombine)
-
+```java
 class Main {
 
     long solve(int[] nums, int index) {
@@ -876,3 +876,4 @@ class Main {
         System.out.println(obj.maxStrength(nums));
     }
 }
+```
