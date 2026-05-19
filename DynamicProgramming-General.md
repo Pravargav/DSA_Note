@@ -535,31 +535,28 @@ class Main {
 }
 ```
 
+### Why Second Code Fails
 
-Why Second Code Fails
+#### Your second code:
 
-Your second code:
+-> pick = nums[index] * solve(index+1)
 
-pick = nums[index] * solve(index+1)
-
-This looks similar but is fundamentally different.
+-> This looks similar but is fundamentally different.
 
 
----
+#### BIG PROBLEM
 
-BIG PROBLEM
+-> solve(index+1) already returns:
 
-solve(index+1) already returns:
+-> maximum product possible from remaining array
 
-maximum product possible from remaining array
+#### NOT:
 
-NOT:
+-> product of one specific subset
 
-product of one specific subset
+-> So you're multiplying current number with an already maximized result.
 
-So you're multiplying current number with an already maximized result.
-
-That creates invalid combinations.
+-> That creates invalid combinations.
 
 ````markdown
 ### Simple Rule to Remember
