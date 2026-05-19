@@ -511,3 +511,298 @@ class Main {
                                     (i) **sample tree recursion**
 	  
 ````
+Your first code is correct because it follows proper backtracking / subset generation.
+
+Your second code is wrong because it tries to recombine answers incorrectly and loses subset state.
+
+
+---
+
+Core Idea of Problem
+
+In 2708. Maximum Strength of a Group, we must:
+
+choose any non-empty subset
+
+calculate product
+
+return maximum product
+
+
+So every recursive path must maintain:
+
+current subset product
+
+whether we picked something or not
+
+
+
+---
+
+Why First Code Works
+
+Your first code:
+
+solve(nums,index,p)
+
+Here:
+
+index → current position
+
+p → product of currently selected subset
+
+
+At every step:
+
+pick     -> include nums[index]
+notpick  -> skip nums[index]
+
+This is TRUE backtracking.
+
+
+---
+
+Visualization
+
+Suppose:
+
+nums = [2,3]
+
+Tree:
+
+(1)
+               /           \
+            *2              skip
+          (2)                (1)
+        /     \            /     \
+      *3      skip      *3      skip
+     (6)      (2)      (3)      (1)
+
+Generated subset products:
+
+[2,3] -> 6
+[2]   -> 2
+[3]   -> 3
+[]    -> 1
+
+Maximum = 6
+
+
+---
+
+Why Second Code Fails
+
+Your second code:
+
+pick = nums[index] * solve(index+1)
+
+This looks similar but is fundamentally different.
+
+
+---
+
+BIG PROBLEM
+
+solve(index+1) already returns:
+
+maximum product possible from remaining array
+
+NOT:
+
+product of one specific subset
+
+So you're multiplying current number with an already maximized result.
+
+That creates invalid combinations.
+
+
+---
+
+Example Where It Breaks
+
+Consider:
+
+nums = [-1, 2, -3]
+
+Suppose:
+
+solve(2) returns max(-3,1)=1
+
+Then:
+
+pick = 2 * 1 = 2
+
+But:
+
+1 came from "not picking -3"
+
+now we combined:
+
+picked 2
+
+skipped -3
+
+
+
+Recursion loses actual subset structure.
+
+
+---
+
+Key Difference
+
+Correct Backtracking
+
+Carries current state downward.
+
+solve(index, currentProduct)
+
+Each path = one real subset.
+
+
+---
+
+Wrong Divide & Recombine
+
+Returns already optimized answers upward.
+
+nums[index] * solve(index+1)
+
+This mixes incompatible decisions.
+
+
+---
+
+Clean Correct Backtracking Code
+
+import java.util.*;
+
+class Main {
+
+    long ans = Long.MIN_VALUE;
+
+    void solve(int[] nums, int index, long product, boolean taken) {
+
+        // Base case
+        if (index == nums.length) {
+
+            // subset should not be empty
+            if (taken) {
+                ans = Math.max(ans, product);
+            }
+
+            return;
+        }
+
+        // PICK current element
+        solve(nums,
+              index + 1,
+              product * nums[index],
+              true);
+
+        // NOT PICK current element
+        solve(nums,
+              index + 1,
+              product,
+              taken);
+    }
+
+    public long maxStrength(int[] nums) {
+
+        solve(nums, 0, 1, false);
+
+        return ans;
+    }
+
+    public static void main(String[] args) {
+
+        int[] nums = {3, -1, -5, 2, 5, -9};
+
+        Main obj = new Main();
+
+        System.out.println(obj.maxStrength(nums));
+    }
+}
+
+
+---
+
+Why We Need taken
+
+Because empty subset product becomes:
+
+1
+
+But empty subset is NOT allowed.
+
+So:
+
+taken == true
+
+means at least one element selected.
+
+
+---
+
+Time Complexity
+
+At every index:
+
+pick
+not pick
+
+So total subsets:
+
+2^n
+
+Complexity:
+
+O(2^n)
+
+
+---
+
+Simple Rule to Remember
+
+Use parameter/state passing when:
+
+You are constructing subsets/combinations/permutations.
+
+solve(index,currentState)
+
+Examples:
+
+subset generation
+
+backtracking
+
+path building
+
+permutations
+
+combinations
+
+
+
+---
+
+Use divide & recombine when:
+
+Subproblems are independent.
+
+Examples:
+
+merge sort
+
+tree DP
+
+Fibonacci DP
+
+max path problems
+
+
+Pattern:
+
+return combine(left,right)
+
+NOT for subset construction problems.
