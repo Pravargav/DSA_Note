@@ -642,19 +642,17 @@ class Main {
     }
 }
 ```
----
 
 
+#### Simple Rule to Remember
 
-Simple Rule to Remember
+##### Use parameter/state passing when:
 
-Use parameter/state passing when:
-
-You are constructing subsets/combinations/permutations.
+-> You are constructing subsets/combinations/permutations.
 
 solve(index,currentState)
 
-Examples:
+-> Examples:
 
 subset generation
 
@@ -668,13 +666,11 @@ combinations
 
 
 
----
-
-Use divide & recombine when:
+##### Use divide & recombine when:
 
 Subproblems are independent.
 
-Examples:
+-> Examples:
 
 merge sort
 
@@ -685,7 +681,7 @@ Fibonacci DP
 max path problems
 
 
-Pattern:
+##### Pattern:
 
 return combine(left,right)
 
