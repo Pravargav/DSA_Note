@@ -272,31 +272,40 @@ class Solution {
 ##### Example notes for reference(not actual problems)
 
 ````markdown
--> House robber 4 (without list)
+-> House Robber 4 — Without List (Clean Backtracking)
 
-
-    
 ```java
 class Solution {
-
+ 
     public int minCapability(int[] nums, int k) {
-        int n = nums.length;
-        return fun( nums, 0, k);
+        return solve(nums, 0, k);
     }
-
-    public int fun( int nums[], int idx, int k) {
-        if(k==0)
-           return 0;
-        if(idx>=nums.length) return Integer.MAX_VALUE;
-
-        int take = Math.max(nums[idx],fun( nums,idx+2, k-1));
-        int not_take= fun(nums ,idx+1, k);
-        return Math.min(take,not_take);
+ 
+    public int solve(int[] nums, int idx, int k) {
+ 
+        if (k == 0) {
+            return 0;
+        }
+ 
+        if (idx >= nums.length) {
+            return Integer.MAX_VALUE;
+        }
+ 
+        int take = solve(nums, idx + 2, k - 1);
+ 
+        if (take != Integer.MAX_VALUE) {
+            take = Math.max(nums[idx], take);
+        }
+ 
+        int notTake = solve(nums, idx + 1, k);
+ 
+        return Math.min(take, notTake);
     }
 }
-```
---------------------------(or)---------------------------------
 
+```
+ 
+````
 ->House robber 4 (with list)
     
 ```java
