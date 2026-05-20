@@ -137,22 +137,7 @@ class Solution {
 
 b) https://leetcode.com/problems/cheapest-flights-within-k-stops/description/
 
-This problem is:
 
-Cheapest Flights Within K Stops
-
-Goal:
-
-Find the minimum flight cost from:
-
-src → dst
-
-with at most:
-
-k stops
-
-
----
 
 Core Idea
 
@@ -173,53 +158,6 @@ BFS naturally processes level-by-level
 Each BFS level = one extra stop
 
 
-
----
-
-Graph Construction
-
-Edge Class
-
-static class Edge {
-    int dest;
-    int wt;
-}
-
-Represents:
-
-destination node
-flight cost
-
-
----
-
-Adjacency List
-
-List<List<Edge>> lst= new ArrayList<>();
-
-Stores graph.
-
-
----
-
-Build Graph
-
-for (int[] flight : flights) {
-    lst.get(flight[0]).add(
-        new Edge(flight[1], flight[2])
-    );
-}
-
-If:
-
-0 -> 1 cost 100
-
-store:
-
-0 : [(1,100)]
-
-
----
 
 Queue for BFS
 
@@ -349,21 +287,6 @@ After processing one BFS level:
 one extra stop used
 
 
----
-
-Final Answer
-
-If destination unreachable:
-
-if(minCost[dst]==Integer.MAX_VALUE)
-    return -1;
-
-Else:
-
-return minCost[dst];
-
-
----
 
 Why BFS Works Here
 
@@ -411,104 +334,6 @@ minCost[]
 
 instead of visited array.
 
-
----
-
-Example Walkthrough
-
-Flights:
-
-0 -> 1 : 100
-1 -> 2 : 100
-0 -> 2 : 500
-
-Find:
-
-src=0 dst=2 k=1
-
-
----
-
-Initial
-
-Queue:
-
-[(0,0)]
-
-minCost:
-
-[INF, INF, INF]
-
-
----
-
-Stop 0
-
-Process node 0.
-
-Neighbors:
-
-1 cost 100
-2 cost 500
-
-Update:
-
-minCost[1]=100
-minCost[2]=500
-
-Queue:
-
-[(1,100), (2,500)]
-
-
----
-
-Stop 1
-
-Process node 1.
-
-Neighbor:
-
-2 cost 100
-
-New cost:
-
-100+100=200
-
-Better than 500.
-
-Update:
-
-minCost[2]=200
-
-Answer:
-
-200
-
-
----
-
-Time Complexity
-
-Let:
-
-V = nodes
-E = flights
-
-Worst case:
-
-O(k * E)
-
-because each stop level may process all edges.
-
-
----
-
-Space Complexity
-
-O(V + E)
-
-for graph + queue + minCost.
 
 
 ---
