@@ -1418,7 +1418,7 @@ class Solution {
         int min = Integer.MAX_VALUE;
         int minidx = -1;
         for (int i = 0; i < dist1.length; i++) {
-            if (dist1[i] != -1 && dist2[i] != -1) {
+            if (dist1[i] != Integer.MAX_VALUE && dist2[i] != Integer.MAX_VALUE) {
                 int k = Math.max(dist1[i], dist2[i]);
                 if (k < min) {
                     min = k;
