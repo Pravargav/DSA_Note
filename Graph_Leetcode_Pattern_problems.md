@@ -827,6 +827,390 @@ class Solution {
 
 a) 
 
+This problem uses:
+
+Dijkstra’s Algorithm on a Grid
+
+because:
+
+Each movement has variable cost/time
+
+and we need:
+
+minimum time to reach bottom-right cell
+
+
+---
+
+Problem Understanding
+
+moveTime[i][j] means:
+
+You cannot ENTER cell (i,j)
+before this time.
+
+If you arrive earlier:
+
+you must wait
+
+Moving to adjacent cell always takes:
+
+1 second
+
+
+---
+
+Core Idea
+
+At every move:
+
+nextTime =
+max(currentTime, moveTime[nextCell]) + 1
+
+Why?
+
+Because:
+
+if current time is smaller than allowed move time → wait
+
+then spend 1 second to move
+
+
+
+---
+
+Pair Class
+
+static class Pair implements Comparable<Pair>
+
+Represents:
+
+(x, y, minT)
+
+where:
+
+x,y → cell coordinates
+
+minT → minimum time to reach this cell
+
+
+
+---
+
+Priority Queue
+
+PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+Works as:
+
+Min Heap
+
+Smallest time processed first.
+
+Exactly how Dijkstra works.
+
+
+---
+
+Distance Array
+
+int dist[][] = new int[m][n];
+
+Stores:
+
+minimum time needed to reach each cell
+
+Initially:
+
+Integer.MAX_VALUE
+
+because initially unreachable.
+
+
+---
+
+Visited Array
+
+boolean vis[][] = new boolean[m][n];
+
+Once shortest path to cell finalized:
+
+mark visited
+
+Same as Dijkstra.
+
+
+---
+
+Source Initialization
+
+dist[0][0] = 0;
+pq.add(new Pair(0, 0, 0));
+
+Start from top-left cell at time 0.
+
+
+---
+
+Main Dijkstra Loop
+
+while (!pq.isEmpty())
+
+Continue until all reachable nodes processed.
+
+
+---
+
+Get Minimum Time Cell
+
+Pair curr = pq.remove();
+
+Priority queue guarantees:
+
+smallest time cell comes first
+
+
+---
+
+Skip Already Finalized Cells
+
+if (!vis[curr.x][curr.y])
+
+Important optimization.
+
+Once shortest path fixed:
+
+no need to process again
+
+
+---
+
+Relaxation Process
+
+For every direction:
+
+Down
+
+Up
+
+Right
+
+Left
+
+
+we calculate:
+
+minimum time to enter neighbor
+
+
+---
+
+Key Logic
+
+Example:
+
+if (dist[ux1][uy1] < moveTime[vx1][vy1]) {
+    nT = moveTime[vx1][vy1] + 1;
+}
+
+Meaning:
+
+We arrived too early.
+Need to wait.
+
+Suppose:
+
+currentTime = 2
+moveTime[next] = 5
+
+Cannot enter at 2.
+
+Wait till 5, then move:
+
+time = 6
+
+
+---
+
+Otherwise
+
+nT = dist[ux1][uy1] + 1;
+
+If already late enough:
+
+move immediately.
+
+
+---
+
+Relaxation Condition
+
+if (!vis[vx][vy] && nT < dist[vx][vy])
+
+If better path found:
+
+update shortest time.
+
+
+---
+
+Update Distance
+
+dist[vx][vy] = nT;
+
+Store improved shortest time.
+
+
+---
+
+Push Into PQ
+
+pq.add(new Pair(vx, vy, dist[vx][vy]));
+
+So neighbor can further relax others.
+
+
+---
+
+Final Answer
+
+return dist[m - 1][n - 1];
+
+Minimum time to reach bottom-right.
+
+
+---
+
+Actual Formula Behind Code
+
+Your repeated logic is basically:
+
+\text{nextTime} = \max(\text{currentTime},\text{moveTime}[nx][ny]) + 1
+
+This single formula represents entire waiting logic.
+
+
+---
+
+Why Dijkstra Works
+
+Because:
+
+edge cost is not fixed
+
+waiting may happen
+
+shortest path needed
+
+
+Dijkstra handles:
+
+weighted graphs with non-negative weights
+
+Perfect fit.
+
+
+---
+
+Visualization Example
+
+Suppose:
+
+moveTime =
+[
+ [0,1],
+ [4,2]
+]
+
+Start:
+
+(0,0) at time 0
+
+
+---
+
+Move to (0,1)
+
+Need:
+
+max(0,1)+1 = 2
+
+Reach at time 2.
+
+
+---
+
+Move to (1,1)
+
+Current time:
+
+2
+
+Cell opens at:
+
+2
+
+So:
+
+max(2,2)+1 = 3
+
+Answer = 3.
+
+
+---
+
+Time Complexity
+
+Grid has:
+
+V = m*n cells
+
+Each cell explores 4 directions.
+
+Using priority queue:
+
+O(V log V)
+
+More precisely:
+
+O((m \times n)\log(m \times n))
+
+
+---
+
+Space Complexity
+
+O(m*n)
+
+for:
+
+distance array
+
+visited array
+
+priority queue
+
+
+
+---
+
+Important Observation
+
+This is NOT BFS.
+
+Why?
+
+Because BFS only works when:
+
+all edges have equal weight
+
+Here effective movement cost changes because of waiting times.
+
+So:
+
+BFS fails
+Dijkstra succeeds
+
  i) https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i
 
 
