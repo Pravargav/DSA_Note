@@ -2,7 +2,7 @@
 #### Example/Sample Leetcode problems
 
 **HARD LEVEL**
-
+````markdown
 a) This problem is solved using Multi-Source BFS (Breadth First Search).
 
 The idea:
@@ -15,13 +15,13 @@ The idea:
 
 **Step-by-Step Algorithm**
 
+
 ->**Add all rotten oranges into queue**
    
-```java
 if (grid[i][j] == 2) {
     q.add(new Edge(i,j));
 }
-```
+
 
 -> **Why?**
 
@@ -45,7 +45,7 @@ i)int size = q.size();
 ii)All oranges currently in queue rot neighbors simultaneously.
 
 iii)So we process entire level together.
-
+````
 
 ->  https://leetcode.com/problems/rotting-oranges/description/ 
 
