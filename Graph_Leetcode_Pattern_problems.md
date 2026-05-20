@@ -1,287 +1,53 @@
-
+  
 #### Example/Sample Leetcode problems
 
 **HARD LEVEL**
 
-
-a)
-
-This problem is solved using Multi-Source BFS (Breadth First Search).
+a) This problem is solved using Multi-Source BFS (Breadth First Search).
 
 The idea:
 
-Every rotten orange (2) spreads rot to adjacent fresh oranges (1) every minute.
+-> Every rotten orange (2) spreads rot to adjacent fresh oranges (1) every minute.
 
-Instead of starting BFS from one node, we start from all rotten oranges together.
+-> Instead of starting BFS from one node, we start from all rotten oranges together.
 
-Each BFS level = 1 minute.
+-> Each BFS level = 1 minute.
 
+**Step-by-Step Algorithm**
 
-
----
-
-Step-by-Step Algorithm
-
-1. Add all rotten oranges into queue
-
+->**Add all rotten oranges into queue**
+   
+```java
 if (grid[i][j] == 2) {
     q.add(new Edge(i,j));
 }
+```
 
-Why?
+-> **Why?**
 
-Because all rotten oranges start spreading simultaneously.
+i)Because all rotten oranges start spreading simultaneously.
 
-So BFS starts from multiple sources.
+ii)So BFS starts from multiple sources.
 
 
----
+-> **BFS Traversal**
 
-2. Count fresh oranges
+i)while (!q.isEmpty())
 
-if (grid[i][j] == 1) {
-    fresh++;
-}
+ii)Each iteration of outer loop = 1 minute
 
-We need this because:
 
-If no fresh oranges exist → answer is 0
 
-If fresh oranges exist but no rotten orange exists → impossible → -1
+-> **Level Order BFS**
 
+i)int size = q.size();
 
+ii)All oranges currently in queue rot neighbors simultaneously.
 
----
+iii)So we process entire level together.
 
-Base Cases
 
-No fresh oranges
-
-if (fresh == 0)
-    return 0;
-
-Already all rotten.
-
-
----
-
-Fresh oranges exist but no rotten orange
-
-if (q.isEmpty())
-    return -1;
-
-No way to spread rot.
-
-
----
-
-Direction Array
-
-int[][] dirs = new int[4][2];
-
-Represents:
-
-Down  -> (1,0)
-Up    -> (-1,0)
-Left  -> (0,-1)
-Right -> (0,1)
-
-Used to visit 4 neighboring cells.
-
-
----
-
-BFS Traversal
-
-while (!q.isEmpty())
-
-Each iteration of outer loop = 1 minute
-
-
----
-
-Level Order BFS
-
-int size = q.size();
-
-All oranges currently in queue rot neighbors simultaneously.
-
-So we process entire level together.
-
-
----
-
-Process Current Rotten Orange
-
-Edge e = q.remove();
-
-Take one rotten orange.
-
-
----
-
-Visit Neighbors
-
-int i = x + dir[0];
-int j = y + dir[1];
-
-Generate adjacent cell coordinates.
-
-
----
-
-Rot Fresh Orange
-
-if ((i >= 0 && i < m) &&
-    (j >= 0 && j < n) &&
-    grid[i][j] == 1)
-
-Checks:
-
-inside grid
-
-is fresh orange
-
-
-Then:
-
-grid[i][j] = 2;
-fresh--;
-q.add(new Edge(i,j));
-
-Meaning:
-
-orange becomes rotten
-
-fresh count decreases
-
-newly rotten orange added for next minute spreading
-
-
-
----
-
-Minute Counter
-
-min++;
-
-After one BFS level completes, 1 minute has passed.
-
-
----
-
-Why min = -1 initially?
-
-Because:
-
-Queue initially already contains rotten oranges at minute 0
-
-First BFS level should represent minute 0
-
-
-So after first level:
-
--1 + 1 = 0
-
-This avoids extra counting.
-
-
----
-
-Final Check
-
-for (...)
-    if (grid[i][j] == 1)
-        return -1;
-
-If any fresh orange still exists:
-
-it was unreachable
-
-answer is -1
-
-
-Otherwise:
-
-return min;
-
-
----
-
-Time Complexity
-
-Grid visited once.
-
-If grid size is m × n:
-
-Time  : O(m*n)
-Space : O(m*n)
-
-(queue can contain all cells)
-
-
----
-
-Why BFS Works Here
-
-Because BFS naturally processes nodes level-by-level.
-
-Here:
-
-1 BFS level = 1 minute
-
-So BFS perfectly models spreading processes:
-
-infection
-
-fire spread
-
-rotting
-
-shortest distance in unweighted graph
-
-
-
----
-
-Visualization Example
-
-Grid:
-
-2 1 1
-1 1 0
-0 1 1
-
-Initially rotten:
-
-(0,0)
-
-Minute 0:
-
-2 2 1
-2 1 0
-0 1 1
-
-Minute 1:
-
-2 2 2
-2 2 0
-0 1 1
-
-Minute 2:
-
-2 2 2
-2 2 0
-0 2 1
-
-Minute 3:
-
-2 2 2
-2 2 0
-0 2 2
-
-Answer = 4 minutes total according to BFS level counting convention in this implementation.
- https://leetcode.com/problems/rotting-oranges/description/ 
+->  https://leetcode.com/problems/rotting-oranges/description/ 
 
 (implicit graph format not adjacency list)
 
