@@ -2,50 +2,7 @@
 #### Example/Sample Leetcode problems
 
 **HARD LEVEL**
-````markdown
-a) This problem is solved using Multi-Source BFS (Breadth First Search).
 
-The idea:
-
--> Every rotten orange (2) spreads rot to adjacent fresh oranges (1) every minute.
-
--> Instead of starting BFS from one node, we start from all rotten oranges together.
-
--> Each BFS level = 1 minute.
-
-**Step-by-Step Algorithm**
-
-
-->**Add all rotten oranges into queue**
-   
-if (grid[i][j] == 2) {
-    q.add(new Edge(i,j));
-}
-
-
--> **Why?**
-
-i)Because all rotten oranges start spreading simultaneously.
-
-ii)So BFS starts from multiple sources.
-
-
--> **BFS Traversal**
-
-i)while (!q.isEmpty())
-
-ii)Each iteration of outer loop = 1 minute
-
-
-
--> **Level Order BFS**
-
-i)int size = q.size();
-
-ii)All oranges currently in queue rot neighbors simultaneously.
-
-iii)So we process entire level together.
-````
 
 ->  https://leetcode.com/problems/rotting-oranges/description/ 
 
