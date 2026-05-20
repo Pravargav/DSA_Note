@@ -417,50 +417,47 @@ class Solution {
 **MEDIUM LEVEL**
 
 a) 
-
-Suppose currently we are at:
-Java
+````markdown
+-> Suppose currently we are at:
 (ux1 , uy1)
 at time:
 Java
 dist[ux1][uy1]
-Now we want to go DOWN.
+
+-> Now we want to go DOWN.
 So next cell is:
 Java
 (vx1 , vy1)
-Why this check?
-Java
+
+-> **Why this check?**
+
 if (dist[ux1][uy1] < moveTime[vx1][vy1])
 Meaning:
 "We reached too early."
 Because:
-Java
 moveTime[vx1][vy1]
 means:
-👉 You CANNOT enter that cell before this time.
+-> You CANNOT enter that cell before this time.
 Example:
 Current time:
-Java
 2
 Next cell open time:
-Java
 5
 You reached early.
 So you must WAIT.
 Therefore
-Java
 nT = moveTime[vx1][vy1] + 1;
-Why +1?
+
+-> Why +1?
 Because:
 After waiting till time 5, moving into the cell still takes:
-Java
 1 second
 So:
-Plain text
 wait till 5
 move -> 6
-Else condition
-Java
+
+-> **Else condition**
+
 else if (dist[ux1][uy1] >= moveTime[vx1][vy1])
 Meaning:
 The cell is already open when we arrive.
@@ -471,6 +468,7 @@ Java
 nT = dist[ux1][uy1] + 1;
 Meaning:
 current time + movement cost
+
 ->**Final Relaxation Step**
 
 Java
@@ -482,7 +480,7 @@ Same as standard Dijkstra.
 If we found a shorter time to reach this cell:
 update distance
 push into priority queue
-
+````
  i) https://leetcode.com/problems/find-minimum-time-to-reach-last-room-i
 
 
