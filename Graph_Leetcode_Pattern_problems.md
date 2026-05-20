@@ -946,12 +946,12 @@ class Solution {
 
 ```
 b)
-
-This problem is:
+````markdown
+-> **This problem is:**
 
 Find Closest Node to Given Two Nodes
 
-Goal:
+-> **Goal:**
 
 Find a node reachable from both:
 
@@ -967,7 +967,7 @@ is minimized.
 
 
 
-Core Idea
+-> **Core Idea:**
 
 We calculate:
 
@@ -980,14 +980,11 @@ max(dist1[i],dist2[i])
 
 because both people should reach meeting node as fairly as possible.
 
-
----
-
-Dijkstra Function
+-> **Dijkstra Function**
 
 static int[] dijikstra(...)
 
-Actually this behaves more like:
+-> **Actually this behaves more like:**
 
 BFS on directed graph
 
@@ -997,10 +994,7 @@ all edge weights are 1
 
 no priority queue used
 
-
----
-
-Explore Neighbor
+-> **Explore Neighbor**
 
 for (Edge e : graph.get(u))
 
@@ -1008,19 +1002,13 @@ Since each node has at most one outgoing edge:
 
 loop runs at most once.
 
-
----
-
-Relaxation
+-> **Relaxation**
 
 int newDist = d + 1;
 
 Every edge costs 1.
 
-
----
-
-Update Neighbor
+-> **Update Neighbor**
 
 if (!vis[v]) {
     dist[v] = newDist;
@@ -1029,10 +1017,7 @@ if (!vis[v]) {
 
 Store shortest distance.
 
-
----
-
-Two Distance Arrays
+-> **Two Distance Arrays**
 
 int[] dist1 = dijikstra(graph, node1);
 int[] dist2 = dijikstra(graph, node2);
@@ -1042,27 +1027,22 @@ Now we know:
 distance from node1 → every node
 distance from node2 → every node
 
-
----
-
-Find Closest Meeting Node
+-> **Find Closest Meeting Node**
 
 Loop through all nodes.
 
 int k = Math.max(dist1[i], dist2[i]);
 
-Meaning:
+-> **Meaning:**
 
 worst distance among the two persons
 
 We minimize this value.
 
 
----
+-> **Why Use Maximum?**
 
-Why Use Maximum?
-
-Suppose:
+i) Suppose:
 
 Node A:
 dist1=1
@@ -1072,16 +1052,13 @@ Node B:
 dist1=50
 dist2=50
 
-Meeting at B is better because:
+ii)Meeting at B is better because:
 
 max(50,50)=50
 max(1,100)=100
 
 We want balanced meeting point.
-
-
-
-
+````
 
 
  https://leetcode.com/problems/find-closest-node-to-given-two-nodes/
