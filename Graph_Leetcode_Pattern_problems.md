@@ -1354,7 +1354,410 @@ class Solution {
 
 
 ```
-b) https://leetcode.com/problems/find-closest-node-to-given-two-nodes/
+b)
+
+This problem is:
+
+Find Closest Node to Given Two Nodes
+
+Goal:
+
+Find a node reachable from both:
+
+node1
+node2
+
+such that:
+
+max(distance from node1,
+    distance from node2)
+
+is minimized.
+
+
+---
+
+Important Graph Property
+
+Given:
+
+int[] edges
+
+where:
+
+edges[i] = j
+
+means:
+
+i -> j
+
+Each node has at most:
+
+1 outgoing edge
+
+So graph is called:
+
+Functional Graph
+
+
+---
+
+Graph Construction
+
+Edge Class
+
+static class Edge {
+    int to;
+    int weight;
+}
+
+Represents:
+
+destination + edge weight
+
+Though weight is always 1.
+
+
+---
+
+Build Adjacency List
+
+List<List<Edge>> graph = new ArrayList<>();
+
+Stores graph representation.
+
+
+---
+
+Create Edges
+
+if (edges[i] != -1) {
+    graph.get(i).add(
+        new Edge(edges[i], 1)
+    );
+}
+
+If:
+
+edges[0] = 3
+
+Then:
+
+0 -> 3
+
+
+---
+
+Core Idea
+
+We calculate:
+
+distance from node1 to all nodes
+distance from node2 to all nodes
+
+Then choose node minimizing:
+
+\max(dist1[i],dist2[i])
+
+because both people should reach meeting node as fairly as possible.
+
+
+---
+
+Dijkstra Function
+
+static int[] dijikstra(...)
+
+Actually this behaves more like:
+
+BFS on directed graph
+
+because:
+
+all edge weights are 1
+
+no priority queue used
+
+
+
+---
+
+Distance Array
+
+int[] dist = new int[n];
+
+Stores shortest distance from source.
+
+Initially:
+
+Arrays.fill(dist, Integer.MAX_VALUE);
+
+Meaning:
+
+unreachable initially
+
+
+---
+
+Visited Array
+
+boolean[] vis = new boolean[n];
+
+Avoids revisiting finalized nodes.
+
+
+---
+
+Queue
+
+Queue<int[]> pq = new LinkedList<>();
+
+Stores:
+
+(distance, node)
+
+
+---
+
+Source Initialization
+
+dist[src] = 0;
+pq.offer(new int[] { 0, src });
+
+Start BFS from source node.
+
+
+---
+
+BFS Traversal
+
+while (!pq.isEmpty())
+
+Process nodes level-by-level.
+
+
+---
+
+Remove Current Node
+
+int[] cur = pq.poll();
+
+Get:
+
+d = current distance
+u = current node
+
+
+---
+
+Skip Already Visited
+
+if (vis[u])
+    continue;
+
+Ensures node processed once.
+
+
+---
+
+Explore Neighbor
+
+for (Edge e : graph.get(u))
+
+Since each node has at most one outgoing edge:
+
+loop runs at most once.
+
+
+---
+
+Relaxation
+
+int newDist = d + 1;
+
+Every edge costs 1.
+
+
+---
+
+Update Neighbor
+
+if (!vis[v]) {
+    dist[v] = newDist;
+    pq.offer(new int[] { newDist, v });
+}
+
+Store shortest distance.
+
+
+---
+
+Two Distance Arrays
+
+int[] dist1 = dijikstra(graph, node1);
+int[] dist2 = dijikstra(graph, node2);
+
+Now we know:
+
+distance from node1 → every node
+distance from node2 → every node
+
+
+---
+
+Find Closest Meeting Node
+
+Loop through all nodes.
+
+int k = Math.max(dist1[i], dist2[i]);
+
+Meaning:
+
+worst distance among the two persons
+
+We minimize this value.
+
+
+---
+
+Why Use Maximum?
+
+Suppose:
+
+Node A:
+dist1=1
+dist2=100
+
+Node B:
+dist1=50
+dist2=50
+
+Meeting at B is better because:
+
+max(50,50)=50
+max(1,100)=100
+
+We want balanced meeting point.
+
+
+---
+
+Final Answer
+
+if (k < min)
+
+Choose smallest maximum distance.
+
+Store node index.
+
+
+---
+
+Small Example
+
+edges = [2,2,3,-1]
+
+0 -> 2
+1 -> 2
+2 -> 3
+
+Suppose:
+
+node1 = 0
+node2 = 1
+
+
+---
+
+Distances From Node1
+
+0 -> 0 = 0
+0 -> 2 = 1
+0 -> 3 = 2
+
+
+---
+
+Distances From Node2
+
+1 -> 1 = 0
+1 -> 2 = 1
+1 -> 3 = 2
+
+
+---
+
+Candidate Nodes
+
+Node 2
+
+max(1,1)=1
+
+Node 3
+
+max(2,2)=2
+
+Minimum is node 2.
+
+
+---
+
+Time Complexity
+
+Each node visited once.
+
+O(V)
+
+Two traversals:
+
+O(2V) = O(V)
+
+
+---
+
+Space Complexity
+
+O(V)
+
+for:
+
+graph
+
+queue
+
+distance arrays
+
+visited arrays
+
+
+
+---
+
+Important Bug in Your Code
+
+You initialized:
+
+Arrays.fill(dist, Integer.MAX_VALUE);
+
+but later checked:
+
+if (dist1[i] != -1 && dist2[i] != -1)
+
+This is incorrect.
+
+Unreachable nodes remain:
+
+Integer.MAX_VALUE
+
+not -1.
+
+Correct condition should be:
+
+if (dist1[i] != Integer.MAX_VALUE &&
+    dist2[i] != Integer.MAX_VALUE)
+
+Otherwise unreachable nodes may incorrectly participate.
+ https://leetcode.com/problems/find-closest-node-to-given-two-nodes/
 
 ```java
 class Solution {
