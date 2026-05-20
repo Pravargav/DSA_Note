@@ -4,7 +4,61 @@
 **HARD LEVEL**
 
 
-a) https://leetcode.com/problems/rotting-oranges/description/ 
+a)This problem is solved using Multi-Source BFS (Breadth First Search).
+The idea:
+Every rotten orange (2) spreads rot to adjacent fresh oranges (1) every minute.
+Instead of starting BFS from one node, we start from all rotten oranges together.
+Each BFS level = 1 minute.
+Step-by-Step Algorithm
+1. Add all rotten oranges into queue
+Java
+if (grid[i][j] == 2) {
+    q.add(new Edge(i,j));
+}
+Why?
+Because all rotten oranges start spreading simultaneously.
+So BFS starts from multiple sources.
+2. Count fresh oranges
+Java
+if (grid[i][j] == 1) {
+    fresh++;
+}
+We need this because:
+If no fresh oranges exist → answer is 0
+If fresh oranges exist but no rotten orange exists → impossible → -1
+Base Cases
+No fresh oranges
+Java
+if (fresh == 0)
+    return 0;
+Already all rotten.
+Fresh oranges exist but no rotten orange
+Java
+if (q.isEmpty())
+    return -1;
+No way to spread rot.
+Direction Array
+Java
+int[][] dirs = new int[4][2];
+Represents:
+Plain text
+Down  -> (1,0)
+Up    -> (-1,0)
+Left  -> (0,-1)
+Right -> (0,1)
+Used to visit 4 neighboring cells.
+BFS Traversal
+Java
+while (!q.isEmpty())
+Each iteration of outer loop = 1 minute
+Level Order BFS
+Java
+int size = q.size();
+All oranges currently in queue rot neighbors simultaneously.
+So we process entire level together.
+
+
+ https://leetcode.com/problems/rotting-oranges/description/ 
 
 (implicit graph format not adjacency list)
 
