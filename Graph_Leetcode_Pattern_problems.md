@@ -432,13 +432,15 @@ Java
 -> **Why this check?**
 
 if (dist[ux1][uy1] < moveTime[vx1][vy1])
-Meaning:
+
+i) Meaning:
 "We reached too early."
 Because:
 moveTime[vx1][vy1]
 means:
 -> You CANNOT enter that cell before this time.
-Example:
+
+ii) Example:
 Current time:
 2
 Next cell open time:
@@ -449,7 +451,9 @@ Therefore
 nT = moveTime[vx1][vy1] + 1;
 
 -> Why +1?
-Because:
+
+i)Because:
+
 After waiting till time 5, moving into the cell still takes:
 1 second
 So:
@@ -459,14 +463,16 @@ move -> 6
 -> **Else condition**
 
 else if (dist[ux1][uy1] >= moveTime[vx1][vy1])
-Meaning:
+
+i)Meaning:
 The cell is already open when we arrive.
 So no waiting needed.
 Just move normally.
 Therefore
-Java
+
 nT = dist[ux1][uy1] + 1;
-Meaning:
+
+ii)Meaning:
 current time + movement cost
 
 ->**Final Relaxation Step**
