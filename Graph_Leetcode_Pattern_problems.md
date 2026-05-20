@@ -3,6 +3,47 @@
 
 **HARD LEVEL**
 
+````markdown
+
+//For below two hard problems
+
+Simple BFS
+
+while(!q.isEmpty()) {
+    int node = q.poll();
+
+    for(int neighbor : graph.get(node)) {
+        
+    }
+}
+
+Used when:
+
+Plain traversal matters
+
+
+---
+
+Level BFS
+
+while(!q.isEmpty()) {
+    int size = q.size();
+
+    while(size-- > 0) {
+        int node = q.poll();
+
+        for(int neighbor : graph.get(node)) {
+            
+        }
+    }
+}
+
+Used when:
+
+Level / distance / time / stops matter
+
+````
+
 
 ->  https://leetcode.com/problems/rotting-oranges/description/ 
 
