@@ -1033,6 +1033,56 @@ List<List<  Edge(int dest, int wt) {
 
 ````
 
+````markdown
+Both classes store different types of information needed for Dijkstra's Algorithm.
+1. Edge Class → Graph Structure
+Java
+static class Edge {
+    int dest, wt;
+}
+Used inside adjacency list.
+Represents:
+Plain text
+u → dest with weight wt
+Example:
+Plain text
+0 → 1 (4)
+0 → 2 (7)
+Stored as:
+Java
+graph.get(0):
+    Edge(1,4)
+    Edge(2,7)
+So Edge is permanent graph information.
+2. Pair Class → Priority Queue State
+Java
+static class Pair {
+    int node, dist;
+}
+Used inside min-heap (PriorityQueue).
+Represents:
+Plain text
+current shortest known distance to node
+Example:
+Plain text
+(node = 3, dist = 8)
+means:
+Plain text
+currently we can reach node 3 with cost 8
+This is temporary runtime information.
+Why Edge Cannot Replace Pair
+Suppose you use Edge in PQ.
+Java
+Edge(dest, wt)
+Here:
+wt means edge weight only
+not total distance from source
+But Dijkstra’s PQ needs:
+Plain text
+distance from source
+not single edge weight.
+````
+
 **Dijikstras algorithm**
 
 ```java
