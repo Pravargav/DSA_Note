@@ -1134,9 +1134,10 @@ public class DijkstraClean {
             for (Edge e : graph.get(u)) {
                 int v = e.dest;
                 int newDist = oldDist + e.wt;
-
+ 
                 if (newDist < dist[v]) {
                     dist[v] = newDist;
+                    //we only add relaxed nodes in priority queue
                     pq.add(new Pair(v, dist[v]));
                 }
             }
