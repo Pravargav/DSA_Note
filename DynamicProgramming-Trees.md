@@ -7,7 +7,7 @@
 int[] diameter = new int[1];
 ```
 
--> ✅ Why Because?
+-> Why Because?
 
 -> diameter is updated inside recursion
 
@@ -100,7 +100,7 @@ class Solution {
     public int findMaxSum(Node root) {
         int val = dfs(root);
 
-        // ✅ Handle skewed tree (no node has two children)
+        //  Handle skewed tree (no node has two children)
         if (maxSum == Integer.MIN_VALUE) {
             return val;
         }
