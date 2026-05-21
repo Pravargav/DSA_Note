@@ -1138,6 +1138,8 @@ public class DijkstraClean {
                 if (newDist < dist[v]) {
                     dist[v] = newDist;
                     //we only add relaxed nodes in priority queue
+                    //unlike bfs which only adds unvisited nodes
+                    //bfs uses queue but dijikstras use priority queue
                     pq.add(new Pair(v, dist[v]));
                 }
             }
