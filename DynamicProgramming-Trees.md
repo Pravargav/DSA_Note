@@ -98,7 +98,13 @@ class Solution {
     private int maxSum = Integer.MIN_VALUE;
 
     public int findMaxSum(Node root) {
-        dfs(root);
+        int val = dfs(root);
+
+        // ✅ Handle skewed tree (no node has two children)
+        if (maxSum == Integer.MIN_VALUE) {
+            return val;
+        }
+
         return maxSum;
     }
 
@@ -108,18 +114,24 @@ class Solution {
         int left = dfs(node.left);
         int right = dfs(node.right);
 
+        // When both children exist → valid leaf-to-leaf path
         if (node.left != null && node.right != null) {
             maxSum = Math.max(maxSum, left + right + node.data);
             return node.data + Math.max(left, right);
         }
 
+       =
         if (node.left != null) {
             return node.data + left;
-        } else {
+        } else if (node.right != null) {
             return node.data + right;
         }
+
+        // Leaf node
+        return node.data;
     }
 }
+``
 ```
 
 -> Max path sum between any two nodes(If either left or right height is negative or zero no need to include in total sum at each node.If positive height then only adding to the total sum makes some value for max getting) and (same approach by both gfg and striver)
