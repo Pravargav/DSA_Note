@@ -146,21 +146,27 @@ class Node {
 }
 
 class Solution {
-    private int maxSum = Integer.MIN_VALUE;
+    private int maxSum;
 
     public int maxPathSum(Node root) {
+        maxSum = Integer.MIN_VALUE;
         dfs(root);
         return maxSum;
     }
 
+    // Returns max path sum starting from current node going downwards
     private int dfs(Node node) {
         if (node == null) return 0;
 
+        // Ignore negative paths
         int left = Math.max(0, dfs(node.left));
         int right = Math.max(0, dfs(node.right));
 
-        maxSum = Math.max(maxSum, left + right + node.data);
+        // Update global max (path passing through current node)
+        int currentPath = left + right + node.data;
+        maxSum = Math.max(maxSum, currentPath);
 
+        // Return best single path upwards
         return node.data + Math.max(left, right);
     }
 }
