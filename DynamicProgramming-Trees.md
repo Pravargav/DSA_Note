@@ -120,7 +120,7 @@ class Solution {
             return node.data + Math.max(left, right);
         }
 
-       =
+       
         if (node.left != null) {
             return node.data + left;
         } else if (node.right != null) {
