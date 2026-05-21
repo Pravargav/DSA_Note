@@ -834,6 +834,9 @@ Note: using bfs and indegree.
 
 Note2: works for disconnected graph also.(confirmed by chatgpt)
 
+//Works Because : Khan's alogirthm ensures u->v means node u must come befor v
+//Also indegree[v] represents how many prerequisites are still unfinished i.e indegree ==0 implies no node needs to come before it.
+
 -> Using BFS
 
 ```java
