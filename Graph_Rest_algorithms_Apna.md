@@ -1034,51 +1034,44 @@ List<List<  Edge(int dest, int wt) {
 ````
 
 ````markdown
-Both classes store different types of information needed for Dijkstra's Algorithm.
-1. Edge Class → Graph Structure
-Java
+-> Both classes store different types of information needed for Dijkstra's Algorithm.
+
+
+1. Edge Class - Graph Structure
+
 static class Edge {
     int dest, wt;
 }
+
 Used inside adjacency list.
 Represents:
 Plain text
-u → dest with weight wt
-Example:
-Plain text
-0 → 1 (4)
-0 → 2 (7)
-Stored as:
-Java
-graph.get(0):
-    Edge(1,4)
-    Edge(2,7)
+u -> dest with weight wt
+
 So Edge is permanent graph information.
-2. Pair Class → Priority Queue State
-Java
+
+
+2. Pair Class - Priority Queue State
+
 static class Pair {
     int node, dist;
 }
+
 Used inside min-heap (PriorityQueue).
 Represents:
-Plain text
+
 current shortest known distance to node
-Example:
-Plain text
-(node = 3, dist = 8)
-means:
-Plain text
-currently we can reach node 3 with cost 8
+
 This is temporary runtime information.
-Why Edge Cannot Replace Pair
+-> Why Edge Cannot Replace Pair
 Suppose you use Edge in PQ.
-Java
+
 Edge(dest, wt)
 Here:
 wt means edge weight only
 not total distance from source
 But Dijkstra’s PQ needs:
-Plain text
+
 distance from source
 not single edge weight.
 ````
@@ -1182,84 +1175,6 @@ public class DijkstraClean {
     }
 }
 
-    static class Pair implements Comparable<Pair> {
-        int node, dist;
-
-        Pair(int node, int dist) {
-            this.node = node;
-            this.dist = dist;
-        }
-
-        public int compareTo(Pair p) {
-            return this.dist - p.dist;
-        }
-    }
-
-    public static int[] dijkstra(List<List<Edge>> graph, int src) {
-
-        int V = graph.size();
-        int[] dist = new int[V];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-
-        PriorityQueue<Pair> pq = new PriorityQueue<>();
-
-        dist[src] = 0;
-        pq.add(new Pair(src, 0));
-
-        while (!pq.isEmpty()) {
-
-            Pair curr = pq.poll();
-            int u = curr.node;
-            int w = curr.dist;
-
-            int oldDist = dist[u];
-
-            // Skip outdated entry
-            if (w > oldDist) continue;
-
-            for (Edge e : graph.get(u)) {
-                int v = e.dest;
-                int newDist = oldDist + e.wt;
-
-                if (newDist < dist[v]) {
-                    dist[v] = newDist;
-                    pq.add(new Pair(v, dist[v]));
-                }
-            }
-        }
-
-        return dist;
-    }
-
-    public static void main(String[] args) {
-
-        int V = 5;
-        List<List<Edge>> graph = new ArrayList<>();
-
-        for (int i = 0; i < V; i++)
-            graph.add(new ArrayList<>());
-
-        // Undirected edges
-        graph.get(0).add(new Edge(1, 2));
-        graph.get(1).add(new Edge(0, 2));
-
-        graph.get(0).add(new Edge(2, 4));
-        graph.get(2).add(new Edge(0, 4));
-
-        graph.get(1).add(new Edge(2, 1));
-        graph.get(2).add(new Edge(1, 1));
-
-        graph.get(1).add(new Edge(3, 7));
-        graph.get(3).add(new Edge(1, 7));
-
-        graph.get(2).add(new Edge(4, 3));
-        graph.get(4).add(new Edge(2, 3));
-
-        int[] dist = dijkstra(graph, 0);
-
-        System.out.println(Arrays.toString(dist));
-    }
-}
 ```
 
 **Dijikstras algorithm for product maximisation**
