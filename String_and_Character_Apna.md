@@ -497,6 +497,13 @@ import java.util.regex.Pattern;
 | `StringBuilder.toString()` | StringBuilder → String | `"Hello World"` |
 
 
+# Quick Summary Table
 
-
+| Method               | Input         | Output  |
+| -------------------- | ------------- | ------- |
+| `Integer.valueOf()`  | String / int  | Integer |
+| `Integer.parseInt()` | String        | int     |
+| `String.valueOf()`   | any type      | String  |
+| `Double.valueOf()`   | String        | Double  |
+| `Boolean.valueOf()`  | String        | Boolean |
 
