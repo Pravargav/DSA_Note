@@ -128,8 +128,7 @@ sb.delete(5, 11);  // Deletes characters from index 5 to 10
 // Reverse
 sb.reverse();  // Reverses the sequence
 
-// Capacity and Length
-int cap = sb.capacity();  // Current capacity
+// Length
 int len = sb.length();    // Length of string
 
 // Access and Modify Characters
@@ -138,9 +137,6 @@ sb.setCharAt(0, 'G');          // Set character at index 0 to 'G'
 
 // Substring
 String sub = sb.substring(0, 5);  // Returns substring from index 0 to 4
-
-// Ensure Capacity
-sb.ensureCapacity(50);  // Ensures capacity of at least 50
 
 // Delete Character at Index
 sb.deleteCharAt(3);  // Deletes character at index 3
