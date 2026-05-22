@@ -487,3 +487,16 @@ System.out.println(Pattern.matches("\\S+", "gfg"));       // true (no whitespace
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 ```
+
+## Quick Comparison Table
+
+| Method                     | Converts               | Example Output  |
+| -------------------------- | ---------------------- | --------------- |
+| `Character.toString(ch)`   | char → String          | `"A"`           |
+| `Arrays.toString(arr)`     | array → String         | `"[1, 2, 3]"`   |
+| `StringBuilder.toString()` | StringBuilder → String | `"Hello World"` |
+
+
+
+
+
