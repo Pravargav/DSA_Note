@@ -100,15 +100,12 @@ String result = s.replaceAll("[(){}]", "");  // Remove brackets
 | `replace(int start, int end, String s)` | Replaces substring in range   |
 | `delete(int start, int end)`            | Deletes characters from range |
 | `reverse()`                             | Reverses the string           |
-| `capacity()`                            | Returns current capacity      |
-| `ensureCapacity(int min)`               | Ensures minimum capacity      |
 | `charAt(int index)`                     | Returns character at index    |
 | `length()`                              | Returns current length        |
 | `substring(int start)`                  | Substring from start to end   |
 | `substring(int start, int end)`         | Substring in range            |
 | `indexOf(String str)`                   | First occurrence index        |
 | `lastIndexOf(String str)`               | Last occurrence index         |
-| `trimToSize()`                          | Reduces capacity to length    |
 
 
 
