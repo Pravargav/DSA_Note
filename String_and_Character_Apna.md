@@ -488,14 +488,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 ```
 
-## Quick Comparison Table
-
-| Method                     | Converts               | Example Output  |
-| -------------------------- | ---------------------- | --------------- |
-| `Character.toString(ch)`   | char → String          | `"A"`           |
-| `Arrays.toString(arr)`     | array → String         | `"[1, 2, 3]"`   |
-| `StringBuilder.toString()` | StringBuilder → String | `"Hello World"` |
-
 
 # Quick Summary Table
 
@@ -506,4 +498,20 @@ import java.util.regex.Pattern;
 | `String.valueOf()`   | any type      | String  |
 | `Double.valueOf()`   | String        | Double  |
 | `Boolean.valueOf()`  | String        | Boolean |
+
+
+# Comparison Table
+
+| Method                      | Input Type    | Output | 
+| --------------------------- | ------------- | ------ | 
+| `Character.toString(ch)`    | `char`        | String | 
+| `Arrays.toString(arr)`      | array         | String | 
+| `StringBuilder.toString()`  | StringBuilder | String | 
+| `Integer.toString(int)`     | `int`         | String | 
+| `Double.toString(double)`   | `double`      | String | 
+| `Boolean.toString(boolean)` | `boolean`     | String |
+
+
+
+
 
