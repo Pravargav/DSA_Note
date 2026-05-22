@@ -45,6 +45,55 @@ class LISMemoization {
 
 -> Longest Increasing Subsequence(another simple approach)-(striver)
 
+````markdown
+This code finds the length of the Longest Increasing Subsequence (LIS) using Dynamic Programming.
+Example:
+For:
+
+{10, 9, 2, 5, 3, 7, 101, 18}
+One LIS is:
+
+2 → 5 → 7 → 101
+Length = 4
+
+**Main Idea**
+dp[i] stores:
+Length of the longest increasing subsequence ending at index i.
+Step 1: Create DP Array
+
+int dp[] = new int[n];
+Arrays.fill(dp, 1);
+Initially every element itself is a subsequence of length 1.
+
+**Example:**
+
+arr = [10, 9, 2, 5, 3, 7, 101, 18]
+
+dp  = [1, 1, 1, 1, 1, 1, 1, 1]
+Step 2: Build DP
+
+for (int i = 0; i <= n - 1; i++) {
+We try to calculate LIS ending at every index i.
+Inner Loop
+
+for (int prevIndex = 0; prevIndex <= i - 1; prevIndex++)
+Check all previous elements before i.
+Increasing Condition
+
+if (arr[prevIndex] < arr[i])
+If previous element is smaller:
+we can extend that subsequence.
+
+**Transition**
+
+dp[i] = Math.max(dp[i], 1 + dp[prevIndex]);
+Meaning:
+
+Take previous LIS length
++
+current element
+````
+
 ```java
 import java.util.*;
 
