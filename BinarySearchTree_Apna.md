@@ -17,9 +17,10 @@ public static boolean search(Node root, int key) {
     if (root == null) return false;
 
     if (key < root.data) return search(root.left, key);
-    if (key == root.data) return true;
 
-    return search(root.right, key);
+    if (key > root.data) return search(root.right, key);
+
+    return (key == root.data);
 }
 ```
 **delete**
