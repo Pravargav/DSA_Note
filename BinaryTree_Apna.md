@@ -154,7 +154,7 @@ public static int findDiameter(Node root) {
     return Math.max(selfDia, Math.max(leftDia, rightDia));
 }
 ```
-**is Subtree**
+**is Subtree**-(&& for is identical, || for isSubtree)
 ```java
 public boolean isSubTree(TreeNode root, TreeNode subRoot) {
     if (subRoot == null) return true;
