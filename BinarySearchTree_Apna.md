@@ -66,21 +66,4 @@ public static void printInRange(Node root, int x, int y) {
     }
 }
 ```
-**print path**
-```java
-public static void printRootToLeaf(Node root, ArrayList<Integer> path) {
-    if (root == null) return;
 
-    path.add(root.data);
-
-    if (root.left == null && root.right == null) {
-        for (int x : path) System.out.print(x + " ");
-        System.out.println();
-    } else {
-        printRootToLeaf(root.left, path);
-        printRootToLeaf(root.right, path);
-    }
-
-    path.remove(path.size() - 1);
-}
-```
