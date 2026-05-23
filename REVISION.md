@@ -156,7 +156,7 @@ public static int[] bellmanFord(int V, List<Edge> edges, int src) {
         return dist;
     }
 
-    static int spanningTree(int V, List<List<Edge>> adj) {
+    static int spanningTree(int V, List<List<Edge>> graph) {
     PriorityQueue<Pair> pq = new PriorityQueue<>();
     boolean[] vis = new boolean[V];
 
@@ -174,7 +174,7 @@ public static int[] bellmanFord(int V, List<Edge> edges, int src) {
         vis[node] = true;
         sum += wt;
 
-        for (Edge e : adj.get(node)) {
+        for (Edge e : graph.get(node)) {
             if (!vis[e.dest]) {
                 pq.add(new Pair(e.dest, e.wt));
             }
