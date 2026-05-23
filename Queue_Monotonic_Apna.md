@@ -14,22 +14,17 @@ public class MonotonicQueue {
         Deque<Integer> deque = new ArrayDeque<>();
 
         for (int i = 0; i < n; i++) {
-            //Current window is [i - k + 1, i]
-            //If an index is less than i - k + 1, it is outside the window
-            //Remove it from the front
+
             while (!deque.isEmpty() && deque.peekFirst() <= i - k) {
                 deque.pollFirst();
             }
 
-            // Remove smaller values (monotonic decreasing)
             while (!deque.isEmpty() && nums[deque.peekLast()] < nums[i]) {
                 deque.pollLast();
             }
 
             deque.offerLast(i);
 
-            // Record the max value when the first window is complete as the
-            // first complete window ends at i = k - 1
             if (i >= k - 1) {
                 res[i - k + 1] = nums[deque.peekFirst()];
             }
