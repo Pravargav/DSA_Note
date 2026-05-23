@@ -106,7 +106,9 @@ public static void levelOrder(Node root) {
 
         if (curr == null) {
             System.out.println();
-            if (q.isEmpty()) break;
+            if (q.isEmpty()){
+               break;
+             }
             q.add(null);
         } else {
             System.out.print(curr.data + " ");
