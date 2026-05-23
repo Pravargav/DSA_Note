@@ -141,7 +141,6 @@ public static int[] bellmanFord(int V, List<Edge> edges, int src) {
 
             for (Edge e : graph.get(u)) {
                 int v = e.dest;
-                int newDist = oldDist + e.wt;
  
                 if (oldDist + e.wt < dist[v]) {
                     dist[v] = oldDist + e.wt;
