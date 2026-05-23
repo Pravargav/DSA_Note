@@ -185,3 +185,14 @@ public static int[] bellmanFord(int V, List<Edge> edges, int src) {
 
 
 ```
+```java
+
+List<List<Edge>> graph = new ArrayList<>();
+
+
+for (int i = 0; i < V; i++) {
+    graph.add(new ArrayList<>());
+
+graph.get(0).add(new Edge(0, 1, 5));
+
+```
