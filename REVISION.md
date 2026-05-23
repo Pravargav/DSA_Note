@@ -143,8 +143,8 @@ public static int[] bellmanFord(int V, List<Edge> edges, int src) {
                 int v = e.dest;
                 int newDist = oldDist + e.wt;
  
-                if (newDist < dist[v]) {
-                    dist[v] = newDist;
+                if (oldDist + e.wt < dist[v]) {
+                    dist[v] = oldDist + e.wt;
                     //we only add relaxed nodes in priority queue
                     //unlike bfs which only adds unvisited nodes
                     //bfs uses queue but dijikstras use priority queue
