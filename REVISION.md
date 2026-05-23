@@ -164,5 +164,32 @@ public static void levelOrder(Node root) {
         return dist;
     }
 
+    static int spanningTree(int V, List<List<Edge>> adj) {
+    PriorityQueue<Pair> pq = new PriorityQueue<>();
+    boolean[] vis = new boolean[V];
+
+    pq.add(new Pair(0, 0)); // (node, dist)
+    int sum = 0;
+
+    while (!pq.isEmpty()) {
+        Pair curr = pq.poll();
+
+        int node = curr.node;
+        int wt = curr.dist;
+
+        if (vis[node]) continue;
+
+        vis[node] = true;
+        sum += wt;
+
+        for (Edge e : adj.get(node)) {
+            if (!vis[e.dest]) {
+                pq.add(new Pair(e.dest, e.wt));
+            }
+        }
+    }
+    return sum;
+}
+
 
 ```
