@@ -166,17 +166,18 @@ public static int[] bellmanFord(int V, List<Edge> edges, int src) {
     while (!pq.isEmpty()) {
         Pair curr = pq.poll();
 
-        int node = curr.node;
-        int wt = curr.dist;
+        int u = curr.node;
+        int w = curr.dist;
 
-        if (vis[node]) continue;
+        if (vis[u]) continue;
 
-        vis[node] = true;
-        sum += wt;
+        vis[u] = true;
+        sum += w;
 
-        for (Edge e : graph.get(node)) {
-            if (!vis[e.dest]) {
-                pq.add(new Pair(e.dest, e.wt));
+        for (Edge e : graph.get(u)) {
+            int v = e.dest; 
+            if (!vis[v]) {
+                pq.add(new Pair(v, e.wt));
             }
         }
     }
