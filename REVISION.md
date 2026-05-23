@@ -62,30 +62,35 @@ public static void levelOrder(Node root) {
     }
 
 
-public static int[] bellmanFord(int V, List<Edge> edges, int src) {
+public static int[] bellmanFord(List<List<Edge>> graph, int src) {
 
+    int V = graph.size();
     int[] dist = new int[V];
     Arrays.fill(dist, Integer.MAX_VALUE);
     dist[src] = 0;
 
     // Relax edges V-1 times
     for (int i = 1; i <= V - 1; i++) {
-        for (Edge e : edges) {
-            if (dist[e.src] != Integer.MAX_VALUE &&
-                dist[e.src] + e.wt < dist[e.dest]) {
+        for (int u = 0; u < V; u++) {
+            for (Edge e : graph.get(u)) {
+                if (dist[u] != Integer.MAX_VALUE &&
+                    dist[u] + e.wt < dist[e.dest]) {
 
-                dist[e.dest] = dist[e.src] + e.wt;
+                    dist[e.dest] = dist[u] + e.wt;
+                }
             }
         }
     }
 
     // Detect negative weight cycle
-    for (Edge e : edges) {
-        if (dist[e.src] != Integer.MAX_VALUE &&
-            dist[e.src] + e.wt < dist[e.dest]) {
+    for (int u = 0; u < V; u++) {
+        for (Edge e : graph.get(u)) {
+            if (dist[u] != Integer.MAX_VALUE &&
+                dist[u] + e.wt < dist[e.dest]) {
 
-            System.out.println("Negative weight cycle detected!");
-            return null;
+                System.out.println("Negative weight cycle detected!");
+                return null;
+            }
         }
     }
 
