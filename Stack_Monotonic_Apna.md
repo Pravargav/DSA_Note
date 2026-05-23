@@ -12,7 +12,7 @@ public class NextGreaterElement {
         Stack<Integer> stack = new Stack<>(); // stores indexes
 
         for (int i = n - 1; i >= 0; i--) {
-            // Maintain decreasing stack → pop smaller/equal elements
+
             while (!stack.isEmpty() && nums[stack.peek()] <= nums[i]) {
                 stack.pop();
             }
