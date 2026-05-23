@@ -60,48 +60,40 @@ public static void levelOrder(Node root) {
 
         System.out.println();
     }
-```
 
-```java
-    static class Edge {
-        int u, v, w;
 
-        Edge(int u, int v, int w) {
-            this.u = u;
-            this.v = v;
-            this.w = w;
-        }
-    }
-        public static int[] bellmanFord(int V, List<Edge> edges, int src) {
+public static int[] bellmanFord(int V, List<Edge> edges, int src) {
 
-        int[] dist = new int[V];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
+    int[] dist = new int[V];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+    dist[src] = 0;
 
-        // Relax edges V-1 times
-        for (int i = 1; i <= V - 1; i++) {
-            for (Edge e : edges) {
-                if (dist[e.u] != Integer.MAX_VALUE &&
-                    dist[e.u] + e.w < dist[e.v]) {
-
-                    dist[e.v] = dist[e.u] + e.w;
-                }
-            }
-        }
-
-        // Detect negative cycle
+    // Relax edges V-1 times
+    for (int i = 1; i <= V - 1; i++) {
         for (Edge e : edges) {
-            if (dist[e.u] != Integer.MAX_VALUE &&
-                dist[e.u] + e.w < dist[e.v]) {
+            if (dist[e.src] != Integer.MAX_VALUE &&
+                dist[e.src] + e.wt < dist[e.dest]) {
 
-                System.out.println("Negative weight cycle detected!");
-                return null;
+                dist[e.dest] = dist[e.src] + e.wt;
             }
         }
-
-        return dist;
     }
+
+    // Detect negative weight cycle
+    for (Edge e : edges) {
+        if (dist[e.src] != Integer.MAX_VALUE &&
+            dist[e.src] + e.wt < dist[e.dest]) {
+
+            System.out.println("Negative weight cycle detected!");
+            return null;
+        }
+    }
+
+    return dist;
+}
 ```
+
+
 ```java
     static class Edge {
         int dest, wt;
