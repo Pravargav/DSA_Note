@@ -50,7 +50,7 @@ public static Node inorderSuccessor(Node root) {
     return root;
 }
 ```
-**print in range**
+**print in range(inorder)**
 ```java
 public static void printInRange(Node root, int x, int y) {
     if (root == null) return;
