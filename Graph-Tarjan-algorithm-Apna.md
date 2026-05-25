@@ -18,7 +18,7 @@ Resulting graph is always a DAG, even if the original graph had cycles
 
 [youtube-willam-heist](https://youtu.be/wUgWX0nc4NY?si=rj0aLhlNHrLHv95C)
 
----
+
 
 ### ❌ Statement 1 (Incorrect / Misleading)
 
@@ -84,7 +84,7 @@ The stack ensures:
 * Prevents cross-SCC contamination
 * Ensures correctness regardless of DFS order
 
----
+
 
 ### ✅ Statement 4 (Correct)
 
@@ -94,7 +94,7 @@ The stack ensures:
 
 This is the **core invariant** of Tarjan’s algorithm.
 
----
+
 
 ### 🧠 The Precise Version
 
@@ -102,7 +102,7 @@ Here is the **correct technical formulation** replacing TopCoder’s wording:
 
 > The low-link value of a node `u` is the minimum DFS discovery time reachable from `u`, including itself, by following DFS tree edges and at most one back edge to a node currently on the stack. The stack is used to track active nodes in the current DFS path, and nodes are removed from the stack only when an SCC is fully identified.
 
----
+
 -> Striver and Apna college assigned node-id's intelligently so to exactly match time with node-id's.But both are not same.Refer to striver's graph diagram and Apna graph diagram in youtube [striver-ex](https://takeuforward.org/graph/bridges-in-graph-using-tarjans-algorithm-of-time-in-and-low-time-g-55).
 
 
@@ -177,11 +177,11 @@ public class TarjanSCC {
     }
 }
 ```
-## ❌ Is the given code correct?
+### ❌ Is the given code correct?
 
 **No — as written, it is NOT correct.**
 
-### ❗ Reason: Java pass-by-value for `int time`
+#### ❗ Reason: Java pass-by-value for `int time`
 
 ```java
 public static void dfs(..., int time)
@@ -195,13 +195,13 @@ public static void dfs(..., int time)
 
 ✔ Your explanation of the bug is **exactly right**
 
----
 
-## ✅ Correct Fixes (Two Valid Options)
 
----
+### ✅ Correct Fixes (Two Valid Options)
 
-## ✔️ FIX (BEST & CLEANEST): Use `static int time`
+
+
+### ✔️ FIX (BEST & CLEANEST): Use `static int time`
 
 ### ✅ Corrected Working Code
 
@@ -274,7 +274,7 @@ public class TarjanSCC {
 
 
 
-## ⚠️ Important Note (Java)
+### ⚠️ Important Note (Java)
 
 Passing `time` as an `int` is **pass-by-value**.
 For correctness in real implementations, use:
@@ -283,9 +283,9 @@ For correctness in real implementations, use:
 * `int[] time = {0}`
 
 
-## ✅ Corrected Bridge in Graph (Tarjan’s Algorithm)
+### ✅ Corrected Bridge in Graph (Tarjan’s Algorithm)
 
-### 🔧 Fix Applied
+#### 🔧 Fix Applied
 
 * `time` is made **static**
 * Removed `time` from DFS parameters
@@ -348,9 +348,9 @@ public class BridgeTarjan {
 
 ---
 
-## ✅ Corrected Articulation Point in Graph (Tarjan’s Algorithm)
+### ✅ Corrected Articulation Point in Graph (Tarjan’s Algorithm)
 
-### 🔧 Fix Applied
+#### 🔧 Fix Applied
 
 * `time` is **static**
 * DFS no longer receives `time` as parameter
