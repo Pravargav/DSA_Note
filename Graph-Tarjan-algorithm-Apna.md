@@ -20,27 +20,27 @@ Resulting graph is always a DAG, even if the original graph had cycles
 
 ---
 
-## ❌ Statement 1 (Incorrect / Misleading)
+### ❌ Statement 1 (Incorrect / Misleading)
 
 > **“The low-link value of a node is the smallest node ID reachable from that node when doing a DFS, including itself.”**
 
 🔴 **This is NOT strictly correct.**
 
-### Why?
+#### Why?
 
 * **Low-link is NOT about node ID**
 * It is about **DFS discovery time**
 
-### ✅ Correct version
+#### ✅ Correct version
 
 > **The low-link value of a node is the minimum *DFS discovery time* reachable from that node (including itself), using tree edges and back edges to nodes still on the stack.**
 
 📌 Node IDs are arbitrary labels.
 📌 Discovery time represents DFS order (ancestor relationship).
 
----
 
-### ⚠️ Why TopCoder says “node ID”
+
+#### ⚠️ Why TopCoder says “node ID”
 
 Many TopCoder problems **label nodes in DFS order (0,1,2,...)**, so:
 
@@ -51,15 +51,14 @@ node ID == discovery time
 ➡️ In **that special context**, their statement *appears* correct.
 ➡️ In **general graph theory**, it is **wrong wording**.
 
----
 
-## ⚠️ Statement 2 (Conceptually correct, wording sloppy)
+### ⚠️ Statement 2 (Conceptually correct, wording sloppy)
 
 > **“There is a catch with doing a DFS on the graph, as it is highly dependent on the traversal order of the DFS, which is effectively random.”**
 
 🟡 **Idea is correct, wording is loose**
 
-### Clarification:
+#### Clarification:
 
 * DFS order **depends on adjacency list order**
 * It is **deterministic**, not random
@@ -71,9 +70,9 @@ node ID == discovery time
 
 Tarjan’s algorithm guarantees that.
 
----
 
-## ✅ Statement 3 (Correct and Important)
+
+### ✅ Statement 3 (Correct and Important)
 
 > **“To cope with the random traversal order of the DFS, Tarjan’s algorithm maintains a stack of valid nodes from which to update low-link values.”**
 
@@ -87,7 +86,7 @@ The stack ensures:
 
 ---
 
-## ✅ Statement 4 (Correct)
+### ✅ Statement 4 (Correct)
 
 > **“Nodes are added to the stack of valid nodes as they are explored for the first time. Nodes are removed from the stack each time a complete SCC is found.”**
 
@@ -97,7 +96,7 @@ This is the **core invariant** of Tarjan’s algorithm.
 
 ---
 
-## 🧠 The Precise Version
+### 🧠 The Precise Version
 
 Here is the **correct technical formulation** replacing TopCoder’s wording:
 
@@ -109,7 +108,7 @@ Here is the **correct technical formulation** replacing TopCoder’s wording:
 
 Let me give a **clear final verdict**, then show the **corrected code**.
 
----
+
 ```java
 
 import java.util.*;
