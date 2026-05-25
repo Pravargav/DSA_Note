@@ -71,6 +71,7 @@ To improve time complexity:
 
 
 
+
 -> Prims algo using Priority Queue - Apna, striver and Gfg(second version of gfg code).
 
 ```java
