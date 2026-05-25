@@ -57,7 +57,7 @@ It does:
 DFS
 
 Push node to stack after DFS finishes
-➡ called finishing time order
+-> called finishing time order
 
 
 This works even if the graph has cycles.
