@@ -52,9 +52,7 @@ So the fix is mostly conceptual + small code cleanup.
 
 Kosaraju does NOT do topological sort
 
-It does:
-
-DFS
+It does: DFS
 
 Push node to stack after DFS finishes
 -> called finishing time order
