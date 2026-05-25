@@ -395,13 +395,6 @@ For correctness in real implementations, use:
 * `static int time`, or
 * `int[] time = {0}`
 
----
-
-Below are the **corrected, fully working Java implementations** of **Bridge** and **Articulation Point** using **Tarjan’s Algorithm**, fixing the **pass-by-value `time` bug** by using a **static variable**.
-
-These are **exam-safe, interview-safe, and production-correct**.
-
----
 
 ## ✅ Corrected Bridge in Graph (Tarjan’s Algorithm)
 
@@ -545,11 +538,7 @@ public class ArticulationTarjan {
 }
 ```
 
----
-
-
-Tarjan’s Algorithm
-✅ Can Do
+-> **Tarjan’s Algorithm - Can be used for below**
 
 Strongly Connected Components (SCCs)
 
@@ -560,11 +549,5 @@ Articulation Points (undirected graph)
 Detect cycles (via SCCs)
 
 Build condensation graph
-
-❌ Cannot Do
-
-Direct topological sort
-
-Shortest path
 
 
