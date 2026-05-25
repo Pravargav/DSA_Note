@@ -1,87 +1,71 @@
 
-
-Note: This does not initialize each ArrayList inside — you need to do that in a loop.
-
-
-```java
-import java.util.*;
-
-class Edge {
-    int to, weight;
-
-    Edge(int to, int weight) {
-        this.to = to;
-        this.weight = weight;
-    }
-}
-
-public class Graph {
-    public static void main(String[] args) {
-        int V = 5;
-        ArrayList<Edge> g[] = new ArrayList[V];
-
-        // Initialize each list
-        for (int i = 0; i < V; i++) {
-            g[i] = new ArrayList<>();
-        }
-
-        // Add some edges (u -> v with weight w)
-        g[0].add(new Edge(1, 10));
-        g[0].add(new Edge(4, 20));
-        g[1].add(new Edge(2, 30));
-        g[2].add(new Edge(3, 40));
-
-        // Print the graph
-        for (int i = 0; i < V; i++) {
-            System.out.print("Node " + i + ": ");
-            for (Edge e : g[i]) {
-                System.out.print("-> (to: " + e.to + ", wt: " + e.weight + ") ");
-            }
-            System.out.println();
-        }
-    }
-}
-```
-
 ->DFS
 
 ```java
 import java.util.*;
 
-public class DisconnectedGraphDFS {
-    static void dfs(List<List<Integer>> graph, int node, boolean[] vis) {
-        vis[node] = true;
-        System.out.print(node + " ");
+public class DisconnectedGraphDFS_Edge {
 
-        for (int neighbor : graph.get(node)) {
-            if (!vis[neighbor]) {
-                dfs(graph, neighbor, vis);
+    static class Edge {
+        int src;
+        int dest;
+        int wt;
+
+        Edge(int s, int d, int w) {
+            this.src = s;
+            this.dest = d;
+            this.wt = w;
+        }
+    }
+
+    // Create Disconnected Graph
+    static void createGraph(List<List<Edge>> graph) {
+
+        // Component 1: 0 - 1 - 2
+        graph.get(0).add(new Edge(0, 1, 1));
+        graph.get(1).add(new Edge(1, 0, 1));
+
+        graph.get(1).add(new Edge(1, 2, 1));
+        graph.get(2).add(new Edge(2, 1, 1));
+
+        // Component 2: 3 - 4
+        graph.get(3).add(new Edge(3, 4, 1));
+        graph.get(4).add(new Edge(4, 3, 1));
+
+        // Component 3: Node 5 is isolated (no edges)
+    }
+
+    // DFS function
+    static void dfs(List<List<Edge>> graph, int curr, boolean[] visited) {
+        visited[curr] = true;
+        System.out.print(curr + " ");
+
+        for (Edge e : graph.get(curr)) {
+            if (!visited[e.dest]) {
+                dfs(graph, e.dest, visited);
             }
         }
     }
 
     public static void main(String[] args) {
+
         int V = 6;
-        List<List<Integer>> graph = new ArrayList<>();
-        for (int i = 0; i < V; i++) graph.add(new ArrayList<>());
 
-        // Component 1: 0-1-2
-        graph.get(0).add(1);
-        graph.get(1).add(0);
-        graph.get(1).add(2);
-        graph.get(2).add(1);
+        List<List<Edge>> graph = new ArrayList<>();
 
-        // Component 2: 3-4
-        graph.get(3).add(4);
-        graph.get(4).add(3);
-
-        // Component 3: Node 5 is isolated
-
-        boolean[] vis = new boolean[V];
         for (int i = 0; i < V; i++) {
-            if (!vis[i]) {
+            graph.add(new ArrayList<>());
+        }
+
+        createGraph(graph);
+
+        boolean[] visited = new boolean[V];
+
+        // Handle disconnected components
+        for (int i = 0; i < V; i++) {
+            if (!visited[i]) {
                 System.out.print("Component: ");
-                dfs(graph, i, vis);
+                dfs(graph, i, visited);
                 System.out.println();
             }
         }
