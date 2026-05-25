@@ -212,25 +212,26 @@ public class TarjanSCC {
 
     static class Edge {
         int src, dest;
+
         Edge(int s, int d) {
-            src = s;
-            dest = d;
+            this.src = s;
+            this.dest = d;
         }
     }
 
-    static int time = 0;  // ✅ global time
+    static int time = 0;  // global time
 
-    public static void dfs(ArrayList<Edge> graph[], int curr,
-                           int dt[], int low[],
-                           boolean inStack[],
+    // DFS for SCC
+    public static void dfs(List<List<Edge>> graph, int curr,
+                           int[] dt, int[] low,
+                           boolean[] inStack,
                            Stack<Integer> stack) {
 
         dt[curr] = low[curr] = ++time;
         stack.push(curr);
         inStack[curr] = true;
 
-        for (int i = 0; i < graph[curr].size(); i++) {
-            Edge e = graph[curr].get(i);
+        for (Edge e : graph.get(curr)) {
 
             if (dt[e.dest] == 0) {
                 dfs(graph, e.dest, dt, low, inStack, stack);
@@ -241,6 +242,7 @@ public class TarjanSCC {
             }
         }
 
+        // SCC root condition
         if (dt[curr] == low[curr]) {
             System.out.print("SCC : ");
             while (true) {
@@ -253,19 +255,49 @@ public class TarjanSCC {
         }
     }
 
-    public static void getSCC(ArrayList<Edge> graph[], int V) {
-        int dt[] = new int[V];
-        int low[] = new int[V];
-        boolean inStack[] = new boolean[V];
+    // Main SCC function
+    public static void getSCC(List<List<Edge>> graph) {
+        int V = graph.size();
+
+        int[] dt = new int[V];
+        int[] low = new int[V];
+        boolean[] inStack = new boolean[V];
         Stack<Integer> stack = new Stack<>();
 
-        time = 0; // reset before DFS
+        time = 0; // reset
 
         for (int i = 0; i < V; i++) {
             if (dt[i] == 0) {
                 dfs(graph, i, dt, low, inStack, stack);
             }
         }
+    }
+
+    // Create Directed Graph
+    public static void createGraph(List<List<Edge>> graph) {
+
+        // Example graph
+        graph.get(0).add(new Edge(0, 2));
+        graph.get(2).add(new Edge(2, 1));
+        graph.get(1).add(new Edge(1, 0));
+
+        graph.get(0).add(new Edge(0, 3));
+        graph.get(3).add(new Edge(3, 4));
+    }
+
+    public static void main(String[] args) {
+
+        int V = 5;
+
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        createGraph(graph);
+
+        getSCC(graph);
     }
 }
 ```
