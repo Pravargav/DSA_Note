@@ -1266,7 +1266,106 @@ public class MaxProductPath {
     }
 }
 ```
+```java
+import java.util.*;
 
+public class MaxProductPath {
+
+    static class Edge {
+        int dest;
+        double prob;
+
+        Edge(int dest, double prob) {
+            this.dest = dest;
+            this.prob = prob;
+        }
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int node;
+        double dist;
+
+        Pair(int node, double dist) {
+            this.node = node;
+            this.dist = dist;
+        }
+
+        @Override
+        public int compareTo(Pair p) {
+            return Double.compare(this.dist, p.dist);
+        }
+    }
+
+    public static double[] dijkstraMaxProduct(List<List<Edge>> graph, int src) {
+
+        int V = graph.size();
+        double[] dist = new double[V];
+        Arrays.fill(dist, Double.POSITIVE_INFINITY);
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+        dist[src] = 0;
+        pq.offer(new Pair(src, 0));
+
+        while (!pq.isEmpty()) {
+
+            Pair curr = pq.poll();
+            int u = curr.node;
+            double w = curr.dist;
+
+            double oldDist = dist[u];
+
+            // Skip outdated entry
+            if (w > oldDist) {
+                continue;
+            }
+
+            for (Edge e : graph.get(u)) {
+
+                int v = e.dest;
+                double newDist = oldDist + (-Math.log(e.prob));
+
+                if (newDist < dist[v]) {
+                    dist[v] = newDist;
+
+                    // Add only relaxed nodes
+                    pq.offer(new Pair(v, dist[v]));
+                }
+            }
+        }
+
+        return dist;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 4;
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Directed edges with probabilities
+        graph.get(0).add(new Edge(1, 0.5));
+        graph.get(0).add(new Edge(2, 0.2));
+
+        graph.get(1).add(new Edge(2, 0.8));
+        graph.get(1).add(new Edge(3, 0.3));
+
+        graph.get(2).add(new Edge(3, 0.9));
+
+        double[] dist = dijkstraMaxProduct(graph, 0);
+
+        System.out.println("Maximum product path probabilities:");
+
+        for (int i = 0; i < V; i++) {
+            double maxProb = Math.exp(-dist[i]);
+            System.out.println("0 -> " + i + " : " + maxProb);
+        }
+    }
+}
+```
 **Bellman ford**
 
 -> https://youtu.be/j0OUwduDOS0?si=K3riyaeuZE_l0u2k
