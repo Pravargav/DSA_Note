@@ -1284,14 +1284,16 @@ import java.util.*;
 
 public class BellmanFordClean {
 
-    // Edge representation
+    // Updated Edge representation
     static class Edge {
-        int u, v, w;
+        int src;
+        int dest;
+        int wt;
 
-        Edge(int u, int v, int w) {
-            this.u = u;
-            this.v = v;
-            this.w = w;
+        Edge(int s, int d, int w) {
+            src = s;
+            dest = d;
+            wt = w;
         }
     }
 
@@ -1305,18 +1307,18 @@ public class BellmanFordClean {
         // Relax edges V-1 times
         for (int i = 1; i <= V - 1; i++) {
             for (Edge e : edges) {
-                if (dist[e.u] != Integer.MAX_VALUE &&
-                    dist[e.u] + e.w < dist[e.v]) {
+                if (dist[e.src] != Integer.MAX_VALUE &&
+                    dist[e.src] + e.wt < dist[e.dest]) {
 
-                    dist[e.v] = dist[e.u] + e.w;
+                    dist[e.dest] = dist[e.src] + e.wt;
                 }
             }
         }
 
         // Detect negative cycle
         for (Edge e : edges) {
-            if (dist[e.u] != Integer.MAX_VALUE &&
-                dist[e.u] + e.w < dist[e.v]) {
+            if (dist[e.src] != Integer.MAX_VALUE &&
+                dist[e.src] + e.wt < dist[e.dest]) {
 
                 System.out.println("Negative weight cycle detected!");
                 return null;
