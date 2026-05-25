@@ -155,7 +155,107 @@ public class tUf {
 }
 ```
 
+```java
+import java.util.*;
 
+public class PrimsClean {
+
+    static class Edge {
+        int dest, wt;
+
+        Edge(int dest, int wt) {
+            this.dest = dest;
+            this.wt = wt;
+        }
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int node, dist;
+
+        Pair(int node, int dist) {
+            this.node = node;
+            this.dist = dist;
+        }
+
+        @Override
+        public int compareTo(Pair p) {
+            return this.dist - p.dist;
+        }
+    }
+
+    public static int prims(List<List<Edge>> graph) {
+
+        int V = graph.size();
+
+        boolean[] vis = new boolean[V];
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+        int mstWeight = 0;
+
+        pq.offer(new Pair(0, 0)); // (node, edgeWeight)
+
+        while (!pq.isEmpty()) {
+
+            Pair curr = pq.poll();
+
+            int u = curr.node;
+            int wt = curr.dist;
+
+            if (vis[u]) {
+                continue;
+            }
+
+            vis[u] = true;
+            mstWeight += wt;
+
+            for (Edge e : graph.get(u)) {
+
+                int v = e.dest;
+
+                if (!vis[v]) {
+                    pq.offer(new Pair(v, e.wt));
+                }
+            }
+        }
+
+        return mstWeight;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 5;
+
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Undirected graph
+        graph.get(0).add(new Edge(1, 2));
+        graph.get(1).add(new Edge(0, 2));
+
+        graph.get(0).add(new Edge(2, 1));
+        graph.get(2).add(new Edge(0, 1));
+
+        graph.get(1).add(new Edge(2, 1));
+        graph.get(2).add(new Edge(1, 1));
+
+        graph.get(2).add(new Edge(3, 2));
+        graph.get(3).add(new Edge(2, 2));
+
+        graph.get(3).add(new Edge(4, 1));
+        graph.get(4).add(new Edge(3, 1));
+
+        graph.get(4).add(new Edge(2, 2));
+        graph.get(2).add(new Edge(4, 2));
+
+        int mstWeight = prims(graph);
+
+        System.out.println("MST Weight = " + mstWeight);
+    }
+}
+```
 
 -> Kruskal's algorithm 
 
