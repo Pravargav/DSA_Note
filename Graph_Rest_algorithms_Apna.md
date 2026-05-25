@@ -1077,6 +1077,103 @@ not single edge weight.
 ````
 
 **Dijikstras algorithm**
+```java
+import java.util.*;
+
+public class DijkstraClean {
+
+    static class Edge {
+        int dest, wt;
+
+        Edge(int dest, int wt) {
+            this.dest = dest;
+            this.wt = wt;
+        }
+    }
+
+    static class Pair implements Comparable<Pair> {
+        int node, dist;
+
+        Pair(int node, int dist) {
+            this.node = node;
+            this.dist = dist;
+        }
+
+        @Override
+        public int compareTo(Pair p) {
+            return this.dist - p.dist;
+        }
+    }
+
+    public static int[] dijkstra(List<List<Edge>> graph, int src) {
+
+        int V = graph.size();
+
+        int[] dist = new int[V];
+        Arrays.fill(dist, Integer.MAX_VALUE);
+
+        PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+        dist[src] = 0;
+        pq.offer(new Pair(src, 0));
+
+        while (!pq.isEmpty()) {
+
+            Pair curr = pq.poll();
+
+            // Skip outdated entries
+            if (curr.dist > dist[curr.node]) {
+                continue;
+            }
+
+            for (Edge e : graph.get(curr.node)) {
+
+                if (curr.dist + e.wt < dist[e.dest]) {
+
+                    dist[e.dest] = curr.dist + e.wt;
+
+                    // Only relaxed nodes are added to the PQ
+                    pq.offer(new Pair(e.dest, dist[e.dest]));
+                }
+            }
+        }
+
+        return dist;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 5;
+
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        // Undirected Graph
+        graph.get(0).add(new Edge(1, 2));
+        graph.get(1).add(new Edge(0, 2));
+
+        graph.get(0).add(new Edge(2, 4));
+        graph.get(2).add(new Edge(0, 4));
+
+        graph.get(1).add(new Edge(2, 1));
+        graph.get(2).add(new Edge(1, 1));
+
+        graph.get(1).add(new Edge(3, 7));
+        graph.get(3).add(new Edge(1, 7));
+
+        graph.get(2).add(new Edge(4, 3));
+        graph.get(4).add(new Edge(2, 3));
+
+        int[] dist = dijkstra(graph, 0);
+
+        System.out.println("Shortest distances from source 0:");
+        System.out.println(Arrays.toString(dist));
+    }
+}
+```
 
 ```java
 import java.util.*;
