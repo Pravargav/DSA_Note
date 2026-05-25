@@ -430,57 +430,10 @@ max(distance from node1,
 
 is minimized.
 
-
-
 -> **Core Idea:**
-
-We calculate:
-
-distance from node1 to all nodes
-distance from node2 to all nodes
-
-Then choose node minimizing:
-
-max(dist1[i],dist2[i])
-
-because both people should reach meeting node as fairly as possible.
 
 -> **Dijkstra Function**
 
-static int[] dijikstra(...)
-
--> **Actually this behaves more like:**
-
-BFS on directed graph
-
-because:
-
-all edge weights are 1
-
-no priority queue used
-
--> **Explore Neighbor**
-
-for (Edge e : graph.get(u))
-
-Since each node has at most one outgoing edge:
-
-loop runs at most once.
-
--> **Relaxation**
-
-int newDist = d + 1;
-
-Every edge costs 1.
-
--> **Update Neighbor**
-
-if (!vis[v]) {
-    dist[v] = newDist;
-    pq.offer(new int[] { newDist, v });
-}
-
-Store shortest distance.
 
 -> **Two Distance Arrays**
 
@@ -492,37 +445,6 @@ Now we know:
 distance from node1 → every node
 distance from node2 → every node
 
--> **Find Closest Meeting Node**
-
-Loop through all nodes.
-
-int k = Math.max(dist1[i], dist2[i]);
-
--> **Meaning:**
-
-worst distance among the two persons
-
-We minimize this value.
-
-
--> **Why Use Maximum?**
-
-i) Suppose:
-
-Node A:
-dist1=1
-dist2=100
-
-Node B:
-dist1=50
-dist2=50
-
-ii)Meeting at B is better because:
-
-max(50,50)=50
-max(1,100)=100
-
-We want balanced meeting point.
 ````
 
 
