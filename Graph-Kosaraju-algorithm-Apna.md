@@ -175,6 +175,118 @@ public class Kosaraju {
 
 ```
 
+```java
+import java.util.*;
+
+public class Kosaraju {
+
+    static class Edge {
+        int src, dest;
+
+        Edge(int src, int dest) {
+            this.src = src;
+            this.dest = dest;
+        }
+    }
+
+    // Create Graph
+    public static List<List<Edge>> createGraph(int V) {
+        List<List<Edge>> graph = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            graph.add(new ArrayList<>());
+        }
+
+        graph.get(0).add(new Edge(0, 2));
+        graph.get(0).add(new Edge(0, 3));
+        graph.get(1).add(new Edge(1, 0));
+        graph.get(2).add(new Edge(2, 1));
+        graph.get(3).add(new Edge(3, 4));
+
+        return graph;
+    }
+
+    // Step 1: DFS for finishing times
+    public static void dfsFinishTime(
+            List<List<Edge>> graph,
+            int curr,
+            boolean[] vis,
+            Stack<Integer> stack) {
+
+        vis[curr] = true;
+
+        for (Edge e : graph.get(curr)) {
+            if (!vis[e.dest]) {
+                dfsFinishTime(graph, e.dest, vis, stack);
+            }
+        }
+
+        stack.push(curr);
+    }
+
+    // Step 3: DFS on transpose graph
+    public static void dfsTranspose(
+            List<List<Edge>> transpose,
+            int curr,
+            boolean[] vis) {
+
+        vis[curr] = true;
+        System.out.print(curr + " ");
+
+        for (Edge e : transpose.get(curr)) {
+            if (!vis[e.dest]) {
+                dfsTranspose(transpose, e.dest, vis);
+            }
+        }
+    }
+
+    public static void kosaraju(List<List<Edge>> graph, int V) {
+
+        // Step 1: Fill stack by finishing times
+        Stack<Integer> stack = new Stack<>();
+        boolean[] vis = new boolean[V];
+
+        for (int i = 0; i < V; i++) {
+            if (!vis[i]) {
+                dfsFinishTime(graph, i, vis, stack);
+            }
+        }
+
+        // Step 2: Build transpose graph
+        List<List<Edge>> transpose = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            transpose.add(new ArrayList<>());
+            vis[i] = false;
+        }
+
+        for (int i = 0; i < V; i++) {
+            for (Edge e : graph.get(i)) {
+                transpose.get(e.dest).add(new Edge(e.dest, e.src));
+            }
+        }
+
+        // Step 3: Process vertices in stack order
+        while (!stack.isEmpty()) {
+            int curr = stack.pop();
+
+            if (!vis[curr]) {
+                dfsTranspose(transpose, curr, vis);
+                System.out.println();
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int V = 5;
+
+        List<List<Edge>> graph = createGraph(V);
+
+        kosaraju(graph, V);
+    }
+}
+```
+
 
 🧠 Key Interview Line (Use this 🔥)
 
