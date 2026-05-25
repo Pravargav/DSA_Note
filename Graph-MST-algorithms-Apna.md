@@ -35,14 +35,10 @@ Watch the Union-Find (Disjoint Set Union) algorithm explanation here:
 
 👉 Link: [prim's](https://en.wikipedia.org/wiki/Prim%27s_algorithm)
 
-
-
 ####  Prim’s Algorithm- 👉 Link: [Prim’s Algorithm Source](https://www.baeldung.com/cs/kruskals-vs-prims-algorithm)
 
 Prim’s algorithm is similar in spirit to **Dijkstra’s algorithm**.  
 Instead of edges, it grows the MST by always choosing the **next nearest node**.
-
-
 
 ##### **Optimization**
 To improve time complexity:
@@ -64,130 +60,7 @@ To improve time complexity:
 
 -> Note3: Techdose code is same as gfg code for prims algorithm.They are using min key function in place of priority queue.
 
-````markdown
 
-### Initial State
-
-    key = [0, ∞, ∞, ∞, ∞]
-    mstSet = [false, false, false, false, false]
-
-***
-
-### Cycle 1 (pick vertex 0)
-
-Update neighbors of 0:
-
-    key = [0, 2, ∞, 6, ∞]
-
-***
-
-### Cycle 2 (pick vertex 1)
-
-Update neighbors of 1:
-
-    key = [0, 2, 3, 6, 5]
-
-***
-
-### Cycle 3 (pick vertex 2)
-
-Update neighbors of 2:
-
-    key = [0, 2, 3, 6, 5]
-
-(no change)
-
-***
-
-### Cycle 4 (pick vertex 4)
-
-Update neighbors of 4:
-
-    key = [0, 2, 3, 6, 5]
-
-(no change)
-
-***
-
-### Cycle 5 (pick vertex 3)
-
-Final MST completed:
-
-    key = [0, 2, 3, 6, 5]
-
-***
-
-
-````
-
-```java
-import java.util.*;
-
-class MST {
-
-    int minKey(int[] key, boolean[] mstSet) {
-        int min = Integer.MAX_VALUE;
-        int minIndex = -1;
-
-        for (int v = 0; v < key.length; v++) {
-            if (!mstSet[v] && key[v] < min) {
-                min = key[v];
-                minIndex = v;
-            }
-        }
-        return minIndex;
-    }
-
-    void printMST(int[] parent, int[][] graph) {
-        System.out.println("Edge \tWeight");
-        for (int i = 1; i < graph.length; i++) {
-            System.out.println(parent[i] + " - " + i + "\t" + graph[parent[i]][i]);
-        }
-    }
-
-    void primMST(int[][] graph) {
-        int V = graph.length;
-
-        int[] parent = new int[V];
-        int[] key = new int[V];
-        boolean[] mstSet = new boolean[V];
-
-        Arrays.fill(key, Integer.MAX_VALUE);
-        Arrays.fill(mstSet, false);
-
-        key[0] = 0;
-        parent[0] = -1;
-
-        for (int i = 0; i < V - 1; i++) {
-            int u = minKey(key, mstSet);
-            mstSet[u] = true;
-
-            for (int v = 0; v < V; v++) {
-                if (graph[u][v] != 0 && !mstSet[v] && graph[u][v] < key[v]) {
-                    parent[v] = u;
-                    key[v] = graph[u][v];
-                }
-            }
-        }
-
-        printMST(parent, graph);
-    }
-
-    public static void main(String[] args) {
-        MST mst = new MST();
-
-        int[][] graph = {
-            {0, 2, 0, 6, 0},
-            {2, 0, 3, 8, 5},
-            {0, 3, 0, 0, 7},
-            {6, 8, 0, 0, 9},
-            {0, 5, 7, 9, 0}
-        };
-
-        mst.primMST(graph);
-    }
-
-```
 -> Here in above code we do use parent array to store parent indices of each node.
 
 -> In a tree a node can have multiple children but can have only single parent.
@@ -196,29 +69,7 @@ class MST {
 
 -> If multiple parents are possible for a tree then we can't use parent array because each index can store only one value/parent.
 
-````markdown
-##### Side-by-Side Comparison: minKey() vs Priority Queue
 
-#####  Feature Comparison
-
-| Feature                | minKey() (Linear Scan) | Priority Queue (Min-Heap) |
-|-----------------------|------------------------|----------------------------|
-| **Approach**          | Linear scan            | Min-heap                   |
-| **Find minimum**      | O(V)                   | O(log V)                   |
-| **Total complexity**  | O(V²)                  | O(E log V)                 |
-| **Data structures**   | Arrays                 | Heap (PriorityQueue)       |
-| **Suitable for**      | Small / dense graphs   | Large / sparse graphs      |
-| **Code simplicity**   | Easy                   | Moderate                   |
-
-#####  Intuition Difference
-
-##### minKey()
--> Searches the entire list every time to find the minimum -  Like checking every student's marks each time to find the topper  
-
-##### Priority Queue
--> Minimum element is always available at the top (efficient retrieval) -   Like maintaining a sorted leaderboard where the topper is always at the top.
-
-````
 
 -> Prims algo using Priority Queue - Apna, striver and Gfg(second version of gfg code).
 
