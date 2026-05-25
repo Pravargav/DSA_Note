@@ -1134,7 +1134,7 @@ public class DijkstraClean {
                 if (newDist < dist[v]) {
                     dist[v] = newDist;
 
-                    // Add only relaxed nodes
+                    // dijikstra's adds relaxed nodes to priroity queue
                     pq.offer(new Pair(v, newDist));
                 }
             }
