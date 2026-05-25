@@ -303,3 +303,117 @@ class Solution {
     }
 }
 ```
+
+```java
+import java.util.*;
+
+class Edge {
+    int dest, wt;
+
+    Edge(int dest, int wt) {
+        this.dest = dest;
+        this.wt = wt;
+    }
+}
+
+class DisjointSet {
+    List<Integer> parent, size;
+
+    public DisjointSet(int n) {
+        parent = new ArrayList<>();
+        size = new ArrayList<>();
+
+        for (int i = 0; i <= n; i++) {
+            parent.add(i);
+            size.add(1);
+        }
+    }
+
+    public int findUPar(int node) {
+        if (node == parent.get(node))
+            return node;
+
+        parent.set(node, findUPar(parent.get(node)));
+        return parent.get(node);
+    }
+
+    public void unionBySize(int u, int v) {
+        int pu = findUPar(u);
+        int pv = findUPar(v);
+
+        if (pu == pv) return;
+
+        if (size.get(pu) < size.get(pv)) {
+            parent.set(pu, pv);
+            size.set(pv, size.get(pu) + size.get(pv));
+        } else {
+            parent.set(pv, pu);
+            size.set(pu, size.get(pu) + size.get(pv));
+        }
+    }
+}
+
+class Solution {
+
+    public int spanningTree(int V, List<List<Edge>> adj) {
+
+        List<int[]> edges = new ArrayList<>();
+
+        // Collect all edges
+        for (int u = 0; u < V; u++) {
+            for (Edge e : adj.get(u)) {
+                edges.add(new int[]{e.wt, u, e.dest});
+            }
+        }
+
+        edges.sort(Comparator.comparingInt(a -> a[0]));
+
+        DisjointSet ds = new DisjointSet(V);
+
+        int mstWeight = 0;
+
+        for (int[] edge : edges) {
+            int wt = edge[0];
+            int u = edge[1];
+            int v = edge[2];
+
+            if (ds.findUPar(u) != ds.findUPar(v)) {
+                mstWeight += wt;
+                ds.unionBySize(u, v);
+            }
+        }
+
+        return mstWeight;
+    }
+
+    public static void main(String[] args) {
+
+        int V = 4;
+
+        List<List<Edge>> adj = new ArrayList<>();
+
+        for (int i = 0; i < V; i++) {
+            adj.add(new ArrayList<>());
+        }
+
+        // Undirected graph
+        adj.get(0).add(new Edge(1, 1));
+        adj.get(1).add(new Edge(0, 1));
+
+        adj.get(1).add(new Edge(2, 2));
+        adj.get(2).add(new Edge(1, 2));
+
+        adj.get(2).add(new Edge(3, 3));
+        adj.get(3).add(new Edge(2, 3));
+
+        adj.get(0).add(new Edge(3, 4));
+        adj.get(3).add(new Edge(0, 4));
+
+        Solution sol = new Solution();
+
+        int ans = sol.spanningTree(V, adj);
+
+        System.out.println("The sum of weights of edges in MST is: " + ans);
+    }
+}
+```
