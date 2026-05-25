@@ -140,23 +140,7 @@ public static int findHeight(Node root) {
     return Math.max(findHeight(root.left), findHeight(root.right)) + 1;
 }
 ```
-**find diameter**
-```java
-public static int findHeight(Node root) {
-    if (root == null) return 0;
-    return Math.max(findHeight(root.left), findHeight(root.right)) + 1;
-}
 
-public static int findDiameter(Node root) {
-    if (root == null) return 0;
-
-    int leftDia = findDiameter(root.left);
-    int rightDia = findDiameter(root.right);
-    int selfDia = findHeight(root.left) + findHeight(root.right) + 1;
-
-    return Math.max(selfDia, Math.max(leftDia, rightDia));
-}
-```
 **is Subtree**-(&& for is identical, || for isSubtree)
 ```java
 public boolean isSubTree(TreeNode root, TreeNode subRoot) {
