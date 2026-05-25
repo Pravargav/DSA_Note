@@ -1172,12 +1172,45 @@ public class DijkstraClean {
         graph.get(2).add(new Edge(4, 3));
         graph.get(4).add(new Edge(2, 3));
 
-        int[] dist = dijkstra(graph, 0);
+  
 
-        System.out.println(Arrays.toString(dist));
+```
+
+```java
+public static int[] dijkstra(List<List<Edge>> graph, int src) {
+
+    int V = graph.size();
+
+    int[] dist = new int[V];
+    Arrays.fill(dist, Integer.MAX_VALUE);
+
+    PriorityQueue<Pair> pq = new PriorityQueue<>();
+
+    dist[src] = 0;
+    pq.add(new Pair(src, 0));
+
+    while (!pq.isEmpty()) {
+
+        Pair curr = pq.poll();
+
+        // Skip outdated entries
+        if (curr.dist > dist[curr.node])
+            continue;
+
+        for (Edge e : graph.get(curr.node)) {
+
+            if (curr.dist + e.wt < dist[e.dest]) {
+
+                dist[e.dest] = curr.dist + e.wt;
+
+                // Add relaxed node
+                pq.add(new Pair(e.dest, dist[e.dest]));
+            }
+        }
     }
-}
 
+    return dist;
+}
 ```
 
 **Dijikstras algorithm for product maximisation**
