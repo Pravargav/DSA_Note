@@ -6,15 +6,14 @@
 
 **scc1->scc2, scc1->scc2, scc1->scc2** - possible beacause there can be any number of directed edges from one scc to another in a single direction.
 
-------------------------------------------
 
-[baldeung-kosaraju-scc](https://www.baeldung.com/cs/kosaraju-algorithm-scc)
+
+-> [baldeung-kosaraju-scc](https://www.baeldung.com/cs/kosaraju-algorithm-scc)
 
 ###### Note: In the first step, we perform a DFS traversal to define the priorities of the vertices. More specifically, for each vertex, we remember when DFS finishes processing. The later DFS is done with a vertex, the higher its priority. ***This step is similar to topological sorting, but it’s not the same since the latter is only possible for DAGs.*** 
 
--------------------------------------------
 
-This is a very common confusion.
+-> This is a very common confusion.
 
 You are right that topological sorting is defined only for DAGs,
 but in Kosaraju’s algorithm we are NOT doing topological sort.
@@ -207,7 +206,3 @@ Naming it topSort() causes conceptual penalty in exams
 dfsFinishTime,
 fillOrder,
 dfsStackOrder
-
-
-
-
