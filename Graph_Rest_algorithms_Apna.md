@@ -269,6 +269,22 @@ public class DFS {
 ```
 
 **DFS-printing weights from parent**
+```java
+    public static void height(List<List<Edge>> graph, int cur, boolean vis[], int h[], int l) {
+        vis[cur] = true;
+
+        // ✅ FIX 3: use l (not l+1)
+        h[0] = Math.max(h[0], l);
+
+        for (Edge e : graph.get(cur)) {
+            if (!vis[e.dest]) {
+                height(graph, e.dest, vis, h, l + 1);
+            }
+        }
+    }
+```
+
+**DFS-printing weights from parent-2**
 
 ```java
 import java.util.*;
