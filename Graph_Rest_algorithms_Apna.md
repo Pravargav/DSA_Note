@@ -28,25 +28,6 @@ public class BFS {
         graph.get(0).add(new Edge(0, 1, 1));
         graph.get(0).add(new Edge(0, 2, 1));
 
-        graph.get(1).add(new Edge(1, 0, 1));
-        graph.get(1).add(new Edge(1, 3, 1));
-
-        graph.get(2).add(new Edge(2, 0, 1));
-        graph.get(2).add(new Edge(2, 4, 1));
-
-        graph.get(3).add(new Edge(3, 1, 1));
-        graph.get(3).add(new Edge(3, 4, 1));
-        graph.get(3).add(new Edge(3, 5, 1));
-
-        graph.get(4).add(new Edge(4, 2, 1));
-        graph.get(4).add(new Edge(4, 3, 1));
-        graph.get(4).add(new Edge(4, 5, 1));
-
-        graph.get(5).add(new Edge(5, 3, 1));
-        graph.get(5).add(new Edge(5, 4, 1));
-        graph.get(5).add(new Edge(5, 6, 1));
-
-        graph.get(6).add(new Edge(6, 5, 1));
     }
 
     static void bfs(List<List<Edge>> graph) {
@@ -218,25 +199,7 @@ public class DFS {
         graph.get(0).add(new Edge(0, 1, 1));
         graph.get(0).add(new Edge(0, 2, 1));
 
-        graph.get(1).add(new Edge(1, 0, 1));
-        graph.get(1).add(new Edge(1, 3, 1));
 
-        graph.get(2).add(new Edge(2, 0, 1));
-        graph.get(2).add(new Edge(2, 4, 1));
-
-        graph.get(3).add(new Edge(3, 1, 1));
-        graph.get(3).add(new Edge(3, 4, 1));
-        graph.get(3).add(new Edge(3, 5, 1));
-
-        graph.get(4).add(new Edge(4, 2, 1));
-        graph.get(4).add(new Edge(4, 3, 1));
-        graph.get(4).add(new Edge(4, 5, 1));
-
-        graph.get(5).add(new Edge(5, 3, 1));
-        graph.get(5).add(new Edge(5, 4, 1));
-        graph.get(5).add(new Edge(5, 6, 1));
-
-        graph.get(6).add(new Edge(6, 5, 1));
     }
 
     static void dfs(List<List<Edge>> graph, int curr, boolean[] visited) {
@@ -329,15 +292,7 @@ public class Main {
         // Weighted DAG edges
         graph.get(0).add(new Edge(1, 5));
         graph.get(0).add(new Edge(2, 3));
-        graph.get(1).add(new Edge(3, 6));
-        graph.get(1).add(new Edge(2, 2));
-        graph.get(2).add(new Edge(4, 4));
-        graph.get(2).add(new Edge(5, 2));
-        graph.get(3).add(new Edge(6, 1));
-        graph.get(4).add(new Edge(6, 2));
-        graph.get(5).add(new Edge(7, 3));
-        graph.get(6).add(new Edge(8, 4));
-        graph.get(7).add(new Edge(9, 1));
+
 
         boolean[] visited = new boolean[V];
 
@@ -372,25 +327,7 @@ public class PrintAllPaths {
         graph.get(0).add(new Edge(0, 1));
         graph.get(0).add(new Edge(0, 2));
 
-        graph.get(1).add(new Edge(1, 0));
-        graph.get(1).add(new Edge(1, 3));
 
-        graph.get(2).add(new Edge(2, 0));
-        graph.get(2).add(new Edge(2, 4));
-
-        graph.get(3).add(new Edge(3, 1));
-        graph.get(3).add(new Edge(3, 4));
-        graph.get(3).add(new Edge(3, 5));
-
-        graph.get(4).add(new Edge(4, 2));
-        graph.get(4).add(new Edge(4, 3));
-        graph.get(4).add(new Edge(4, 5));
-
-        graph.get(5).add(new Edge(5, 3));
-        graph.get(5).add(new Edge(5, 4));
-        graph.get(5).add(new Edge(5, 6));
-
-        graph.get(6).add(new Edge(6, 5));
     }
 
     static void printAllPaths(List<List<Edge>> graph, int src, int dest, boolean[] vis, String path) {
@@ -464,28 +401,7 @@ public class CycleUndirected {
         graph.get(0).add(new Edge(0, 1));
         graph.get(0).add(new Edge(0, 2));
 
-        graph.get(1).add(new Edge(1, 0));
-        graph.get(1).add(new Edge(1, 3));
-        graph.get(1).add(new Edge(1, 4));
 
-        graph.get(2).add(new Edge(2, 0));
-        graph.get(2).add(new Edge(2, 5));
-
-        graph.get(3).add(new Edge(3, 1));
-        graph.get(3).add(new Edge(3, 4));
-
-        graph.get(4).add(new Edge(4, 1));
-        graph.get(4).add(new Edge(4, 3));
-        graph.get(4).add(new Edge(4, 6));
-
-        graph.get(5).add(new Edge(5, 2));
-        graph.get(5).add(new Edge(5, 7));
-
-        graph.get(6).add(new Edge(6, 4));
-        graph.get(6).add(new Edge(6, 7));
-
-        graph.get(7).add(new Edge(7, 5));
-        graph.get(7).add(new Edge(7, 6));
     }
 
     static boolean dfs(List<List<Edge>> graph, boolean[] vis, int curr, int parent) {
@@ -567,22 +483,7 @@ public class Main {
         graph.get(0).add(new Edge(0, 1));
         graph.get(1).add(new Edge(1, 2));
         graph.get(2).add(new Edge(2, 3));
-        graph.get(3).add(new Edge(3, 4));
-        graph.get(4).add(new Edge(4, 5));
-        graph.get(5).add(new Edge(5, 6));
-        graph.get(6).add(new Edge(6, 0));
 
-        graph.get(2).add(new Edge(2, 7));
-        graph.get(7).add(new Edge(7, 8));
-        graph.get(8).add(new Edge(8, 3));
-        graph.get(3).add(new Edge(3, 6));
-        graph.get(5).add(new Edge(5, 2));
-
-        graph.get(1).add(new Edge(1, 5));
-        graph.get(6).add(new Edge(6, 1));
-
-        graph.get(4).add(new Edge(4, 2));
-        graph.get(8).add(new Edge(8, 6));
     }
 
     static boolean dfs(List<List<Edge>> graph, int curr,
@@ -666,23 +567,7 @@ public class Main {
 
         graph.get(0).add(new Edge(0, 1));
         graph.get(1).add(new Edge(1, 2));
-        graph.get(2).add(new Edge(2, 3));
-        graph.get(3).add(new Edge(3, 4));
-        graph.get(4).add(new Edge(4, 5));
-        graph.get(5).add(new Edge(5, 6));
-        graph.get(6).add(new Edge(6, 0));
 
-        graph.get(2).add(new Edge(2, 7));
-        graph.get(7).add(new Edge(7, 8));
-        graph.get(8).add(new Edge(8, 3));
-        graph.get(3).add(new Edge(3, 6));
-        graph.get(5).add(new Edge(5, 2));
-
-        graph.get(1).add(new Edge(1, 5));
-        graph.get(6).add(new Edge(6, 1));
-
-        graph.get(4).add(new Edge(4, 2));
-        graph.get(8).add(new Edge(8, 6));
     }
 
     static void dfs(List<List<Edge>> graph, int curr, boolean[] visited,
@@ -1172,17 +1057,7 @@ public class DijkstraClean {
         graph.get(0).add(new Edge(1, 2));
         graph.get(1).add(new Edge(0, 2));
 
-        graph.get(0).add(new Edge(2, 4));
-        graph.get(2).add(new Edge(0, 4));
 
-        graph.get(1).add(new Edge(2, 1));
-        graph.get(2).add(new Edge(1, 1));
-
-        graph.get(1).add(new Edge(3, 7));
-        graph.get(3).add(new Edge(1, 7));
-
-        graph.get(2).add(new Edge(4, 3));
-        graph.get(4).add(new Edge(2, 3));
 
         int[] dist = dijkstra(graph, 0);
 
